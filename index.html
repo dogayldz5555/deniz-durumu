@@ -455,10 +455,11 @@ function tekOlcutDurumu(deger, esik) {
   return "riskli";
 }
 
-// Dalga, rüzgar, hamle ve dalga periyodundan hangisi daha "dalgalı" sonuç veriyorsa o geçerli olur.
+// Dalga, rüzgar ve hamleden hangisi daha "dalgalı" sonuç veriyorsa o geçerli olur.
 // Hamle: ortalama rüzgar düşük olsa da ani sert esintiler varsa, denizi gerçekte daha çırpıntılı yapar.
-// Dalga periyodu: kısa periyotlu (sık aralıklı) dalgalar aynı yükseklikte olsa bile daha "huysuz" hissettirir;
-// 5 saniyenin altı huzursuz, 8 saniyenin üstü yumuşak/uzun dalga sayılır.
+// Not: Dalga periyodu bilgi olarak gösteriliyor ama karara katılmıyor — düşük dalga yüksekliğinde
+// (örn. 0.2m) periyot kısa bile olsa pratikte fark edilmeyecek kadar küçük bir dalga demektir;
+// periyodu tek başına bir uyarı sebebi yapmak yanlış alarma yol açıyordu.
 function durumDenizden(dalgaM, kmh, gustKmh, dalgaPeriyodu, lat, lon) {
   const bolge = denizBolgesi(lat, lon);
   const esikDalga = bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA;
@@ -473,15 +474,7 @@ function durumDenizden(dalgaM, kmh, gustKmh, dalgaPeriyodu, lat, lon) {
 
   const adaylar = [durumDalga, durumRuzgar, durumHamle].filter(Boolean);
   if (adaylar.length === 0) return "dikkatli"; // hiç veri yoksa temkinli ol
-  let sonuc = adaylar.reduce((a, b) => SIRA_DURUM.indexOf(b) > SIRA_DURUM.indexOf(a) ? b : a);
-
-  // Dalga periyodu kısa ise (sık aralıklı, "huysuz" dalga) ve sonuç şu an "keyifli" çıktıysa,
-  // bir kademe yukarı çekip "idare eder" yapıyoruz — periyot tek başına "dalgalı" sonucu vermez,
-  // sadece keyifli/idare eder arasındaki sınırı biraz daha temkinli tutar.
-  if (dalgaPeriyodu != null && dalgaPeriyodu < 5 && sonuc === "sakin") {
-    sonuc = "dikkatli";
-  }
-  return sonuc;
+  return adaylar.reduce((a, b) => SIRA_DURUM.indexOf(b) > SIRA_DURUM.indexOf(a) ? b : a);
 }
 
 const state = {
