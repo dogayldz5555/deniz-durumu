@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deniz Durumu — Bugün Denize Girilir mi?</title>
+<meta name="description" content="Türkiye kıyılarında anlık rüzgar ve dalga durumu. Haritadan bir nokta seç, dalga yüksekliğine göre denize girilebilir mi öğren, sahadan gelen gerçek kullanıcı yorumlarını oku." />
+<meta property="og:title" content="Deniz Durumu — Bugün Denize Girilir mi?" />
+<meta property="og:description" content="Anlık rüzgar ve dalga verisiyle, haritadan seçtiğin herhangi bir noktada deniz güvenli mi öğren." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #F1EFE8;
+    color: #2C2C2A;
+  }
+  #app {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  h1 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sub {
+    font-size: 13px;
+    color: #5f5e5a;
+    margin: 0 0 14px;
+  }
+  #map {
+    width: 100%;
+    height: 320px;
+    border-radius: 12px;
+    border: 1px solid #d3d1c7;
+    margin-bottom: 14px;
+  }
+  .leaflet-container { background: #cfe3ee; font-family: inherit; }
+  .card {
+    border-radius: 12px;
+    padding: 16px 18px 10px;
+    margin-bottom: 14px;
+    border: 1px solid #d3d1c7;
+    background: white;
+    min-height: 96px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888780;
+    font-size: 14px;
+    text-align: center;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .loc-label { font-size: 12px; margin-bottom: 2px; }
+  .status-label { font-size: 24px; font-weight: 500; line-height: 1.15; }
+  .refresh-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: inherit;
+    opacity: 0.7;
+  }
+  .refresh-btn:hover { opacity: 1; }
+  .metrics {
+    display: flex;
+    gap: 18px;
+    margin-top: 12px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .metrics b { font-weight: 500; }
+  .wavepattern { width: 100%; height: 44px; display: block; margin-top: 8px; }
+  .gb-section { margin-bottom: 16px; }
+  .gb-title { font-size: 13px; color: #5f5e5a; margin-bottom: 8px; }
+  .gb-buttons { display: flex; gap: 8px; margin-bottom: 8px; }
+  .gb-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: 8px;
+    border: 1px solid #d3d1c7;
+    background: white;
+    color: #5f5e5a;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .gb-btn svg { width: 18px; height: 18px; }
+  .gb-btn.active { border-width: 1.5px; }
+  .gb-input-row { display: flex; gap: 8px; }
+  .gb-input-row input {
+    flex: 1;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #d3d1c7;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .gb-send {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #888780;
+    background: #2C2C2A;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gb-sent { font-size: 12px; color: #0F6E56; margin-top: 6px; }
+  .gb-list { display: flex; flex-direction: column; gap: 6px; }
+  .gb-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #F1EFE8;
+    font-size: 13px;
+  }
+  .gb-item-left { display: flex; align-items: center; gap: 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .gb-time { color: #888780; font-size: 12px; white-space: nowrap; margin-left: 8px; }
+  .footnote { font-size: 11px; color: #888780; margin-top: 16px; line-height: 1.5; }
+  .legend {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: #5f5e5a;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .legend .dot { width: 9px; height: 9px; }
+  .section-label {
+    font-size: 12px;
+    color: #888780;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 6px 2px;
+  }
+  .community-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid #d3d1c7;
+    background: white;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .community-summary .big-label {
+    font-size: 15px;
+    font-weight: 500;
+    flex: 1;
+  }
+  .community-counts {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: #5f5e5a;
+  }
+  .community-counts span { display: flex; align-items: center; gap: 4px; }
+  .community-empty {
+    border-radius: 12px;
+    border: 1px solid #d3d1c7;
+    background: white;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #888780;
+    margin-bottom: 10px;
+  }
+  .conflict-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    border-radius: 10px;
+    background: #FAEEDA;
+    border: 1px solid #BA7517;
+    color: #412402;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 18c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg>
+    Deniz durumu
+  </h1>
+  <p class="sub">Haritada bir noktaya tıkla, oranın rüzgar ve dalga durumunu gör.</p>
+
+  <div class="legend">
+    <span><span class="dot" style="background:#1D9E75"></span>Sakin</span>
+    <span><span class="dot" style="background:#BA7517"></span>Dikkatli</span>
+    <span><span class="dot" style="background:#D85A30"></span>Riskli</span>
+  </div>
+
+  <div id="map"></div>
+
+  <p class="section-label" id="our-label" style="display:none;">Tahminimiz (rüzgar + dalga verisi)</p>
+  <div class="card placeholder" id="status-card">
+    Haritada bir noktaya tıkla
+  </div>
+
+  <div id="conflict-note" class="conflict-note" style="display:none;"></div>
+
+  <p class="section-label" id="community-label" style="display:none;">Sahadan gelenler</p>
+  <div id="community-summary-wrap" style="display:none;"></div>
+
+  <div class="gb-section" id="gb-section" style="display:none;">
+    <div class="gb-title">Şu an oradaysan, deniz nasıl?</div>
+    <div class="gb-buttons">
+      <button class="gb-btn" data-val="sakin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Sakin</button>
+      <button class="gb-btn" data-val="dikkatli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Dalgalı</button>
+      <button class="gb-btn" data-val="riskli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Tehlikeli</button>
+    </div>
+    <div class="gb-input-row" id="gb-input-row" style="display:none;">
+      <input type="text" id="gb-note" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
+      <button class="gb-send" id="gb-send" aria-label="Gönder">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div class="gb-sent" id="gb-sent" style="display:none;">Bildirimin kaydedildi, teşekkürler.</div>
+  </div>
+
+  <div id="gb-list-wrap" style="display:none;">
+    <div class="gb-title">Tüm bildirimler (bu nokta için)</div>
+    <div class="gb-list" id="gb-list"></div>
+  </div>
+
+  <p class="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, tahminidir. Geri bildirimler bu oturumda saklanır; tüm kullanıcılar arasında paylaşılması için bir sunucu gerekir.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// === SUPABASE BAĞLANTI BİLGİLERİ ===
+// Buraya kendi Supabase projenin Project URL ve anon/publishable key'ini yapıştır.
+// Settings > API Keys sayfasından alabilirsin. Bu key tarayıcıda görünür olabilir,
+// güvenlik RLS politikalarıyla sağlanıyor (yukarıdaki SQL dosyasına bak).
+const SUPABASE_URL = "https://conejfwwcwjtvvzzdqad.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_VtilBtvDJOyBZ2vwP5MQCg_aXGyOy1x";
+
+let supabaseClient = null;
+const supabaseHazir = SUPABASE_URL.startsWith("http") && SUPABASE_ANON_KEY.length > 20;
+if (supabaseHazir) {
+  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} else {
+  console.warn("Supabase bağlantı bilgileri girilmedi — geri bildirimler bu oturumda yerel olarak saklanacak.");
+}
+
+const RENK = {
+  sakin:    { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
+  dikkatli: { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
+  riskli:   { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
+};
+const ETIKET = {
+  sakin: "Sakin, girilebilir",
+  dikkatli: "Deniz bugün dalgalı, dikkatli ol",
+  riskli: "Riskli, denize girmeniz önerilmez",
+};
+
+// Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
+// Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
+// bu yüzden "sakin" kabul edilen dalga yüksekliği denize göre değişir.
+const DENIZ_BOLGELERI = [
+  { id: "karadeniz", ad: "Karadeniz", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42, esik: { sakin: 0.35, dikkatli: 0.8 } },
+  { id: "marmara",   ad: "Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0, esik: { sakin: 0.4, dikkatli: 1.0 } },
+  { id: "ege",       ad: "Ege",       latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 28.0, esik: { sakin: 0.4, dikkatli: 1.1 } },
+  { id: "akdeniz",   ad: "Akdeniz",   latMin: 34.0, latMax: 37.5, lonMin: 27.5, lonMax: 36.7, esik: { sakin: 0.35, dikkatli: 1.0 } },
+];
+const VARSAYILAN_ESIK = { sakin: 0.5, dikkatli: 1.2 };
+
+function denizBolgesi(lat, lon) {
+  return DENIZ_BOLGELERI.find(b => lat >= b.latMin && lat <= b.latMax && lon >= b.lonMin && lon <= b.lonMax) || null;
+}
+
+function durumDenizden(dalgaM, lat, lon) {
+  if (dalgaM == null) return "dikkatli";
+  const bolge = denizBolgesi(lat, lon);
+  const esik = bolge ? bolge.esik : VARSAYILAN_ESIK;
+  if (dalgaM < esik.sakin) return "sakin";
+  if (dalgaM < esik.dikkatli) return "dikkatli";
+  return "riskli";
+}
+
+const state = {
+  marker: null,
+  lat: null,
+  lon: null,
+  geriBildirimlerYerel: {},
+  secilenGB: null,
+  bizimDurum: null,
+};
+
+const map = L.map('map', { zoomControl: true, center: [41.0, 35.0], zoom: 6 });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '',
+  maxZoom: 14,
+}).addTo(map);
+map.setView([41.0, 35.0], 6);
+
+function konumAnahtari(lat, lon) {
+  return lat.toFixed(2) + "," + lon.toFixed(2);
+}
+
+function svgDalgaPattern(renkHex, yogunluk) {
+  const dalgaSayisi = 3;
+  let paths = "";
+  for (let i = 0; i < dalgaSayisi; i++) {
+    const y = 22 + i * 6;
+    const amp = 10 + i * 4 - yogunluk;
+    paths += `<path d="M0,${y} Q37.5,${amp} 75,${y} T150,${y} T225,${y} T300,${y}" fill="none" stroke="${renkHex}" stroke-width="2.5" stroke-linecap="round" opacity="${1 - i * 0.28}"/>`;
+  }
+  return `<svg class="wavepattern" viewBox="0 0 300 44" aria-hidden="true">${paths}</svg>`;
+}
+
+function zamanFormat(ts) {
+  const fark = Math.round((Date.now() - ts) / 60000);
+  if (fark < 1) return "az önce";
+  if (fark < 60) return fark + " dk önce";
+  return Math.round(fark / 60) + " sa önce";
+}
+
+async function veriCekVeGoster(lat, lon) {
+  const card = document.getElementById('status-card');
+  document.getElementById('our-label').style.display = "block";
+  card.className = "card";
+  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#5f5e5a;font-size:14px;">Rüzgar ve dalga verisi getiriliyor…</div>`;
+
+  document.getElementById('gb-section').style.display = "none";
+  document.getElementById('gb-list-wrap').style.display = "none";
+  document.getElementById('community-label').style.display = "none";
+  document.getElementById('community-summary-wrap').style.display = "none";
+  document.getElementById('conflict-note').style.display = "none";
+
+  try {
+    const [havaRes, denizRes] = await Promise.all([
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&wind_speed_unit=kmh&timezone=auto`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period&timezone=auto`)
+    ]);
+
+    const hava = havaRes.ok ? (await havaRes.json()).current : null;
+    const denizOk = denizRes.ok;
+    const deniz = denizOk ? (await denizRes.json()).current : null;
+    const dalgaM = deniz ? deniz.wave_height : null;
+
+    if (!hava && dalgaM == null) throw new Error("no data");
+
+    const durum = durumDenizden(dalgaM, lat, lon);
+    const r = RENK[durum];
+    const kmh = hava ? hava.wind_speed_10m : null;
+    const gust = hava ? hava.wind_gusts_10m : null;
+    const temp = hava ? hava.temperature_2m : null;
+    const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
+
+    card.style.background = r.bg;
+    card.style.borderColor = r.border;
+
+    let metricsHtml = "";
+    if (kmh != null) {
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"/><path d="M12.59 11.59A2 2 0 1 1 14 15H2"/><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"/></svg><b>${Math.round(kmh)} km/sa</b> rüzgar</div>`;
+    }
+    if (gust != null) {
+      metricsHtml += `<div>Hamle <b>${Math.round(gust)} km/sa</b></div>`;
+    }
+    if (dalgaM != null) {
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><b>${dalgaM.toFixed(1)} m</b> dalga</div>`;
+    }
+    if (temp != null) {
+      metricsHtml += `<div><b>${Math.round(temp)}°C</b></div>`;
+    }
+
+    const bolge = denizBolgesi(lat, lon);
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div>
+          <div class="loc-label" style="color:${r.text600}">${bolge ? bolge.ad + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
+          <div class="status-label" style="color:${r.text900}">${ETIKET[durum]}</div>
+        </div>
+        <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </button>
+      </div>
+      <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
+      ${svgDalgaPattern(r.border, yogunluk)}
+      ${!denizOk ? `<div style="font-size:12px;color:${r.text600};margin-top:4px;">Bu nokta için dalga verisi yok (açık deniz tahmin modeli kapsamı dışında olabilir); sadece rüzgara göre tahmin ediliyor.</div>` : ""}
+    `;
+
+    document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
+
+    state.lat = lat;
+    state.lon = lon;
+    state.bizimDurum = durum;
+    await gbAlaniniGuncelle();
+  } catch (e) {
+    card.className = "card";
+    card.style.background = "#FAECE7";
+    card.style.borderColor = "#D85A30";
+    card.innerHTML = `
+      <div style="text-align:center;padding:12px 0;color:#4A1B0C;font-size:14px;">
+        Veri alınamadı. Bağlantını kontrol edip yeniden dene.
+        <div style="margin-top:10px;">
+          <button id="retry-btn" style="background:transparent;border:1px solid #D85A30;border-radius:8px;padding:6px 14px;font-size:13px;color:#4A1B0C;cursor:pointer;">Yeniden dene</button>
+        </div>
+      </div>`;
+    document.getElementById('retry-btn').onclick = () => veriCekVeGoster(lat, lon);
+  }
+}
+
+const SIRA = ["sakin", "dikkatli", "riskli"];
+
+// Bir noktanın YAKININDAKİ bildirimleri getirir (tam aynı koordinat yerine ~0.05 derecelik
+// bir kutu içindekileri toplar, çünkü insanlar tam aynı pikselde tıklamaz).
+async function bildirimleriGetir(lat, lon) {
+  const ARALIK = 0.07;
+  if (supabaseClient) {
+    const { data, error } = await supabaseClient
+      .from('geri_bildirimler')
+      .select('*')
+      .gte('lat', lat - ARALIK).lte('lat', lat + ARALIK)
+      .gte('lon', lon - ARALIK).lte('lon', lon + ARALIK)
+      .gte('created_at', new Date(Date.now() - 6 * 3600 * 1000).toISOString()) // son 6 saat
+      .order('created_at', { ascending: false })
+      .limit(30);
+    if (error) {
+      console.error("Supabase okuma hatası:", error);
+      return { liste: [], hata: true };
+    }
+    return { liste: data.map(d => ({ durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime() })), hata: false };
+  }
+  // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş
+  const key = konumAnahtari(lat, lon);
+  return { liste: state.geriBildirimlerYerel[key] || [], hata: false };
+}
+
+async function bildirimEkle(lat, lon, durum, not) {
+  if (supabaseClient) {
+    const { error } = await supabaseClient
+      .from('geri_bildirimler')
+      .insert({ lat, lon, durum, not_metni: not || null });
+    if (error) {
+      console.error("Supabase yazma hatası:", error);
+      return false;
+    }
+    return true;
+  }
+  const key = konumAnahtari(lat, lon);
+  if (!state.geriBildirimlerYerel[key]) state.geriBildirimlerYerel[key] = [];
+  state.geriBildirimlerYerel[key].unshift({ durum, not, zaman: Date.now() });
+  return true;
+}
+
+async function gbAlaniniGuncelle() {
+  document.getElementById('gb-section').style.display = "block";
+  document.getElementById('gb-sent').style.display = "none";
+  document.getElementById('gb-input-row').style.display = "none";
+  state.secilenGB = null;
+  document.querySelectorAll('.gb-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.borderColor = "#d3d1c7";
+    b.style.background = "white";
+    b.style.color = "#5f5e5a";
+  });
+  document.getElementById('gb-note').value = "";
+
+  const communityLabel = document.getElementById('community-label');
+  const summaryWrap = document.getElementById('community-summary-wrap');
+  const listWrap = document.getElementById('gb-list-wrap');
+  const listEl = document.getElementById('gb-list');
+  const conflictNote = document.getElementById('conflict-note');
+
+  communityLabel.style.display = "block";
+  summaryWrap.style.display = "block";
+  summaryWrap.innerHTML = `<div class="community-empty">Yükleniyor…</div>`;
+
+  const { liste, hata } = await bildirimleriGetir(state.lat, state.lon);
+
+  if (hata) {
+    summaryWrap.innerHTML = `<div class="community-empty">Sahadan gelen bildirimler şu an yüklenemedi.</div>`;
+    listWrap.style.display = "none";
+    return;
+  }
+
+  if (liste.length === 0) {
+    summaryWrap.innerHTML = `<div class="community-empty">Son 6 saatte kimse bildirim bırakmadı. İlk bildiren sen ol.</div>`;
+    listWrap.style.display = "none";
+    conflictNote.style.display = "none";
+    return;
+  }
+
+  const sayim = { sakin: 0, dikkatli: 0, riskli: 0 };
+  liste.forEach(gb => { sayim[gb.durum]++; });
+
+  const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "sakin");
+  const r = RENK[baskinDurum];
+
+  summaryWrap.innerHTML = `
+    <div class="community-summary" style="background:${r.bg};border-color:${r.border};">
+      <span class="dot" style="background:${r.border};width:11px;height:11px;"></span>
+      <div class="big-label" style="color:${r.text900}">${ETIKET[baskinDurum].split(",")[0]} diyor çoğunluk</div>
+      <div class="community-counts">
+        ${SIRA.filter(d => sayim[d] > 0).map(d => `<span><span class="dot" style="background:${RENK[d].border}"></span>${sayim[d]}</span>`).join("")}
+      </div>
+    </div>`;
+
+  listWrap.style.display = "block";
+  listEl.innerHTML = liste.map(gb => {
+    const rr = RENK[gb.durum];
+    return `<div class="gb-item">
+      <div class="gb-item-left">
+        <span class="dot" style="background:${rr.border}"></span>
+        <span>${ETIKET[gb.durum].split(",")[0]}</span>
+        ${gb.not ? `<span style="color:#5f5e5a;">— ${gb.not.replace(/</g, "&lt;")}</span>` : ""}
+      </div>
+      <span class="gb-time">${zamanFormat(gb.zaman)}</span>
+    </div>`;
+  }).join("");
+
+  if (state.bizimDurum && baskinDurum !== state.bizimDurum) {
+    conflictNote.style.display = "flex";
+    conflictNote.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12.01" y2="16"/><line x1="12" y1="8" x2="12" y2="12"/></svg>
+      <span>Tahminimiz <b>${ETIKET[state.bizimDurum].split(",")[0].toLowerCase()}</b> diyor, sahadan gelenler ise çoğunlukla <b>${ETIKET[baskinDurum].split(",")[0].toLowerCase()}</b> diyor. Deniz hızlı değişebilir, gitmeden hemen önce kontrol et.</span>`;
+  } else {
+    conflictNote.style.display = "none";
+  }
+}
+
+document.querySelectorAll('.gb-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.val;
+    state.secilenGB = val;
+    const r = RENK[val];
+    document.querySelectorAll('.gb-btn').forEach(b => {
+      const active = b === btn;
+      b.classList.toggle('active', active);
+      b.style.borderColor = active ? r.border : "#d3d1c7";
+      b.style.background = active ? r.bg : "white";
+      b.style.color = active ? r.text900 : "#5f5e5a";
+    });
+    document.getElementById('gb-input-row').style.display = "flex";
+  });
+});
+
+document.getElementById('gb-send').addEventListener('click', async () => {
+  if (!state.secilenGB || state.lat == null) return;
+  const not = document.getElementById('gb-note').value.trim();
+  const sendBtn = document.getElementById('gb-send');
+  sendBtn.disabled = true;
+  sendBtn.style.opacity = "0.5";
+
+  const basarili = await bildirimEkle(state.lat, state.lon, state.secilenGB, not);
+
+  sendBtn.disabled = false;
+  sendBtn.style.opacity = "1";
+
+  if (basarili) {
+    document.getElementById('gb-sent').style.display = "block";
+    await gbAlaniniGuncelle();
+    document.getElementById('gb-sent').style.display = "block";
+  } else {
+    document.getElementById('gb-sent').textContent = "Gönderilemedi, lütfen tekrar dene.";
+    document.getElementById('gb-sent').style.color = "#993C1D";
+    document.getElementById('gb-sent').style.display = "block";
+  }
+});
+
+map.on('click', (e) => {
+  const { lat, lng } = e.latlng;
+  if (state.marker) {
+    state.marker.setLatLng([lat, lng]);
+  } else {
+    state.marker = L.circleMarker([lat, lng], {
+      radius: 8,
+      color: "#2C2C2A",
+      weight: 2,
+      fillColor: "#888780",
+      fillOpacity: 0.9,
+    }).addTo(map);
+  }
+  veriCekVeGoster(lat, lng);
+});
+
+setTimeout(() => {
+  map.invalidateSize();
+  map.setView([41.0, 35.0], 6); // Türkiye/Karadeniz kıyıları — invalidateSize sonrası garanti olsun diye tekrar uygulanıyor
+}, 150);
+window.addEventListener('resize', () => map.invalidateSize());
+</script>
+</body>
+</html>
