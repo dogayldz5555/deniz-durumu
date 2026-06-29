@@ -14,25 +14,100 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
+  :root {
+    --bg-grad-1: rgba(255,255,255,0.9);
+    --bg-grad-2: rgba(186,224,242,0.7);
+    --bg-grad-3-from: #EAF5FB;
+    --bg-grad-3-mid: #D7EBF6;
+    --bg-grad-3-to: #C3E0EF;
+    --text-primary: #1E3A4A;
+    --text-h1: #14384A;
+    --text-sub: #4F7286;
+    --wave-pattern-opacity: 0.85;
+    --map-border: rgba(40,40,30,0.1);
+    --map-bg: #cfe3ee;
+    --card-border: rgba(40,40,30,0.09);
+    --card-bg: #FFFFFF;
+    --legend-text: #3D6478;
+    --section-label: #6E94A6;
+    --footnote-text: #6E94A6;
+    --seo-text: #7A9AAA;
+    --gb-input-border: rgba(40,40,30,0.14);
+    --hour-text: #6E94A6;
+    --hour-val: #1E3A4A;
+    --locate-bg: rgba(255,255,255,0.7);
+    --locate-text: #2A7FB8;
+    --locate-border: rgba(42,127,184,0.3);
+  }
+  html[data-tema-hazirlik="aksam"] {
+    --bg-grad-1: rgba(255,224,178,0.55);
+    --bg-grad-2: rgba(255,150,130,0.45);
+    --bg-grad-3-from: #FFE8D6;
+    --bg-grad-3-mid: #FBC9A8;
+    --bg-grad-3-to: #E89B8A;
+    --text-primary: #5A2E1E;
+    --text-h1: #5A2418;
+    --text-sub: #8A4F38;
+    --map-border: rgba(80,30,10,0.15);
+    --map-bg: #f0c9ad;
+    --card-border: rgba(80,30,10,0.12);
+    --card-bg: #FFFAF5;
+    --legend-text: #8A4530;
+    --section-label: #A06A4E;
+    --footnote-text: #A06A4E;
+    --seo-text: #B08068;
+    --gb-input-border: rgba(80,30,10,0.18);
+    --hour-text: #A06A4E;
+    --hour-val: #5A2E1E;
+    --locate-bg: rgba(255,250,245,0.7);
+    --locate-text: #B8542A;
+    --locate-border: rgba(184,84,42,0.3);
+  }
+  html[data-tema-hazirlik="gece"] {
+    --bg-grad-1: rgba(70,90,140,0.4);
+    --bg-grad-2: rgba(20,30,60,0.6);
+    --bg-grad-3-from: #1B2740;
+    --bg-grad-3-mid: #131D33;
+    --bg-grad-3-to: #0B1322;
+    --text-primary: #C9D6E8;
+    --text-h1: #E5ECF6;
+    --text-sub: #8FA2BD;
+    --wave-pattern-opacity: 0.35;
+    --map-border: rgba(180,200,230,0.15);
+    --map-bg: #1a2840;
+    --card-border: rgba(180,200,230,0.12);
+    --card-bg: #18223A;
+    --legend-text: #9FB2CC;
+    --section-label: #7488A6;
+    --footnote-text: #7488A6;
+    --seo-text: #647898;
+    --gb-input-border: rgba(180,200,230,0.18);
+    --hour-text: #8FA2BD;
+    --hour-val: #E5ECF6;
+    --locate-bg: rgba(24,34,58,0.7);
+    --locate-text: #7EB8E8;
+    --locate-border: rgba(126,184,232,0.35);
+  }
   body {
     margin: 0;
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
     background:
-      radial-gradient(ellipse 900px 480px at 20% -10%, rgba(255,255,255,0.9) 0%, transparent 55%),
-      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(186,224,242,0.7) 0%, transparent 60%),
-      linear-gradient(170deg, #EAF5FB 0%, #D7EBF6 45%, #C3E0EF 100%);
+      radial-gradient(ellipse 900px 480px at 20% -10%, var(--bg-grad-1) 0%, transparent 55%),
+      radial-gradient(ellipse 800px 500px at 100% 0%, var(--bg-grad-2) 0%, transparent 60%),
+      linear-gradient(170deg, var(--bg-grad-3-from) 0%, var(--bg-grad-3-mid) 45%, var(--bg-grad-3-to) 100%);
     background-attachment: fixed;
-    color: #1E3A4A;
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     position: relative;
+    transition: color 0.4s;
   }
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    opacity: 0.85;
+    opacity: var(--wave-pattern-opacity);
     background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22900%22%20height%3D%22700%22%20viewBox%3D%220%200%20900%20700%22%3E%20%3Cpath%20d%3D%22M0%2090%20C75%2050%2C%20150%2050%2C%20225%2090%20C300%20130%2C%20375%20130%2C%20450%2090%20C525%2050%2C%20600%2050%2C%20675%2090%20C750%20130%2C%20825%20130%2C%20900%2090%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%239FCBE8%22%20stroke-width%3D%222.5%22%20opacity%3D%220.55%22/%3E%20%3Cpath%20d%3D%22M0%20130%20C90%20175%2C%20180%20175%2C%20270%20130%20C360%2085%2C%20450%2085%2C%20540%20130%20C630%20175%2C%20720%20175%2C%20810%20130%20C855%20108%2C%20878%20100%2C%20900%2096%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%239FCBE8%22%20stroke-width%3D%221.5%22%20opacity%3D%220.4%22/%3E%20%3Cpath%20d%3D%22M0%20230%20C100%20190%2C%20200%20190%2C%20300%20230%20C400%20270%2C%20500%20270%2C%20600%20230%20C700%20190%2C%20800%20190%2C%20900%20230%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23AFD4ED%22%20stroke-width%3D%222%22%20opacity%3D%220.45%22/%3E%20%3Cpath%20d%3D%22M0%20280%20C70%20320%2C%20140%20320%2C%20210%20280%20C280%20240%2C%20350%20240%2C%20420%20280%20C490%20320%2C%20560%20320%2C%20630%20280%20C700%20240%2C%20770%20240%2C%20840%20280%20C865%20295%2C%20882%20302%2C%20900%20305%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23AFD4ED%22%20stroke-width%3D%221.5%22%20opacity%3D%220.35%22/%3E%20%3Cpath%20d%3D%22M0%20380%20C120%20330%2C%20240%20330%2C%20360%20380%20C480%20430%2C%20600%20430%2C%20720%20380%20C800%20347%2C%20860%20335%2C%20900%20330%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23BFDCF1%22%20stroke-width%3D%222.5%22%20opacity%3D%220.5%22/%3E%20%3Cpath%20d%3D%22M0%20420%20C80%20460%2C%20160%20460%2C%20240%20420%20C320%20380%2C%20400%20380%2C%20480%20420%20C560%20460%2C%20640%20460%2C%20720%20420%20C800%20380%2C%20860%20372%2C%20900%20375%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23BFDCF1%22%20stroke-width%3D%221.5%22%20opacity%3D%220.35%22/%3E%20%3Cpath%20d%3D%22M0%20520%20C110%20470%2C%20220%20470%2C%20330%20520%20C440%20570%2C%20550%20570%2C%20660%20520%20C745%20482%2C%20825%20470%2C%20900%20478%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23CCE3F4%22%20stroke-width%3D%222%22%20opacity%3D%220.45%22/%3E%20%3Cpath%20d%3D%22M0%20570%20C90%20610%2C%20180%20610%2C%20270%20570%20C360%20530%2C%20450%20530%2C%20540%20570%20C630%20610%2C%20720%20610%2C%20810%20570%20C840%20555%2C%20870%20548%2C%20900%20550%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23CCE3F4%22%20stroke-width%3D%221.5%22%20opacity%3D%220.3%22/%3E%20%3Cpath%20d%3D%22M0%20640%20C130%20600%2C%20260%20600%2C%20390%20640%20C520%20680%2C%20650%20680%2C%20780%20640%20C825%20625%2C%20865%20618%2C%20900%20620%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23DCEBF8%22%20stroke-width%3D%222%22%20opacity%3D%220.4%22/%3E%3C/svg%3E');
     background-repeat: repeat;
     background-size: 900px 700px;
@@ -64,11 +139,11 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     margin: 0;
-    color: #14384A;
+    color: var(--text-h1);
   }
   .sub {
     font-size: 13.5px;
-    color: #4F7286;
+    color: var(--text-sub);
     margin: 6px 0 18px;
     line-height: 1.5;
   }
@@ -76,17 +151,17 @@
     width: 100%;
     height: 340px;
     border-radius: 16px;
-    border: 1px solid rgba(40,40,30,0.1);
+    border: 1px solid var(--map-border);
     margin-bottom: 16px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.07);
   }
-  .leaflet-container { background: #cfe3ee; font-family: inherit; }
+  .leaflet-container { background: var(--map-bg); font-family: inherit; }
   .card {
     border-radius: 16px;
     padding: 18px 20px 12px;
     margin-bottom: 16px;
-    border: 1px solid rgba(40,40,30,0.09);
-    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
     min-height: 96px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
     transition: background 0.25s, border-color 0.25s;
@@ -138,13 +213,13 @@
     align-items: center;
     gap: 4px;
     font-size: 11px;
-    color: #6E94A6;
+    color: var(--hour-text);
   }
   .hour-time { font-weight: 500; }
   .hour-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .hour-val { font-weight: 600; color: #1E3A4A; font-size: 12px; }
+  .hour-val { font-weight: 600; color: var(--hour-val); font-size: 12px; }
   .gb-section { margin-bottom: 18px; }
-  .gb-title { font-size: 13.5px; color: #3D6478; margin-bottom: 9px; font-weight: 500; }
+  .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
   .gb-buttons { display: flex; gap: 8px; margin-bottom: 8px; }
   .gb-btn {
     flex: 1;
@@ -170,7 +245,7 @@
     flex: 1;
     height: 38px;
     border-radius: 10px;
-    border: 1px solid rgba(40,40,30,0.14);
+    border: 1px solid var(--gb-input-border);
     padding: 0 12px;
     font-size: 13px;
     font-family: inherit;
@@ -211,7 +286,7 @@
   .gb-item-body { flex: 1; min-width: 0; }
   .gb-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
   .gb-item-status { font-size: 13px; font-weight: 600; text-transform: capitalize; }
-  .gb-item-note { font-size: 13px; color: #4F7286; margin-top: 3px; line-height: 1.4; }
+  .gb-item-note { font-size: 13px; color: var(--text-sub); margin-top: 3px; line-height: 1.4; }
   .gb-faydali-btn {
     display: flex;
     align-items: center;
@@ -231,15 +306,15 @@
   .gb-faydali-btn svg { width: 13px; height: 13px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
   .gb-time { color: #9AAEBA; font-size: 11.5px; white-space: nowrap; }
-  .footnote { font-size: 11.5px; color: #6E94A6; margin-top: 22px; line-height: 1.6; }
+  .footnote { font-size: 11.5px; color: var(--footnote-text); margin-top: 22px; line-height: 1.6; }
   .seo-text { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(40,40,30,0.08); }
-  .seo-text h2 { font-size: 13px; font-weight: 600; color: #4F7286; margin: 0 0 6px; }
-  .seo-text p { font-size: 12px; color: #7A9AAA; line-height: 1.6; margin: 0; }
+  .seo-text h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 6px; }
+  .seo-text p { font-size: 12px; color: var(--seo-text); line-height: 1.6; margin: 0; }
   .legend {
     display: flex;
     gap: 16px;
     font-size: 12.5px;
-    color: #3D6478;
+    color: var(--legend-text);
     margin-bottom: 14px;
     flex-wrap: wrap;
   }
@@ -259,9 +334,9 @@
     gap: 6px;
     font-size: 12px;
     font-weight: 500;
-    color: #2A7FB8;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(42,127,184,0.3);
+    color: var(--locate-text);
+    background: var(--locate-bg);
+    border: 1px solid var(--locate-border);
     border-radius: 999px;
     padding: 5px 12px;
     cursor: pointer;
@@ -272,7 +347,7 @@
   .locate-btn:disabled { opacity: 0.5; cursor: default; }
   .section-label {
     font-size: 11.5px;
-    color: #6E94A6;
+    color: var(--section-label);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 500;
@@ -283,8 +358,8 @@
     align-items: center;
     gap: 10px;
     border-radius: 16px;
-    border: 1px solid rgba(40,40,30,0.09);
-    background: white;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
     padding: 13px 18px;
     margin-bottom: 10px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
@@ -304,8 +379,8 @@
   .community-counts span { display: flex; align-items: center; gap: 4px; }
   .community-empty {
     border-radius: 16px;
-    border: 1px solid rgba(40,40,30,0.09);
-    background: white;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
     padding: 16px 18px;
     font-size: 13px;
     color: #9A988C;
@@ -326,6 +401,17 @@
   }
   .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
 </style>
+<script>
+// Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
+// kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
+(function() {
+  var saat = new Date().getHours();
+  var tema = "gunduz";
+  if (saat >= 20 || saat < 6) tema = "gece";
+  else if (saat >= 17) tema = "aksam";
+  document.documentElement.setAttribute('data-tema-hazirlik', tema);
+})();
+</script>
 </head>
 <body>
 <div id="app">
@@ -408,12 +494,24 @@ if (supabaseHazir) {
   console.warn("Supabase bağlantı bilgileri girilmedi — geri bildirimler bu oturumda yerel olarak saklanacak.");
 }
 
-const RENK = {
+const RENK_GUNDUZ = {
   sakin:    { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
   dikkatli: { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
   riskli:   { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
   notr:     { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
 };
+const RENK_GECE = {
+  sakin:    { bg: "#16332C", border: "#3CC99A", text900: "#A8EBD2", text600: "#6FDCB3", marker: "#3CC99A" },
+  dikkatli: { bg: "#3A2E14", border: "#E0A23B", text900: "#FBE4B0", text600: "#EFC371", marker: "#E0A23B" },
+  riskli:   { bg: "#3A1F18", border: "#E8775A", text900: "#FBCFC0", text600: "#F2A38B", marker: "#E8775A" },
+  notr:     { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
+};
+function aktifTema() {
+  return document.documentElement.getAttribute('data-tema-hazirlik') || 'gunduz';
+}
+function aktifRenkler() {
+  return aktifTema() === 'gece' ? RENK_GECE : RENK_GUNDUZ;
+}
 const ETIKET = {
   sakin: "Keyifli, deniz güzel",
   dikkatli: "İdare eder, hafif dalgalı",
@@ -531,7 +629,7 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
     const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
     const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
     const durum = durumDenizden(dalgaM, kmh, null, null, lat, lon);
-    const r = RENK[durum] || renkVarsayilan;
+    const r = aktifRenkler()[durum] || renkVarsayilan;
     const saatEtiketi = saat === simdikiSaat ? "Şimdi" : (saat + ":00");
 
     hucreler += `<div class="hour-cell">
@@ -602,7 +700,7 @@ async function veriCekVeGoster(lat, lon) {
     const dalgaYonu = deniz ? deniz.wave_direction : null;
 
     const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, dalgaPeriyodu, lat, lon) : null;
-    const r = durum ? RENK[durum] : RENK.notr;
+    const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
     const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
 
     card.style.background = r.bg;
@@ -801,20 +899,20 @@ async function gbAlaniniGuncelle() {
   liste.forEach(gb => { sayim[gb.durum]++; });
 
   const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "sakin");
-  const r = RENK[baskinDurum];
+  const r = aktifRenkler()[baskinDurum];
 
   summaryWrap.innerHTML = `
     <div class="community-summary" style="background:${r.bg};border-color:${r.border};">
       <span class="dot" style="background:${r.border};width:11px;height:11px;"></span>
       <div class="big-label" style="color:${r.text900}">Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]}</div>
       <div class="community-counts">
-        ${SIRA.filter(d => sayim[d] > 0).map(d => `<span><span class="dot" style="background:${RENK[d].border}"></span>${sayim[d]}</span>`).join("")}
+        ${SIRA.filter(d => sayim[d] > 0).map(d => `<span><span class="dot" style="background:${aktifRenkler()[d].border}"></span>${sayim[d]}</span>`).join("")}
       </div>
     </div>`;
 
   listWrap.style.display = "block";
   listEl.innerHTML = liste.map(gb => {
-    const rr = RENK[gb.durum];
+    const rr = aktifRenkler()[gb.durum];
     const faydaliGosterilsin = gb.id != null;
     return `<div class="gb-item">
       <span class="gb-avatar" style="background:${rr.bg};border-color:${rr.border};color:${rr.text900}">
@@ -866,7 +964,7 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const val = btn.dataset.val;
     state.secilenGB = val;
-    const r = RENK[val];
+    const r = aktifRenkler()[val];
     document.querySelectorAll('.gb-btn').forEach(b => {
       const active = b === btn;
       b.classList.toggle('active', active);
@@ -964,6 +1062,16 @@ setTimeout(() => {
   }
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
+
+// Sayfa uzun süre açık kalırsa (örn. akşamdan geceye geçiş), temayı her 5 dakikada bir tazele.
+function temaGuncelle() {
+  const saat = new Date().getHours();
+  let tema = "gunduz";
+  if (saat >= 20 || saat < 6) tema = "gece";
+  else if (saat >= 17) tema = "aksam";
+  document.documentElement.setAttribute('data-tema-hazirlik', tema);
+}
+setInterval(temaGuncelle, 5 * 60 * 1000);
 </script>
 </body>
 </html>
