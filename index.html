@@ -3,60 +3,99 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Deniz Durumu — Bugün Denize Girilir mi?</title>
-<meta name="description" content="Türkiye kıyılarında anlık rüzgar ve dalga durumu. Haritadan bir nokta seç, dalga yüksekliğine göre denize girilebilir mi öğren, sahadan gelen gerçek kullanıcı yorumlarını oku." />
-<meta property="og:title" content="Deniz Durumu — Bugün Denize Girilir mi?" />
-<meta property="og:description" content="Anlık rüzgar ve dalga verisiyle, haritadan seçtiğin herhangi bir noktada deniz güvenli mi öğren." />
+<title>Deniz Durumu — Bugün Deniz Nasıl?</title>
+<meta name="description" content="Türkiye kıyılarında anlık rüzgar ve dalga durumu. Haritadan bir nokta seç, denizin bugün keyifli mi yoksa dalgalı mı olduğunu öğren, sahadan gelen gerçek kullanıcı yorumlarını oku." />
+<meta property="og:title" content="Deniz Durumu — Bugün Deniz Nasıl?" />
+<meta property="og:description" content="Anlık rüzgar ve dalga verisiyle, haritadan seçtiğin herhangi bir noktada deniz bugün nasıl, öğren." />
 <meta property="og:type" content="website" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: #F1EFE8;
-    color: #2C2C2A;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+      radial-gradient(ellipse 900px 480px at 20% -10%, rgba(255,255,255,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(186,224,242,0.7) 0%, transparent 60%),
+      linear-gradient(170deg, #EAF5FB 0%, #D7EBF6 45%, #C3E0EF 100%);
+    background-attachment: fixed;
+    color: #1E3A4A;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.85;
+    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22900%22%20height%3D%22700%22%20viewBox%3D%220%200%20900%20700%22%3E%20%3Cpath%20d%3D%22M0%2090%20C75%2050%2C%20150%2050%2C%20225%2090%20C300%20130%2C%20375%20130%2C%20450%2090%20C525%2050%2C%20600%2050%2C%20675%2090%20C750%20130%2C%20825%20130%2C%20900%2090%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%239FCBE8%22%20stroke-width%3D%222.5%22%20opacity%3D%220.55%22/%3E%20%3Cpath%20d%3D%22M0%20130%20C90%20175%2C%20180%20175%2C%20270%20130%20C360%2085%2C%20450%2085%2C%20540%20130%20C630%20175%2C%20720%20175%2C%20810%20130%20C855%20108%2C%20878%20100%2C%20900%2096%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%239FCBE8%22%20stroke-width%3D%221.5%22%20opacity%3D%220.4%22/%3E%20%3Cpath%20d%3D%22M0%20230%20C100%20190%2C%20200%20190%2C%20300%20230%20C400%20270%2C%20500%20270%2C%20600%20230%20C700%20190%2C%20800%20190%2C%20900%20230%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23AFD4ED%22%20stroke-width%3D%222%22%20opacity%3D%220.45%22/%3E%20%3Cpath%20d%3D%22M0%20280%20C70%20320%2C%20140%20320%2C%20210%20280%20C280%20240%2C%20350%20240%2C%20420%20280%20C490%20320%2C%20560%20320%2C%20630%20280%20C700%20240%2C%20770%20240%2C%20840%20280%20C865%20295%2C%20882%20302%2C%20900%20305%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23AFD4ED%22%20stroke-width%3D%221.5%22%20opacity%3D%220.35%22/%3E%20%3Cpath%20d%3D%22M0%20380%20C120%20330%2C%20240%20330%2C%20360%20380%20C480%20430%2C%20600%20430%2C%20720%20380%20C800%20347%2C%20860%20335%2C%20900%20330%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23BFDCF1%22%20stroke-width%3D%222.5%22%20opacity%3D%220.5%22/%3E%20%3Cpath%20d%3D%22M0%20420%20C80%20460%2C%20160%20460%2C%20240%20420%20C320%20380%2C%20400%20380%2C%20480%20420%20C560%20460%2C%20640%20460%2C%20720%20420%20C800%20380%2C%20860%20372%2C%20900%20375%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23BFDCF1%22%20stroke-width%3D%221.5%22%20opacity%3D%220.35%22/%3E%20%3Cpath%20d%3D%22M0%20520%20C110%20470%2C%20220%20470%2C%20330%20520%20C440%20570%2C%20550%20570%2C%20660%20520%20C745%20482%2C%20825%20470%2C%20900%20478%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23CCE3F4%22%20stroke-width%3D%222%22%20opacity%3D%220.45%22/%3E%20%3Cpath%20d%3D%22M0%20570%20C90%20610%2C%20180%20610%2C%20270%20570%20C360%20530%2C%20450%20530%2C%20540%20570%20C630%20610%2C%20720%20610%2C%20810%20570%20C840%20555%2C%20870%20548%2C%20900%20550%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23CCE3F4%22%20stroke-width%3D%221.5%22%20opacity%3D%220.3%22/%3E%20%3Cpath%20d%3D%22M0%20640%20C130%20600%2C%20260%20600%2C%20390%20640%20C520%20680%2C%20650%20680%2C%20780%20640%20C825%20625%2C%20865%20618%2C%20900%20620%22%20%20%20%20fill%3D%22none%22%20stroke%3D%22%23DCEBF8%22%20stroke-width%3D%222%22%20opacity%3D%220.4%22/%3E%3C/svg%3E');
+    background-repeat: repeat;
+    background-size: 900px 700px;
   }
   #app {
-    max-width: 520px;
+    max-width: 540px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 28px 18px 40px;
   }
-  h1 {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0 0 4px;
+  .brand {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    margin-bottom: 2px;
+  }
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(155deg, #4FA8D8 0%, #2A7FB8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #14384A;
   }
   .sub {
-    font-size: 13px;
-    color: #5f5e5a;
-    margin: 0 0 14px;
+    font-size: 13.5px;
+    color: #4F7286;
+    margin: 6px 0 18px;
+    line-height: 1.5;
   }
   #map {
     width: 100%;
-    height: 320px;
-    border-radius: 12px;
-    border: 1px solid #d3d1c7;
-    margin-bottom: 14px;
+    height: 340px;
+    border-radius: 16px;
+    border: 1px solid rgba(40,40,30,0.1);
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.07);
   }
   .leaflet-container { background: #cfe3ee; font-family: inherit; }
   .card {
-    border-radius: 12px;
-    padding: 16px 18px 10px;
-    margin-bottom: 14px;
-    border: 1px solid #d3d1c7;
-    background: white;
+    border-radius: 16px;
+    padding: 18px 20px 12px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(40,40,30,0.09);
+    background: #FFFFFF;
     min-height: 96px;
-    transition: background 0.2s, border-color 0.2s;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+    transition: background 0.25s, border-color 0.25s;
   }
   .card.placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888780;
+    color: #9A988C;
     font-size: 14px;
     text-align: center;
   }
@@ -65,28 +104,47 @@
     justify-content: space-between;
     align-items: flex-start;
   }
-  .loc-label { font-size: 12px; margin-bottom: 2px; }
-  .status-label { font-size: 24px; font-weight: 500; line-height: 1.15; }
+  .loc-label { font-size: 12.5px; margin-bottom: 3px; font-weight: 500; letter-spacing: 0.01em; }
+  .status-label { font-family: "Fraunces", Georgia, serif; font-size: 25px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
   .refresh-btn {
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 4px;
     color: inherit;
-    opacity: 0.7;
+    opacity: 0.6;
   }
   .refresh-btn:hover { opacity: 1; }
   .metrics {
     display: flex;
     gap: 18px;
-    margin-top: 12px;
+    margin-top: 13px;
     font-size: 13px;
     flex-wrap: wrap;
   }
-  .metrics b { font-weight: 500; }
-  .wavepattern { width: 100%; height: 44px; display: block; margin-top: 8px; }
-  .gb-section { margin-bottom: 16px; }
-  .gb-title { font-size: 13px; color: #5f5e5a; margin-bottom: 8px; }
+  .metrics b { font-weight: 600; }
+  .wavepattern { width: 100%; height: 44px; display: block; margin-top: 9px; }
+  .hourly-strip {
+    display: flex;
+    gap: 4px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(40,40,30,0.08);
+  }
+  .hour-cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #6E94A6;
+  }
+  .hour-time { font-weight: 500; }
+  .hour-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .hour-val { font-weight: 600; color: #1E3A4A; font-size: 12px; }
+  .gb-section { margin-bottom: 18px; }
+  .gb-title { font-size: 13.5px; color: #3D6478; margin-bottom: 9px; font-weight: 500; }
   .gb-buttons { display: flex; gap: 8px; margin-bottom: 8px; }
   .gb-btn {
     flex: 1;
@@ -94,128 +152,201 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    padding: 10px 4px;
-    border-radius: 8px;
-    border: 1px solid #d3d1c7;
+    padding: 11px 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(40,40,30,0.12);
     background: white;
-    color: #5f5e5a;
+    color: #6B6A60;
     cursor: pointer;
     font-size: 12px;
+    font-weight: 500;
+    transition: all 0.15s;
   }
+  .gb-btn:hover { border-color: rgba(40,40,30,0.22); }
   .gb-btn svg { width: 18px; height: 18px; }
   .gb-btn.active { border-width: 1.5px; }
   .gb-input-row { display: flex; gap: 8px; }
   .gb-input-row input {
     flex: 1;
-    height: 36px;
-    border-radius: 8px;
-    border: 1px solid #d3d1c7;
-    padding: 0 10px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(40,40,30,0.14);
+    padding: 0 12px;
     font-size: 13px;
+    font-family: inherit;
   }
   .gb-send {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: 1px solid #888780;
-    background: #2C2C2A;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(155deg, #4FA8D8 0%, #2A7FB8 100%);
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .gb-sent { font-size: 12px; color: #0F6E56; margin-top: 6px; }
-  .gb-list { display: flex; flex-direction: column; gap: 6px; }
+  .gb-sent { font-size: 12.5px; color: #2A7FB8; margin-top: 7px; font-weight: 500; }
+  .gb-list { display: flex; flex-direction: column; gap: 8px; }
   .gb-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: #F1EFE8;
-    font-size: 13px;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    background: rgba(42,127,184,0.05);
   }
-  .gb-item-left { display: flex; align-items: center; gap: 8px; }
+  .gb-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .gb-item-body { flex: 1; min-width: 0; }
+  .gb-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .gb-item-status { font-size: 13px; font-weight: 600; text-transform: capitalize; }
+  .gb-item-note { font-size: 13px; color: #4F7286; margin-top: 3px; line-height: 1.4; }
+  .gb-faydali-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 7px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 11.5px;
+    color: #9AAEBA;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+  }
+  .gb-faydali-btn:hover { color: #2A7FB8; }
+  .gb-faydali-btn.isaretlendi { color: #2A7FB8; cursor: default; }
+  .gb-faydali-btn svg { width: 13px; height: 13px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-  .gb-time { color: #888780; font-size: 12px; white-space: nowrap; margin-left: 8px; }
-  .footnote { font-size: 11px; color: #888780; margin-top: 16px; line-height: 1.5; }
+  .gb-time { color: #9AAEBA; font-size: 11.5px; white-space: nowrap; }
+  .footnote { font-size: 11.5px; color: #6E94A6; margin-top: 22px; line-height: 1.6; }
+  .seo-text { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(40,40,30,0.08); }
+  .seo-text h2 { font-size: 13px; font-weight: 600; color: #4F7286; margin: 0 0 6px; }
+  .seo-text p { font-size: 12px; color: #7A9AAA; line-height: 1.6; margin: 0; }
   .legend {
     display: flex;
-    gap: 14px;
-    font-size: 12px;
-    color: #5f5e5a;
-    margin-bottom: 10px;
+    gap: 16px;
+    font-size: 12.5px;
+    color: #3D6478;
+    margin-bottom: 14px;
     flex-wrap: wrap;
   }
-  .legend span { display: flex; align-items: center; gap: 5px; }
+  .legend span { display: flex; align-items: center; gap: 6px; font-weight: 500; }
   .legend .dot { width: 9px; height: 9px; }
-  .section-label {
+  .legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .locate-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
-    color: #888780;
+    font-weight: 500;
+    color: #2A7FB8;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(42,127,184,0.3);
+    border-radius: 999px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .locate-btn:hover { background: rgba(255,255,255,0.95); }
+  .locate-btn:disabled { opacity: 0.5; cursor: default; }
+  .section-label {
+    font-size: 11.5px;
+    color: #6E94A6;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin: 0 0 6px 2px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin: 0 0 7px 2px;
   }
   .community-summary {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 12px;
-    border: 1px solid #d3d1c7;
+    border-radius: 16px;
+    border: 1px solid rgba(40,40,30,0.09);
     background: white;
-    padding: 12px 16px;
+    padding: 13px 18px;
     margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
   }
   .community-summary .big-label {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     flex: 1;
   }
   .community-counts {
     display: flex;
     gap: 10px;
     font-size: 12px;
-    color: #5f5e5a;
+    color: #6B6A60;
+    font-weight: 500;
   }
   .community-counts span { display: flex; align-items: center; gap: 4px; }
   .community-empty {
-    border-radius: 12px;
-    border: 1px solid #d3d1c7;
+    border-radius: 16px;
+    border: 1px solid rgba(40,40,30,0.09);
     background: white;
-    padding: 14px 16px;
+    padding: 16px 18px;
     font-size: 13px;
-    color: #888780;
+    color: #9A988C;
     margin-bottom: 10px;
   }
   .conflict-note {
     display: flex;
-    gap: 8px;
+    gap: 9px;
     align-items: flex-start;
-    border-radius: 10px;
-    background: #FAEEDA;
-    border: 1px solid #BA7517;
-    color: #412402;
-    padding: 10px 12px;
+    border-radius: 12px;
+    background: #FBF1DE;
+    border: 1px solid #E0B765;
+    color: #5C3F0C;
+    padding: 11px 14px;
     font-size: 12.5px;
-    margin-bottom: 14px;
-    line-height: 1.4;
+    margin-bottom: 16px;
+    line-height: 1.45;
   }
   .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
 </style>
 </head>
 <body>
 <div id="app">
-  <h1>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 18c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg>
-    Deniz durumu
-  </h1>
+  <div class="brand">
+    <div class="brand-mark">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 18c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg>
+    </div>
+    <h1>Deniz durumu</h1>
+  </div>
   <p class="sub">Haritada bir noktaya tıkla, oranın rüzgar ve dalga durumunu gör.</p>
 
-  <div class="legend">
-    <span><span class="dot" style="background:#1D9E75"></span>Sakin</span>
-    <span><span class="dot" style="background:#BA7517"></span>Dikkatli</span>
-    <span><span class="dot" style="background:#D85A30"></span>Riskli</span>
+  <div class="legend-row">
+    <div class="legend">
+      <span><span class="dot" style="background:#1D9E75"></span>Keyifli</span>
+      <span><span class="dot" style="background:#BA7517"></span>İdare eder</span>
+      <span><span class="dot" style="background:#D85A30"></span>Dalgalı</span>
+    </div>
+    <button class="locate-btn" id="locate-btn" type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+      Konumum
+    </button>
   </div>
 
   <div id="map"></div>
@@ -234,8 +365,8 @@
     <div class="gb-title">Şu an oradaysan, deniz nasıl?</div>
     <div class="gb-buttons">
       <button class="gb-btn" data-val="sakin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Sakin</button>
-      <button class="gb-btn" data-val="dikkatli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Dalgalı</button>
-      <button class="gb-btn" data-val="riskli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Tehlikeli</button>
+      <button class="gb-btn" data-val="dikkatli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Hafif dalgalı</button>
+      <button class="gb-btn" data-val="riskli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Çok dalgalı</button>
     </div>
     <div class="gb-input-row" id="gb-input-row" style="display:none;">
       <input type="text" id="gb-note" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
@@ -247,13 +378,17 @@
   </div>
 
   <div id="gb-list-wrap" style="display:none;">
-    <div class="gb-title">Tüm bildirimler (bu nokta için)</div>
+    <div class="gb-title">Tüm yorumlar</div>
     <div class="gb-list" id="gb-list"></div>
   </div>
 
-  <p class="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, tahminidir. Geri bildirimler bu oturumda saklanır; tüm kullanıcılar arasında paylaşılması için bir sunucu gerekir.</p>
-</div>
+  <p class="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 
+  <div class="seo-text">
+    <h2>Samsun, Atakum ve Karadeniz kıyısında deniz durumu</h2>
+    <p>Bu sayfa, Samsun, Atakum, Trabzon, Sinop ve diğer Karadeniz, Marmara, Ege ve Akdeniz kıyı noktaları için anlık rüzgar hızı, rüzgar yönü, dalga yüksekliği ve dalga periyodu verisini gösterir. Haritada herhangi bir sahil noktasına tıklayarak o bölgede denize girmenin bugün keyifli mi, yoksa dalgalı mı olacağını öğrenebilir, aynı zamanda sahilde bulunan diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
+  </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -276,35 +411,76 @@ const RENK = {
   sakin:    { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
   dikkatli: { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
   riskli:   { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
+  notr:     { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
 };
 const ETIKET = {
-  sakin: "Sakin, girilebilir",
-  dikkatli: "Deniz bugün dalgalı, dikkatli ol",
-  riskli: "Riskli, denize girmeniz önerilmez",
+  sakin: "Keyifli, deniz güzel",
+  dikkatli: "İdare eder, hafif dalgalı",
+  riskli: "Dalgalı, bugün pek olmaz",
+};
+const ETIKET_KISA = {
+  sakin: "keyifli",
+  dikkatli: "hafif dalgalı",
+  riskli: "dalgalı",
 };
 
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
-// bu yüzden "sakin" kabul edilen dalga yüksekliği denize göre değişir.
+// bu yüzden "sakin/keyifli" kabul edilen dalga yüksekliği VE rüzgar hızı denize göre değişir.
+// Her iki ölçüt de ayrı ayrı değerlendirilir, hangisi daha "dalgalı" sonucu veriyorsa o geçerli olur.
 const DENIZ_BOLGELERI = [
-  { id: "karadeniz", ad: "Karadeniz", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42, esik: { sakin: 0.35, dikkatli: 0.8 } },
-  { id: "marmara",   ad: "Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0, esik: { sakin: 0.4, dikkatli: 1.0 } },
-  { id: "ege",       ad: "Ege",       latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 28.0, esik: { sakin: 0.4, dikkatli: 1.1 } },
-  { id: "akdeniz",   ad: "Akdeniz",   latMin: 34.0, latMax: 37.5, lonMin: 27.5, lonMax: 36.7, esik: { sakin: 0.35, dikkatli: 1.0 } },
+  { id: "karadeniz", ad: "Karadeniz", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42,
+    esikDalga: { sakin: 0.35, dikkatli: 0.8 }, esikRuzgar: { sakin: 7, dikkatli: 14 } },
+  { id: "marmara",   ad: "Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0,
+    esikDalga: { sakin: 0.4, dikkatli: 1.0 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
+  { id: "ege",       ad: "Ege",       latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 28.0,
+    esikDalga: { sakin: 0.4, dikkatli: 1.1 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
+  { id: "akdeniz",   ad: "Akdeniz",   latMin: 34.0, latMax: 37.5, lonMin: 27.5, lonMax: 36.7,
+    esikDalga: { sakin: 0.35, dikkatli: 1.0 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
 ];
-const VARSAYILAN_ESIK = { sakin: 0.5, dikkatli: 1.2 };
+const VARSAYILAN_ESIK_DALGA = { sakin: 0.5, dikkatli: 1.2 };
+const VARSAYILAN_ESIK_RUZGAR = { sakin: 10, dikkatli: 20 };
 
 function denizBolgesi(lat, lon) {
   return DENIZ_BOLGELERI.find(b => lat >= b.latMin && lat <= b.latMax && lon >= b.lonMin && lon <= b.lonMax) || null;
 }
 
-function durumDenizden(dalgaM, lat, lon) {
-  if (dalgaM == null) return "dikkatli";
-  const bolge = denizBolgesi(lat, lon);
-  const esik = bolge ? bolge.esik : VARSAYILAN_ESIK;
-  if (dalgaM < esik.sakin) return "sakin";
-  if (dalgaM < esik.dikkatli) return "dikkatli";
+const SIRA_DURUM = ["sakin", "dikkatli", "riskli"];
+
+function tekOlcutDurumu(deger, esik) {
+  if (deger == null) return null;
+  if (deger < esik.sakin) return "sakin";
+  if (deger < esik.dikkatli) return "dikkatli";
   return "riskli";
+}
+
+// Dalga, rüzgar, hamle ve dalga periyodundan hangisi daha "dalgalı" sonuç veriyorsa o geçerli olur.
+// Hamle: ortalama rüzgar düşük olsa da ani sert esintiler varsa, denizi gerçekte daha çırpıntılı yapar.
+// Dalga periyodu: kısa periyotlu (sık aralıklı) dalgalar aynı yükseklikte olsa bile daha "huysuz" hissettirir;
+// 5 saniyenin altı huzursuz, 8 saniyenin üstü yumuşak/uzun dalga sayılır.
+function durumDenizden(dalgaM, kmh, gustKmh, dalgaPeriyodu, lat, lon) {
+  const bolge = denizBolgesi(lat, lon);
+  const esikDalga = bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA;
+  const esikRuzgar = bolge ? bolge.esikRuzgar : VARSAYILAN_ESIK_RUZGAR;
+  // Hamle eşiği, ortalama rüzgar eşiğinden biraz daha gevşek tutuluyor — kısa süreli ani
+  // esintiler ortalama rüzgar kadar belirleyici olmasın, ama tamamen göz ardı edilmesin.
+  const esikHamle = { sakin: esikRuzgar.sakin * 1.6, dikkatli: esikRuzgar.dikkatli * 1.4 };
+
+  const durumDalga = tekOlcutDurumu(dalgaM, esikDalga);
+  const durumRuzgar = tekOlcutDurumu(kmh, esikRuzgar);
+  const durumHamle = tekOlcutDurumu(gustKmh, esikHamle);
+
+  const adaylar = [durumDalga, durumRuzgar, durumHamle].filter(Boolean);
+  if (adaylar.length === 0) return "dikkatli"; // hiç veri yoksa temkinli ol
+  let sonuc = adaylar.reduce((a, b) => SIRA_DURUM.indexOf(b) > SIRA_DURUM.indexOf(a) ? b : a);
+
+  // Dalga periyodu kısa ise (sık aralıklı, "huysuz" dalga) ve sonuç şu an "keyifli" çıktıysa,
+  // bir kademe yukarı çekip "idare eder" yapıyoruz — periyot tek başına "dalgalı" sonucu vermez,
+  // sadece keyifli/idare eder arasındaki sınırı biraz daha temkinli tutar.
+  if (dalgaPeriyodu != null && dalgaPeriyodu < 5 && sonuc === "sakin") {
+    sonuc = "dikkatli";
+  }
+  return sonuc;
 }
 
 const state = {
@@ -316,12 +492,12 @@ const state = {
   bizimDurum: null,
 };
 
-const map = L.map('map', { zoomControl: true, center: [41.0, 35.0], zoom: 6 });
+const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '',
-  maxZoom: 14,
+  maxZoom: 19,
 }).addTo(map);
-map.setView([41.0, 35.0], 6);
+map.setView([41.29, 36.33], 11);
 
 function konumAnahtari(lat, lon) {
   return lat.toFixed(2) + "," + lon.toFixed(2);
@@ -345,11 +521,41 @@ function zamanFormat(ts) {
   return Math.round(fark / 60) + " sa önce";
 }
 
+// Bugünün kalan saatleri için kısa bir rüzgar+dalga şeridi oluşturur (sadece şu andan sonraki saatler).
+function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan) {
+  if (!havaSaatlik || !havaSaatlik.time) return "";
+  const simdi = new Date();
+  const simdikiSaat = simdi.getHours();
+  const gosterilecekSaatSayisi = 6;
+
+  let hucreler = "";
+  for (let i = 0; i < havaSaatlik.time.length && hucreler.split('class="hour-cell"').length - 1 < gosterilecekSaatSayisi; i++) {
+    const saatStr = havaSaatlik.time[i];
+    const saat = new Date(saatStr).getHours();
+    if (new Date(saatStr) < simdi && saat !== simdikiSaat) continue;
+
+    const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
+    const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
+    const durum = durumDenizden(dalgaM, kmh, null, null, lat, lon);
+    const r = RENK[durum] || renkVarsayilan;
+    const saatEtiketi = saat === simdikiSaat ? "Şimdi" : (saat + ":00");
+
+    hucreler += `<div class="hour-cell">
+      <span class="hour-time">${saatEtiketi}</span>
+      <span class="hour-dot" style="background:${r.border}"></span>
+      <span class="hour-val">${kmh != null ? Math.round(kmh) : "—"}</span>
+    </div>`;
+  }
+
+  if (!hucreler) return "";
+  return `<div class="hourly-strip">${hucreler}</div>`;
+}
+
 async function veriCekVeGoster(lat, lon) {
   const card = document.getElementById('status-card');
   document.getElementById('our-label').style.display = "block";
   card.className = "card";
-  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#5f5e5a;font-size:14px;">Rüzgar ve dalga verisi getiriliyor…</div>`;
+  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar ve dalga verisi getiriliyor…</div>`;
 
   document.getElementById('gb-section').style.display = "none";
   document.getElementById('gb-list-wrap').style.display = "none";
@@ -358,57 +564,105 @@ async function veriCekVeGoster(lat, lon) {
   document.getElementById('conflict-note').style.display = "none";
 
   try {
-    const [havaRes, denizRes] = await Promise.all([
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&wind_speed_unit=kmh&timezone=auto`),
-      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period&timezone=auto`)
+    const [havaRes, denizRes, yerRes, suRes] = await Promise.all([
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period&hourly=wave_height&forecast_days=1&timezone=auto`),
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
+      fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`).catch(() => null)
     ]);
 
-    const hava = havaRes.ok ? (await havaRes.json()).current : null;
+    const havaJson = havaRes.ok ? await havaRes.json() : null;
+    const hava = havaJson ? havaJson.current : null;
+    const havaSaatlik = havaJson ? havaJson.hourly : null;
     const denizOk = denizRes.ok;
-    const deniz = denizOk ? (await denizRes.json()).current : null;
+    const denizJson = denizOk ? await denizRes.json() : null;
+    const deniz = denizJson ? denizJson.current : null;
+    const denizSaatlik = denizJson ? denizJson.hourly : null;
     const dalgaM = deniz ? deniz.wave_height : null;
 
     if (!hava && dalgaM == null) throw new Error("no data");
 
-    const durum = durumDenizden(dalgaM, lat, lon);
-    const r = RENK[durum];
+    // Nominatim'den dönen adres bilgisini SADECE görüntülenecek yer adı için kullanıyoruz.
+    let yerAdi = null;
+    if (yerRes && yerRes.ok) {
+      const yerData = await yerRes.json();
+      const adr = yerData.address || {};
+      yerAdi = adr.suburb || adr.neighbourhood || adr.quarter || adr.town || adr.village || adr.city_district || null;
+    }
+
+    // Kara/deniz kararı: is-on-water bu noktanın gerçek arazi türünü söylüyor (30m hassasiyetle).
+    // OCEAN/RIVER/LAKE = su, LAND = kara. API'ye erişilemezse Open-Meteo'nun dalga verisi
+    // dönüp dönmediğine güveniyoruz (geniş tolerans — tam kıyı şeridinde de dalga gösterilsin).
+    let suMu = null;
+    if (suRes && suRes.ok) {
+      const suData = await suRes.json();
+      suMu = suData.feature === "OCEAN" || suData.feature === "RIVER" || suData.feature === "LAKE";
+    }
+    const denizdeyiz = denizOk && dalgaM != null && (suMu === null ? true : suMu);
+
     const kmh = hava ? hava.wind_speed_10m : null;
     const gust = hava ? hava.wind_gusts_10m : null;
     const temp = hava ? hava.temperature_2m : null;
+    const ruzgarYonu = hava ? hava.wind_direction_10m : null;
+    const dalgaPeriyodu = deniz ? deniz.wave_period : null;
+    const dalgaYonu = deniz ? deniz.wave_direction : null;
+
+    const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, dalgaPeriyodu, lat, lon) : null;
+    const r = durum ? RENK[durum] : RENK.notr;
     const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
 
     card.style.background = r.bg;
     card.style.borderColor = r.border;
 
+    const yonAdi = (derece) => {
+      if (derece == null) return null;
+      const yonler = ["K", "KKD", "KD", "DKD", "D", "DGD", "GD", "GGD", "G", "GGB", "GB", "BGB", "B", "BKB", "KB", "KKB"];
+      return yonler[Math.round(derece / 22.5) % 16];
+    };
+    // Meteorolojik yön "nereden geldiği"ni belirtir (örn. 315° = KB'dan geliyor).
+    // Ok ikonunu hareket yönünü gösterecek şekilde çiziyoruz, yani 180° ters döndürüyoruz.
+    const yonOku = (derece) => {
+      if (derece == null) return "";
+      const aci = (derece + 180) % 360;
+      return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-left:3px;transform:rotate(${aci}deg)" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>`;
+    };
+
     let metricsHtml = "";
     if (kmh != null) {
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"/><path d="M12.59 11.59A2 2 0 1 1 14 15H2"/><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"/></svg><b>${Math.round(kmh)} km/sa</b> rüzgar</div>`;
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"/><path d="M12.59 11.59A2 2 0 1 1 14 15H2"/><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"/></svg><b>${Math.round(kmh)} km/sa</b> rüzgar${ruzgarYonu != null ? ` (${yonAdi(ruzgarYonu)}'dan)${yonOku(ruzgarYonu)}` : ""}</div>`;
     }
     if (gust != null) {
       metricsHtml += `<div>Hamle <b>${Math.round(gust)} km/sa</b></div>`;
     }
-    if (dalgaM != null) {
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><b>${dalgaM.toFixed(1)} m</b> dalga</div>`;
+    if (denizdeyiz && dalgaM != null) {
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><b>${dalgaM.toFixed(1)} m</b> dalga${dalgaYonu != null ? ` (${yonAdi(dalgaYonu)}'dan)${yonOku(dalgaYonu)}` : ""}</div>`;
+    }
+    if (denizdeyiz && dalgaPeriyodu != null) {
+      metricsHtml += `<div>Periyot <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
     }
     if (temp != null) {
       metricsHtml += `<div><b>${Math.round(temp)}°C</b></div>`;
     }
 
     const bolge = denizBolgesi(lat, lon);
+    const baslikYer = yerAdi || (bolge ? bolge.ad : null);
+    const durumBasligi = denizdeyiz ? ETIKET[durum] : "Kıyıdan rüzgar bilgisi";
+
+    const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r);
 
     card.innerHTML = `
       <div class="card-top">
         <div>
-          <div class="loc-label" style="color:${r.text600}">${bolge ? bolge.ad + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
-          <div class="status-label" style="color:${r.text900}">${ETIKET[durum]}</div>
+          <div class="loc-label" style="color:${r.text600}">${baslikYer ? baslikYer + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
+          <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
         </div>
         <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </button>
       </div>
       <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
-      ${svgDalgaPattern(r.border, yogunluk)}
-      ${!denizOk ? `<div style="font-size:12px;color:${r.text600};margin-top:4px;">Bu nokta için dalga verisi yok (açık deniz tahmin modeli kapsamı dışında olabilir); sadece rüzgara göre tahmin ediliyor.</div>` : ""}
+      ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.</div>`}
+      ${denizdeyiz ? saatlikSeritHtml : ""}
     `;
 
     document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
@@ -416,6 +670,8 @@ async function veriCekVeGoster(lat, lon) {
     state.lat = lat;
     state.lon = lon;
     state.bizimDurum = durum;
+    state.denizdeyiz = denizdeyiz;
+    state.yerAdi = baslikYer;
     await gbAlaniniGuncelle();
   } catch (e) {
     card.className = "card";
@@ -434,10 +690,10 @@ async function veriCekVeGoster(lat, lon) {
 
 const SIRA = ["sakin", "dikkatli", "riskli"];
 
-// Bir noktanın YAKININDAKİ bildirimleri getirir (tam aynı koordinat yerine ~0.05 derecelik
-// bir kutu içindekileri toplar, çünkü insanlar tam aynı pikselde tıklamaz).
+// Bir noktanın YAKININDAKİ bildirimleri getirir (~1.3 km yarıçaplı bir kutu, mahalle ölçeği —
+// böylece Atakum'daki bir bildirim Canik'te görünmez, ama tam aynı pikselde tıklamak da gerekmez).
 async function bildirimleriGetir(lat, lon) {
-  const ARALIK = 0.07;
+  const ARALIK = 0.012;
   if (supabaseClient) {
     const { data, error } = await supabaseClient
       .from('geri_bildirimler')
@@ -451,48 +707,82 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime() })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0 })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş
   const key = konumAnahtari(lat, lon);
   return { liste: state.geriBildirimlerYerel[key] || [], hata: false };
 }
 
+const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim arası en az 5 dakika
+
+function gbBeklemeKontrolEt() {
+  let sonGonderim = null;
+  try { sonGonderim = parseInt(localStorage.getItem('deniz-durumu-son-gonderim') || "0", 10); } catch (e) {}
+  if (sonGonderim && Date.now() - sonGonderim < GB_BEKLEME_SURESI_MS) {
+    const kalanDk = Math.ceil((GB_BEKLEME_SURESI_MS - (Date.now() - sonGonderim)) / 60000);
+    return kalanDk;
+  }
+  return 0;
+}
+
+function gbGonderimZamaniKaydet() {
+  try { localStorage.setItem('deniz-durumu-son-gonderim', String(Date.now())); } catch (e) {}
+}
+
 async function bildirimEkle(lat, lon, durum, not) {
+  const kalanDk = gbBeklemeKontrolEt();
+  if (kalanDk > 0) {
+    return { basarili: false, mesaj: `Çok sık bildirim gönderiyorsun, ${kalanDk} dakika sonra tekrar dene.` };
+  }
   if (supabaseClient) {
     const { error } = await supabaseClient
       .from('geri_bildirimler')
       .insert({ lat, lon, durum, not_metni: not || null });
     if (error) {
       console.error("Supabase yazma hatası:", error);
-      return false;
+      return { basarili: false, mesaj: "Gönderilemedi, lütfen tekrar dene." };
     }
-    return true;
+    gbGonderimZamaniKaydet();
+    return { basarili: true };
   }
   const key = konumAnahtari(lat, lon);
   if (!state.geriBildirimlerYerel[key]) state.geriBildirimlerYerel[key] = [];
   state.geriBildirimlerYerel[key].unshift({ durum, not, zaman: Date.now() });
-  return true;
+  gbGonderimZamaniKaydet();
+  return { basarili: true };
 }
 
 async function gbAlaniniGuncelle() {
-  document.getElementById('gb-section').style.display = "block";
-  document.getElementById('gb-sent').style.display = "none";
-  document.getElementById('gb-input-row').style.display = "none";
-  state.secilenGB = null;
-  document.querySelectorAll('.gb-btn').forEach(b => {
-    b.classList.remove('active');
-    b.style.borderColor = "#d3d1c7";
-    b.style.background = "white";
-    b.style.color = "#5f5e5a";
-  });
-  document.getElementById('gb-note').value = "";
-
+  const gbSection = document.getElementById('gb-section');
   const communityLabel = document.getElementById('community-label');
   const summaryWrap = document.getElementById('community-summary-wrap');
   const listWrap = document.getElementById('gb-list-wrap');
   const listEl = document.getElementById('gb-list');
   const conflictNote = document.getElementById('conflict-note');
+
+  // Karadaysak geri bildirim bölümünü tamamen gizle — kumsalda olmayan bir nokta için
+  // "deniz nasıl" sormak anlamsız.
+  if (!state.denizdeyiz) {
+    gbSection.style.display = "none";
+    communityLabel.style.display = "none";
+    summaryWrap.style.display = "none";
+    listWrap.style.display = "none";
+    conflictNote.style.display = "none";
+    return;
+  }
+
+  gbSection.style.display = "block";
+  document.getElementById('gb-sent').style.display = "none";
+  document.getElementById('gb-input-row').style.display = "none";
+  state.secilenGB = null;
+  document.querySelectorAll('.gb-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.borderColor = "rgba(40,40,30,0.12)";
+    b.style.background = "white";
+    b.style.color = "#6B6A60";
+  });
+  document.getElementById('gb-note').value = "";
 
   communityLabel.style.display = "block";
   summaryWrap.style.display = "block";
@@ -507,7 +797,7 @@ async function gbAlaniniGuncelle() {
   }
 
   if (liste.length === 0) {
-    summaryWrap.innerHTML = `<div class="community-empty">Son 6 saatte kimse bildirim bırakmadı. İlk bildiren sen ol.</div>`;
+    summaryWrap.innerHTML = `<div class="community-empty">Son 6 saatte bu çevrede kimse bildirim bırakmadı. İlk bildiren sen ol.</div>`;
     listWrap.style.display = "none";
     conflictNote.style.display = "none";
     return;
@@ -522,7 +812,7 @@ async function gbAlaniniGuncelle() {
   summaryWrap.innerHTML = `
     <div class="community-summary" style="background:${r.bg};border-color:${r.border};">
       <span class="dot" style="background:${r.border};width:11px;height:11px;"></span>
-      <div class="big-label" style="color:${r.text900}">${ETIKET[baskinDurum].split(",")[0]} diyor çoğunluk</div>
+      <div class="big-label" style="color:${r.text900}">Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]}</div>
       <div class="community-counts">
         ${SIRA.filter(d => sayim[d] > 0).map(d => `<span><span class="dot" style="background:${RENK[d].border}"></span>${sayim[d]}</span>`).join("")}
       </div>
@@ -531,21 +821,48 @@ async function gbAlaniniGuncelle() {
   listWrap.style.display = "block";
   listEl.innerHTML = liste.map(gb => {
     const rr = RENK[gb.durum];
+    const faydaliGosterilsin = gb.id != null;
     return `<div class="gb-item">
-      <div class="gb-item-left">
+      <span class="gb-avatar" style="background:${rr.bg};border-color:${rr.border};color:${rr.text900}">
         <span class="dot" style="background:${rr.border}"></span>
-        <span>${ETIKET[gb.durum].split(",")[0]}</span>
-        ${gb.not ? `<span style="color:#5f5e5a;">— ${gb.not.replace(/</g, "&lt;")}</span>` : ""}
+      </span>
+      <div class="gb-item-body">
+        <div class="gb-item-top">
+          <span class="gb-item-status" style="color:${rr.text900}">${ETIKET_KISA[gb.durum]}</span>
+          <span class="gb-time">${zamanFormat(gb.zaman)}</span>
+        </div>
+        ${gb.not ? `<div class="gb-item-note">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+        ${faydaliGosterilsin ? `<button class="gb-faydali-btn" data-id="${gb.id}" type="button">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+          <span class="gb-faydali-sayi">${gb.faydali > 0 ? gb.faydali : "Faydalı"}</span>
+        </button>` : ""}
       </div>
-      <span class="gb-time">${zamanFormat(gb.zaman)}</span>
     </div>`;
   }).join("");
+
+  listEl.querySelectorAll('.gb-faydali-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (btn.disabled) return;
+      btn.disabled = true;
+      const id = parseInt(btn.dataset.id, 10);
+      try {
+        await supabaseClient.rpc('faydali_isaretle', { bildirim_id: id });
+        const sayiEl = btn.querySelector('.gb-faydali-sayi');
+        const guncelSayi = (parseInt(sayiEl.textContent, 10) || 0) + 1;
+        sayiEl.textContent = guncelSayi;
+        btn.classList.add('isaretlendi');
+      } catch (e) {
+        console.error("Faydalı işaretleme hatası:", e);
+        btn.disabled = false;
+      }
+    });
+  });
 
   if (state.bizimDurum && baskinDurum !== state.bizimDurum) {
     conflictNote.style.display = "flex";
     conflictNote.innerHTML = `
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12.01" y2="16"/><line x1="12" y1="8" x2="12" y2="12"/></svg>
-      <span>Tahminimiz <b>${ETIKET[state.bizimDurum].split(",")[0].toLowerCase()}</b> diyor, sahadan gelenler ise çoğunlukla <b>${ETIKET[baskinDurum].split(",")[0].toLowerCase()}</b> diyor. Deniz hızlı değişebilir, gitmeden hemen önce kontrol et.</span>`;
+      <span>Tahminimize göre deniz <b>${ETIKET_KISA[state.bizimDurum]}</b>, ama sahadan gelen bildirimlere göre çoğunlukla <b>${ETIKET_KISA[baskinDurum]}</b>. Deniz hızlı değişebilir, gitmeden hemen önce kontrol et.</span>`;
   } else {
     conflictNote.style.display = "none";
   }
@@ -559,9 +876,9 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
     document.querySelectorAll('.gb-btn').forEach(b => {
       const active = b === btn;
       b.classList.toggle('active', active);
-      b.style.borderColor = active ? r.border : "#d3d1c7";
+      b.style.borderColor = active ? r.border : "rgba(40,40,30,0.12)";
       b.style.background = active ? r.bg : "white";
-      b.style.color = active ? r.text900 : "#5f5e5a";
+      b.style.color = active ? r.text900 : "#6B6A60";
     });
     document.getElementById('gb-input-row').style.display = "flex";
   });
@@ -574,43 +891,86 @@ document.getElementById('gb-send').addEventListener('click', async () => {
   sendBtn.disabled = true;
   sendBtn.style.opacity = "0.5";
 
-  const basarili = await bildirimEkle(state.lat, state.lon, state.secilenGB, not);
+  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not);
 
   sendBtn.disabled = false;
   sendBtn.style.opacity = "1";
 
-  if (basarili) {
-    document.getElementById('gb-sent').style.display = "block";
+  if (sonuc.basarili) {
     await gbAlaniniGuncelle();
+    document.getElementById('gb-sent').textContent = "Bildirimin kaydedildi, teşekkürler.";
+    document.getElementById('gb-sent').style.color = "#2A7FB8";
     document.getElementById('gb-sent').style.display = "block";
   } else {
-    document.getElementById('gb-sent').textContent = "Gönderilemedi, lütfen tekrar dene.";
+    document.getElementById('gb-sent').textContent = sonuc.mesaj || "Gönderilemedi, lütfen tekrar dene.";
     document.getElementById('gb-sent').style.color = "#993C1D";
     document.getElementById('gb-sent').style.display = "block";
   }
 });
 
-map.on('click', (e) => {
-  const { lat, lng } = e.latlng;
+function noktayaGit(lat, lng, haritayiOdakla) {
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
   } else {
     state.marker = L.circleMarker([lat, lng], {
-      radius: 8,
-      color: "#2C2C2A",
-      weight: 2,
-      fillColor: "#888780",
-      fillOpacity: 0.9,
+      radius: 5,
+      color: "#14384A",
+      weight: 1.5,
+      fillColor: "#2A7FB8",
+      fillOpacity: 0.85,
     }).addTo(map);
   }
+  if (haritayiOdakla) map.setView([lat, lng], 13);
   veriCekVeGoster(lat, lng);
+  try { localStorage.setItem('deniz-durumu-son-nokta', JSON.stringify({ lat, lng })); } catch (e) {}
+}
+
+map.on('click', (e) => {
+  noktayaGit(e.latlng.lat, e.latlng.lng, false);
+});
+
+document.getElementById('locate-btn').addEventListener('click', () => {
+  const btn = document.getElementById('locate-btn');
+  if (!navigator.geolocation) {
+    btn.textContent = "Tarayıcı desteklemiyor";
+    return;
+  }
+  btn.disabled = true;
+  const eskiMetin = btn.innerHTML;
+  btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg> Bulunuyor…`;
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      noktayaGit(pos.coords.latitude, pos.coords.longitude, true);
+      btn.disabled = false;
+      btn.innerHTML = eskiMetin;
+    },
+    () => {
+      btn.disabled = false;
+      btn.innerHTML = eskiMetin;
+      btn.textContent = "Konum izni verilmedi";
+      setTimeout(() => { btn.innerHTML = eskiMetin; }, 2500);
+    },
+    { timeout: 8000 }
+  );
 });
 
 setTimeout(() => {
   map.invalidateSize();
-  map.setView([41.0, 35.0], 6); // Türkiye/Karadeniz kıyıları — invalidateSize sonrası garanti olsun diye tekrar uygulanıyor
+  // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Samsun/Karadeniz kıyısı.
+  let sonNokta = null;
+  try {
+    const kayit = localStorage.getItem('deniz-durumu-son-nokta');
+    if (kayit) sonNokta = JSON.parse(kayit);
+  } catch (e) {}
+  if (sonNokta && typeof sonNokta.lat === "number" && typeof sonNokta.lng === "number") {
+    map.setView([sonNokta.lat, sonNokta.lng], 12);
+    noktayaGit(sonNokta.lat, sonNokta.lng, false);
+  } else {
+    map.setView([41.29, 36.33], 11);
+  }
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
 </script>
 </body>
 </html>
+
