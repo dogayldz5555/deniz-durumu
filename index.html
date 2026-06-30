@@ -951,6 +951,8 @@ const state = {
   lat: null,
   lon: null,
   geriBildirimlerYerel: {},
+  veriCekSayac: 0,
+  konumMetni: null,
   secilenGB: null,
   bizimDurum: null,
 };
@@ -1091,6 +1093,11 @@ function fetchTabanliEsik(fetchKm, esikDalgaAcik, esikRuzgarAcik) {
 }
 
 async function veriCekVeGoster(lat, lon) {
+  // Race-condition koruması: her çağrı kendi token'ını alır; yavaş bir istek geç
+  // dönerse güncel token'a uymadığı için DOM'a dokunmadan sessizce durur.
+  const benimToken = ++state.veriCekSayac;
+  const tokenGecerli = () => benimToken === state.veriCekSayac;
+
   const card = document.getElementById('status-card');
   document.getElementById('our-label').style.display = "block";
   card.className = "card";
@@ -1121,12 +1128,25 @@ async function veriCekVeGoster(lat, lon) {
 
     if (!hava && dalgaM == null) throw new Error("no data");
 
+    // Başka bir tıklama bu arada geldiyse bu sonucu gösterme, sessizce çık.
+    if (!tokenGecerli()) return;
+
     // Nominatim'den dönen adres bilgisini SADECE görüntülenecek yer adı için kullanıyoruz.
     let yerAdi = null;
+    let konumMetni = null;
     if (yerRes && yerRes.ok) {
       const yerData = await yerRes.json();
       const adr = yerData.address || {};
-      yerAdi = adr.suburb || adr.neighbourhood || adr.quarter || adr.town || adr.village || adr.city_district || null;
+      const mahalle = adr.suburb || adr.neighbourhood || adr.quarter || null;
+      const ilce = adr.city_district || adr.district || adr.town || null;
+      const il = adr.city || adr.county || adr.state || null;
+      // Görüntü adı: en küçük birimden başla
+      yerAdi = mahalle || ilce || il || null;
+      // Yorum etiketi: "Mimar Sinan Mah., Atakum, Samsun" gibi tam adres
+      const parcalar = [mahalle, ilce, il].filter(Boolean);
+      // Tekrarlayan kısımları temizle (Samsun hem ilçe hem il olarak dönebilir)
+      const tekrarsiz = parcalar.filter((v, i, arr) => arr.indexOf(v) === i);
+      konumMetni = tekrarsiz.length > 0 ? tekrarsiz.join(", ") : null;
     }
 
     // Kara/deniz kararı: is-on-water bu noktanın gerçek arazi türünü söylüyor (30m hassasiyetle).
@@ -1292,6 +1312,7 @@ async function veriCekVeGoster(lat, lon) {
     state.bizimDurum = durum;
     state.denizdeyiz = denizdeyiz;
     state.yerAdi = baslikYer;
+    state.konumMetni = konumMetni;
     await gbAlaniniGuncelle();
 
     // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
@@ -1354,7 +1375,7 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim" })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
@@ -1533,7 +1554,7 @@ function gbGonderimZamaniKaydet() {
   try { localStorage.setItem('deniz-durumu-son-gonderim', String(Date.now())); } catch (e) {}
 }
 
-async function bildirimEkle(lat, lon, durum, not, isim) {
+async function bildirimEkle(lat, lon, durum, not, isim, konumMetni) {
   const kalanDk = gbBeklemeKontrolEt();
   if (kalanDk > 0) {
     return { basarili: false, mesaj: `Çok sık bildirim gönderiyorsun, ${kalanDk} dakika sonra tekrar dene.` };
@@ -1541,7 +1562,7 @@ async function bildirimEkle(lat, lon, durum, not, isim) {
   if (supabaseClient) {
     const { error } = await supabaseClient
       .from('geri_bildirimler')
-      .insert({ lat, lon, durum, not_metni: not || null, kullanici_adi: isim });
+      .insert({ lat, lon, durum, not_metni: not || null, kullanici_adi: isim, konum_metni: konumMetni || null });
     if (error) {
       console.error("Supabase yazma hatası:", error);
       return { basarili: false, mesaj: "Gönderilemedi, lütfen tekrar dene." };
@@ -1551,7 +1572,7 @@ async function bildirimEkle(lat, lon, durum, not, isim) {
   }
   const key = konumAnahtari(lat, lon);
   if (!state.geriBildirimlerYerel[key]) state.geriBildirimlerYerel[key] = [];
-  state.geriBildirimlerYerel[key].unshift({ durum, not, isim, zaman: Date.now() });
+  state.geriBildirimlerYerel[key].unshift({ durum, not, isim, konum: konumMetni, zaman: Date.now() });
   gbGonderimZamaniKaydet();
   return { basarili: true };
 }
@@ -1676,6 +1697,7 @@ async function gbAlaniniGuncelle() {
           <span class="gb-time">${yeniMi ? `<span class="gb-yeni-rozet">Yeni</span> ` : ""}${zamanFormat(gb.zaman)}</span>
         </div>
         <div class="gb-item-isim">${isimGuvenli}</div>
+        ${gb.konum ? `<div class="gb-item-konum" style="font-size:10px;color:#9AAEBA;margin-top:1px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${gb.konum.replace(/</g, "&lt;")}</div>` : ""}
         ${gb.not ? `<div class="gb-item-note">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
         ${faydaliGosterilsin ? `<button class="gb-faydali-btn" data-id="${gb.id}" type="button">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
@@ -1749,7 +1771,7 @@ document.getElementById('gb-send').addEventListener('click', async () => {
   sendBtn.disabled = true;
   sendBtn.style.opacity = "0.5";
 
-  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim);
+  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim, state.konumMetni);
 
   sendBtn.disabled = false;
   sendBtn.style.opacity = "1";
@@ -1995,6 +2017,23 @@ map.on('moveend', () => {
   clearTimeout(yanPanelDebounce);
   yanPanelDebounce = setTimeout(() => {
     if (Object.keys(sonGruplarOnbellek).length > 0) yanPaneliGuncelle(sonGruplarOnbellek);
+
+    // Seçili nokta artık görünür alanda değilse yorum bölümünü temizle.
+    // Kullanıcı farklı bir bölgeye kaydırdığında eski yorum asılı kalmasın.
+    if (state.lat != null) {
+      const sinirlar = map.getBounds();
+      if (!sinirlar.contains([state.lat, state.lon])) {
+        const listWrap = document.getElementById('gb-list-wrap');
+        const summaryWrap = document.getElementById('community-summary-wrap');
+        const conflictNote = document.getElementById('conflict-note');
+        if (listWrap) listWrap.style.display = "none";
+        if (conflictNote) conflictNote.style.display = "none";
+        if (summaryWrap) {
+          summaryWrap.style.display = "block";
+          summaryWrap.innerHTML = `<div class="community-empty" style="color:#9AAEBA;font-size:12px;">Farklı bir bölgeye baktın — yorum görmek için haritaya tıkla.</div>`;
+        }
+      }
+    }
   }, 300);
 });
 
