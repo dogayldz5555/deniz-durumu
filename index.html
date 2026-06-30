@@ -117,11 +117,62 @@
     background-repeat: repeat;
     background-size: 900px 700px;
   }
-  #app {
-    max-width: 540px;
+  #app-wrap {
+    max-width: 900px;
     margin: 0 auto;
     padding: 28px 18px 40px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
   }
+  #app {
+    flex: 1;
+    min-width: 0;
+    max-width: 540px;
+  }
+  #yan-panel {
+    width: 260px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+  }
+  @media (max-width: 860px) {
+    #app-wrap { flex-direction: column; max-width: 540px; }
+    #yan-panel { width: 100%; position: static; }
+  }
+  .yan-panel-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px 16px 6px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+  }
+  .yan-panel-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-h1);
+    margin: 0 0 3px;
+  }
+  .yan-panel-sub {
+    font-size: 11px;
+    color: var(--text-sub);
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .yan-panel-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(40,40,30,0.07);
+    cursor: pointer;
+  }
+  .yan-panel-item:hover .yan-panel-ad { text-decoration: underline; }
+  .yan-panel-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .yan-panel-ad { font-size: 12.5px; font-weight: 600; color: var(--text-primary); }
+  .yan-panel-meta { font-size: 10.5px; color: #9AAEBA; }
+  .yan-panel-empty { font-size: 12px; color: #9AAEBA; padding: 10px 0 16px; }
   .brand {
     display: flex;
     align-items: center;
@@ -530,6 +581,7 @@
 </script>
 </head>
 <body>
+<div id="app-wrap">
 <div id="app">
   <div class="brand">
     <div class="brand-mark">
@@ -604,6 +656,15 @@
     <h2>Samsun, Atakum ve Karadeniz kıyısında deniz durumu</h2>
     <p>Bu sayfa, Samsun, Atakum, Trabzon, Sinop ve diğer Karadeniz, Marmara, Ege ve Akdeniz kıyı noktaları için anlık rüzgar hızı, rüzgar yönü, dalga yüksekliği ve dalga periyodu verisini gösterir. Haritada herhangi bir sahil noktasına tıklayarak o bölgede denize girmenin bugün keyifli mi, yoksa dalgalı mı olacağını öğrenebilir, aynı zamanda sahilde bulunan diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
   </div>
+</div>
+
+<div id="yan-panel">
+  <div class="yan-panel-card">
+    <p class="yan-panel-title">Denize girilen yerler</p>
+    <p class="yan-panel-sub">Son 2.5 saatte yorum alan noktalar, çoğunluk görüşüne göre</p>
+    <div id="yan-panel-liste"></div>
+  </div>
+</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1058,16 +1119,6 @@ async function veriCekVeGoster(lat, lon) {
     }
     if (denizdeyiz && dalgaPeriyodu != null) {
       metricsHtml += `<div>Periyot <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
-      // Derin su dalga teorisi (Airy/lineer dalga teorisi): L = g·T²/(2π) ≈ 1.56·T² (metre),
-      // C = L/T ≈ 1.56·T (m/s). Bu formüller sadece AÇIK/DERİN suda (derinlik > dalga boyu/2)
-      // tam doğrudur; kıyıya çok yakın sığ suda dalga yavaşlayıp kısalır (shoaling etkisi),
-      // bu yüzden bu sayılar "açık deniz tahmini" olarak okunmalı, kıyı kırılma noktası için
-      // birebir geçerli olmayabilir.
-      const dalgaBoyuM = 1.56 * dalgaPeriyodu * dalgaPeriyodu;
-      const dalgaHiziMs = 1.56 * dalgaPeriyodu;
-      const dalgaHiziKmh = dalgaHiziMs * 3.6;
-      metricsHtml += `<div>Dalga boyu <b>${dalgaBoyuM.toFixed(0)} m</b></div>`;
-      metricsHtml += `<div>Dalga hızı <b>${dalgaHiziKmh.toFixed(1)} km/sa</b></div>`;
     }
     if (temp != null) {
       metricsHtml += `<div>Hava <b>${Math.round(temp)}°C</b></div>`;
@@ -1132,8 +1183,8 @@ async function veriCekVeGoster(lat, lon) {
 
     document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
 
-    document.getElementById('fav-btn').onclick = () => {
-      favToggle(lat, lon, baslikYer);
+    document.getElementById('fav-btn').onclick = async () => {
+      await favToggle(lat, lon, baslikYer);
       favYildiziGuncelle(lat, lon);
     };
     favYildiziGuncelle(lat, lon);
@@ -1231,6 +1282,140 @@ async function bildirimleriGetir(lat, lon) {
 }
 
 const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim arası en az 5 dakika
+
+// === Haritada tüm yorum noktalarını gösterme ===
+// Tek bir noktaya tıklamadan da, son 2.5 saatte birinin yorum bıraktığı TÜM noktaları
+// haritada küçük işaretlerle gösteriyoruz. Konumları ~700m hassasiyetinde gruplayıp
+// (tam aynı pikselde olmayan ama aynı mahalledeki bildirimleri birleştirip) her grup için
+// tek bir işaret koyuyoruz, üstüne tıklayınca o noktanın yorumlarını gösteriyoruz.
+let yorumNoktaIsaretleri = [];
+
+function konumGrupAnahtari(lat, lon) {
+  // ~0.007 derece ~ 700m; bu, bireysel tıklama hassasiyetinden (1.3km) daha sık gruplama yapar
+  // çünkü burada amaç "haritada görünür ayrı noktalar", tek bir noktanın yorumlarını
+  // toplama hassasiyeti değil.
+  return Math.round(lat / 0.007) + "," + Math.round(lon / 0.007);
+}
+
+async function tumYorumNoktalariniGoster() {
+  if (!supabaseClient) return;
+  try {
+    const { data, error } = await supabaseClient
+      .from('geri_bildirimler')
+      .select('*')
+      .gte('created_at', new Date(Date.now() - GB_PENCERE_SAAT * 3600 * 1000).toISOString())
+      .order('created_at', { ascending: false })
+      .limit(300);
+    if (error || !data) return;
+
+    // Eski işaretleri temizle
+    yorumNoktaIsaretleri.forEach(m => map.removeLayer(m));
+    yorumNoktaIsaretleri = [];
+
+    // Konumları grupla
+    const gruplar = {};
+    data.forEach(d => {
+      const key = konumGrupAnahtari(d.lat, d.lon);
+      if (!gruplar[key]) gruplar[key] = { lat: d.lat, lon: d.lon, kayitlar: [] };
+      gruplar[key].kayitlar.push(d);
+    });
+
+    Object.values(gruplar).forEach(grup => {
+      const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+      grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
+      const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+      const r = aktifRenkler()[baskin];
+
+      const isaret = L.circleMarker([grup.lat, grup.lon], {
+        radius: 6,
+        color: "white",
+        weight: 2,
+        fillColor: r.border,
+        fillOpacity: 0.95,
+      }).addTo(map);
+
+      const liste = grup.kayitlar.map(d => ({
+        durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
+        isim: d.kullanici_adi || "Anonim",
+      }));
+      const yorumlarHtml = liste.slice(0, 8).map(gb => {
+        const rr = aktifRenkler()[gb.durum];
+        const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+        return `<div style="display:flex;gap:7px;padding:6px 0;border-top:1px solid rgba(20,56,74,0.08);">
+          <span style="width:18px;height:18px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;margin-top:1px;"></span>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;justify-content:space-between;gap:6px;">
+              <span style="font-size:11.5px;font-weight:600;color:${rr.text900};text-transform:capitalize;">${ETIKET_KISA[gb.durum]}</span>
+              <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+            </div>
+            <div style="font-size:10px;color:#9AAEBA;">${isimGuvenli}</div>
+            ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+          </div>
+        </div>`;
+      }).join("");
+
+      const icerikHtml = `
+        <div style="font-family:'Inter',sans-serif;width:210px;border-radius:15px;overflow:hidden;">
+          <div style="background:${r.bg};padding:11px 13px 8px;">
+            <div style="font-size:12.5px;font-weight:700;color:${r.text900};">${ETIKET_KISA[baskin]} (${grup.kayitlar.length} yorum)</div>
+          </div>
+          <div style="background:#fff;padding:2px 13px 4px;max-height:200px;overflow-y:auto;">${yorumlarHtml}</div>
+        </div>`;
+
+      isaret.bindPopup(icerikHtml, { className: "deniz-balon", maxWidth: 240 });
+      isaret.on('click', () => {
+        map.setView([grup.lat, grup.lon], Math.max(map.getZoom(), 12));
+      });
+      yorumNoktaIsaretleri.push(isaret);
+    });
+
+    yanPaneliGuncelle(gruplar);
+  } catch (e) {
+    console.error("Yorum noktaları yüklenemedi:", e);
+  }
+}
+
+// Sağ taraftaki (mobilde alta düşen) panelde, son 2.5 saatte yorum alan noktaları
+// çoğunluk görüşüne göre listeler — en çok yorum alandan en aza doğru sıralı.
+function yanPaneliGuncelle(gruplar) {
+  const kapsayici = document.getElementById('yan-panel-liste');
+  if (!kapsayici) return;
+
+  const liste = Object.values(gruplar).map(grup => {
+    const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+    grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
+    const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+    const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
+    const bolge = denizBolgesi(grup.lat, grup.lon);
+    const adKisa = `${grup.lat.toFixed(2)}, ${grup.lon.toFixed(2)}`;
+    return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa, bolgeAdi: bolge ? bolge.ad : "" };
+  }).sort((a, b) => b.sayi - a.sayi || b.sonZaman - a.sonZaman);
+
+  if (liste.length === 0) {
+    kapsayici.innerHTML = `<div class="yan-panel-empty">Henüz hiçbir noktada yorum yok. İlk yorumu sen bırak.</div>`;
+    return;
+  }
+
+  kapsayici.innerHTML = liste.slice(0, 10).map((item, i) => {
+    const r = aktifRenkler()[item.baskin];
+    return `
+      <div class="yan-panel-item" data-i="${i}">
+        <span class="yan-panel-dot" style="background:${r.border};"></span>
+        <div style="flex:1;min-width:0;">
+          <div class="yan-panel-ad">${item.ad}</div>
+          <div class="yan-panel-meta">${item.bolgeAdi ? item.bolgeAdi + " · " : ""}${ETIKET_KISA[item.baskin]} · ${item.sayi} yorum · ${zamanFormat(item.sonZaman)}</div>
+        </div>
+      </div>`;
+  }).join("");
+
+  kapsayici.querySelectorAll('.yan-panel-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const item = liste[parseInt(el.dataset.i, 10)];
+      map.setView([item.lat, item.lon], 13);
+      noktayaGit(item.lat, item.lon, false);
+    });
+  });
+}
 
 function gbBeklemeKontrolEt() {
   let sonGonderim = null;
@@ -1469,6 +1654,7 @@ document.getElementById('gb-send').addEventListener('click', async () => {
 
   if (sonuc.basarili) {
     await gbAlaniniGuncelle();
+    tumYorumNoktalariniGoster();
     document.getElementById('gb-sent').textContent = "Bildirimin kaydedildi, teşekkürler.";
     document.getElementById('gb-sent').style.color = "#2A7FB8";
     document.getElementById('gb-sent').style.display = "block";
@@ -1540,62 +1726,88 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   state.marker.openPopup();
 }
 
-// === Favoriler ===
-// Favoriler tamamen tarayıcıda (localStorage) saklanır, kişiseldir, paylaşılmaz.
-const FAV_ANAHTARI = 'deniz-durumu-favoriler';
+// === Favoriler (paylaşımlı) ===
+// Favoriler artık herkesin görebileceği, herkesin ekleyebileceği ortak bir liste —
+// Supabase'deki favori_noktalar tablosunda saklanıyor. Kendi tarayıcında sadece "ben
+// hangi noktaları favorilemişim" bilgisini (yıldızın dolu/boş görünmesi için) tutuyoruz.
+const FAV_BENIM_ANAHTARI = 'deniz-durumu-favorilerim';
 const FAV_TOLERANS = 0.01; // ~1km içindeki noktalar "aynı favori" sayılır
+let favListesiOnbellek = [];
 
-function favListesiGetir() {
+function benimFavorilerimGetir() {
   try {
-    const ham = localStorage.getItem(FAV_ANAHTARI);
+    const ham = localStorage.getItem(FAV_BENIM_ANAHTARI);
     return ham ? JSON.parse(ham) : [];
   } catch (e) { return []; }
 }
-function favListesiKaydet(liste) {
-  try { localStorage.setItem(FAV_ANAHTARI, JSON.stringify(liste)); } catch (e) {}
+function benimFavorilerimKaydet(liste) {
+  try { localStorage.setItem(FAV_BENIM_ANAHTARI, JSON.stringify(liste)); } catch (e) {}
 }
 function favBul(lat, lon) {
-  const liste = favListesiGetir();
-  return liste.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
+  return favListesiOnbellek.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
 }
-function favToggle(lat, lon, ad) {
-  const liste = favListesiGetir();
-  const idx = favBul(lat, lon);
-  if (idx >= 0) {
-    liste.splice(idx, 1);
+async function favToggle(lat, lon, ad) {
+  const benimkiler = benimFavorilerimGetir();
+  const benIdx = benimkiler.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
+
+  if (benIdx >= 0) {
+    // Kendi işaretini kaldır (paylaşımlı listeden silmiyoruz, sadece kendi yıldız durumunu)
+    benimkiler.splice(benIdx, 1);
+    benimFavorilerimKaydet(benimkiler);
   } else {
-    if (liste.length >= 8) liste.shift(); // çok fazla birikmesin
-    liste.push({ lat, lon, ad: ad || `${lat.toFixed(2)}, ${lon.toFixed(2)}` });
+    benimkiler.push({ lat, lon });
+    benimFavorilerimKaydet(benimkiler);
+    if (supabaseClient && favBul(lat, lon) < 0) {
+      const isim = kayitliIsmiGetir() || null;
+      try {
+        await supabaseClient.from('favori_noktalar').insert({ lat, lon, ad: ad || null, ekleyen: isim });
+      } catch (e) { console.error("Favori eklenemedi:", e); }
+    }
   }
-  favListesiKaydet(liste);
-  favSeridiGuncelle();
+  await favSeridiGuncelle();
 }
 function favYildiziGuncelle(lat, lon) {
   const btn = document.getElementById('fav-btn');
   if (!btn) return;
   const svg = document.getElementById('fav-star-svg');
-  const aktif = favBul(lat, lon) >= 0;
+  const benimkiler = benimFavorilerimGetir();
+  const aktif = benimkiler.some(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
   svg.setAttribute('fill', aktif ? 'currentColor' : 'none');
   btn.setAttribute('aria-label', aktif ? 'Favorilerden çıkar' : 'Favorilere ekle');
 }
-function favSeridiGuncelle() {
-  const liste = favListesiGetir();
+async function favSeridiGuncelle() {
   const row = document.getElementById('fav-row');
   if (!row) return;
-  if (liste.length === 0) {
+
+  if (supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('favori_noktalar')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(10);
+      if (!error && data) {
+        favListesiOnbellek = data.map(f => ({ lat: f.lat, lon: f.lon, ad: f.ad || `${f.lat.toFixed(2)}, ${f.lon.toFixed(2)}` }));
+      }
+    } catch (e) { console.error("Favoriler yüklenemedi:", e); }
+  } else {
+    favListesiOnbellek = benimFavorilerimGetir().map(f => ({ ...f, ad: `${f.lat.toFixed(2)}, ${f.lon.toFixed(2)}` }));
+  }
+
+  if (favListesiOnbellek.length === 0) {
     row.style.display = "none";
     row.innerHTML = "";
     return;
   }
   row.style.display = "flex";
-  row.innerHTML = liste.map((f, i) => `
+  row.innerHTML = favListesiOnbellek.map((f, i) => `
     <button class="fav-chip" data-i="${i}" type="button">
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       ${f.ad}
     </button>`).join("");
   row.querySelectorAll('.fav-chip').forEach(chip => {
     chip.addEventListener('click', () => {
-      const f = liste[parseInt(chip.dataset.i, 10)];
+      const f = favListesiOnbellek[parseInt(chip.dataset.i, 10)];
       map.setView([f.lat, f.lon], 13);
       noktayaGit(f.lat, f.lon, false);
     });
@@ -1659,6 +1871,7 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 setTimeout(() => {
   map.invalidateSize();
   favSeridiGuncelle();
+  tumYorumNoktalariniGoster();
   // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Samsun/Karadeniz kıyısı.
   let sonNokta = null;
   try {
