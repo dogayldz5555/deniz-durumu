@@ -1137,14 +1137,15 @@ async function veriCekVeGoster(lat, lon) {
     if (yerRes && yerRes.ok) {
       const yerData = await yerRes.json();
       const adr = yerData.address || {};
-      const mahalle = adr.suburb || adr.neighbourhood || adr.quarter || null;
-      const ilce   = adr.city_district || adr.district || adr.town || null;
-      const il     = adr.city || adr.county || adr.state || null;
+      // Nominatim Türkiye formatı: quarter/neighbourhood = mahalle, suburb/district/county = ilçe, city/province/state = il
+      const mahalle = adr.quarter || adr.neighbourhood || null;
+      const ilce    = adr.suburb || adr.city_district || adr.district || adr.county || adr.town || null;
+      const il      = adr.city || adr.state || adr.province || null;
       yerAdi = mahalle || ilce || il || null;
-      // Tam etiket: "Mimar Sinan Mah., Atakum, Samsun"
+      // "Mimar Sinan Mah., Atakum, Samsun" formatı
       const parcalar = [mahalle, ilce, il].filter(Boolean);
       const tekrarsiz = parcalar.filter((v, i, a) => a.indexOf(v) === i);
-      konumMetni = tekrarsiz.length > 0 ? tekrarsiz.join(", ") : null;
+      konumMetni = tekrarsiz.length > 0 ? tekrarsiz.join(", ") : (yerData.display_name ? yerData.display_name.split(",").slice(0, 3).join(",").trim() : null);
     }
 
     // Kara/deniz kararı: is-on-water bu noktanın gerçek arazi türünü söylüyor (30m hassasiyetle).
@@ -1491,29 +1492,32 @@ function yanPaneliGuncelle(gruplar) {
   const kapsayici = document.getElementById('yan-panel-liste');
   if (!kapsayici) return;
 
-  const sinirlar = map.getBounds();
   const tumListe = Object.values(gruplar).map(grup => {
     const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
     grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
     const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
     const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
     const bolge = denizBolgesi(grup.lat, grup.lon);
-    // Gerçek yer adını konum_metni'nden al; yoksa bolge adını kullan; o da yoksa koordinat.
     const kayitlaKonum = grup.kayitlar.find(d => d.konum_metni)?.konum_metni || null;
     const adKisa = kayitlaKonum || (bolge ? bolge.ad : null) || `${grup.lat.toFixed(2)}, ${grup.lon.toFixed(2)}`;
     return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa };
   });
 
-  // Önce haritada şu an görünen alandakileri al; hiç yoksa (kullanıcı çok uzağa
-  // kaydırmışsa) en yakın birkaç noktayı yine de göster, panel hiç boş kalmasın.
-  let liste = tumListe.filter(item => sinirlar.contains([item.lat, item.lon]));
-  if (liste.length === 0 && tumListe.length > 0) {
-    const merkez = map.getCenter();
-    liste = tumListe
-      .map(item => ({ ...item, mesafe: kmMesafe(merkez.lat, merkez.lng, item.lat, item.lon) }))
-      .sort((a, b) => a.mesafe - b.mesafe)
-      .slice(0, 5);
+  // Tıklanan nokta varsa 50km çevresindeki yorumları göster;
+  // hiç yoksa haritanın görünen alanındakileri göster.
+  let liste;
+  if (state.lat != null) {
+    const YAKIN_KM = 50;
+    liste = tumListe.filter(item => kmMesafe(state.lat, state.lon, item.lat, item.lon) <= YAKIN_KM);
+    if (liste.length === 0) {
+      const sinirlar = map.getBounds();
+      liste = tumListe.filter(item => sinirlar.contains([item.lat, item.lon]));
+    }
+  } else {
+    const sinirlar = map.getBounds();
+    liste = tumListe.filter(item => sinirlar.contains([item.lat, item.lon]));
   }
+
   liste.sort((a, b) => b.sayi - a.sayi || b.sonZaman - a.sonZaman);
 
   if (liste.length === 0) {
@@ -2055,6 +2059,65 @@ function saatiGuncelle() {
 }
 saatiGuncelle();
 setInterval(saatiGuncelle, 1000);
+
+// === Site hakkında geri bildirim (yıldız + mesaj) ===
+(function() {
+  let secilenPuan = 0;
+
+  // Yıldız tıklamaları
+  document.querySelectorAll('#site-feedback-stars button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      secilenPuan = parseInt(btn.dataset.puan, 10);
+      document.querySelectorAll('#site-feedback-stars button').forEach(b => {
+        const p = parseInt(b.dataset.puan, 10);
+        b.classList.toggle('dolu', p <= secilenPuan);
+      });
+    });
+  });
+
+  // Gönder butonu
+  document.getElementById('site-feedback-gonder').addEventListener('click', async () => {
+    const sonucEl = document.getElementById('site-feedback-sonuc');
+    const mesajEl = document.getElementById('site-feedback-mesaj');
+    const gondBtn = document.getElementById('site-feedback-gonder');
+
+    if (secilenPuan === 0) {
+      sonucEl.textContent = "Lütfen önce bir yıldız seç.";
+      sonucEl.style.color = "#993C1D";
+      sonucEl.style.display = "block";
+      return;
+    }
+
+    gondBtn.disabled = true;
+    gondBtn.textContent = "Gönderiliyor…";
+
+    const mesaj = mesajEl.value.trim() || null;
+    const isim  = kayitliIsmiGetir() || null;
+
+    try {
+      if (supabaseClient) {
+        const { error } = await supabaseClient
+          .from('site_geri_bildirim')
+          .insert({ puan: secilenPuan, mesaj, kullanici_adi: isim });
+        if (error) throw error;
+      }
+      // Başarılı
+      sonucEl.textContent = "Teşekkürler! Görüşün kaydedildi.";
+      sonucEl.style.color = "#2A7FB8";
+      sonucEl.style.display = "block";
+      gondBtn.style.display = "none";
+      mesajEl.style.display = "none";
+      document.getElementById('site-feedback-stars').style.pointerEvents = "none";
+    } catch (e) {
+      console.error("Site feedback hatası:", e);
+      sonucEl.textContent = "Gönderilemedi, lütfen tekrar dene.";
+      sonucEl.style.color = "#993C1D";
+      sonucEl.style.display = "block";
+      gondBtn.disabled = false;
+      gondBtn.textContent = "Gönder";
+    }
+  });
+})();
 </script>
 </body>
 </html>
