@@ -8,6 +8,11 @@
 <meta property="og:title" content="Deniz Durumu — Bugün Deniz Nasıl?" />
 <meta property="og:description" content="Anlık rüzgar ve dalga verisiyle, haritadan seçtiğin herhangi bir noktada deniz bugün nasıl, öğren." />
 <meta property="og:type" content="website" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#2A7FB8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Deniz Durumu" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,6 +161,27 @@
     box-shadow: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.07);
   }
   .leaflet-container { background: var(--map-bg); font-family: inherit; }
+  .deniz-balon .leaflet-popup-content-wrapper {
+    border-radius: 15px;
+    box-shadow: 0 6px 16px rgba(20,56,74,0.16), 0 1px 3px rgba(20,56,74,0.08);
+    padding: 0;
+    overflow: hidden;
+  }
+  .deniz-balon .leaflet-popup-content {
+    margin: 0;
+    width: auto !important;
+  }
+  .deniz-balon .leaflet-popup-tip-container { width: 22px; height: 11px; }
+  .deniz-balon .leaflet-popup-tip {
+    box-shadow: 3px 3px 6px rgba(20,56,74,0.06);
+  }
+  .deniz-balon .leaflet-popup-close-button {
+    color: rgba(20,56,74,0.45) !important;
+    font-size: 20px !important;
+    top: 6px !important;
+    right: 9px !important;
+    font-weight: 300 !important;
+  }
   .card {
     border-radius: 16px;
     padding: 18px 20px 12px;
@@ -220,25 +246,53 @@
   .hour-val { font-weight: 600; color: var(--hour-val); font-size: 12px; }
   .gb-section { margin-bottom: 18px; }
   .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
-  .gb-buttons { display: flex; gap: 8px; margin-bottom: 8px; }
+  .gb-name-row { margin-bottom: 9px; }
+  .gb-name-row input {
+    width: 100%;
+    height: 36px;
+    border-radius: 9px;
+    border: 1px solid var(--gb-input-border);
+    padding: 0 12px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .gb-name-saved {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    font-size: 12px;
+    color: var(--legend-text);
+  }
+  .gb-name-saved button {
+    background: none;
+    border: none;
+    color: #2A7FB8;
+    font-size: 11.5px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    padding: 0;
+  }
+  .gb-buttons { display: flex; gap: 5px; margin-bottom: 8px; }
   .gb-btn {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 11px 4px;
-    border-radius: 10px;
+    gap: 3px;
+    padding: 9px 2px;
+    border-radius: 9px;
     border: 1px solid rgba(40,40,30,0.12);
     background: white;
     color: #6B6A60;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10.5px;
     font-weight: 500;
     transition: all 0.15s;
   }
   .gb-btn:hover { border-color: rgba(40,40,30,0.22); }
-  .gb-btn svg { width: 18px; height: 18px; }
+  .gb-btn svg { width: 16px; height: 16px; }
   .gb-btn.active { border-width: 1.5px; }
   .gb-input-row { display: flex; gap: 8px; }
   .gb-input-row input {
@@ -286,6 +340,7 @@
   .gb-item-body { flex: 1; min-width: 0; }
   .gb-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
   .gb-item-status { font-size: 13px; font-weight: 600; text-transform: capitalize; }
+  .gb-item-isim { font-size: 11.5px; color: #9AAEBA; margin-top: 1px; font-weight: 500; }
   .gb-item-note { font-size: 13px; color: var(--text-sub); margin-top: 3px; line-height: 1.4; }
   .gb-faydali-btn {
     display: flex;
@@ -306,6 +361,17 @@
   .gb-faydali-btn svg { width: 13px; height: 13px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
   .gb-time { color: #9AAEBA; font-size: 11.5px; white-space: nowrap; }
+  .gb-yeni-rozet {
+    display: inline-block;
+    background: #2A7FB8;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 999px;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
   .footnote { font-size: 11.5px; color: var(--footnote-text); margin-top: 22px; line-height: 1.6; }
   .seo-text { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(40,40,30,0.08); }
   .seo-text h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 6px; }
@@ -320,6 +386,13 @@
   }
   .legend span { display: flex; align-items: center; gap: 6px; font-weight: 500; }
   .legend .dot { width: 9px; height: 9px; }
+  .clock-row {
+    font-size: 12px;
+    color: var(--legend-text);
+    margin-bottom: 14px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
   .legend-row {
     display: flex;
     align-items: center;
@@ -345,6 +418,35 @@
   }
   .locate-btn:hover { background: rgba(255,255,255,0.95); }
   .locate-btn:disabled { opacity: 0.5; cursor: default; }
+  .fav-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .fav-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--locate-text);
+    background: var(--locate-bg);
+    border: 1px solid var(--locate-border);
+    border-radius: 999px;
+    padding: 4px 10px 4px 8px;
+    cursor: pointer;
+  }
+  .fav-chip:hover { background: rgba(255,255,255,0.95); }
+  .fav-chip svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .fav-star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+  }
   .section-label {
     font-size: 11.5px;
     color: var(--section-label);
@@ -386,6 +488,20 @@
     color: #9A988C;
     margin-bottom: 10px;
   }
+  .wind-warning {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FAEEDA;
+    color: #6B4A0E;
+    border: 1px solid #D9A53E;
+    border-radius: 9px;
+    padding: 7px 11px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
   .conflict-note {
     display: flex;
     gap: 9px;
@@ -422,18 +538,23 @@
     <h1>Deniz durumu</h1>
   </div>
   <p class="sub">Haritada bir noktaya tıkla, oranın rüzgar ve dalga durumunu gör.</p>
+  <div class="clock-row" id="clock-row"></div>
 
   <div class="legend-row">
     <div class="legend">
-      <span><span class="dot" style="background:#1D9E75"></span>Keyifli</span>
-      <span><span class="dot" style="background:#BA7517"></span>İdare eder</span>
-      <span><span class="dot" style="background:#D85A30"></span>Dalgalı</span>
+      <span><span class="dot" style="background:#0F8F6C"></span>Çarşaf</span>
+      <span><span class="dot" style="background:#1D9E75"></span>İyi</span>
+      <span><span class="dot" style="background:#C9A227"></span>Hafif</span>
+      <span><span class="dot" style="background:#BA7517"></span>Fazla</span>
+      <span><span class="dot" style="background:#D85A30"></span>Tehlikeli</span>
     </div>
     <button class="locate-btn" id="locate-btn" type="button">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
       Konumum
     </button>
   </div>
+
+  <div class="fav-row" id="fav-row" style="display:none;"></div>
 
   <div id="map"></div>
 
@@ -448,11 +569,20 @@
   <div id="community-summary-wrap" style="display:none;"></div>
 
   <div class="gb-section" id="gb-section" style="display:none;">
+    <div class="gb-name-row" id="gb-name-row">
+      <input type="text" id="gb-isim" placeholder="İsim / rumuz (zorunlu)" maxlength="24" />
+    </div>
+    <div class="gb-name-saved" id="gb-name-saved" style="display:none;">
+      <span id="gb-name-saved-text"></span>
+      <button type="button" id="gb-name-degistir">değiştir</button>
+    </div>
     <div class="gb-title">Şu an oradaysan, deniz nasıl?</div>
     <div class="gb-buttons">
-      <button class="gb-btn" data-val="sakin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Sakin</button>
-      <button class="gb-btn" data-val="dikkatli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Hafif dalgalı</button>
-      <button class="gb-btn" data-val="riskli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Çok dalgalı</button>
+      <button class="gb-btn" data-val="carsaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg>Çarşaf</button>
+      <button class="gb-btn" data-val="iyi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>İyi</button>
+      <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg>Hafif</button>
+      <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Fazla</button>
+      <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Tehlikeli</button>
     </div>
     <div class="gb-input-row" id="gb-input-row" style="display:none;">
       <input type="text" id="gb-note" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
@@ -495,16 +625,20 @@ if (supabaseHazir) {
 }
 
 const RENK_GUNDUZ = {
-  sakin:    { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
-  dikkatli: { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
-  riskli:   { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
-  notr:     { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
+  carsaf:    { bg: "#DCF3EC", border: "#0F8F6C", text900: "#04342C", text600: "#0B5C45", marker: "#0F8F6C" },
+  iyi:       { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
+  hafif:     { bg: "#FAF3D6", border: "#C9A227", text900: "#433707", text600: "#8C6F12", marker: "#C9A227" },
+  fazla:     { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
+  tehlikeli: { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
+  notr:      { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
 };
 const RENK_GECE = {
-  sakin:    { bg: "#16332C", border: "#3CC99A", text900: "#A8EBD2", text600: "#6FDCB3", marker: "#3CC99A" },
-  dikkatli: { bg: "#3A2E14", border: "#E0A23B", text900: "#FBE4B0", text600: "#EFC371", marker: "#E0A23B" },
-  riskli:   { bg: "#3A1F18", border: "#E8775A", text900: "#FBCFC0", text600: "#F2A38B", marker: "#E8775A" },
-  notr:     { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
+  carsaf:    { bg: "#10271F", border: "#2FBE92", text900: "#9FE8CB", text600: "#5ED1A5", marker: "#2FBE92" },
+  iyi:       { bg: "#16332C", border: "#3CC99A", text900: "#A8EBD2", text600: "#6FDCB3", marker: "#3CC99A" },
+  hafif:     { bg: "#36300F", border: "#D9BD3F", text900: "#F5E7A8", text600: "#E3CC6E", marker: "#D9BD3F" },
+  fazla:     { bg: "#3A2E14", border: "#E0A23B", text900: "#FBE4B0", text600: "#EFC371", marker: "#E0A23B" },
+  tehlikeli: { bg: "#3A1F18", border: "#E8775A", text900: "#FBCFC0", text600: "#F2A38B", marker: "#E8775A" },
+  notr:      { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
 };
 function aktifTema() {
   return document.documentElement.getAttribute('data-tema-hazirlik') || 'gunduz';
@@ -513,66 +647,160 @@ function aktifRenkler() {
   return aktifTema() === 'gece' ? RENK_GECE : RENK_GUNDUZ;
 }
 const ETIKET = {
-  sakin: "Keyifli, deniz güzel",
-  dikkatli: "İdare eder, hafif dalgalı",
-  riskli: "Dalgalı, bugün pek olmaz",
+  carsaf: "Çarşaf gibi",
+  iyi: "Deniz iyi görünüyor",
+  hafif: "Hafif dalgalı",
+  fazla: "Fazla dalga var",
+  tehlikeli: "Tehlikeli, denize girmeyin",
 };
 const ETIKET_KISA = {
-  sakin: "keyifli",
-  dikkatli: "hafif dalgalı",
-  riskli: "dalgalı",
+  carsaf: "çarşaf gibi",
+  iyi: "iyi",
+  hafif: "hafif dalgalı",
+  fazla: "fazla dalgalı",
+  tehlikeli: "tehlikeli",
 };
 
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
-// bu yüzden "sakin/keyifli" kabul edilen dalga yüksekliği VE rüzgar hızı denize göre değişir.
-// Her iki ölçüt de ayrı ayrı değerlendirilir, hangisi daha "dalgalı" sonucu veriyorsa o geçerli olur.
+// bu yüzden eşikler denize göre değişir. Her bölge için BEŞ kademe tanımlı:
+// çarşaf / iyi / hafif_dalgali / fazla_dalgali / tehlikeli — yani 4 sınır değeri.
+// Referans: Beaufort/Douglas Sea State skalasındaki resmi dalga yüksekliği kademeleri
+// (0.1m calm/sakin, 0.2m hafif esinti, 0.5-0.6m nazik esinti, 1-1.25m orta esinti) — ama bu
+// gemi güvenliği için tasarlanmış bir skala; biz "yüzücü konforu" için daha hassas (daha düşük)
+// eşikler kullanıyoruz, çünkü bir yüzücü için rahatsız edici olan dalga, bir tekne için "orta" sayılır.
+// Karadeniz'in fetch'i uzun olduğu için diğer denizlere göre eşikleri biraz daha yüksek tutuyoruz.
+//
+// Ege ikiye ayrıldı: Türkiye kıyı şeridine yakın kısım (Ayvalık, Çeşme, Kuşadası, Bodrum gibi
+// bölgeler) çok sayıda ada ve koyla çevrili olduğundan rüzgarın önü kesiliyor, fetch kısalıyor,
+// dalga genelde daha düşük kalıyor. Bu basit bir boylam sınırına dayanıyor (kesin bir kıyı/ada
+// haritası değil), yaklaşık bir ayrım — kıyıya yakın (lon < 27.0) "korunaklı", daha açıkta
+// kalan kısım (lon >= 27.0) "açık Ege" sayılıyor.
 const DENIZ_BOLGELERI = [
   { id: "karadeniz", ad: "Karadeniz", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42,
-    esikDalga: { sakin: 0.35, dikkatli: 0.8 }, esikRuzgar: { sakin: 7, dikkatli: 14 } },
+    esikDalga:  { carsaf: 0.15, iyi: 0.35, hafif: 0.6, fazla: 1.0 },
+    esikRuzgar: { carsaf: 4,    iyi: 7,    hafif: 14,  fazla: 22  } },
   { id: "marmara",   ad: "Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0,
-    esikDalga: { sakin: 0.4, dikkatli: 1.0 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
-  { id: "ege",       ad: "Ege",       latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 28.0,
-    esikDalga: { sakin: 0.4, dikkatli: 1.1 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
+    esikDalga:  { carsaf: 0.15, iyi: 0.4,  hafif: 0.7, fazla: 1.2 },
+    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,  fazla: 28  } },
+  { id: "ege_koy",   ad: "Ege (adalar/koy)", latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 27.0,
+    esikDalga:  { carsaf: 0.2,  iyi: 0.5,  hafif: 0.9, fazla: 1.5 },
+    esikRuzgar: { carsaf: 6,    iyi: 13,   hafif: 22,  fazla: 32  } },
+  { id: "ege_acik",  ad: "Açık Ege", latMin: 36.0, latMax: 40.5, lonMin: 27.0, lonMax: 28.0,
+    esikDalga:  { carsaf: 0.15, iyi: 0.4,  hafif: 0.75, fazla: 1.3 },
+    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,   fazla: 28  } },
   { id: "akdeniz",   ad: "Akdeniz",   latMin: 34.0, latMax: 37.5, lonMin: 27.5, lonMax: 36.7,
-    esikDalga: { sakin: 0.35, dikkatli: 1.0 }, esikRuzgar: { sakin: 10, dikkatli: 22 } },
+    esikDalga:  { carsaf: 0.15, iyi: 0.35, hafif: 0.7, fazla: 1.2 },
+    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,  fazla: 28  } },
 ];
-const VARSAYILAN_ESIK_DALGA = { sakin: 0.5, dikkatli: 1.2 };
-const VARSAYILAN_ESIK_RUZGAR = { sakin: 10, dikkatli: 20 };
+const VARSAYILAN_ESIK_DALGA  = { carsaf: 0.15, iyi: 0.45, hafif: 0.8, fazla: 1.3 };
+const VARSAYILAN_ESIK_RUZGAR = { carsaf: 5,    iyi: 10,   hafif: 18, fazla: 26  };
+
+// Limanlar/marinalar mendirek ve dalgakıranlarla korunduğu için açık denizden çok daha sakin
+// kalır — bu insan yapımı yapılar hiçbir koordinat veri setinde otomatik tespit edilemediği
+// için (Nominatim/is-on-water bunu güvenilir vermiyor), bilinen limanları elle, koordinat +
+// yarıçap (km) olarak tanımlıyoruz. Şimdilik Samsun bölgesiyle başlıyoruz, zamanla genişletilebilir.
+// Kaynak: Samsun Limanı koordinatı (41°18'00"K, 36°22'00"D) akademik kaynaktan alındı.
+const LIMANLAR = [
+  { ad: "Samsun Limanı", lat: 41.30, lon: 36.367, yaricapKm: 1.2,
+    esikDalga:  { carsaf: 0.3, iyi: 0.6, hafif: 1.0, fazla: 1.6 },
+    esikRuzgar: { carsaf: 8,   iyi: 16,  hafif: 26,  fazla: 38  } },
+];
+
+function kmMesafe(lat1, lon1, lat2, lon2) {
+  // Haversine formülü — küçük mesafeler için yeterince hassas.
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function limanBul(lat, lon) {
+  return LIMANLAR.find(l => kmMesafe(lat, lon, l.lat, l.lon) <= l.yaricapKm) || null;
+}
 
 function denizBolgesi(lat, lon) {
+  const liman = limanBul(lat, lon);
+  if (liman) return { id: "liman", ad: liman.ad, esikDalga: liman.esikDalga, esikRuzgar: liman.esikRuzgar };
   return DENIZ_BOLGELERI.find(b => lat >= b.latMin && lat <= b.latMax && lon >= b.lonMin && lon <= b.lonMax) || null;
 }
 
-const SIRA_DURUM = ["sakin", "dikkatli", "riskli"];
+const SIRA_DURUM = ["carsaf", "iyi", "hafif", "fazla", "tehlikeli"];
 
 function tekOlcutDurumu(deger, esik) {
   if (deger == null) return null;
-  if (deger < esik.sakin) return "sakin";
-  if (deger < esik.dikkatli) return "dikkatli";
-  return "riskli";
+  if (deger < esik.carsaf) return "carsaf";
+  if (deger < esik.iyi) return "iyi";
+  if (deger < esik.hafif) return "hafif";
+  if (deger < esik.fazla) return "fazla";
+  return "tehlikeli";
 }
 
-// Dalga, rüzgar ve hamleden hangisi daha "dalgalı" sonuç veriyorsa o geçerli olur.
-// Hamle: ortalama rüzgar düşük olsa da ani sert esintiler varsa, denizi gerçekte daha çırpıntılı yapar.
-// Not: Dalga periyodu bilgi olarak gösteriliyor ama karara katılmıyor — düşük dalga yüksekliğinde
-// (örn. 0.2m) periyot kısa bile olsa pratikte fark edilmeyecek kadar küçük bir dalga demektir;
-// periyodu tek başına bir uyarı sebebi yapmak yanlış alarma yol açıyordu.
-function durumDenizden(dalgaM, kmh, gustKmh, dalgaPeriyodu, lat, lon) {
+// Her ölçütü 0 (çarşaf) ile 4 (tehlikeli) arası bir puana çeviriyoruz.
+function durumPuani(durum) {
+  return durum == null ? null : SIRA_DURUM.indexOf(durum);
+}
+
+// Dalga, rüzgar ve hamle AYRI AYRI değerlendirilip puanlanıyor, sonra AĞIRLIKLI ORTALAMASI
+// alınıyor — "en kötüsü kazanır" yerine bu yöntemi kullanıyoruz, çünkü tek bir ölçütün
+// (özellikle anlık hamle gibi kısa süreli bir değerin) tek başına genel sonucu belirlemesi
+// gerçek durumu olduğundan kötü gösterebilir. Ağırlıklar:
+//  - Dalga yüksekliği (0.55): asıl, doğrudan gözle görülen gösterge — en güvenilir ölçüt.
+//  - Rüzgar hızı (0.30): dalgayı oluşturan sürekli sebep, ama dalga zaten bunu yansıtıyor.
+//  - Hamle (0.15): anlık, henüz dalgaya yansımamış olabilir — düşük ama sıfır değil ağırlık.
+//
+// Rüzgar dalgası vs swell ayrımı: Open-Meteo toplam dalga yüksekliğinin yanında, onu oluşturan
+// iki bileşeni de ayrı veriyor — "wind_wave" (yerel rüzgarın az önce ürettiği, kısa periyotlu,
+// huysuz dalga) ve "swell" (uzaktan gelen, uzun periyotlu, düzgün/yumuşak dalga). Aynı toplam
+// yükseklikte bile, bu ikisinin oranı denizin "hissini" değiştirir: rüzgar dalgası baskınsa ve
+// kısa periyotluysa (4 saniyenin altı — kaynaklı: deniz güvenliği literatüründe 4-5sn altı
+// "çırpıntılı/tehlikeli" sayılıyor, bkz. NOAA Dominant Wave Period rehberi), deniz gerçekte
+// daha rahatsız edici olur — bu yüzden böyle durumlarda yarım puan ekliyoruz. Ama bunu SADECE
+// dalga zaten bir miktar varken (0.25m üstü) uyguluyoruz; yoksa çok küçük dalgalarda bile
+// yanlış alarm verir.
+function durumDenizden(dalgaM, kmh, gustKmh, windWaveM, windWavePeriyot, lat, lon, ozelEsik) {
+  // ozelEsik varsa (gerçek zamanlı fetch hesabından geldiyse) onu kullan; yoksa elle
+  // tanımlı liman/bölge sistemine düş. Liman gibi KESİN bilinen noktalar her zaman
+  // fetch tahmininden daha güvenilir kabul edilip önceliklidir (limanBul kontrolü
+  // çağıran kodda zaten yapılıyor, ozelEsik sadece liman DEĞİLSE gönderiliyor).
   const bolge = denizBolgesi(lat, lon);
-  const esikDalga = bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA;
-  const esikRuzgar = bolge ? bolge.esikRuzgar : VARSAYILAN_ESIK_RUZGAR;
+  const esikDalga = ozelEsik ? ozelEsik.esikDalga : (bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA);
+  const esikRuzgar = ozelEsik ? ozelEsik.esikRuzgar : (bolge ? bolge.esikRuzgar : VARSAYILAN_ESIK_RUZGAR);
   // Hamle eşiği, ortalama rüzgar eşiğinden biraz daha gevşek tutuluyor — kısa süreli ani
   // esintiler ortalama rüzgar kadar belirleyici olmasın, ama tamamen göz ardı edilmesin.
-  const esikHamle = { sakin: esikRuzgar.sakin * 1.6, dikkatli: esikRuzgar.dikkatli * 1.4 };
+  const esikHamle = {
+    carsaf: esikRuzgar.carsaf * 1.6, iyi: esikRuzgar.iyi * 1.6,
+    hafif: esikRuzgar.hafif * 1.4, fazla: esikRuzgar.fazla * 1.3,
+  };
 
-  const durumDalga = tekOlcutDurumu(dalgaM, esikDalga);
-  const durumRuzgar = tekOlcutDurumu(kmh, esikRuzgar);
-  const durumHamle = tekOlcutDurumu(gustKmh, esikHamle);
+  const puanDalga = durumPuani(tekOlcutDurumu(dalgaM, esikDalga));
+  const puanRuzgar = durumPuani(tekOlcutDurumu(kmh, esikRuzgar));
+  const puanHamle = durumPuani(tekOlcutDurumu(gustKmh, esikHamle));
 
-  const adaylar = [durumDalga, durumRuzgar, durumHamle].filter(Boolean);
-  if (adaylar.length === 0) return "dikkatli"; // hiç veri yoksa temkinli ol
-  return adaylar.reduce((a, b) => SIRA_DURUM.indexOf(b) > SIRA_DURUM.indexOf(a) ? b : a);
+  const agirlikli = [
+    { puan: puanDalga, agirlik: 0.55 },
+    { puan: puanRuzgar, agirlik: 0.30 },
+    { puan: puanHamle, agirlik: 0.15 },
+  ].filter(x => x.puan != null);
+
+  if (agirlikli.length === 0) return "hafif"; // hiç veri yoksa temkinli ol
+
+  const toplamAgirlik = agirlikli.reduce((s, x) => s + x.agirlik, 0);
+  const agirlikliOrtalama = agirlikli.reduce((s, x) => s + x.puan * x.agirlik, 0) / toplamAgirlik;
+  let puanSonuc = Math.round(agirlikliOrtalama);
+  puanSonuc = Math.max(0, Math.min(SIRA_DURUM.length - 1, puanSonuc));
+  let sonuc = SIRA_DURUM[puanSonuc];
+
+  // Rüzgar dalgası (huysuz bileşen) zaten hissedilir büyüklükteyse (0.25m üstü) VE periyodu
+  // kısaysa (4 saniyenin altı), bir kademe daha temkinli ol — "swell" değil gerçekten yerel
+  // rüzgarın az önce ürettiği çırpıntılı bir deniz olduğu anlamına gelir.
+  if (windWaveM != null && windWaveM >= 0.25 && windWavePeriyot != null && windWavePeriyot < 4) {
+    const indeks = Math.min(SIRA_DURUM.indexOf(sonuc) + 1, SIRA_DURUM.length - 1);
+    sonuc = SIRA_DURUM[indeks];
+  }
+
+  return sonuc;
 }
 
 const state = {
@@ -585,7 +813,10 @@ const state = {
 };
 
 const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Esri'nin ücretsiz, anahtar gerektirmeyen "World Topo Map" katmanı: gerçekçi renkli
+// (kumsallar kum tonunda, ormanlar yeşil, su mavi), binalar net, yer isimleri okunaklı —
+// standart OpenStreetMap çizgi haritasından çok daha "gerçek dünya" hissi veriyor.
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
   attribution: '',
   maxZoom: 19,
 }).addTo(map);
@@ -643,11 +874,84 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
   return `<div class="hourly-strip">${hucreler}</div>`;
 }
 
+// === Gerçek zamanlı fetch hesabı ===
+// Elle binlerce koy/burun tanımlamak yerine, her tıklamada noktanın 8 ana yönünde
+// "ne kadar uzakta kara başlıyor" sorusunu otomatik hesaplıyoruz. Bu, Türkiye'nin HER
+// noktası için (elle tanımlamaya gerek kalmadan) korunaklı/açık ayrımını otomatik yapar.
+// Yöntem: her yönde ikili arama (binary search) ile en fazla 4 sorguda karaya olan
+// mesafeyi yaklaşık buluyoruz — 8 yön × 4 sorgu = 32 istek, bu yüzden ilk yüklemeden
+// biraz daha yavaş olabilir (genelde 2-5 saniye ek sürer, bağlantı hızına bağlı).
+const FETCH_YONLER = [0, 45, 90, 135, 180, 225, 270, 315]; // derece, 0=Kuzey
+const FETCH_MAX_KM = 60; // bu mesafeden sonra "açık deniz" sayılır, daha fazla aramaya gerek yok
+
+function koordinatKaydir(lat, lon, aciDerece, mesafeKm) {
+  const R = 6371;
+  const aci = aciDerece * Math.PI / 180;
+  const dLat = (mesafeKm / R) * Math.cos(aci);
+  const dLon = (mesafeKm / R) * Math.sin(aci) / Math.cos(lat * Math.PI / 180);
+  return { lat: lat + dLat * 180 / Math.PI, lon: lon + dLon * 180 / Math.PI };
+}
+
+async function noktaSuMu(lat, lon) {
+  try {
+    const res = await fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.feature === "OCEAN" || data.feature === "RIVER" || data.feature === "LAKE";
+  } catch (e) { return null; }
+}
+
+// Tek bir yönde ikili arama: 0..FETCH_MAX_KM arasında karanın başladığı mesafeyi bulur.
+async function yonFetchMesafesi(lat, lon, aciDerece) {
+  let alt = 0, ust = FETCH_MAX_KM;
+  // Önce en uçtaki nokta hâlâ deniz mi kontrol et — denizse o yönde "açık" say.
+  const ucNokta = koordinatKaydir(lat, lon, aciDerece, FETCH_MAX_KM);
+  const ucSonuc = await noktaSuMu(ucNokta.lat, ucNokta.lon);
+  if (ucSonuc === true || ucSonuc === null) return FETCH_MAX_KM;
+
+  for (let i = 0; i < 4; i++) {
+    const orta = (alt + ust) / 2;
+    const nokta = koordinatKaydir(lat, lon, aciDerece, orta);
+    const sonuc = await noktaSuMu(nokta.lat, nokta.lon);
+    if (sonuc === null) break; // hata durumunda elimizdeki en iyi tahminle devam et
+    if (sonuc) alt = orta; else ust = orta;
+  }
+  return alt;
+}
+
+// 8 yönün ortalamasını alarak "etkili fetch mesafesini" (km) döndürür.
+async function fetchMesafesiHesapla(lat, lon) {
+  try {
+    const sonuclar = await Promise.all(FETCH_YONLER.map(aci => yonFetchMesafesi(lat, lon, aci)));
+    const ortalama = sonuclar.reduce((a, b) => a + b, 0) / sonuclar.length;
+    return { ortalamaKm: ortalama, yonler: sonuclar };
+  } catch (e) {
+    return null;
+  }
+}
+
+// Hesaplanan fetch mesafesine göre dinamik bir eşik seti üretir. Mantık: az önce elle
+// tanımladığımız "liman" ve "Karadeniz açık" eşiklerini iki uç nokta olarak alıp,
+// gerçek fetch mesafesine göre aradan orantılı bir değer üretiyoruz — kısa fetch
+// (korunaklı koy/liman) sakin eşiklere, uzun fetch (açık deniz) hassas eşiklere yakın olur.
+function fetchTabanliEsik(fetchKm, esikDalgaAcik, esikRuzgarAcik) {
+  // 3km ve altı tamamen korunaklı (liman/koy içi), 40km ve üstü tamamen açık sayılır.
+  const oran = Math.max(0, Math.min(1, (fetchKm - 3) / (40 - 3)));
+  const carpan = 1 + (1 - oran) * 1.4; // korunaklıysa eşikler ~2.4 kata kadar gevşer
+  const carpVer = (esik) => ({
+    carsaf: +(esik.carsaf * carpan).toFixed(2),
+    iyi: +(esik.iyi * carpan).toFixed(2),
+    hafif: +(esik.hafif * carpan).toFixed(2),
+    fazla: +(esik.fazla * carpan).toFixed(2),
+  });
+  return { esikDalga: carpVer(esikDalgaAcik), esikRuzgar: carpVer(esikRuzgarAcik) };
+}
+
 async function veriCekVeGoster(lat, lon) {
   const card = document.getElementById('status-card');
   document.getElementById('our-label').style.display = "block";
   card.className = "card";
-  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar ve dalga verisi getiriliyor…</div>`;
+  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar, dalga ve kıyı şekli analiz ediliyor… (birkaç saniye sürebilir)</div>`;
 
   document.getElementById('gb-section').style.display = "none";
   document.getElementById('gb-list-wrap').style.display = "none";
@@ -657,8 +961,8 @@ async function veriCekVeGoster(lat, lon) {
 
   try {
     const [havaRes, denizRes, yerRes, suRes] = await Promise.all([
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
-      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period&hourly=wave_height&forecast_days=1&timezone=auto`),
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&timezone=auto`),
       fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
       fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`).catch(() => null)
     ]);
@@ -696,10 +1000,33 @@ async function veriCekVeGoster(lat, lon) {
     const gust = hava ? hava.wind_gusts_10m : null;
     const temp = hava ? hava.temperature_2m : null;
     const ruzgarYonu = hava ? hava.wind_direction_10m : null;
+    const uvIndex = hava ? hava.uv_index : null;
     const dalgaPeriyodu = deniz ? deniz.wave_period : null;
     const dalgaYonu = deniz ? deniz.wave_direction : null;
+    const windWaveM = deniz ? deniz.wind_wave_height : null;
+    const windWavePeriyot = deniz ? deniz.wind_wave_period : null;
+    const swellM = deniz ? deniz.swell_wave_height : null;
+    const swellPeriyot = deniz ? deniz.swell_wave_period : null;
+    const deniztSicaklik = deniz ? deniz.sea_surface_temperature : null;
 
-    const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, dalgaPeriyodu, lat, lon) : null;
+    // Eğer bilinen bir liman içindeysek o zaten kesin/güvenilir bir eşik veriyor, fetch
+    // hesabına gerek yok. Değilsek, gerçek zamanlı fetch hesabı yapıp ona göre eşikleri
+    // otomatik ayarlıyoruz — bu, Türkiye'nin her koyu/burnu için elle tanımlama yapmadan
+    // otomatik bir "korunaklı mı açık mı" tahmini sağlar.
+    let ozelEsik = null;
+    let fetchKm = null;
+    if (denizdeyiz && !limanBul(lat, lon)) {
+      const bolgeGenel = denizBolgesi(lat, lon);
+      if (bolgeGenel) {
+        const fetchSonuc = await fetchMesafesiHesapla(lat, lon);
+        if (fetchSonuc) {
+          ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+          fetchKm = fetchSonuc.ortalamaKm;
+        }
+      }
+    }
+
+    const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
     const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
     const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
 
@@ -731,10 +1058,45 @@ async function veriCekVeGoster(lat, lon) {
     }
     if (denizdeyiz && dalgaPeriyodu != null) {
       metricsHtml += `<div>Periyot <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
+      // Derin su dalga teorisi (Airy/lineer dalga teorisi): L = g·T²/(2π) ≈ 1.56·T² (metre),
+      // C = L/T ≈ 1.56·T (m/s). Bu formüller sadece AÇIK/DERİN suda (derinlik > dalga boyu/2)
+      // tam doğrudur; kıyıya çok yakın sığ suda dalga yavaşlayıp kısalır (shoaling etkisi),
+      // bu yüzden bu sayılar "açık deniz tahmini" olarak okunmalı, kıyı kırılma noktası için
+      // birebir geçerli olmayabilir.
+      const dalgaBoyuM = 1.56 * dalgaPeriyodu * dalgaPeriyodu;
+      const dalgaHiziMs = 1.56 * dalgaPeriyodu;
+      const dalgaHiziKmh = dalgaHiziMs * 3.6;
+      metricsHtml += `<div>Dalga boyu <b>${dalgaBoyuM.toFixed(0)} m</b></div>`;
+      metricsHtml += `<div>Dalga hızı <b>${dalgaHiziKmh.toFixed(1)} km/sa</b></div>`;
     }
     if (temp != null) {
-      metricsHtml += `<div><b>${Math.round(temp)}°C</b></div>`;
+      metricsHtml += `<div>Hava <b>${Math.round(temp)}°C</b></div>`;
     }
+    if (denizdeyiz && deniztSicaklik != null) {
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>Deniz <b>${Math.round(deniztSicaklik)}°C</b></div>`;
+    }
+    if (uvIndex != null && uvIndex > 0) {
+      const uvRenk = (v) => v < 3 ? "#1D9E75" : v < 6 ? "#C9A227" : v < 8 ? "#BA7517" : v < 11 ? "#D85A30" : "#8B3FBA";
+      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>UV <b style="color:${uvRenk(uvIndex)}">${Math.round(uvIndex)}</b></div>`;
+    }
+
+    const ruzgarDalgasiBaskin = denizdeyiz && windWaveM != null && windWaveM >= 0.25 && windWavePeriyot != null && windWavePeriyot < 4;
+    const ruzgarDalgasiNotu = ruzgarDalgasiBaskin
+      ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Dalganın büyük kısmı yerel rüzgarın az önce oluşturduğu kısa, çırpıntılı dalga (periyot ${windWavePeriyot.toFixed(1)} sn) — bu yüzden tahmin biraz daha temkinli.</div>`
+      : "";
+
+    const fetchNotu = (fetchKm != null)
+      ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Açık deniz mesafesi (fetch) yaklaşık <b>${fetchKm.toFixed(0)} km</b> — ${fetchKm < 15 ? "koy/körfez gibi korunaklı bir bölge, eşikler buna göre gevşetildi." : "açık kıyı, standart bölgesel eşikler kullanıldı."}</div>`
+      : "";
+
+    // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
+    // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
+    // basit bir "kuvvetli rüzgar" uyarısı gösteriyoruz — resmi bir uyarı DEĞİL, sadece
+    // elimizdeki veriden türetilen bir gözlem.
+    const kuvvetliRuzgarUyarisi = (gust != null && gust >= 40) || (kmh != null && kmh >= 35);
+    const ruzgarUyariHtml = kuvvetliRuzgarUyarisi
+      ? `<div class="wind-warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil</div>`
+      : "";
 
     const bolge = denizBolgesi(lat, lon);
     const baslikYer = yerAdi || (bolge ? bolge.ad : null);
@@ -743,21 +1105,54 @@ async function veriCekVeGoster(lat, lon) {
     const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r);
 
     card.innerHTML = `
+      ${ruzgarUyariHtml}
       <div class="card-top">
         <div>
           <div class="loc-label" style="color:${r.text600}">${baslikYer ? baslikYer + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
           <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
         </div>
-        <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-        </button>
+        <div style="display:flex;gap:4px;">
+          <button class="refresh-btn" id="fav-btn" aria-label="Favorilere ekle" style="color:${r.text600}">
+            <svg id="fav-star-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+          <button class="refresh-btn" id="share-btn" aria-label="Paylaş" style="color:${r.text600}">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </button>
+        </div>
       </div>
       <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
+      ${ruzgarDalgasiNotu}
+      ${fetchNotu}
       ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.</div>`}
       ${denizdeyiz ? saatlikSeritHtml : ""}
     `;
 
     document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
+
+    document.getElementById('fav-btn').onclick = () => {
+      favToggle(lat, lon, baslikYer);
+      favYildiziGuncelle(lat, lon);
+    };
+    favYildiziGuncelle(lat, lon);
+
+    document.getElementById('share-btn').onclick = async () => {
+      const yerMetni = baslikYer || `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+      const metin = `${yerMetni} şu an: ${durumBasligi}\nDeniz durumu için: ${window.location.href}`;
+      if (navigator.share) {
+        try { await navigator.share({ text: metin }); } catch (e) {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(metin);
+          const btn = document.getElementById('share-btn');
+          const eskiSvg = btn.innerHTML;
+          btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+          setTimeout(() => { btn.innerHTML = eskiSvg; }, 1500);
+        } catch (e) {}
+      }
+    };
 
     state.lat = lat;
     state.lon = lon;
@@ -765,7 +1160,31 @@ async function veriCekVeGoster(lat, lon) {
     state.denizdeyiz = denizdeyiz;
     state.yerAdi = baslikYer;
     await gbAlaniniGuncelle();
+
+    // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
+    try {
+      localStorage.setItem('deniz-durumu-son-veri', JSON.stringify({
+        lat, lon, baslikYer, durum, durumBasligi, kmh, dalgaM, zaman: Date.now()
+      }));
+    } catch (e) {}
   } catch (e) {
+    let onbellekHtml = "";
+    try {
+      const kayit = localStorage.getItem('deniz-durumu-son-veri');
+      if (kayit) {
+        const o = JSON.parse(kayit);
+        if (Math.abs(o.lat - lat) < 0.01 && Math.abs(o.lon - lon) < 0.01) {
+          const dakika = Math.round((Date.now() - o.zaman) / 60000);
+          const zamanMetni = dakika < 60 ? `${dakika} dk önce` : `${Math.round(dakika / 60)} sa önce`;
+          onbellekHtml = `
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(80,30,10,0.15);font-size:12.5px;color:#7A4530;text-align:left;">
+              <b>Son bilinen durum</b> (${zamanMetni}, bağlantı yokken): ${o.baslikYer || ""} — ${o.durumBasligi || ""}
+              ${o.kmh != null ? ` · ${Math.round(o.kmh)} km/sa rüzgar` : ""}${o.dalgaM != null ? ` · ${o.dalgaM.toFixed(1)} m dalga` : ""}
+            </div>`;
+        }
+      }
+    } catch (err) {}
+
     card.className = "card";
     card.style.background = "#FAECE7";
     card.style.borderColor = "#D85A30";
@@ -775,12 +1194,15 @@ async function veriCekVeGoster(lat, lon) {
         <div style="margin-top:10px;">
           <button id="retry-btn" style="background:transparent;border:1px solid #D85A30;border-radius:8px;padding:6px 14px;font-size:13px;color:#4A1B0C;cursor:pointer;">Yeniden dene</button>
         </div>
-      </div>`;
+      </div>
+      ${onbellekHtml}`;
     document.getElementById('retry-btn').onclick = () => veriCekVeGoster(lat, lon);
   }
 }
 
-const SIRA = ["sakin", "dikkatli", "riskli"];
+const SIRA = ["carsaf", "iyi", "hafif", "fazla", "tehlikeli"];
+
+const GB_PENCERE_SAAT = 2.5; // deniz durumu birkaç saatte değişebileceği için bildirimler bu süre sonra "eski" sayılır
 
 // Bir noktanın YAKININDAKİ bildirimleri getirir (~1.3 km yarıçaplı bir kutu, mahalle ölçeği —
 // böylece Atakum'daki bir bildirim Canik'te görünmez, ama tam aynı pikselde tıklamak da gerekmez).
@@ -792,18 +1214,20 @@ async function bildirimleriGetir(lat, lon) {
       .select('*')
       .gte('lat', lat - ARALIK).lte('lat', lat + ARALIK)
       .gte('lon', lon - ARALIK).lte('lon', lon + ARALIK)
-      .gte('created_at', new Date(Date.now() - 6 * 3600 * 1000).toISOString()) // son 6 saat
+      .gte('created_at', new Date(Date.now() - GB_PENCERE_SAAT * 3600 * 1000).toISOString())
       .order('created_at', { ascending: false })
       .limit(30);
     if (error) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0 })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim" })), hata: false };
   }
-  // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş
+  // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
-  return { liste: state.geriBildirimlerYerel[key] || [], hata: false };
+  const sinirZaman = Date.now() - GB_PENCERE_SAAT * 3600 * 1000;
+  const liste = (state.geriBildirimlerYerel[key] || []).filter(gb => gb.zaman >= sinirZaman);
+  return { liste, hata: false };
 }
 
 const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim arası en az 5 dakika
@@ -822,7 +1246,7 @@ function gbGonderimZamaniKaydet() {
   try { localStorage.setItem('deniz-durumu-son-gonderim', String(Date.now())); } catch (e) {}
 }
 
-async function bildirimEkle(lat, lon, durum, not) {
+async function bildirimEkle(lat, lon, durum, not, isim) {
   const kalanDk = gbBeklemeKontrolEt();
   if (kalanDk > 0) {
     return { basarili: false, mesaj: `Çok sık bildirim gönderiyorsun, ${kalanDk} dakika sonra tekrar dene.` };
@@ -830,7 +1254,7 @@ async function bildirimEkle(lat, lon, durum, not) {
   if (supabaseClient) {
     const { error } = await supabaseClient
       .from('geri_bildirimler')
-      .insert({ lat, lon, durum, not_metni: not || null });
+      .insert({ lat, lon, durum, not_metni: not || null, kullanici_adi: isim });
     if (error) {
       console.error("Supabase yazma hatası:", error);
       return { basarili: false, mesaj: "Gönderilemedi, lütfen tekrar dene." };
@@ -840,10 +1264,40 @@ async function bildirimEkle(lat, lon, durum, not) {
   }
   const key = konumAnahtari(lat, lon);
   if (!state.geriBildirimlerYerel[key]) state.geriBildirimlerYerel[key] = [];
-  state.geriBildirimlerYerel[key].unshift({ durum, not, zaman: Date.now() });
+  state.geriBildirimlerYerel[key].unshift({ durum, not, isim, zaman: Date.now() });
   gbGonderimZamaniKaydet();
   return { basarili: true };
 }
+
+const GB_ISIM_ANAHTARI = 'deniz-durumu-kullanici-adi';
+
+function kayitliIsmiGetir() {
+  try { return localStorage.getItem(GB_ISIM_ANAHTARI) || ""; } catch (e) { return ""; }
+}
+function ismiKaydet(isim) {
+  try { localStorage.setItem(GB_ISIM_ANAHTARI, isim); } catch (e) {}
+}
+
+function isimAlaniniGuncelle() {
+  const kayitli = kayitliIsmiGetir();
+  const nameRow = document.getElementById('gb-name-row');
+  const nameSaved = document.getElementById('gb-name-saved');
+  const nameSavedText = document.getElementById('gb-name-saved-text');
+  if (kayitli) {
+    nameRow.style.display = "none";
+    nameSaved.style.display = "flex";
+    nameSavedText.textContent = `${kayitli} olarak yorum yapacaksın`;
+  } else {
+    nameRow.style.display = "block";
+    nameSaved.style.display = "none";
+    document.getElementById('gb-isim').value = "";
+  }
+}
+
+document.getElementById('gb-name-degistir').addEventListener('click', () => {
+  ismiKaydet("");
+  isimAlaniniGuncelle();
+});
 
 async function gbAlaniniGuncelle() {
   const gbSection = document.getElementById('gb-section');
@@ -861,6 +1315,7 @@ async function gbAlaniniGuncelle() {
     summaryWrap.style.display = "none";
     listWrap.style.display = "none";
     conflictNote.style.display = "none";
+    if (state.marker) state.marker.closePopup();
     return;
   }
 
@@ -875,6 +1330,7 @@ async function gbAlaniniGuncelle() {
     b.style.color = "#6B6A60";
   });
   document.getElementById('gb-note').value = "";
+  isimAlaniniGuncelle();
 
   communityLabel.style.display = "block";
   summaryWrap.style.display = "block";
@@ -885,20 +1341,22 @@ async function gbAlaniniGuncelle() {
   if (hata) {
     summaryWrap.innerHTML = `<div class="community-empty">Sahadan gelen bildirimler şu an yüklenemedi.</div>`;
     listWrap.style.display = "none";
+    if (state.marker) state.marker.closePopup();
     return;
   }
 
   if (liste.length === 0) {
-    summaryWrap.innerHTML = `<div class="community-empty">Son 6 saatte bu çevrede kimse bildirim bırakmadı. İlk bildiren sen ol.</div>`;
+    summaryWrap.innerHTML = `<div class="community-empty">Son 2.5 saatte bu çevrede kimse bildirim bırakmadı. İlk bildiren sen ol.</div>`;
     listWrap.style.display = "none";
     conflictNote.style.display = "none";
+    if (state.marker) state.marker.closePopup();
     return;
   }
 
-  const sayim = { sakin: 0, dikkatli: 0, riskli: 0 };
+  const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
   liste.forEach(gb => { sayim[gb.durum]++; });
 
-  const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "sakin");
+  const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
   const r = aktifRenkler()[baskinDurum];
 
   summaryWrap.innerHTML = `
@@ -910,19 +1368,27 @@ async function gbAlaniniGuncelle() {
       </div>
     </div>`;
 
+  haritaBaloncuguGoster(baskinDurum, sayim, liste);
+
   listWrap.style.display = "block";
   listEl.innerHTML = liste.map(gb => {
     const rr = aktifRenkler()[gb.durum];
     const faydaliGosterilsin = gb.id != null;
-    return `<div class="gb-item">
+    const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+    // 2.5 saatlik pencerede yorum ne kadar eskiyse o kadar soluklaşır; ilk 15 dakika "Yeni" rozeti taşır.
+    const dakikaFark = (Date.now() - gb.zaman) / 60000;
+    const opaklik = Math.max(0.45, 1 - dakikaFark / 150);
+    const yeniMi = dakikaFark <= 15;
+    return `<div class="gb-item" style="opacity:${opaklik.toFixed(2)};">
       <span class="gb-avatar" style="background:${rr.bg};border-color:${rr.border};color:${rr.text900}">
         <span class="dot" style="background:${rr.border}"></span>
       </span>
       <div class="gb-item-body">
         <div class="gb-item-top">
           <span class="gb-item-status" style="color:${rr.text900}">${ETIKET_KISA[gb.durum]}</span>
-          <span class="gb-time">${zamanFormat(gb.zaman)}</span>
+          <span class="gb-time">${yeniMi ? `<span class="gb-yeni-rozet">Yeni</span> ` : ""}${zamanFormat(gb.zaman)}</span>
         </div>
+        <div class="gb-item-isim">${isimGuvenli}</div>
         ${gb.not ? `<div class="gb-item-note">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
         ${faydaliGosterilsin ? `<button class="gb-faydali-btn" data-id="${gb.id}" type="button">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
@@ -978,12 +1444,25 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
 
 document.getElementById('gb-send').addEventListener('click', async () => {
   if (!state.secilenGB || state.lat == null) return;
+
+  let isim = kayitliIsmiGetir();
+  if (!isim) {
+    const girilenIsim = document.getElementById('gb-isim').value.trim();
+    if (!girilenIsim) {
+      document.getElementById('gb-isim').style.borderColor = "#D85A30";
+      document.getElementById('gb-isim').placeholder = "İsim girmeden yorum yapamazsın";
+      return;
+    }
+    isim = girilenIsim;
+    ismiKaydet(isim);
+  }
+
   const not = document.getElementById('gb-note').value.trim();
   const sendBtn = document.getElementById('gb-send');
   sendBtn.disabled = true;
   sendBtn.style.opacity = "0.5";
 
-  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not);
+  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim);
 
   sendBtn.disabled = false;
   sendBtn.style.opacity = "1";
@@ -1000,17 +1479,148 @@ document.getElementById('gb-send').addEventListener('click', async () => {
   }
 });
 
+// Topluluk geri bildirimini, tıklanan noktanın hemen üstünde bir Leaflet popup'ı
+// (konuşma balonu) olarak gösterir. Üstte çoğunluk özeti, altında TÜM yorumlar alt alta,
+// her biri isim/durum/zaman ile listelenir. Liste uzunsa kaydırılabilir, haritayı kaplamaz.
+function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
+  if (!state.marker) return;
+  const r = aktifRenkler()[baskinDurum];
+  const sayilarHtml = SIRA.filter(d => sayim[d] > 0)
+    .map(d => `<span style="display:inline-flex;align-items:center;gap:3px;margin-right:8px;"><span style="width:7px;height:7px;border-radius:50%;background:${aktifRenkler()[d].border};display:inline-block;"></span>${sayim[d]}</span>`)
+    .join("");
+
+  const yorumlarHtml = liste.slice(0, 12).map(gb => {
+    const rr = aktifRenkler()[gb.durum];
+    const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+    const dakikaFark = (Date.now() - gb.zaman) / 60000;
+    const opaklik = Math.max(0.5, 1 - dakikaFark / 150);
+    return `
+      <div style="display:flex;gap:7px;padding:7px 0;border-top:1px solid rgba(20,56,74,0.08);opacity:${opaklik.toFixed(2)};">
+        <span style="width:22px;height:22px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:${rr.border};display:inline-block;"></span>
+        </span>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;justify-content:space-between;gap:6px;">
+            <span style="font-size:12px;font-weight:600;color:${rr.text900};text-transform:capitalize;">${ETIKET_KISA[gb.durum]}</span>
+            <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+          </div>
+          <div style="font-size:10.5px;color:#9AAEBA;font-weight:500;">${isimGuvenli}</div>
+          ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+        </div>
+      </div>`;
+  }).join("");
+
+  const icerik = `
+    <div style="font-family:'Inter',sans-serif;width:230px;border-radius:15px;overflow:hidden;">
+      <div style="background:linear-gradient(135deg, ${r.bg} 0%, ${r.bg} 100%);padding:13px 15px 10px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:${r.border};flex-shrink:0;"></span>
+          <div style="flex:1;">
+            <div style="font-size:13.5px;font-weight:700;color:${r.text900};line-height:1.2;">
+              Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]}
+            </div>
+            <div style="font-size:10.5px;color:${r.text600};margin-top:1px;">${sayilarHtml}</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:4px 15px 6px;max-height:230px;overflow-y:auto;">${yorumlarHtml}</div>
+    </div>`;
+
+  if (!state.marker.getPopup()) {
+    state.marker.bindPopup(icerik, {
+      closeButton: true,
+      className: "deniz-balon",
+      offset: [0, -2],
+      maxWidth: 260,
+      autoPanPadding: [20, 20],
+    });
+  } else {
+    state.marker.setPopupContent(icerik);
+  }
+  state.marker.openPopup();
+}
+
+// === Favoriler ===
+// Favoriler tamamen tarayıcıda (localStorage) saklanır, kişiseldir, paylaşılmaz.
+const FAV_ANAHTARI = 'deniz-durumu-favoriler';
+const FAV_TOLERANS = 0.01; // ~1km içindeki noktalar "aynı favori" sayılır
+
+function favListesiGetir() {
+  try {
+    const ham = localStorage.getItem(FAV_ANAHTARI);
+    return ham ? JSON.parse(ham) : [];
+  } catch (e) { return []; }
+}
+function favListesiKaydet(liste) {
+  try { localStorage.setItem(FAV_ANAHTARI, JSON.stringify(liste)); } catch (e) {}
+}
+function favBul(lat, lon) {
+  const liste = favListesiGetir();
+  return liste.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
+}
+function favToggle(lat, lon, ad) {
+  const liste = favListesiGetir();
+  const idx = favBul(lat, lon);
+  if (idx >= 0) {
+    liste.splice(idx, 1);
+  } else {
+    if (liste.length >= 8) liste.shift(); // çok fazla birikmesin
+    liste.push({ lat, lon, ad: ad || `${lat.toFixed(2)}, ${lon.toFixed(2)}` });
+  }
+  favListesiKaydet(liste);
+  favSeridiGuncelle();
+}
+function favYildiziGuncelle(lat, lon) {
+  const btn = document.getElementById('fav-btn');
+  if (!btn) return;
+  const svg = document.getElementById('fav-star-svg');
+  const aktif = favBul(lat, lon) >= 0;
+  svg.setAttribute('fill', aktif ? 'currentColor' : 'none');
+  btn.setAttribute('aria-label', aktif ? 'Favorilerden çıkar' : 'Favorilere ekle');
+}
+function favSeridiGuncelle() {
+  const liste = favListesiGetir();
+  const row = document.getElementById('fav-row');
+  if (!row) return;
+  if (liste.length === 0) {
+    row.style.display = "none";
+    row.innerHTML = "";
+    return;
+  }
+  row.style.display = "flex";
+  row.innerHTML = liste.map((f, i) => `
+    <button class="fav-chip" data-i="${i}" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      ${f.ad}
+    </button>`).join("");
+  row.querySelectorAll('.fav-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const f = liste[parseInt(chip.dataset.i, 10)];
+      map.setView([f.lat, f.lon], 13);
+      noktayaGit(f.lat, f.lon, false);
+    });
+  });
+}
+
+// Damla (pin) şeklinde özel marker ikonu — Leaflet'in standart circleMarker'ı yerine
+// gerçek bir konum iğnesi görünümü için divIcon kullanıyoruz.
+const PIN_IKON = L.divIcon({
+  className: 'deniz-pin-wrap',
+  html: `<svg width="30" height="40" viewBox="0 0 30 40" style="filter:drop-shadow(0 3px 5px rgba(20,56,74,0.45));">
+    <path d="M15 0C6.7 0 0 6.7 0 15c0 11 15 25 15 25s15-14 15-25C30 6.7 23.3 0 15 0z" fill="#2A7FB8"/>
+    <circle cx="15" cy="15" r="6.5" fill="white"/>
+    <circle cx="15" cy="15" r="3.2" fill="#14384A"/>
+  </svg>`,
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
+  popupAnchor: [0, -38],
+});
+
 function noktayaGit(lat, lng, haritayiOdakla) {
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
   } else {
-    state.marker = L.circleMarker([lat, lng], {
-      radius: 5,
-      color: "#14384A",
-      weight: 1.5,
-      fillColor: "#2A7FB8",
-      fillOpacity: 0.85,
-    }).addTo(map);
+    state.marker = L.marker([lat, lng], { icon: PIN_IKON }).addTo(map);
   }
   if (haritayiOdakla) map.setView([lat, lng], 13);
   veriCekVeGoster(lat, lng);
@@ -1048,6 +1658,7 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 
 setTimeout(() => {
   map.invalidateSize();
+  favSeridiGuncelle();
   // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Samsun/Karadeniz kıyısı.
   let sonNokta = null;
   try {
@@ -1072,6 +1683,20 @@ function temaGuncelle() {
   document.documentElement.setAttribute('data-tema-hazirlik', tema);
 }
 setInterval(temaGuncelle, 5 * 60 * 1000);
+
+const GUN_ADLARI = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+const AY_ADLARI = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+
+function saatiGuncelle() {
+  const simdi = new Date();
+  const iki = (n) => String(n).padStart(2, "0");
+  const tarihStr = `${simdi.getDate()} ${AY_ADLARI[simdi.getMonth()]} ${simdi.getFullYear()}, ${GUN_ADLARI[simdi.getDay()]}`;
+  const saatStr = `${iki(simdi.getHours())}:${iki(simdi.getMinutes())}:${iki(simdi.getSeconds())}`;
+  const el = document.getElementById('clock-row');
+  if (el) el.textContent = `${tarihStr} · ${saatStr}`;
+}
+saatiGuncelle();
+setInterval(saatiGuncelle, 1000);
 </script>
 </body>
 </html>
