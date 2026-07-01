@@ -1250,14 +1250,17 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
 }
 
 // === Gerçek zamanlı fetch hesabı ===
-// Elle binlerce koy/burun tanımlamak yerine, her tıklamada noktanın 8 ana yönünde
-// "ne kadar uzakta kara başlıyor" sorusunu otomatik hesaplıyoruz. Bu, Türkiye'nin HER
-// noktası için (elle tanımlamaya gerek kalmadan) korunaklı/açık ayrımını otomatik yapar.
-// Yöntem: her yönde önce 10km adımlarla kaba bir tarama yapıp en yakın karayı buluyoruz,
-// sonra o dar aralıkta ikili arama (binary search) ile en fazla 4 sorgu daha atıp mesafeyi
-// inceltiyoruz — yönde başına en fazla 10 sorgu, 8 yön için en fazla ~80 istek, bu yüzden
-// ilk yüklemeden biraz daha yavaş olabilir (genelde 4-10 saniye ek sürer, bağlantı hızına bağlı).
-const FETCH_YONLER = [0, 45, 90, 135, 180, 225, 270, 315]; // derece, 0=Kuzey
+// Elle binlerce koy/burun tanımlamak yerine, her tıklamada "rüzgarın estiği yönde ne kadar
+// uzakta kara başlıyor" sorusunu otomatik hesaplıyoruz. Bu, Türkiye'nin HER noktası için
+// (elle tanımlamaya gerek kalmadan) korunaklı/açık ayrımını otomatik yapar.
+// ÖNEMLİ: gerçek "fetch" tanımı rüzgarın KESİNTİSİZ ESTİĞİ açık su mesafesidir — bu yüzden
+// SADECE rüzgarın o an geldiği yönü ölçüyoruz (bkz. fetchMesafesiHesapla'ya verilen
+// ruzgarYonu). Eskiden 8 sabit pusula yönünü (K/KD/D/GD/G/GB/B/KB) ölçüp ortalamasını
+// alıyorduk — bu, rüzgarın gerçekte hangi yönden estiğini hiç hesaba katmıyordu; ör. rüzgar
+// tam açık denizden esiyorsa bile, karaya yakın diğer yönler ortalamayı düşürüp yanlışlıkla
+// "korunaklı" gösterebiliyordu. Tek yöne inince hem daha doğru hem çok daha az istek atıyoruz.
+// Yöntem: önce 10km adımlarla kaba bir tarama yapıp en yakın karayı buluyoruz, sonra o dar
+// aralıkta ikili arama (binary search) ile en fazla 4 sorgu daha atıp mesafeyi inceltiyoruz.
 const FETCH_MAX_KM = 60; // bu mesafeden sonra "açık deniz" sayılır, daha fazla aramaya gerek yok
 
 function koordinatKaydir(lat, lon, aciDerece, mesafeKm) {
@@ -1332,12 +1335,16 @@ async function yonFetchMesafesi(lat, lon, aciDerece) {
   return FETCH_MAX_KM; // taranan hiçbir noktada kara bulunamadı, açık deniz say
 }
 
-// 8 yönün ortalamasını alarak "etkili fetch mesafesini" (km) döndürür.
-async function fetchMesafesiHesapla(lat, lon) {
+// Rüzgarın geldiği yöndeki (bkz. yukarısı) açık su mesafesini (km) döndürür. ruzgarYonu,
+// meteorolojik gelenekle rüzgarın NEREDEN geldiğini belirtir (ör. 315° = KB'dan geliyor) —
+// koordinatKaydir de aynı pusula yönü kuralını kullandığından, doğrudan o yönde
+// yürüyerek "rüzgarın üstünden estiği" mesafeyi ölçmüş oluyoruz; bu tam olarak fetch'in
+// tanımı.
+async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
+  if (ruzgarYonu == null) return null;
   try {
-    const sonuclar = await Promise.all(FETCH_YONLER.map(aci => yonFetchMesafesi(lat, lon, aci)));
-    const ortalama = sonuclar.reduce((a, b) => a + b, 0) / sonuclar.length;
-    return { ortalamaKm: ortalama, yonler: sonuclar };
+    const km = await yonFetchMesafesi(lat, lon, ruzgarYonu);
+    return { km };
   } catch (e) {
     return null;
   }
@@ -1587,10 +1594,10 @@ async function veriCekVeGoster(lat, lon) {
     // yukarıdaki ilk çizim zaten kullanıcıya gösterildi. Sonuç gelince (hâlâ aynı noktadaysak)
     // kartı sadece eşik/renk açısından ikinci kez çiziyoruz.
     if (bolgeGenel) {
-      fetchMesafesiHesapla(lat, lon).then((fetchSonuc) => {
+      fetchMesafesiHesapla(lat, lon, ruzgarYonu).then((fetchSonuc) => {
         if (!fetchSonuc || !tokenGecerli()) return;
-        const ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
-        kartiCiz(ozelEsik, fetchSonuc.ortalamaKm);
+        const ozelEsik = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+        kartiCiz(ozelEsik, fetchSonuc.km);
       }).catch(() => {});
     }
   } catch (e) {
