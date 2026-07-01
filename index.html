@@ -236,6 +236,49 @@
     border: none;
   }
   body.harita-tam-ekran-acik { overflow: hidden; }
+  /* Harita tam ekranken rüzgar/dalga kartı normal akıştaki yerinde (haritanın ALTINDA,
+     görünmeyen bir yerde) kalmasın diye haritanın İÇİNDE, sağ üstte yüzen bir panele
+     dönüştürüyoruz — bkz. tamEkranVeriGoster(). 13sn etkileşimsiz kalınca ya da çarpıya
+     basılınca gizlenir (bkz. .tam-ekran-gizli). */
+  body.harita-tam-ekran-acik #status-card {
+    position: fixed;
+    top: 64px;
+    right: 14px;
+    width: min(300px, calc(100vw - 28px));
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    z-index: 4500;
+    box-shadow: 0 8px 28px rgba(10,20,15,0.4);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  body.harita-tam-ekran-acik #status-card.tam-ekran-gizli {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+  .tam-ekran-kapat-btn {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 4600;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(20,30,25,0.55);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  body.harita-tam-ekran-acik .tam-ekran-kapat-btn { display: flex; }
+  .tam-ekran-kapat-btn.tam-ekran-gizli {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
   .map-buyut-kontrol a {
     width: 30px;
     height: 30px;
@@ -736,6 +779,9 @@
   </div>
 
   <div id="map"></div>
+  <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" aria-label="Veri panelini kapat">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
 
   <p class="section-label" id="our-label" style="display:none;">Tahminimiz (rüzgar + dalga verisi)</p>
   <div class="card placeholder" id="status-card">
@@ -1097,9 +1143,39 @@ function haritaTamEkranAcKapat() {
     btn.title = haritaTamEkranAktif ? "Haritayı küçült" : "Haritayı büyüt";
     btn.setAttribute('aria-label', btn.title);
   }
+  if (haritaTamEkranAktif) {
+    // Harita büyütülünce, altta kalıp görünmeyen veri kartını haritanın içinde sağ üstte
+    // yüzen bir panel olarak gösteriyoruz (zaten bir veri varsa).
+    if (state.lat != null) tamEkranVeriGoster();
+  } else {
+    // Küçültürken zamanlayıcıyı ve gizli durumunu temizliyoruz ki bir sonraki büyütmede
+    // kart baştan görünür başlasın.
+    clearTimeout(tamEkranVeriTimeout);
+    document.getElementById('status-card').classList.remove('tam-ekran-gizli');
+    document.getElementById('tam-ekran-veri-kapat').classList.remove('tam-ekran-gizli');
+  }
   // CSS boyut değişimi bir sonraki karede tamamlanır, harita boyutunu ondan sonra tazeliyoruz.
   setTimeout(() => map.invalidateSize(), 150);
 }
+
+// Tam ekran haritada veri kartını gösterir ve 13sn etkileşimsiz kalırsa otomatik gizler —
+// kullanıcı çarpıya basarak da istediği an elle kapatabilir (bkz. #tam-ekran-veri-kapat).
+let tamEkranVeriTimeout = null;
+function tamEkranVeriGoster() {
+  if (!haritaTamEkranAktif) return;
+  document.getElementById('status-card').classList.remove('tam-ekran-gizli');
+  document.getElementById('tam-ekran-veri-kapat').classList.remove('tam-ekran-gizli');
+  clearTimeout(tamEkranVeriTimeout);
+  tamEkranVeriTimeout = setTimeout(() => {
+    document.getElementById('status-card').classList.add('tam-ekran-gizli');
+    document.getElementById('tam-ekran-veri-kapat').classList.add('tam-ekran-gizli');
+  }, 13000);
+}
+document.getElementById('tam-ekran-veri-kapat').addEventListener('click', () => {
+  clearTimeout(tamEkranVeriTimeout);
+  document.getElementById('status-card').classList.add('tam-ekran-gizli');
+  document.getElementById('tam-ekran-veri-kapat').classList.add('tam-ekran-gizli');
+});
 const buyutKontrol = L.control({ position: 'topright' });
 buyutKontrol.onAdd = function () {
   const div = L.DomUtil.create('div', 'leaflet-bar map-buyut-kontrol');
@@ -1501,6 +1577,8 @@ async function veriCekVeGoster(lat, lon) {
           lat, lon, baslikYer, durum, durumBasligi, kmh, dalgaM, zaman: Date.now()
         }));
       } catch (e) {}
+
+      tamEkranVeriGoster(); // harita tam ekrandaysa kartı göster ve 13sn'lik zamanlayıcıyı başlat/tazele
     }
 
     await kartiCiz(null, null);
