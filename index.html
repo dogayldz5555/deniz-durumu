@@ -1301,10 +1301,11 @@ async function veriCekVeGoster(lat, lon) {
   document.getElementById('conflict-note').style.display = "none";
 
   try {
-    const [havaRes, denizRes, yerRes] = await Promise.all([
+    const [havaRes, denizRes, yerRes, kiyidaMi] = await Promise.all([
       fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
       fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&timezone=auto`),
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null)
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
+      noktaSuMu(lat, lon),
     ]);
 
     const havaJson = havaRes.ok ? await havaRes.json() : null;
@@ -1338,16 +1339,16 @@ async function veriCekVeGoster(lat, lon) {
       konumMetni = tekrarsiz.length > 0 ? tekrarsiz.join(", ") : (yerData.display_name ? yerData.display_name.split(",").slice(0, 3).join(",").trim() : null);
     }
 
-    // Kara/deniz kararı: SADECE Open-Meteo'nun deniz (marine) modelinin gerçek bir dalga
-    // yüksekliği döndürüp döndürmediğine bakıyoruz. Daha önce buna ek olarak is-on-water'ın
-    // 30m çözünürlüklü kara/deniz sınıflandırmasını da zorunlu tutuyorduk — ama test ettiğimizde
-    // marine modelin kendisi zaten kara noktalarında (Ankara, Konya, Van Gölü vb.) güvenilir
-    // şekilde boş dönüyor, yani is-on-water'ın ek koşulu gereksizdi. Üstelik ZARARLIYDI: küçük
-    // koy/marina gibi yerlerde is-on-water tam tıklanan pikseli "kara" (kıyı şeridi/iskele)
-    // sayabiliyor, oysa marine modeli o nokta için hâlâ geçerli bir dalga değeri veriyordu —
-    // eski kod bu durumda dalga verisini zorla gizleyip sadece rüzgar gösteriyordu. Artık
-    // marine modelin kendi verisine güveniyoruz, bu hem daha doğru hem bir API isteği daha az.
-    const denizdeyiz = denizOk && dalgaM != null;
+    // Kara/deniz kararı: Open-Meteo'nun deniz (marine) modeli GRID çözünürlüklü olduğu için
+    // kıyıya yakın kara noktalarında bile (yanındaki deniz hücresinden) geçerli bir dalga
+    // değeri döndürebiliyor — bu yüzden TEK BAŞINA marine modeline güvenmek, karaya
+    // tıklandığında bile yanlışlıkla dalga verisi gösterilmesine yol açıyordu. Bunu
+    // is-on-water'ın 30m çözünürlüklü gerçek kara/deniz sınıflandırmasıyla (bkz. noktaSuMu,
+    // aynı fonksiyon fetch mesafesi hesabında da kullanılıyor) DOĞRULUYORUZ: is-on-water net
+    // bir şekilde "kara" derse (false), marine modeli ne dönerse dönsün dalga verisini
+    // GİZLİYORUZ — sınır artık kumsalın gerçek ıslak ucu. is-on-water'ın kendisi hata verir/
+    // bilinmez dönerse (null), eski davranışa (marine modelinin kendi verisine güven) düşüyoruz.
+    const denizdeyiz = denizOk && dalgaM != null && kiyidaMi !== false;
 
     const kmh = hava ? hava.wind_speed_10m : null;
     const gust = hava ? hava.wind_gusts_10m : null;
