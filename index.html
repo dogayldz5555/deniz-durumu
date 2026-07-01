@@ -213,6 +213,13 @@
     border: 1px solid var(--map-border);
     margin-bottom: 16px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.07);
+    filter: saturate(1.12) contrast(1.03);
+    transition: filter 0.4s;
+  }
+  /* Yakınlaştıkça kumsal/su gibi alanlar biraz daha canlı görünsün diye hafif bir
+     doygunluk artışı — bkz. haritaRenkYogunluguGuncelle() (zoom >= 14'te eklenir). */
+  #map.map-yakin {
+    filter: saturate(1.32) contrast(1.06);
   }
   .leaflet-container { background: var(--map-bg); font-family: inherit; }
   .deniz-balon .leaflet-popup-content-wrapper {
@@ -1030,14 +1037,13 @@ const state = {
 };
 
 const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
-// CARTO'nun ücretsiz, anahtar gerektirmeyen "Voyager" katmanı: canlı ve net renkli —
-// kumsallar açık kum tonunda, parklar/ormanlar belirgin yeşil, binalar gri/bej dolgulu,
-// yollar sarı/beyaz/turuncu ile net ayırt ediliyor (Google Haritalar'ın klasik görünümüne
-// yakın). Daha önce kullanılan Esri "World Topo Map" bilinçli olarak soluk/pastel bir
-// topografya stiliydi; kullanıcı geri bildirimiyle daha canlı bu katmana geçildi.
+// CARTO'nun ücretsiz, anahtar gerektirmeyen "Positron" katmanı: önceki "Voyager" katmanı
+// yolları sarı/beyaz/turuncu ile çok baskın çiziyordu — bu bir deniz/sahil uygulaması,
+// yol haritası değil. Positron yolları ince/soluk gri çizip su/kumsal gibi alanları öne
+// çıkarıyor (bkz. #map'teki doygunluk filtresi de aynı amaçla kumsalları belirginleştirir).
 // CARTO'nun kullanım şartları görünür bir attribution metni gerektiriyor, bu yüzden
 // (Esri katmanının aksine) attribution burada boş bırakılamaz.
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> katkıda bulunanlar',
   subdomains: 'abcd',
   maxZoom: 20,
@@ -1151,18 +1157,28 @@ const FETCH_KABA_ADIM_KM = 10; // kaba tarama adımı — bkz. yonFetchMesafesi
 // karşılaşılan İLK (en yakın) karayı buluyoruz, sonra sadece o dar aralıkta ince ayar
 // (ikili arama) yapıyoruz — rüzgar zaten en yakın engelde kesildiği için ötesi önemsiz.
 async function yonFetchMesafesi(lat, lon, aciDerece) {
+  // Kaba taramayı artık SIRAYLA değil PARALEL atıyoruz — eskiden her 10km'lik adım bir
+  // öncekinin yanıtını bekliyordu (6 sıralı istek), bu da tıklama başına birkaç saniyelik
+  // gereksiz beklemenin asıl sebebiydi. Sonuçları yine YAKINDAN UZAĞA sırayla değerlendirip
+  // karşılaşılan İLK karayı buluyoruz — mantık aynı, sadece istekler artık aynı anda gidiyor.
+  const mesafeler = [];
+  for (let m = FETCH_KABA_ADIM_KM; m <= FETCH_MAX_KM; m += FETCH_KABA_ADIM_KM) mesafeler.push(m);
+  const noktalar = mesafeler.map(m => koordinatKaydir(lat, lon, aciDerece, m));
+  const sonuclar = await Promise.all(noktalar.map(n => noktaSuMu(n.lat, n.lon)));
+
   let sonBilinenSu = 0;
-  for (let mesafe = FETCH_KABA_ADIM_KM; mesafe <= FETCH_MAX_KM; mesafe += FETCH_KABA_ADIM_KM) {
-    const nokta = koordinatKaydir(lat, lon, aciDerece, mesafe);
-    const sonuc = await noktaSuMu(nokta.lat, nokta.lon);
+  for (let i = 0; i < mesafeler.length; i++) {
+    const mesafe = mesafeler[i];
+    const sonuc = sonuclar[i];
     if (sonuc === null) continue; // hata veren tek bir noktayı atla, taramaya devam et
     if (sonuc) {
       sonBilinenSu = mesafe;
       continue;
     }
     // Bu mesafede kara bulundu — sonBilinenSu ile bu nokta arasını ince ayarla daraltıyoruz.
+    // Bu kısım SIRALI kalmalı çünkü her adım bir öncekinin sonucuna bağlı (ikili arama).
     let alt = sonBilinenSu, ust = mesafe;
-    for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
       const orta = (alt + ust) / 2;
       const incelenenNokta = koordinatKaydir(lat, lon, aciDerece, orta);
       const incelenenSonuc = await noktaSuMu(incelenenNokta.lat, incelenenNokta.lon);
@@ -1289,14 +1305,13 @@ async function veriCekVeGoster(lat, lon) {
     if (denizdeyiz && !limanBul(lat, lon)) {
       const bolgeGenel = denizBolgesi(lat, lon);
       if (bolgeGenel) {
-        // Tek tek isteklerdeki 3sn'lik zaman aşımına rağmen (bkz. noktaSuMu), 8 yön x en
-        // fazla 10 sorgu üst üste yavaş dönerse toplam süre yine de uzayabilir — bu yüzden
-        // TÜM hesaba 8sn'lik genel bir üst sınır koyuyoruz. Süre dolarsa bu isteğe bağlı
-        // ince ayarı atlayıp bölgenin varsayılan eşikleriyle devam ediyoruz; kart asla
-        // sonsuza kadar "analiz ediliyor" yazısında takılı kalmaz.
+        // Kaba tarama artık paralel olsa da (bkz. yonFetchMesafesi), TÜM hesaba yine de
+        // 5sn'lik bir genel üst sınır koyuyoruz — servis çok yavaşsa/yanıt vermiyorsa bu
+        // isteğe bağlı ince ayarı atlayıp bölgenin varsayılan eşikleriyle devam ediyoruz;
+        // kart asla uzun süre "analiz ediliyor" yazısında takılı kalmaz.
         const fetchSonuc = await Promise.race([
           fetchMesafesiHesapla(lat, lon),
-          new Promise((resolve) => setTimeout(() => resolve(null), 8000)),
+          new Promise((resolve) => setTimeout(() => resolve(null), 5000)),
         ]);
         if (fetchSonuc) {
           ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
@@ -1983,18 +1998,18 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   state.marker.openPopup();
 }
 
-// Damla (pin) şeklinde özel marker ikonu — Leaflet'in standart circleMarker'ı yerine
-// gerçek bir konum iğnesi görünümü için divIcon kullanıyoruz.
+// Seçili noktayı gösteren marker — eskiden 30x40'lık büyük bir damla (pin) ikonuydu,
+// haritada gereksiz yer kaplıyordu. Onun yerine daha küçük, yuvarlak/halka şeklinde,
+// tam tıklanan noktanın MERKEZİNDE duran kompakt bir işaret kullanıyoruz.
 const PIN_IKON = L.divIcon({
   className: 'deniz-pin-wrap',
-  html: `<svg width="30" height="40" viewBox="0 0 30 40" style="filter:drop-shadow(0 3px 5px rgba(20,56,74,0.45));">
-    <path d="M15 0C6.7 0 0 6.7 0 15c0 11 15 25 15 25s15-14 15-25C30 6.7 23.3 0 15 0z" fill="#2A7FB8"/>
-    <circle cx="15" cy="15" r="6.5" fill="white"/>
-    <circle cx="15" cy="15" r="3.2" fill="#14384A"/>
+  html: `<svg width="20" height="20" viewBox="0 0 20 20" style="filter:drop-shadow(0 2px 3px rgba(20,56,74,0.4));">
+    <circle cx="10" cy="10" r="8" fill="#2A7FB8" stroke="white" stroke-width="2.5"/>
+    <circle cx="10" cy="10" r="2.8" fill="white"/>
   </svg>`,
-  iconSize: [30, 40],
-  iconAnchor: [15, 40],
-  popupAnchor: [0, -38],
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+  popupAnchor: [0, -12],
 });
 
 function noktayaGit(lat, lng, haritayiOdakla) {
@@ -2059,8 +2074,14 @@ window.addEventListener('resize', () => map.invalidateSize());
 // sağ paneldeki liste de aynı görünürlük kuralına göre canlı güncellenir. Harita her
 // yakınlaştırıldığında/uzaklaştırıldığında/kaydırıldığında ikisini de tazeliyoruz.
 let yanPanelDebounce = null;
+function haritaRenkYogunluguGuncelle() {
+  const mapEl = document.getElementById('map');
+  if (mapEl) mapEl.classList.toggle('map-yakin', map.getZoom() >= 14);
+}
+
 function haritaGorunumuDegisti() {
   yorumIsaretGorunurlukGuncelle();
+  haritaRenkYogunluguGuncelle();
   clearTimeout(yanPanelDebounce);
   yanPanelDebounce = setTimeout(() => yanPaneliGuncelle(sonGruplarOnbellek), 200);
 }
