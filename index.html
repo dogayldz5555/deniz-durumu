@@ -1062,17 +1062,22 @@ function zamanFormat(ts) {
 }
 
 // Bugünün kalan saatleri için kısa bir rüzgar+dalga şeridi oluşturur (sadece şu andan sonraki saatler).
-function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan) {
+// suAndakiZamanStr: API'nin "current.time" alanı (örn. "2026-07-01T22:15") — TIKLANAN
+// NOKTANIN yerel saatini verir. Bunun yerine new Date().getHours() kullanmak tarayıcının
+// KENDİ saat dilimini kullanır; tıklanan nokta tarayıcıdan farklı bir saat diliminde ise
+// (örn. yurt dışından bir Türkiye kıyısına bakan biri) "şimdi" yanlış saate denk gelirdi.
+// hourly.time de aynı "YYYY-MM-DDTHH:mm" biçiminde, aynı yerel saatte geldiği için Date
+// nesnesine hiç çevirmeden, doğrudan metinden saat basamağını okuyoruz — belirsizlik yok.
+function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan, suAndakiZamanStr) {
   if (!havaSaatlik || !havaSaatlik.time) return "";
-  const simdi = new Date();
-  const simdikiSaat = simdi.getHours();
+  const simdikiSaat = suAndakiZamanStr ? parseInt(suAndakiZamanStr.slice(11, 13), 10) : new Date().getHours();
   const gosterilecekSaatSayisi = 6;
 
   let hucreler = "";
   for (let i = 0; i < havaSaatlik.time.length && hucreler.split('class="hour-cell"').length - 1 < gosterilecekSaatSayisi; i++) {
     const saatStr = havaSaatlik.time[i];
-    const saat = new Date(saatStr).getHours();
-    if (new Date(saatStr) < simdi && saat !== simdikiSaat) continue;
+    const saat = parseInt(saatStr.slice(11, 13), 10);
+    if (saat < simdikiSaat) continue;
 
     const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
     const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
@@ -1095,9 +1100,10 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
 // Elle binlerce koy/burun tanımlamak yerine, her tıklamada noktanın 8 ana yönünde
 // "ne kadar uzakta kara başlıyor" sorusunu otomatik hesaplıyoruz. Bu, Türkiye'nin HER
 // noktası için (elle tanımlamaya gerek kalmadan) korunaklı/açık ayrımını otomatik yapar.
-// Yöntem: her yönde ikili arama (binary search) ile en fazla 4 sorguda karaya olan
-// mesafeyi yaklaşık buluyoruz — 8 yön × 4 sorgu = 32 istek, bu yüzden ilk yüklemeden
-// biraz daha yavaş olabilir (genelde 2-5 saniye ek sürer, bağlantı hızına bağlı).
+// Yöntem: her yönde önce 10km adımlarla kaba bir tarama yapıp en yakın karayı buluyoruz,
+// sonra o dar aralıkta ikili arama (binary search) ile en fazla 4 sorgu daha atıp mesafeyi
+// inceltiyoruz — yönde başına en fazla 10 sorgu, 8 yön için en fazla ~80 istek, bu yüzden
+// ilk yüklemeden biraz daha yavaş olabilir (genelde 4-10 saniye ek sürer, bağlantı hızına bağlı).
 const FETCH_YONLER = [0, 45, 90, 135, 180, 225, 270, 315]; // derece, 0=Kuzey
 const FETCH_MAX_KM = 60; // bu mesafeden sonra "açık deniz" sayılır, daha fazla aramaya gerek yok
 
@@ -1118,22 +1124,38 @@ async function noktaSuMu(lat, lon) {
   } catch (e) { return null; }
 }
 
-// Tek bir yönde ikili arama: 0..FETCH_MAX_KM arasında karanın başladığı mesafeyi bulur.
-async function yonFetchMesafesi(lat, lon, aciDerece) {
-  let alt = 0, ust = FETCH_MAX_KM;
-  // Önce en uçtaki nokta hâlâ deniz mi kontrol et — denizse o yönde "açık" say.
-  const ucNokta = koordinatKaydir(lat, lon, aciDerece, FETCH_MAX_KM);
-  const ucSonuc = await noktaSuMu(ucNokta.lat, ucNokta.lon);
-  if (ucSonuc === true || ucSonuc === null) return FETCH_MAX_KM;
+const FETCH_KABA_ADIM_KM = 10; // kaba tarama adımı — bkz. yonFetchMesafesi
 
-  for (let i = 0; i < 4; i++) {
-    const orta = (alt + ust) / 2;
-    const nokta = koordinatKaydir(lat, lon, aciDerece, orta);
+// Tek bir yönde karanın başladığı mesafeyi bulur.
+// ÖNEMLİ: sadece en uçtaki (60km) noktaya bakıp "deniz ise tüm hat açıktır" varsaymak
+// YANLIŞ — Ege gibi ada/yarımada dolu bir kıyıda, o hattın ortasında bir kara parçası
+// (ada, dar bir yarımadanın ucu) olabilir ve en uçtaki nokta yine de deniz çıkabilir;
+// bu durumda aradaki kara tamamen gözden kaçar ve korunaklı bir nokta yanlışlıkla
+// "tamamen açık deniz" sayılır. Bunun yerine hattı 10km'lik adımlarla baştan tarayıp
+// karşılaşılan İLK (en yakın) karayı buluyoruz, sonra sadece o dar aralıkta ince ayar
+// (ikili arama) yapıyoruz — rüzgar zaten en yakın engelde kesildiği için ötesi önemsiz.
+async function yonFetchMesafesi(lat, lon, aciDerece) {
+  let sonBilinenSu = 0;
+  for (let mesafe = FETCH_KABA_ADIM_KM; mesafe <= FETCH_MAX_KM; mesafe += FETCH_KABA_ADIM_KM) {
+    const nokta = koordinatKaydir(lat, lon, aciDerece, mesafe);
     const sonuc = await noktaSuMu(nokta.lat, nokta.lon);
-    if (sonuc === null) break; // hata durumunda elimizdeki en iyi tahminle devam et
-    if (sonuc) alt = orta; else ust = orta;
+    if (sonuc === null) continue; // hata veren tek bir noktayı atla, taramaya devam et
+    if (sonuc) {
+      sonBilinenSu = mesafe;
+      continue;
+    }
+    // Bu mesafede kara bulundu — sonBilinenSu ile bu nokta arasını ince ayarla daraltıyoruz.
+    let alt = sonBilinenSu, ust = mesafe;
+    for (let i = 0; i < 4; i++) {
+      const orta = (alt + ust) / 2;
+      const incelenenNokta = koordinatKaydir(lat, lon, aciDerece, orta);
+      const incelenenSonuc = await noktaSuMu(incelenenNokta.lat, incelenenNokta.lon);
+      if (incelenenSonuc === null) break;
+      if (incelenenSonuc) alt = orta; else ust = orta;
+    }
+    return alt;
   }
-  return alt;
+  return FETCH_MAX_KM; // taranan hiçbir noktada kara bulunamadı, açık deniz say
 }
 
 // 8 yönün ortalamasını alarak "etkili fetch mesafesini" (km) döndürür.
@@ -1325,7 +1347,7 @@ async function veriCekVeGoster(lat, lon) {
     const baslikYer = yerAdi || (bolge ? bolge.ad : null);
     const durumBasligi = denizdeyiz ? ETIKET[durum] : "Kıyıdan rüzgar bilgisi";
 
-    const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r);
+    const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null);
 
     card.innerHTML = `
       ${ruzgarUyariHtml}
