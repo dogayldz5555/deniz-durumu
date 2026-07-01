@@ -1030,12 +1030,17 @@ const state = {
 };
 
 const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
-// Esri'nin ücretsiz, anahtar gerektirmeyen "World Topo Map" katmanı: gerçekçi renkli
-// (kumsallar kum tonunda, ormanlar yeşil, su mavi), binalar net, yer isimleri okunaklı —
-// standart OpenStreetMap çizgi haritasından çok daha "gerçek dünya" hissi veriyor.
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-  attribution: '',
-  maxZoom: 19,
+// CARTO'nun ücretsiz, anahtar gerektirmeyen "Voyager" katmanı: canlı ve net renkli —
+// kumsallar açık kum tonunda, parklar/ormanlar belirgin yeşil, binalar gri/bej dolgulu,
+// yollar sarı/beyaz/turuncu ile net ayırt ediliyor (Google Haritalar'ın klasik görünümüne
+// yakın). Daha önce kullanılan Esri "World Topo Map" bilinçli olarak soluk/pastel bir
+// topografya stiliydi; kullanıcı geri bildirimiyle daha canlı bu katmana geçildi.
+// CARTO'nun kullanım şartları görünür bir attribution metni gerektiriyor, bu yüzden
+// (Esri katmanının aksine) attribution burada boş bırakılamaz.
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> katkıda bulunanlar',
+  subdomains: 'abcd',
+  maxZoom: 20,
 }).addTo(map);
 map.setView([41.29, 36.33], 11);
 
