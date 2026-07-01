@@ -1710,17 +1710,31 @@ function konumRengi(anahtar) {
   return KONUM_RENK_PALETI[h % KONUM_RENK_PALETI.length];
 }
 
-// Hem harita üzerindeki yorum noktaları hem de o an tıklanan/seçili nokta AYNI yuvarlak
-// nokta işaretini kullanır — bilerek TEK bir boyut/şekil: bir noktaya tıklandığında işaret
-// büyüyüp değişmiyor, aynı kalıyor. Renk (konuma göre) zaten kendiliğinden ayırt edici.
-function pinIkonOlustur(renkHex) {
-  const boyut = 18;
+// İki farklı işaret var: yorum yapılmış konumlar küçük bir NOKTA, o an sadece bakmak için
+// tıklanan (henüz yorum yapılmamış olabilecek) tekil konum ise bir PİN — böylece "burada
+// zaten yorumlar var" ile "şu an baktığım yer" haritada birbirinden ayırt edilebiliyor.
+// İkisi de konuma göre renkleniyor (bkz. konumRengi).
+function noktaIkonuOlustur(renkHex) {
+  const boyut = 14;
   return L.divIcon({
     className: 'deniz-pin-wrap',
-    html: `<span style="display:block;width:${boyut}px;height:${boyut}px;border-radius:50%;background:${renkHex};border:2.5px solid white;box-shadow:0 1px 4px rgba(20,56,74,0.45);"></span>`,
+    html: `<span style="display:block;width:${boyut}px;height:${boyut}px;border-radius:50%;background:${renkHex};border:2px solid white;box-shadow:0 1px 3px rgba(20,56,74,0.45);"></span>`,
     iconSize: [boyut, boyut],
     iconAnchor: [boyut / 2, boyut / 2],
     popupAnchor: [0, -boyut / 2 - 2],
+  });
+}
+function pinIkonuOlustur(renkHex) {
+  const w = 15, h = 20;
+  return L.divIcon({
+    className: 'deniz-pin-wrap',
+    html: `<svg width="${w}" height="${h}" viewBox="0 0 22 29" style="filter:drop-shadow(0 2px 3px rgba(20,56,74,0.4));">
+      <path d="M11 0C4.9 0 0 4.9 0 11c0 8 11 18 11 18s11-10 11-18C22 4.9 17.1 0 11 0z" fill="${renkHex}"/>
+      <circle cx="11" cy="11" r="4.8" fill="white"/>
+    </svg>`,
+    iconSize: [w, h],
+    iconAnchor: [w / 2, h],
+    popupAnchor: [0, -h + 3],
   });
 }
 
@@ -1753,7 +1767,7 @@ async function tumYorumNoktalariniGoster() {
       const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
       const r = aktifRenkler()[baskin];
 
-      const isaret = L.marker([grup.lat, grup.lon], { icon: pinIkonOlustur(konumRengi(key)) });
+      const isaret = L.marker([grup.lat, grup.lon], { icon: noktaIkonuOlustur(konumRengi(key)) });
 
       const liste = grup.kayitlar.map(d => ({
         durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
@@ -2178,7 +2192,7 @@ function noktayaGit(lat, lng, haritayiOdakla) {
   // Seçili noktanın rengi de diğer noktalarla aynı mantıkla (konum bazlı) belirlenir —
   // aynı konuma tekrar tıklanırsa/dönülürse hep aynı renk çıkar.
   const renk = konumRengi(konumGrupAnahtari(lat, lng));
-  const ikon = pinIkonOlustur(renk);
+  const ikon = pinIkonuOlustur(renk);
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
     state.marker.setIcon(ikon);
