@@ -785,7 +785,7 @@
 <div id="yan-panel">
   <div class="yan-panel-card">
     <p class="yan-panel-title">Denize girilen yerler</p>
-    <p class="yan-panel-sub">Son 2,5 saatte yorum alan noktalar, çoğunluk görüşüne göre</p>
+    <p class="yan-panel-sub">Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre</p>
     <div id="yan-panel-liste"></div>
   </div>
 </div>
@@ -1412,7 +1412,7 @@ async function veriCekVeGoster(lat, lon) {
 
 const SIRA = ["carsaf", "iyi", "hafif", "fazla", "tehlikeli"];
 
-const GB_PENCERE_SAAT = 2.5; // deniz durumu birkaç saatte değişebileceği için bildirimler bu süre sonra "eski" sayılır
+const GB_PENCERE_SAAT = 2; // deniz durumu birkaç saatte değişebileceği için bildirimler bu süre sonra "eski" sayılır — 2 saat 1 dk'lık bir yorum artık hiçbir yerde (harita/panel) gösterilmez
 
 // Bir noktanın YAKININDAKİ bildirimleri getirir (~1.3 km yarıçaplı bir kutu, mahalle ölçeği —
 // böylece Atakum'daki bir bildirim Canik'te görünmez, ama tam aynı pikselde tıklamak da gerekmez).
@@ -1443,7 +1443,7 @@ async function bildirimleriGetir(lat, lon) {
 const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim arası en az 5 dakika
 
 // === Haritada tüm yorum noktalarını gösterme ===
-// Tek bir noktaya tıklamadan da, son 2.5 saatte birinin yorum bıraktığı TÜM noktaları
+// Tek bir noktaya tıklamadan da, son 2 saatte birinin yorum bıraktığı TÜM noktaları
 // haritada küçük işaretlerle gösteriyoruz. Konumları ~700m hassasiyetinde gruplayıp
 // (tam aynı pikselde olmayan ama aynı mahalledeki bildirimleri birleştirip) her grup için
 // tek bir işaret koyuyoruz, üstüne tıklayınca o noktanın yorumlarını gösteriyoruz.
@@ -1518,10 +1518,9 @@ async function tumYorumNoktalariniGoster() {
           <span style="width:18px;height:18px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;margin-top:1px;"></span>
           <div style="flex:1;min-width:0;">
             <div style="display:flex;justify-content:space-between;gap:6px;">
-              <span style="font-size:11.5px;font-weight:600;color:${rr.text900};text-transform:capitalize;">${ETIKET_KISA[gb.durum]}</span>
+              <span style="font-size:11.5px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
               <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
             </div>
-            <div style="font-size:10px;color:#9AAEBA;">${isimGuvenli}</div>
             ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${escapeHtml(gb.not)}</div>` : ""}
           </div>
         </div>`;
@@ -1551,7 +1550,7 @@ async function tumYorumNoktalariniGoster() {
   }
 }
 
-// Sağ taraftaki (mobilde alta düşen) panelde, son 2.5 saatte yorum alan noktaları
+// Sağ taraftaki (mobilde alta düşen) panelde, son 2 saatte yorum alan noktaları
 // çoğunluk görüşüne göre listeler — en çok yorum alandan en aza doğru sıralı.
 // BİLEREK haritanın görünen alanına (pan/zoom) göre GÜNCELLENMİYOR — sadece kullanıcı
 // haritada bir noktaya TIKLADIĞINDA, o noktanın 50km çevresindeki yorumları gösteriyoruz.
@@ -1580,7 +1579,10 @@ function yanPaneliGuncelle(gruplar) {
     return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa };
   });
 
-  const YAKIN_KM = 50;
+  // Gerçekte deniz durumu birkaç km'de bile değişebildiği için "yakın" çok cömert
+  // tutulmamalı — 1.5km yarıçap (yani ~3km çap), tıklanan noktayla alakasız uzak bir
+  // yorumun "yakındaki yorumlar" diye gösterilmesini engelliyor.
+  const YAKIN_KM = 1.5;
   const liste = tumListe.filter(item => kmMesafe(state.lat, state.lon, item.lat, item.lon) <= YAKIN_KM);
 
   liste.sort((a, b) => b.sayi - a.sayi || b.sonZaman - a.sonZaman);
@@ -1735,7 +1737,7 @@ async function gbAlaniniGuncelle() {
   }
 
   if (liste.length === 0) {
-    summaryWrap.innerHTML = `<div class="community-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Son 2,5 saatte bu çevrede kimse bildirim bırakmadı. Aşağıdaki butonlardan birini seçerek ilk bildirimi sen yap. ↓</span></div>`;
+    summaryWrap.innerHTML = `<div class="community-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Son 2 saatte bu çevrede kimse bildirim bırakmadı. Aşağıdaki butonlardan birini seçerek ilk bildirimi sen yap. ↓</span></div>`;
     listWrap.style.display = "none";
     conflictNote.style.display = "none";
     if (state.marker) state.marker.closePopup();
@@ -1764,9 +1766,9 @@ async function gbAlaniniGuncelle() {
     const rr = aktifRenkler()[gb.durum];
     const faydaliGosterilsin = gb.id != null;
     const isimGuvenli = escapeHtml(gb.isim || "Anonim");
-    // 2.5 saatlik pencerede yorum ne kadar eskiyse o kadar soluklaşır; ilk 15 dakika "Yeni" rozeti taşır.
+    // 2 saatlik pencerede yorum ne kadar eskiyse o kadar soluklaşır; ilk 15 dakika "Yeni" rozeti taşır.
     const dakikaFark = (Date.now() - gb.zaman) / 60000;
-    const opaklik = Math.max(0.45, 1 - dakikaFark / 150);
+    const opaklik = Math.max(0.45, 1 - dakikaFark / 120);
     const yeniMi = dakikaFark <= 15;
     return `<div class="gb-item" style="opacity:${opaklik.toFixed(2)};">
       <span class="gb-avatar" style="background:${rr.bg};border-color:${rr.border};color:${rr.text900}">
@@ -1884,7 +1886,7 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
     const rr = aktifRenkler()[gb.durum];
     const isimGuvenli = escapeHtml(gb.isim || "Anonim");
     const dakikaFark = (Date.now() - gb.zaman) / 60000;
-    const opaklik = Math.max(0.5, 1 - dakikaFark / 150);
+    const opaklik = Math.max(0.5, 1 - dakikaFark / 120);
     return `
       <div style="display:flex;gap:7px;padding:7px 0;border-top:1px solid rgba(20,56,74,0.08);opacity:${opaklik.toFixed(2)};">
         <span style="width:22px;height:22px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;">
@@ -1892,10 +1894,9 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
         </span>
         <div style="flex:1;min-width:0;">
           <div style="display:flex;justify-content:space-between;gap:6px;">
-            <span style="font-size:12px;font-weight:600;color:${rr.text900};text-transform:capitalize;">${ETIKET_KISA[gb.durum]}</span>
+            <span style="font-size:12px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
             <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
           </div>
-          <div style="font-size:10.5px;color:#9AAEBA;font-weight:500;">${isimGuvenli}</div>
           ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
         </div>
       </div>`;
