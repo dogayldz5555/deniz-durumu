@@ -213,13 +213,14 @@
     border: 1px solid var(--map-border);
     margin-bottom: 16px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.07);
-    filter: saturate(1.12) contrast(1.03);
+    filter: saturate(1.04);
     transition: filter 0.4s;
   }
-  /* Yakınlaştıkça kumsal/su gibi alanlar biraz daha canlı görünsün diye hafif bir
-     doygunluk artışı — bkz. haritaRenkYogunluguGuncelle() (zoom >= 14'te eklenir). */
+  /* Uydu görüntüsü zaten "gerçek renk" olduğu için tabanda ağır bir filtre uygulamıyoruz —
+     sadece yakınlaştıkça (bkz. haritaRenkYogunluguGuncelle, zoom >= 14) kumsal/deniz/beton
+     gibi alanlar hafifçe daha canlı görünsün diye ölçülü bir doygunluk artışı ekliyoruz. */
   #map.map-yakin {
-    filter: saturate(1.32) contrast(1.06);
+    filter: saturate(1.18) contrast(1.03);
   }
   .leaflet-container { background: var(--map-bg); font-family: inherit; }
   .deniz-balon .leaflet-popup-content-wrapper {
@@ -1037,16 +1038,21 @@ const state = {
 };
 
 const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
-// CARTO'nun ücretsiz, anahtar gerektirmeyen "Positron" katmanı: önceki "Voyager" katmanı
-// yolları sarı/beyaz/turuncu ile çok baskın çiziyordu — bu bir deniz/sahil uygulaması,
-// yol haritası değil. Positron yolları ince/soluk gri çizip su/kumsal gibi alanları öne
-// çıkarıyor (bkz. #map'teki doygunluk filtresi de aynı amaçla kumsalları belirginleştirir).
-// CARTO'nun kullanım şartları görünür bir attribution metni gerektiriyor, bu yüzden
-// (Esri katmanının aksine) attribution burada boş bırakılamaz.
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> katkıda bulunanlar',
-  subdomains: 'abcd',
-  maxZoom: 20,
+// Stilize (çizilmiş) haritalarda kumsal/deniz/beton gibi alanlar hep TEK TİP, kategoriye
+// göre boyanmış renkte görünür — "gerçek renk" diye bir şey yoktur, hepsi aynı sarı/mavi
+// kod. Bunun yerine Esri'nin ücretsiz, anahtar gerektirmeyen uydu görüntüsü katmanını
+// kullanıyoruz: kumsal gerçekte ne renkse o, deniz gerçek tonunda, beton/kırsal alanlar
+// gerçek dokusuyla görünür — ve yakınlaştıkça gerçek çözünürlük arttığı için görüntü zaten
+// doğal olarak daha canlı/detaylı olur. Üstüne, yer isimleri için ayrı bir etiket katmanı
+// (Reference/World_Boundaries_and_Places) ekliyoruz — bu SADECE il/ilçe/mahalle/su adları
+// içerir, yol ağını vurgulamaz (önceki isteğimiz: yol haritası gibi görünmesin).
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+  maxZoom: 19,
+}).addTo(map);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 19,
+  opacity: 0.85,
 }).addTo(map);
 map.setView([41.29, 36.33], 11);
 
