@@ -1125,7 +1125,12 @@ async function noktaSuMu(lat, lon) {
     const res = await fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`);
     if (!res.ok) return null;
     const data = await res.json();
-    return data.feature === "OCEAN" || data.feature === "RIVER" || data.feature === "LAKE";
+    // API'nin kendi "isWater" alanına güveniyoruz — "feature" alanına (OCEAN/RIVER/LAKE/LAND)
+    // bakıp elle karşılaştırmak YANLIŞ: API bazı noktalarda feature="UNKNOWN" ama isWater=true
+    // döndürebiliyor (özellikle açık denizde, kıyıdan uzak noktalarda) — eski kod bunu "OCEAN/
+    // RIVER/LAKE değil" diye KARA sayıyordu, bu da fetch hesabının açık denizde erken kesilmesine
+    // VE gerçek deniz noktalarının yanlışlıkla "kara" sayılıp dalga verisinin gizlenmesine yol açıyordu.
+    return typeof data.isWater === "boolean" ? data.isWater : null;
   } catch (e) { return null; }
 }
 
@@ -1208,11 +1213,10 @@ async function veriCekVeGoster(lat, lon) {
   document.getElementById('conflict-note').style.display = "none";
 
   try {
-    const [havaRes, denizRes, yerRes, suRes] = await Promise.all([
+    const [havaRes, denizRes, yerRes] = await Promise.all([
       fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
       fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&timezone=auto`),
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
-      fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`).catch(() => null)
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null)
     ]);
 
     const havaJson = havaRes.ok ? await havaRes.json() : null;
@@ -1246,15 +1250,16 @@ async function veriCekVeGoster(lat, lon) {
       konumMetni = tekrarsiz.length > 0 ? tekrarsiz.join(", ") : (yerData.display_name ? yerData.display_name.split(",").slice(0, 3).join(",").trim() : null);
     }
 
-    // Kara/deniz kararı: is-on-water bu noktanın gerçek arazi türünü söylüyor (30m hassasiyetle).
-    // OCEAN/RIVER/LAKE = su, LAND = kara. API'ye erişilemezse Open-Meteo'nun dalga verisi
-    // dönüp dönmediğine güveniyoruz (geniş tolerans — tam kıyı şeridinde de dalga gösterilsin).
-    let suMu = null;
-    if (suRes && suRes.ok) {
-      const suData = await suRes.json();
-      suMu = suData.feature === "OCEAN" || suData.feature === "RIVER" || suData.feature === "LAKE";
-    }
-    const denizdeyiz = denizOk && dalgaM != null && (suMu === null ? true : suMu);
+    // Kara/deniz kararı: SADECE Open-Meteo'nun deniz (marine) modelinin gerçek bir dalga
+    // yüksekliği döndürüp döndürmediğine bakıyoruz. Daha önce buna ek olarak is-on-water'ın
+    // 30m çözünürlüklü kara/deniz sınıflandırmasını da zorunlu tutuyorduk — ama test ettiğimizde
+    // marine modelin kendisi zaten kara noktalarında (Ankara, Konya, Van Gölü vb.) güvenilir
+    // şekilde boş dönüyor, yani is-on-water'ın ek koşulu gereksizdi. Üstelik ZARARLIYDI: küçük
+    // koy/marina gibi yerlerde is-on-water tam tıklanan pikseli "kara" (kıyı şeridi/iskele)
+    // sayabiliyor, oysa marine modeli o nokta için hâlâ geçerli bir dalga değeri veriyordu —
+    // eski kod bu durumda dalga verisini zorla gizleyip sadece rüzgar gösteriyordu. Artık
+    // marine modelin kendi verisine güveniyoruz, bu hem daha doğru hem bir API isteği daha az.
+    const denizdeyiz = denizOk && dalgaM != null;
 
     const kmh = hava ? hava.wind_speed_10m : null;
     const gust = hava ? hava.wind_gusts_10m : null;
