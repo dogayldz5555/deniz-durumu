@@ -1632,21 +1632,17 @@ function konumRengi(anahtar) {
   return KONUM_RENK_PALETI[h % KONUM_RENK_PALETI.length];
 }
 
-// Hem harita üzerindeki yorum noktaları hem de o an tıklanan/seçili nokta AYNI damla (pin)
-// şeklini kullanır — sadece rengi (konuma göre) ve boyutu (seçili nokta biraz daha büyük)
-// değişir. Önceki tasarım hem çok büyüktü (30x40) hem de "seçili nokta" için düz bir
-// yuvarlaktı; bu ikisi arasında tutarlı, tanıdık bir "harita iğnesi" görünümüne döndük.
-function pinIkonOlustur(renkHex, buyukMu) {
-  const w = buyukMu ? 24 : 20, h = buyukMu ? 31 : 26;
+// Hem harita üzerindeki yorum noktaları hem de o an tıklanan/seçili nokta AYNI yuvarlak
+// nokta işaretini kullanır — bilerek TEK bir boyut/şekil: bir noktaya tıklandığında işaret
+// büyüyüp değişmiyor, aynı kalıyor. Renk (konuma göre) zaten kendiliğinden ayırt edici.
+function pinIkonOlustur(renkHex) {
+  const boyut = 18;
   return L.divIcon({
     className: 'deniz-pin-wrap',
-    html: `<svg width="${w}" height="${h}" viewBox="0 0 22 29" style="filter:drop-shadow(0 2px 4px rgba(20,56,74,0.4));">
-      <path d="M11 0C4.9 0 0 4.9 0 11c0 8 11 18 11 18s11-10 11-18C22 4.9 17.1 0 11 0z" fill="${renkHex}"/>
-      <circle cx="11" cy="11" r="4.8" fill="white"/>
-    </svg>`,
-    iconSize: [w, h],
-    iconAnchor: [w / 2, h],
-    popupAnchor: [0, -h + 3],
+    html: `<span style="display:block;width:${boyut}px;height:${boyut}px;border-radius:50%;background:${renkHex};border:2.5px solid white;box-shadow:0 1px 4px rgba(20,56,74,0.45);"></span>`,
+    iconSize: [boyut, boyut],
+    iconAnchor: [boyut / 2, boyut / 2],
+    popupAnchor: [0, -boyut / 2 - 2],
   });
 }
 
@@ -1679,7 +1675,7 @@ async function tumYorumNoktalariniGoster() {
       const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
       const r = aktifRenkler()[baskin];
 
-      const isaret = L.marker([grup.lat, grup.lon], { icon: pinIkonOlustur(konumRengi(key), false) });
+      const isaret = L.marker([grup.lat, grup.lon], { icon: pinIkonOlustur(konumRengi(key)) });
 
       const liste = grup.kayitlar.map(d => ({
         durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
@@ -2084,6 +2080,9 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
       <div style="background:#fff;padding:4px 15px 6px;max-height:230px;overflow-y:auto;">${yorumlarHtml}</div>
     </div>`;
 
+  // Balon artık OTOMATİK açılmıyor — sadece işaretin (pinin) kendisine tıklanınca açılır
+  // (Leaflet'te bindPopup zaten bunu varsayılan sağlıyor). Önceden her tıklamada balon
+  // kendiliğinden açılıp haritayı da balonu göstermek için kaydırıyordu, bu rahatsız ediciydi.
   if (!state.marker.getPopup()) {
     state.marker.bindPopup(icerik, {
       closeButton: true,
@@ -2095,14 +2094,13 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   } else {
     state.marker.setPopupContent(icerik);
   }
-  state.marker.openPopup();
 }
 
 function noktayaGit(lat, lng, haritayiOdakla) {
   // Seçili noktanın rengi de diğer noktalarla aynı mantıkla (konum bazlı) belirlenir —
   // aynı konuma tekrar tıklanırsa/dönülürse hep aynı renk çıkar.
   const renk = konumRengi(konumGrupAnahtari(lat, lng));
-  const ikon = pinIkonOlustur(renk, true);
+  const ikon = pinIkonOlustur(renk);
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
     state.marker.setIcon(ikon);
