@@ -1059,11 +1059,19 @@ function svgDalgaPattern(renkHex, yogunluk) {
   return `<svg class="wavepattern" viewBox="0 0 300 44" aria-hidden="true">${paths}</svg>`;
 }
 
+// Yorumun altında "5 dk önce" gibi göreceli değil, net bir tarih+saat gösteriyoruz
+// (örn. "1 Temmuz, 14:30") — kullanıcı bir yorumun tam ne zaman yapıldığını görebilsin diye.
+// AY_ADLARI bu dosyada daha aşağıda tanımlı ama fonksiyon çağrıldığında (yorumlar yüklendiğinde)
+// script'in tamamı zaten çalışmış olacağı için sorun olmaz.
 function zamanFormat(ts) {
-  const fark = Math.round((Date.now() - ts) / 60000);
-  if (fark < 1) return "az önce";
-  if (fark < 60) return fark + " dk önce";
-  return Math.round(fark / 60) + " sa önce";
+  const tarih = new Date(ts);
+  const simdi = new Date();
+  const gun = tarih.getDate();
+  const ay = AY_ADLARI[tarih.getMonth()];
+  const saat = String(tarih.getHours()).padStart(2, "0");
+  const dakika = String(tarih.getMinutes()).padStart(2, "0");
+  const yilEkle = tarih.getFullYear() !== simdi.getFullYear() ? " " + tarih.getFullYear() : "";
+  return `${gun} ${ay}${yilEkle}, ${saat}:${dakika}`;
 }
 
 // Bugünün kalan saatleri için kısa bir rüzgar+dalga şeridi oluşturur (sadece şu andan sonraki saatler).
