@@ -94,7 +94,7 @@
     --locate-bg: rgba(24,34,58,0.7);
     --locate-text: #7EB8E8;
     --locate-border: rgba(126,184,232,0.35);
-    --star-empty: rgba(180,200,230,0.4);
+    --star-empty: rgba(168,196,235,0.85);
   }
   body {
     margin: 0;
@@ -915,6 +915,16 @@ function escapeHtml(deger) {
     .replace(/'/g, "&#39;");
 }
 
+// ETIKET_KISA değerleri hep küçük harfle yazılı ("hafif dalgalı" gibi). Bunları bir
+// cümlenin başında göstereceğimiz zaman JS'in standart toUpperCase()'ine güvenemeyiz —
+// Türkçe'de küçük "i" büyüdüğünde noktalı "İ" olur, toUpperCase() bunu bilmeden düz "I"
+// yapar (klasik Türkçe/JS tuzağı). Bu yüzden ilk harfi elle, doğru şekilde büyütüyoruz.
+function ilkHarfBuyuk(metin) {
+  if (!metin) return "";
+  const ilkHarf = metin.charAt(0) === "i" ? "İ" : metin.charAt(0).toLocaleUpperCase("tr-TR");
+  return ilkHarf + metin.slice(1);
+}
+
 function kmMesafe(lat1, lon1, lat2, lon2) {
   // Haversine formülü — küçük mesafeler için yeterince hassas.
   const R = 6371;
@@ -1451,17 +1461,22 @@ let yorumNoktaIsaretleri = [];
 
 // Uzaktan (şehir/ilçe ölçeğinde bile) yorum işaretlerinin görünmesi hem kalabalık hem de
 // yanıltıcı oluyordu (henüz kumsala/kıyıya inmeden bir nokta görünüyordu). Bu yüzden eşiği
-// mahalle/sokak ölçeğine çektik — kullanıcı gerçekten o kıyı noktasına yakınlaşmadan işaretler
-// görünmüyor. Aşırıya kaçmamak için bina tekil görünürlüğü gibi çok uç bir seviyeye (17-18)
-// çıkmadık.
-const YORUM_ISARET_MIN_ZOOM = 14;
+// iyice yakınlaştırdık — kullanıcı gerçekten o kıyı noktasına inmeden işaretler görünmüyor.
+// Aşırıya kaçmamak için bina tekil görünürlüğü gibi çok uç bir seviyeye (18-19) çıkmadık.
+const YORUM_ISARET_MIN_ZOOM = 16;
 
 function yorumIsaretGorunurlukGuncelle() {
   const goster = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
   yorumNoktaIsaretleri.forEach(m => {
     const haritada = map.hasLayer(m);
-    if (goster && !haritada) m.addTo(map);
-    else if (!goster && haritada) map.removeLayer(m);
+    if (goster && !haritada) {
+      m.addTo(map);
+    } else if (!goster && haritada) {
+      // Nokta kayboluyorsa üstünde açık kalmış bir balon varsa onu da kapat —
+      // yoksa balon, bağlı olduğu nokta haritadan kalktıktan sonra da havada asılı kalır.
+      m.closePopup();
+      map.removeLayer(m);
+    }
   });
 }
 
@@ -1523,15 +1538,18 @@ async function tumYorumNoktalariniGoster() {
               <span style="font-size:11.5px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
               <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
             </div>
+            <div style="font-size:10.5px;font-weight:600;color:${rr.text600};margin-top:1px;">${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
             ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${escapeHtml(gb.not)}</div>` : ""}
           </div>
         </div>`;
       }).join("");
 
+      const grupYuzde = grup.kayitlar.length > 0 ? Math.round((sayim[baskin] / grup.kayitlar.length) * 100) : 0;
       const icerikHtml = `
-        <div style="font-family:'Inter',sans-serif;width:210px;border-radius:15px;overflow:hidden;">
+        <div style="font-family:'Inter',sans-serif;width:220px;border-radius:15px;overflow:hidden;">
           <div style="background:${r.bg};padding:11px 13px 8px;">
-            <div style="font-size:12.5px;font-weight:700;color:${r.text900};">${ETIKET_KISA[baskin]} (${grup.kayitlar.length} yorum)</div>
+            <div style="font-size:12.5px;font-weight:700;color:${r.text900};">${ETIKET_KISA[baskin]} <span style="opacity:0.7;font-weight:600;">(%${grupYuzde})</span></div>
+            <div style="font-size:10.5px;color:${r.text600};margin-top:1px;">${grup.kayitlar.length} kişi bildirdi</div>
           </div>
           <div style="background:#fff;padding:2px 13px 4px;max-height:200px;overflow-y:auto;">${yorumlarHtml}</div>
         </div>`;
@@ -1554,10 +1572,10 @@ async function tumYorumNoktalariniGoster() {
 
 // Sağ taraftaki (mobilde alta düşen) panelde, son 2 saatte yorum alan noktaları
 // çoğunluk görüşüne göre listeler — en çok yorum alandan en aza doğru sıralı.
-// BİLEREK haritanın görünen alanına (pan/zoom) göre GÜNCELLENMİYOR — sadece kullanıcı
-// haritada bir noktaya TIKLADIĞINDA, o noktanın 1.5km çevresindeki yorumları gösteriyoruz.
-// Sebep: viewport bazlı otomatik güncelleme, kullanıcı haritayı sürüklerken listenin
-// sürekli değişmesine (istenmeyen bir "göz kırpma" hissine) yol açıyordu.
+// Nokta işaretleriyle (bkz. YORUM_ISARET_MIN_ZOOM) AYNI mantığı kullanıyor: kullanıcı
+// tıklamasa bile, haritada o an GÖRÜNEN (yeterince yakınlaştırılmış + görünür alandaki)
+// noktalar otomatik olarak burada da listelenir. Harita kaydırıldıkça/yakınlaştırıldıkça
+// bu liste de canlı güncellenir (bkz. map.on('moveend'/'zoomend') aşağıda).
 let sonGruplarOnbellek = {};
 
 function yanPaneliGuncelle(gruplar) {
@@ -1565,27 +1583,24 @@ function yanPaneliGuncelle(gruplar) {
   const kapsayici = document.getElementById('yan-panel-liste');
   if (!kapsayici) return;
 
-  if (state.lat == null) {
-    kapsayici.innerHTML = `<div class="yan-panel-empty">Haritada bir noktaya tıkla, yakınındaki yorumları burada gör.</div>`;
+  if (map.getZoom() < YORUM_ISARET_MIN_ZOOM) {
+    kapsayici.innerHTML = `<div class="yan-panel-empty">Yakınlaştırınca haritada görünen noktalardaki yorumlar burada listelenir.</div>`;
     return;
   }
 
-  const tumListe = Object.values(gruplar).map(grup => {
-    const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
-    grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
-    const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
-    const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
-    const bolge = denizBolgesi(grup.lat, grup.lon);
-    const kayitlaKonum = grup.kayitlar.find(d => d.konum_metni)?.konum_metni || null;
-    const adKisa = kayitlaKonum || (bolge ? bolge.ad : null) || `${grup.lat.toFixed(2)}, ${grup.lon.toFixed(2)}`;
-    return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa };
-  });
-
-  // Gerçekte deniz durumu birkaç km'de bile değişebildiği için "yakın" çok cömert
-  // tutulmamalı — 1.5km yarıçap (yani ~3km çap), tıklanan noktayla alakasız uzak bir
-  // yorumun "yakındaki yorumlar" diye gösterilmesini engelliyor.
-  const YAKIN_KM = 1.5;
-  const liste = tumListe.filter(item => kmMesafe(state.lat, state.lon, item.lat, item.lon) <= YAKIN_KM);
+  const sinirlar = map.getBounds();
+  const liste = Object.values(gruplar)
+    .filter(grup => sinirlar.contains([grup.lat, grup.lon]))
+    .map(grup => {
+      const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+      grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
+      const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+      const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
+      const bolge = denizBolgesi(grup.lat, grup.lon);
+      const kayitlaKonum = grup.kayitlar.find(d => d.konum_metni)?.konum_metni || null;
+      const adKisa = kayitlaKonum || (bolge ? bolge.ad : null) || `${grup.lat.toFixed(2)}, ${grup.lon.toFixed(2)}`;
+      return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa };
+    });
 
   liste.sort((a, b) => b.sayi - a.sayi || b.sonZaman - a.sonZaman);
 
@@ -1667,29 +1682,51 @@ const GB_ISIM_ANAHTARI = 'deniz-durumu-kullanici-adi';
 function kayitliIsmiGetir() {
   try { return localStorage.getItem(GB_ISIM_ANAHTARI) || ""; } catch (e) { return ""; }
 }
+// Sayfada isim girilen İKİ ayrı yer var (deniz durumu yorumu ve site geri bildirimi),
+// ama ikisi de AYNI localStorage anahtarını paylaşıyor. Kullanıcının birine yazıp
+// diğerine tekrar yazmak zorunda kalmaması için, isim her kaydedildiğinde HER İKİ
+// alanın görünümünü de aynı anda güncelliyoruz (bkz. tumIsimAlanlariniGuncelle).
 function ismiKaydet(isim) {
   try { localStorage.setItem(GB_ISIM_ANAHTARI, isim); } catch (e) {}
+  tumIsimAlanlariniGuncelle();
 }
 
-function isimAlaniniGuncelle() {
+function tumIsimAlanlariniGuncelle() {
   const kayitli = kayitliIsmiGetir();
-  const nameRow = document.getElementById('gb-name-row');
-  const nameSaved = document.getElementById('gb-name-saved');
-  const nameSavedText = document.getElementById('gb-name-saved-text');
-  if (kayitli) {
-    nameRow.style.display = "none";
-    nameSaved.style.display = "flex";
-    nameSavedText.textContent = `${kayitli} olarak yorum yapacaksın`;
-  } else {
-    nameRow.style.display = "block";
-    nameSaved.style.display = "none";
-    document.getElementById('gb-isim').value = "";
+
+  const gbRow = document.getElementById('gb-name-row');
+  const gbSaved = document.getElementById('gb-name-saved');
+  const gbSavedText = document.getElementById('gb-name-saved-text');
+  if (gbRow && gbSaved && gbSavedText) {
+    if (kayitli) {
+      gbRow.style.display = "none";
+      gbSaved.style.display = "flex";
+      gbSavedText.textContent = `${kayitli} olarak yorum yapacaksın`;
+    } else {
+      gbRow.style.display = "block";
+      gbSaved.style.display = "none";
+      document.getElementById('gb-isim').value = "";
+    }
+  }
+
+  const sfRow = document.getElementById('site-feedback-name-row');
+  const sfSaved = document.getElementById('site-feedback-name-saved');
+  const sfSavedText = document.getElementById('site-feedback-name-saved-text');
+  if (sfRow && sfSaved && sfSavedText) {
+    if (kayitli) {
+      sfRow.style.display = "none";
+      sfSaved.style.display = "flex";
+      sfSavedText.textContent = `${kayitli} olarak gönderilecek`;
+    } else {
+      sfRow.style.display = "block";
+      sfSaved.style.display = "none";
+      document.getElementById('site-feedback-isim').value = "";
+    }
   }
 }
 
 document.getElementById('gb-name-degistir').addEventListener('click', () => {
   ismiKaydet("");
-  isimAlaniniGuncelle();
 });
 
 async function gbAlaniniGuncelle() {
@@ -1723,7 +1760,7 @@ async function gbAlaniniGuncelle() {
     b.style.color = "#6B6A60";
   });
   document.getElementById('gb-note').value = "";
-  isimAlaniniGuncelle();
+  tumIsimAlanlariniGuncelle();
 
   communityLabel.style.display = "block";
   summaryWrap.style.display = "block";
@@ -1751,11 +1788,12 @@ async function gbAlaniniGuncelle() {
 
   const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
   const r = aktifRenkler()[baskinDurum];
+  const baskinYuzdeKart = liste.length > 0 ? Math.round((sayim[baskinDurum] / liste.length) * 100) : 0;
 
   summaryWrap.innerHTML = `
     <div class="community-summary" style="background:${r.bg};border-color:${r.border};">
       <span class="dot" style="background:${r.border};width:11px;height:11px;"></span>
-      <div class="big-label" style="color:${r.text900}">Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]}</div>
+      <div class="big-label" style="color:${r.text900}">Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]} <span style="opacity:0.65;font-weight:600;">(%${baskinYuzdeKart})</span></div>
       <div class="community-counts">
         ${SIRA.filter(d => sayim[d] > 0).map(d => `<span><span class="dot" style="background:${aktifRenkler()[d].border}"></span>${sayim[d]}</span>`).join("")}
       </div>
@@ -1880,9 +1918,8 @@ document.getElementById('gb-send').addEventListener('click', async () => {
 function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   if (!state.marker) return;
   const r = aktifRenkler()[baskinDurum];
-  const sayilarHtml = SIRA.filter(d => sayim[d] > 0)
-    .map(d => `<span style="display:inline-flex;align-items:center;gap:3px;margin-right:8px;"><span style="width:7px;height:7px;border-radius:50%;background:${aktifRenkler()[d].border};display:inline-block;"></span>${sayim[d]}</span>`)
-    .join("");
+  const toplamKisi = liste.length;
+  const baskinYuzde = toplamKisi > 0 ? Math.round((sayim[baskinDurum] / toplamKisi) * 100) : 0;
 
   const yorumlarHtml = liste.slice(0, 12).map(gb => {
     const rr = aktifRenkler()[gb.durum];
@@ -1899,24 +1936,47 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
             <span style="font-size:12px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
             <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
           </div>
+          <div style="font-size:11px;font-weight:600;color:${rr.text600};margin-top:1px;">${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
           ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
         </div>
       </div>`;
   }).join("");
 
+  // Kendi hesapladığımız tahmini (state.bizimDurum), sahadan gelen çoğunluk görüşüyle
+  // yan yana koyup uyuşup uyuşmadığını göze çarpan bir kutuda gösteriyoruz — kullanıcı
+  // "bizim tahmin mi doğru, saha mı" sorusunu tek bakışta yanıtlayabilsin diye.
+  let karsilastirmaHtml = "";
+  if (state.bizimDurum != null) {
+    const uyusuyor = state.bizimDurum === baskinDurum;
+    const bizimEtiket = ilkHarfBuyuk(ETIKET_KISA[state.bizimDurum]);
+    const sahaEtiket = ilkHarfBuyuk(ETIKET_KISA[baskinDurum]);
+    if (uyusuyor) {
+      karsilastirmaHtml = `<div style="margin:9px 15px 0;padding:8px 10px;border-radius:10px;background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.35);display:flex;align-items:center;gap:6px;color:#0F6E56;font-size:11px;font-weight:500;line-height:1.35;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Tahminimiz de <b>${bizimEtiket}</b> diyor — sahayla uyuşuyor</span>
+      </div>`;
+    } else {
+      karsilastirmaHtml = `<div style="margin:9px 15px 0;padding:8px 10px;border-radius:10px;background:#FBF1DE;border:1px solid #E0B765;display:flex;align-items:center;gap:6px;color:#5C3F0C;font-size:11px;font-weight:500;line-height:1.35;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Tahminimiz <b>${bizimEtiket}</b>, sahadaki çoğunluk <b>${sahaEtiket}</b> diyor</span>
+      </div>`;
+    }
+  }
+
   const icerik = `
-    <div style="font-family:'Inter',sans-serif;width:230px;border-radius:15px;overflow:hidden;">
+    <div style="font-family:'Inter',sans-serif;width:250px;border-radius:15px;overflow:hidden;">
       <div style="background:linear-gradient(135deg, ${r.bg} 0%, ${r.bg} 100%);padding:13px 15px 10px;">
         <div style="display:flex;align-items:center;gap:7px;">
           <span style="width:10px;height:10px;border-radius:50%;background:${r.border};flex-shrink:0;"></span>
           <div style="flex:1;">
             <div style="font-size:13.5px;font-weight:700;color:${r.text900};line-height:1.2;">
-              Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]}
+              Çoğunluğa göre deniz ${ETIKET_KISA[baskinDurum]} <span style="opacity:0.7;font-weight:600;">(%${baskinYuzde})</span>
             </div>
-            <div style="font-size:10.5px;color:${r.text600};margin-top:1px;">${sayilarHtml}</div>
+            <div style="font-size:10.5px;color:${r.text600};margin-top:1px;">${toplamKisi} kişi bildirdi</div>
           </div>
         </div>
       </div>
+      ${karsilastirmaHtml}
       <div style="background:#fff;padding:4px 15px 6px;max-height:230px;overflow-y:auto;">${yorumlarHtml}</div>
     </div>`;
 
@@ -2006,9 +2066,17 @@ setTimeout(() => {
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
 
-// Yorum işaretleri sadece belli bir yakınlıktan sonra görünür (bkz. yorumIsaretGorunurlukGuncelle) —
-// harita her yakınlaştırıldığında/uzaklaştırıldığında görünürlüğü tazele.
-map.on('zoomend', yorumIsaretGorunurlukGuncelle);
+// Yorum işaretleri sadece belli bir yakınlıktan sonra görünür (bkz. yorumIsaretGorunurlukGuncelle);
+// sağ paneldeki liste de aynı görünürlük kuralına göre canlı güncellenir. Harita her
+// yakınlaştırıldığında/uzaklaştırıldığında/kaydırıldığında ikisini de tazeliyoruz.
+let yanPanelDebounce = null;
+function haritaGorunumuDegisti() {
+  yorumIsaretGorunurlukGuncelle();
+  clearTimeout(yanPanelDebounce);
+  yanPanelDebounce = setTimeout(() => yanPaneliGuncelle(sonGruplarOnbellek), 200);
+}
+map.on('zoomend', haritaGorunumuDegisti);
+map.on('moveend', haritaGorunumuDegisti);
 
 // Sayfa uzun süre açık kalırsa (örn. akşamdan geceye geçiş), temayı her 5 dakikada bir tazele.
 function temaGuncelle() {
@@ -2040,26 +2108,11 @@ setInterval(saatiGuncelle, 1000);
 
   // İsim alanı — "Anonim" gösterilmesini istemiyoruz, bu yüzden marine geri bildiriminde
   // kullanılan isimle aynı isim, kayıtlı değilse gönderim öncesi zorunlu olarak isteniyor.
-  function siteFeedbackIsimAlaniniGuncelle() {
-    const kayitli = kayitliIsmiGetir();
-    const nameRow = document.getElementById('site-feedback-name-row');
-    const nameSaved = document.getElementById('site-feedback-name-saved');
-    const nameSavedText = document.getElementById('site-feedback-name-saved-text');
-    if (kayitli) {
-      nameRow.style.display = "none";
-      nameSaved.style.display = "flex";
-      nameSavedText.textContent = `${kayitli} olarak gönderilecek`;
-    } else {
-      nameRow.style.display = "block";
-      nameSaved.style.display = "none";
-      document.getElementById('site-feedback-isim').value = "";
-    }
-  }
-  siteFeedbackIsimAlaniniGuncelle();
+  // (Görünümü tumIsimAlanlariniGuncelle güncelliyor — gb-section'daki isim alanıyla paylaşımlı.)
+  tumIsimAlanlariniGuncelle();
 
   document.getElementById('site-feedback-name-degistir').addEventListener('click', () => {
     ismiKaydet("");
-    siteFeedbackIsimAlaniniGuncelle();
   });
 
   // Yıldız tıklamaları
@@ -2096,7 +2149,6 @@ setInterval(saatiGuncelle, 1000);
       }
       isim = girilenIsim;
       ismiKaydet(isim);
-      siteFeedbackIsimAlaniniGuncelle();
     }
 
     gondBtn.disabled = true;
