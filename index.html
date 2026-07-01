@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; }
+* { box-sizing: border-box; }
   :root {
     --bg-grad-1: rgba(255,255,255,0.9);
     --bg-grad-2: rgba(186,224,242,0.7);
@@ -43,6 +43,7 @@
     --locate-bg: rgba(255,255,255,0.7);
     --locate-text: #2A7FB8;
     --locate-border: rgba(42,127,184,0.3);
+    --star-empty: rgba(40,40,30,0.28);
   }
   html[data-tema-hazirlik="aksam"] {
     --bg-grad-1: rgba(255,224,178,0.55);
@@ -67,6 +68,7 @@
     --locate-bg: rgba(255,250,245,0.7);
     --locate-text: #B8542A;
     --locate-border: rgba(184,84,42,0.3);
+    --star-empty: rgba(80,30,10,0.28);
   }
   html[data-tema-hazirlik="gece"] {
     --bg-grad-1: rgba(70,90,140,0.4);
@@ -92,6 +94,7 @@
     --locate-bg: rgba(24,34,58,0.7);
     --locate-text: #7EB8E8;
     --locate-border: rgba(126,184,232,0.35);
+    --star-empty: rgba(180,200,230,0.4);
   }
   body {
     margin: 0;
@@ -454,7 +457,7 @@
     border: none;
     padding: 2px;
     cursor: pointer;
-    color: rgba(40,40,30,0.28);
+    color: var(--star-empty);
     transition: color 0.12s, transform 0.1s;
   }
   .site-feedback-stars button:hover { color: #E8B84B; transform: scale(1.15); }
@@ -695,6 +698,7 @@
     line-height: 1.45;
   }
   .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
+
 </style>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
@@ -789,6 +793,13 @@
       <button type="button" data-puan="3" aria-label="3 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
       <button type="button" data-puan="4" aria-label="4 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
       <button type="button" data-puan="5" aria-label="5 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    </div>
+    <div class="gb-name-row" id="site-feedback-name-row" style="margin-bottom:10px;">
+      <input type="text" id="site-feedback-isim" placeholder="İsim / rumuz (zorunlu)" maxlength="24" />
+    </div>
+    <div class="gb-name-saved" id="site-feedback-name-saved" style="display:none;margin-bottom:10px;">
+      <span id="site-feedback-name-saved-text"></span>
+      <button type="button" id="site-feedback-name-degistir">değiştir</button>
     </div>
     <textarea id="site-feedback-mesaj" placeholder="İsteğe bağlı: ne eksik, ne beğendin, ne değiştirilmeli?" rows="2"></textarea>
     <button type="button" id="site-feedback-gonder" class="site-feedback-btn">Gönder</button>
@@ -919,6 +930,21 @@ const LIMANLAR = [
     esikDalga:  { carsaf: 0.3, iyi: 0.6, hafif: 1.0, fazla: 1.6 },
     esikRuzgar: { carsaf: 8,   iyi: 16,  hafif: 26,  fazla: 38  } },
 ];
+
+// Kullanıcıya gösterilecek her metni (yorumlar, isimler VE Nominatim/OSM'den gelen yer adları)
+// innerHTML'e basmadan önce kaçışlıyoruz. Yer adları herkesin düzenleyebildiği OpenStreetMap
+// verisinden geldiği için, kötü niyetli biri bir bölgenin adına HTML/script gömüp o noktaya
+// tıklayan/o bölgeyi gören kullanıcılarda kod çalıştırabilir (stored/reflected XSS) — bu yüzden
+// sadece kullanıcı yorumları değil, yer adı alanları da mutlaka kaçışlanmalı.
+function escapeHtml(deger) {
+  if (deger == null) return "";
+  return String(deger)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 function kmMesafe(lat1, lon1, lat2, lon2) {
   // Haversine formülü — küçük mesafeler için yeterince hassas.
@@ -1074,7 +1100,7 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
 
     const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
     const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
-    const durum = durumDenizden(dalgaM, kmh, null, null, lat, lon);
+    const durum = durumDenizden(dalgaM, kmh, null, null, null, lat, lon);
     const r = aktifRenkler()[durum] || renkVarsayilan;
     const saatEtiketi = saat === simdikiSaat ? "Şimdi" : (saat + ":00");
 
@@ -1330,7 +1356,7 @@ async function veriCekVeGoster(lat, lon) {
       ${ruzgarUyariHtml}
       <div class="card-top">
         <div>
-          <div class="loc-label" style="color:${r.text600}">${baslikYer ? baslikYer + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
+          <div class="loc-label" style="color:${r.text600}">${baslikYer ? escapeHtml(baslikYer) + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
           <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
         </div>
         <div style="display:flex;gap:4px;">
@@ -1512,7 +1538,7 @@ async function tumYorumNoktalariniGoster() {
       }));
       const yorumlarHtml = liste.slice(0, 8).map(gb => {
         const rr = aktifRenkler()[gb.durum];
-        const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+        const isimGuvenli = escapeHtml(gb.isim || "Anonim");
         return `<div style="display:flex;gap:7px;padding:6px 0;border-top:1px solid rgba(20,56,74,0.08);">
           <span style="width:18px;height:18px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;margin-top:1px;"></span>
           <div style="flex:1;min-width:0;">
@@ -1521,7 +1547,7 @@ async function tumYorumNoktalariniGoster() {
               <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
             </div>
             <div style="font-size:10px;color:#9AAEBA;">${isimGuvenli}</div>
-            ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+            ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${escapeHtml(gb.not)}</div>` : ""}
           </div>
         </div>`;
       }).join("");
@@ -1601,7 +1627,7 @@ function yanPaneliGuncelle(gruplar) {
       <div class="yan-panel-item" data-i="${i}">
         <span class="yan-panel-dot" style="background:${r.border};"></span>
         <div style="flex:1;min-width:0;">
-          <div class="yan-panel-ad">${item.ad}</div>
+          <div class="yan-panel-ad">${escapeHtml(item.ad)}</div>
           <div class="yan-panel-meta">${ETIKET_KISA[item.baskin]} · ${item.sayi} yorum · ${zamanFormat(item.sonZaman)}</div>
         </div>
       </div>`;
@@ -1768,7 +1794,7 @@ async function gbAlaniniGuncelle() {
   listEl.innerHTML = liste.map(gb => {
     const rr = aktifRenkler()[gb.durum];
     const faydaliGosterilsin = gb.id != null;
-    const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+    const isimGuvenli = escapeHtml(gb.isim || "Anonim");
     // 2.5 saatlik pencerede yorum ne kadar eskiyse o kadar soluklaşır; ilk 15 dakika "Yeni" rozeti taşır.
     const dakikaFark = (Date.now() - gb.zaman) / 60000;
     const opaklik = Math.max(0.45, 1 - dakikaFark / 150);
@@ -1783,8 +1809,8 @@ async function gbAlaniniGuncelle() {
           <span class="gb-time">${yeniMi ? `<span class="gb-yeni-rozet">Yeni</span> ` : ""}${zamanFormat(gb.zaman)}</span>
         </div>
         <div class="gb-item-isim">${isimGuvenli}</div>
-        ${gb.konum ? `<div style="font-size:10px;color:#9AAEBA;margin-top:1px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${gb.konum.replace(/</g, "&lt;")}</div>` : ""}
-        ${gb.not ? `<div class="gb-item-note">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+        ${gb.konum ? `<div style="font-size:10px;color:#9AAEBA;margin-top:1px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${escapeHtml(gb.konum)}</div>` : ""}
+        ${gb.not ? `<div class="gb-item-note">${escapeHtml(gb.not)}</div>` : ""}
         ${faydaliGosterilsin ? `<button class="gb-faydali-btn" data-id="${gb.id}" type="button">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
           <span class="gb-faydali-sayi">${gb.faydali > 0 ? gb.faydali : "Faydalı"}</span>
@@ -1887,7 +1913,7 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
 
   const yorumlarHtml = liste.slice(0, 12).map(gb => {
     const rr = aktifRenkler()[gb.durum];
-    const isimGuvenli = (gb.isim || "Anonim").replace(/</g, "&lt;");
+    const isimGuvenli = escapeHtml(gb.isim || "Anonim");
     const dakikaFark = (Date.now() - gb.zaman) / 60000;
     const opaklik = Math.max(0.5, 1 - dakikaFark / 150);
     return `
@@ -1901,7 +1927,7 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
             <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
           </div>
           <div style="font-size:10.5px;color:#9AAEBA;font-weight:500;">${isimGuvenli}</div>
-          ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${gb.not.replace(/</g, "&lt;")}</div>` : ""}
+          ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
         </div>
       </div>`;
   }).join("");
@@ -2013,7 +2039,7 @@ async function favSeridiGuncelle() {
   row.innerHTML = favListesiOnbellek.map((f, i) => `
     <button class="fav-chip" data-i="${i}" type="button">
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      ${f.ad}
+      ${escapeHtml(f.ad)}
     </button>`).join("");
   row.querySelectorAll('.fav-chip').forEach(chip => {
     chip.addEventListener('click', () => {
@@ -2134,6 +2160,30 @@ setInterval(saatiGuncelle, 1000);
 (function() {
   let secilenPuan = 0;
 
+  // İsim alanı — "Anonim" gösterilmesini istemiyoruz, bu yüzden marine geri bildiriminde
+  // kullanılan isimle aynı isim, kayıtlı değilse gönderim öncesi zorunlu olarak isteniyor.
+  function siteFeedbackIsimAlaniniGuncelle() {
+    const kayitli = kayitliIsmiGetir();
+    const nameRow = document.getElementById('site-feedback-name-row');
+    const nameSaved = document.getElementById('site-feedback-name-saved');
+    const nameSavedText = document.getElementById('site-feedback-name-saved-text');
+    if (kayitli) {
+      nameRow.style.display = "none";
+      nameSaved.style.display = "flex";
+      nameSavedText.textContent = `${kayitli} olarak gönderilecek`;
+    } else {
+      nameRow.style.display = "block";
+      nameSaved.style.display = "none";
+      document.getElementById('site-feedback-isim').value = "";
+    }
+  }
+  siteFeedbackIsimAlaniniGuncelle();
+
+  document.getElementById('site-feedback-name-degistir').addEventListener('click', () => {
+    ismiKaydet("");
+    siteFeedbackIsimAlaniniGuncelle();
+  });
+
   // Yıldız tıklamaları
   document.querySelectorAll('#site-feedback-stars button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2158,11 +2208,23 @@ setInterval(saatiGuncelle, 1000);
       return;
     }
 
+    let isim = kayitliIsmiGetir();
+    if (!isim) {
+      const girilenIsim = document.getElementById('site-feedback-isim').value.trim();
+      if (!girilenIsim) {
+        document.getElementById('site-feedback-isim').style.borderColor = "#D85A30";
+        document.getElementById('site-feedback-isim').placeholder = "Devam etmek için bir isim gir.";
+        return;
+      }
+      isim = girilenIsim;
+      ismiKaydet(isim);
+      siteFeedbackIsimAlaniniGuncelle();
+    }
+
     gondBtn.disabled = true;
     gondBtn.textContent = "Gönderiliyor…";
 
     const mesaj = mesajEl.value.trim() || null;
-    const isim  = kayitliIsmiGetir() || null;
 
     try {
       if (supabaseClient) {
@@ -2216,10 +2278,10 @@ async function siteYorumlariYukle() {
     gridEl.innerHTML = data.map(d => {
       const puan = d.puan || 0;
       const yildizHtml = Array.from({ length: 5 }, (_, i) =>
-        `<svg width="13" height="13" viewBox="0 0 24 24" fill="${i < puan ? "#D4A017" : "none"}" stroke="${i < puan ? "#D4A017" : "rgba(40,40,30,0.22)"}" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+        `<svg width="13" height="13" viewBox="0 0 24 24" fill="${i < puan ? "#D4A017" : "none"}" stroke="${i < puan ? "#D4A017" : "currentColor"}" style="color:var(--star-empty)" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
       ).join("");
-      const isim     = (d.kullanici_adi || "Anonim").replace(/</g, "&lt;");
-      const mesaj    = (d.mesaj || "").replace(/</g, "&lt;");
+      const isim     = escapeHtml(d.kullanici_adi || "Anonim");
+      const mesaj    = escapeHtml(d.mesaj || "");
       const tarih    = new Date(d.created_at);
       const dk       = Math.round((Date.now() - tarih.getTime()) / 60000);
       const zamanStr = dk < 60 ? `${dk} dk önce` : dk < 1440 ? `${Math.round(dk / 60)} sa önce` : `${Math.round(dk / 1440)} gün önce`;
@@ -2240,6 +2302,7 @@ async function siteYorumlariYukle() {
   }
 }
 setTimeout(siteYorumlariYukle, 800);
+
 </script>
 </body>
 </html>
