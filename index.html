@@ -1449,10 +1449,12 @@ const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim 
 // tek bir işaret koyuyoruz, üstüne tıklayınca o noktanın yorumlarını gösteriyoruz.
 let yorumNoktaIsaretleri = [];
 
-// Uzaktan (tüm Türkiye görünümünde) onlarca küçük nokta kalabalık ve anlamsız görünüyor —
-// bu yüzden yorum işaretlerini sadece kullanıcı belli bir bölgeye yeterince yakınlaştırdığında
-// (şehir/ilçe ölçeği) gösteriyoruz. Eşik, başlangıç zoom seviyesiyle (11) aynı tutuldu.
-const YORUM_ISARET_MIN_ZOOM = 11;
+// Uzaktan (şehir/ilçe ölçeğinde bile) yorum işaretlerinin görünmesi hem kalabalık hem de
+// yanıltıcı oluyordu (henüz kumsala/kıyıya inmeden bir nokta görünüyordu). Bu yüzden eşiği
+// mahalle/sokak ölçeğine çektik — kullanıcı gerçekten o kıyı noktasına yakınlaşmadan işaretler
+// görünmüyor. Aşırıya kaçmamak için bina tekil görünürlüğü gibi çok uç bir seviyeye (17-18)
+// çıkmadık.
+const YORUM_ISARET_MIN_ZOOM = 14;
 
 function yorumIsaretGorunurlukGuncelle() {
   const goster = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
@@ -1553,7 +1555,7 @@ async function tumYorumNoktalariniGoster() {
 // Sağ taraftaki (mobilde alta düşen) panelde, son 2 saatte yorum alan noktaları
 // çoğunluk görüşüne göre listeler — en çok yorum alandan en aza doğru sıralı.
 // BİLEREK haritanın görünen alanına (pan/zoom) göre GÜNCELLENMİYOR — sadece kullanıcı
-// haritada bir noktaya TIKLADIĞINDA, o noktanın 50km çevresindeki yorumları gösteriyoruz.
+// haritada bir noktaya TIKLADIĞINDA, o noktanın 1.5km çevresindeki yorumları gösteriyoruz.
 // Sebep: viewport bazlı otomatik güncelleme, kullanıcı haritayı sürüklerken listenin
 // sürekli değişmesine (istenmeyen bir "göz kırpma" hissine) yol açıyordu.
 let sonGruplarOnbellek = {};
@@ -1607,7 +1609,7 @@ function yanPaneliGuncelle(gruplar) {
   kapsayici.querySelectorAll('.yan-panel-item').forEach(el => {
     el.addEventListener('click', () => {
       const item = liste[parseInt(el.dataset.i, 10)];
-      map.setView([item.lat, item.lon], 13);
+      map.setView([item.lat, item.lon], YORUM_ISARET_MIN_ZOOM);
       noktayaGit(item.lat, item.lon, false);
     });
   });
@@ -1952,7 +1954,7 @@ function noktayaGit(lat, lng, haritayiOdakla) {
   } else {
     state.marker = L.marker([lat, lng], { icon: PIN_IKON }).addTo(map);
   }
-  if (haritayiOdakla) map.setView([lat, lng], 13);
+  if (haritayiOdakla) map.setView([lat, lng], YORUM_ISARET_MIN_ZOOM);
   veriCekVeGoster(lat, lng);
   try { localStorage.setItem('deniz-durumu-son-nokta', JSON.stringify({ lat, lng })); } catch (e) {}
 }
