@@ -1059,19 +1059,11 @@ function svgDalgaPattern(renkHex, yogunluk) {
   return `<svg class="wavepattern" viewBox="0 0 300 44" aria-hidden="true">${paths}</svg>`;
 }
 
-// Yorumun altında "5 dk önce" gibi göreceli değil, net bir tarih+saat gösteriyoruz
-// (örn. "1 Temmuz, 14:30") — kullanıcı bir yorumun tam ne zaman yapıldığını görebilsin diye.
-// AY_ADLARI bu dosyada daha aşağıda tanımlı ama fonksiyon çağrıldığında (yorumlar yüklendiğinde)
-// script'in tamamı zaten çalışmış olacağı için sorun olmaz.
 function zamanFormat(ts) {
-  const tarih = new Date(ts);
-  const simdi = new Date();
-  const gun = tarih.getDate();
-  const ay = AY_ADLARI[tarih.getMonth()];
-  const saat = String(tarih.getHours()).padStart(2, "0");
-  const dakika = String(tarih.getMinutes()).padStart(2, "0");
-  const yilEkle = tarih.getFullYear() !== simdi.getFullYear() ? " " + tarih.getFullYear() : "";
-  return `${gun} ${ay}${yilEkle}, ${saat}:${dakika}`;
+  const fark = Math.round((Date.now() - ts) / 60000);
+  if (fark < 1) return "az önce";
+  if (fark < 120) return fark + " dk önce";
+  return Math.round(fark / 60) + " sa önce";
 }
 
 // Bugünün kalan saatleri için kısa bir rüzgar+dalga şeridi oluşturur (sadece şu andan sonraki saatler).
@@ -2181,8 +2173,10 @@ async function siteYorumlariYukle() {
       const isim     = escapeHtml(d.kullanici_adi || "Anonim");
       const mesaj    = escapeHtml(d.mesaj || "");
       const tarih    = new Date(d.created_at);
-      const dk       = Math.round((Date.now() - tarih.getTime()) / 60000);
-      const zamanStr = dk < 60 ? `${dk} dk önce` : dk < 1440 ? `${Math.round(dk / 60)} sa önce` : `${Math.round(dk / 1440)} gün önce`;
+      const simdiTarih = new Date();
+      const saatStr2 = String(tarih.getHours()).padStart(2, "0") + ":" + String(tarih.getMinutes()).padStart(2, "0");
+      const yilEkle2 = tarih.getFullYear() !== simdiTarih.getFullYear() ? " " + tarih.getFullYear() : "";
+      const zamanStr = `${tarih.getDate()} ${AY_ADLARI[tarih.getMonth()]}${yilEkle2}, ${saatStr2}`;
       return `
         <div class="site-yorum-kart">
           <div class="site-yorum-yildizlar">${yildizHtml}</div>
