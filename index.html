@@ -1586,11 +1586,12 @@ const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim 
 // tek bir işaret koyuyoruz, üstüne tıklayınca o noktanın yorumlarını gösteriyoruz.
 let yorumNoktaIsaretleri = [];
 
-// Uzaktan (şehir/ilçe ölçeğinde bile) yorum işaretlerinin görünmesi hem kalabalık hem de
-// yanıltıcı oluyordu (henüz kumsala/kıyıya inmeden bir nokta görünüyordu). Bu yüzden eşiği
-// iyice yakınlaştırdık — kullanıcı gerçekten o kıyı noktasına inmeden işaretler görünmüyor.
-// Aşırıya kaçmamak için bina tekil görünürlüğü gibi çok uç bir seviyeye (18-19) çıkmadık.
-const YORUM_ISARET_MIN_ZOOM = 16;
+// Uzaktan (tüm ülke/bölge ölçeğinde) yorum işaretlerinin görünmesi hem kalabalık hem de
+// yanıltıcı oluyor. Ama eşik eskiden 16'ydı (sokak seviyesi) — bu KADAR yakınlaşmadan hiçbir
+// yorum görünmüyordu, insanlar "yorumum kayboldu/görünmüyor" sanıyordu, oysa sadece
+// yeterince yakınlaşmamıştı. Sayfa açılış zoom'u zaten 13-14 civarında olduğundan (bkz.
+// map.setView çağrıları), eşiği de buna yakın (mahalle ölçeği) bir seviyeye indirdik.
+const YORUM_ISARET_MIN_ZOOM = 13;
 
 function yorumIsaretGorunurlukGuncelle() {
   const goster = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
