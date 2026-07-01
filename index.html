@@ -300,9 +300,31 @@
   .hour-val { font-weight: 600; color: var(--hour-val); font-size: 12px; }
   .gb-section { margin-bottom: 18px; }
   .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
-  .gb-name-row { margin-bottom: 9px; }
+  .isim-kart {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 13px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 12px rgba(20,30,25,0.04);
+  }
+  .isim-kart-baslik {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-h1);
+    margin: 0 0 2px;
+  }
+  .isim-kart-alt {
+    font-size: 11px;
+    color: var(--text-sub);
+    margin: 0 0 9px;
+    line-height: 1.4;
+  }
+  .gb-name-row { display: flex; gap: 8px; }
   .gb-name-row input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     height: 36px;
     border-radius: 9px;
     border: 1px solid var(--gb-input-border);
@@ -310,11 +332,23 @@
     font-size: 13px;
     font-family: inherit;
   }
+  .gb-name-row button {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 9px;
+    border: none;
+    background: linear-gradient(155deg, #4FA8D8 0%, #2A7FB8 100%);
+    color: white;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
   .gb-name-saved {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 9px;
     font-size: 12px;
     color: var(--legend-text);
   }
@@ -371,61 +405,7 @@
     justify-content: center;
   }
   .gb-sent { font-size: 12.5px; color: #2A7FB8; margin-top: 7px; font-weight: 500; }
-  .gb-list { display: flex; flex-direction: column; gap: 8px; }
-  .gb-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 11px 14px;
-    border-radius: 12px;
-    background: rgba(42,127,184,0.05);
-  }
-  .gb-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .gb-item-body { flex: 1; min-width: 0; }
-  .gb-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-  .gb-item-status { font-size: 13px; font-weight: 600; text-transform: capitalize; }
-  .gb-item-isim { font-size: 11.5px; color: #9AAEBA; margin-top: 1px; font-weight: 500; }
-  .gb-item-note { font-size: 13px; color: var(--text-sub); margin-top: 3px; line-height: 1.4; }
-  .gb-faydali-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 7px;
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 11.5px;
-    color: #9AAEBA;
-    cursor: pointer;
-    font-family: inherit;
-    font-weight: 500;
-  }
-  .gb-faydali-btn:hover { color: #2A7FB8; }
-  .gb-faydali-btn.isaretlendi { color: #2A7FB8; cursor: default; }
-  .gb-faydali-btn svg { width: 13px; height: 13px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-  .gb-time { color: #9AAEBA; font-size: 11.5px; white-space: nowrap; }
-  .gb-yeni-rozet {
-    display: inline-block;
-    background: #2A7FB8;
-    color: white;
-    font-size: 9.5px;
-    font-weight: 600;
-    padding: 1px 5px;
-    border-radius: 999px;
-    margin-right: 3px;
-    vertical-align: middle;
-  }
   .footnote { font-size: 11.5px; color: var(--footnote-text); margin-top: 22px; line-height: 1.6; }
   .site-feedback-card {
     border: 1px solid var(--card-border);
@@ -693,15 +673,29 @@
     <h1>Deniz durumu</h1>
   </div>
   <p class="sub">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
+
+  <div class="isim-kart">
+    <p class="isim-kart-baslik">İsim / rumuzunu gir</p>
+    <p class="isim-kart-alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+    <div class="gb-name-row" id="gb-name-row">
+      <input type="text" id="gb-isim" placeholder="İsim / rumuz" maxlength="24" />
+      <button type="button" id="gb-isim-kaydet-btn">Kaydet</button>
+    </div>
+    <div class="gb-name-saved" id="gb-name-saved" style="display:none;">
+      <span id="gb-name-saved-text"></span>
+      <button type="button" id="gb-name-degistir">değiştir</button>
+    </div>
+  </div>
+
   <div class="clock-row" id="clock-row"></div>
 
   <div class="legend-row">
     <div class="legend">
-      <span><span class="dot" style="background:#0F8F6C"></span>Çarşaf</span>
-      <span><span class="dot" style="background:#1D9E75"></span>İyi</span>
-      <span><span class="dot" style="background:#C9A227"></span>Hafif</span>
-      <span><span class="dot" style="background:#BA7517"></span>Fazla</span>
-      <span><span class="dot" style="background:#D85A30"></span>Tehlikeli</span>
+      <span><span class="dot" style="background:#1D7FC2"></span>Çarşaf</span>
+      <span><span class="dot" style="background:#1FA35C"></span>İyi</span>
+      <span><span class="dot" style="background:#DBAE00"></span>Hafif</span>
+      <span><span class="dot" style="background:#E07B1E"></span>Fazla</span>
+      <span><span class="dot" style="background:#D9362E"></span>Tehlikeli</span>
     </div>
     <button class="locate-btn" id="locate-btn" type="button">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
@@ -722,13 +716,6 @@
   <div id="community-summary-wrap" style="display:none;"></div>
 
   <div class="gb-section" id="gb-section" style="display:none;">
-    <div class="gb-name-row" id="gb-name-row">
-      <input type="text" id="gb-isim" placeholder="İsim / rumuz (zorunlu)" maxlength="24" />
-    </div>
-    <div class="gb-name-saved" id="gb-name-saved" style="display:none;">
-      <span id="gb-name-saved-text"></span>
-      <button type="button" id="gb-name-degistir">değiştir</button>
-    </div>
     <div class="gb-title">Şu an oradaysan deniz nasıl?</div>
     <div class="gb-buttons">
       <button class="gb-btn" data-val="carsaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg>Çarşaf</button>
@@ -746,11 +733,6 @@
     <div class="gb-sent" id="gb-sent" style="display:none;">Bildiriminiz kaydedildi, teşekkürler.</div>
   </div>
 
-  <div id="gb-list-wrap" style="display:none;">
-    <div class="gb-title">Tüm yorumlar</div>
-    <div class="gb-list" id="gb-list"></div>
-  </div>
-
   <p class="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 
   <div class="site-feedback-card">
@@ -762,13 +744,6 @@
       <button type="button" data-puan="3" aria-label="3 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
       <button type="button" data-puan="4" aria-label="4 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
       <button type="button" data-puan="5" aria-label="5 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-    </div>
-    <div class="gb-name-row" id="site-feedback-name-row" style="margin-bottom:10px;">
-      <input type="text" id="site-feedback-isim" placeholder="İsim / rumuz (zorunlu)" maxlength="24" />
-    </div>
-    <div class="gb-name-saved" id="site-feedback-name-saved" style="display:none;margin-bottom:10px;">
-      <span id="site-feedback-name-saved-text"></span>
-      <button type="button" id="site-feedback-name-degistir">değiştir</button>
     </div>
     <textarea id="site-feedback-mesaj" placeholder="İsteğe bağlı: ne eksik, ne beğendin, ne değiştirilmeli?" rows="2"></textarea>
     <button type="button" id="site-feedback-gonder" class="site-feedback-btn">Gönder</button>
@@ -817,20 +792,23 @@ if (supabaseHazir) {
   console.warn("Supabase bağlantı bilgileri girilmedi — geri bildirimler bu oturumda yerel olarak saklanacak.");
 }
 
+// Beş kademe artık net bir mavi/yeşil/sarı/turuncu/kırmızı sırası izliyor (bir trafik
+// ışığı/ısı skalası gibi) — önceki paletteki çarşaf/iyi ikilisi ikisi de yeşil/turkuaz
+// olduğu için birbirine çok yakın görünüyordu, bu karışıklığı gideriyoruz.
 const RENK_GUNDUZ = {
-  carsaf:    { bg: "#DCF3EC", border: "#0F8F6C", text900: "#04342C", text600: "#0B5C45", marker: "#0F8F6C" },
-  iyi:       { bg: "#E1F5EE", border: "#1D9E75", text900: "#04342C", text600: "#0F6E56", marker: "#1D9E75" },
-  hafif:     { bg: "#FAF3D6", border: "#C9A227", text900: "#433707", text600: "#8C6F12", marker: "#C9A227" },
-  fazla:     { bg: "#FAEEDA", border: "#BA7517", text900: "#412402", text600: "#854F0B", marker: "#BA7517" },
-  tehlikeli: { bg: "#FAECE7", border: "#D85A30", text900: "#4A1B0C", text600: "#993C1D", marker: "#D85A30" },
+  carsaf:    { bg: "#DCEEFB", border: "#1D7FC2", text900: "#0A2E42", text600: "#155D82", marker: "#1D7FC2" },
+  iyi:       { bg: "#DFF5E4", border: "#1FA35C", text900: "#0B3D22", text600: "#177A45", marker: "#1FA35C" },
+  hafif:     { bg: "#FBF1CB", border: "#DBAE00", text900: "#453600", text600: "#8A6D00", marker: "#DBAE00" },
+  fazla:     { bg: "#FCE6CE", border: "#E07B1E", text900: "#472000", text600: "#95500D", marker: "#E07B1E" },
+  tehlikeli: { bg: "#FADAD6", border: "#D9362E", text900: "#4A0F0B", text600: "#A3271F", marker: "#D9362E" },
   notr:      { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
 };
 const RENK_GECE = {
-  carsaf:    { bg: "#10271F", border: "#2FBE92", text900: "#9FE8CB", text600: "#5ED1A5", marker: "#2FBE92" },
-  iyi:       { bg: "#16332C", border: "#3CC99A", text900: "#A8EBD2", text600: "#6FDCB3", marker: "#3CC99A" },
-  hafif:     { bg: "#36300F", border: "#D9BD3F", text900: "#F5E7A8", text600: "#E3CC6E", marker: "#D9BD3F" },
-  fazla:     { bg: "#3A2E14", border: "#E0A23B", text900: "#FBE4B0", text600: "#EFC371", marker: "#E0A23B" },
-  tehlikeli: { bg: "#3A1F18", border: "#E8775A", text900: "#FBCFC0", text600: "#F2A38B", marker: "#E8775A" },
+  carsaf:    { bg: "#122A3D", border: "#4FB3E8", text900: "#BEE6FB", text600: "#7FCBEF", marker: "#4FB3E8" },
+  iyi:       { bg: "#123321", border: "#3ECB7A", text900: "#AEECC7", text600: "#66DC9B", marker: "#3ECB7A" },
+  hafif:     { bg: "#362D10", border: "#E8CB3D", text900: "#F7ECA8", text600: "#E9D06E", marker: "#E8CB3D" },
+  fazla:     { bg: "#3A2A12", border: "#E8963D", text900: "#FCDFB4", text600: "#F2BC79", marker: "#E8963D" },
+  tehlikeli: { bg: "#3A1712", border: "#E85A4A", text900: "#FCC9C0", text600: "#F4917F", marker: "#E85A4A" },
   notr:      { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
 };
 function aktifTema() {
@@ -853,6 +831,25 @@ const ETIKET_KISA = {
   fazla: "fazla dalgalı",
   tehlikeli: "tehlikeli",
 };
+
+// Yorum balonlarında isim rengi, o kişinin seçtiği duruma göre DEĞİL sabit koyu bir
+// renkle gösterilir — böylece "kim yazmış" her zaman aynı, tutarlı, okunaklı renkte
+// kalır; durumu ise ayrı bir rozetle (bkz. durumRozetiSvg) zaten belirtiyoruz.
+const YORUM_ISIM_RENGI = "#181818";
+
+// Oy butonlarındaki (gb-btn) ikonlarla birebir aynı — yorum balonundaki durum rozeti
+// gerçekten "oy vermişim gibi" görünsün diye aynı ikonografiyi tekrar kullanıyoruz.
+const DURUM_IKON_PATH = {
+  carsaf: '<line x1="3" y1="12" x2="21" y2="12"/>',
+  iyi: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  hafif: '<path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/>',
+  fazla: '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+  tehlikeli: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+};
+function durumRozetiSvg(durum) {
+  const yol = DURUM_IKON_PATH[durum] || "";
+  return `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${yol}</svg>`;
+}
 
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
@@ -1179,7 +1176,6 @@ async function veriCekVeGoster(lat, lon) {
   card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar, dalga ve kıyı şekli analiz ediliyor… (birkaç saniye sürebilir)</div>`;
 
   document.getElementById('gb-section').style.display = "none";
-  document.getElementById('gb-list-wrap').style.display = "none";
   document.getElementById('community-label').style.display = "none";
   document.getElementById('community-summary-wrap').style.display = "none";
   document.getElementById('conflict-note').style.display = "none";
@@ -1535,11 +1531,11 @@ async function tumYorumNoktalariniGoster() {
           <span style="width:18px;height:18px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;margin-top:1px;"></span>
           <div style="flex:1;min-width:0;">
             <div style="display:flex;justify-content:space-between;gap:6px;">
-              <span style="font-size:11.5px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
+              <span style="font-size:11.5px;font-weight:600;color:${YORUM_ISIM_RENGI};">${isimGuvenli}</span>
               <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
             </div>
-            <div style="font-size:10.5px;font-weight:600;color:${rr.text600};margin-top:1px;">${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
-            ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:2px;">${escapeHtml(gb.not)}</div>` : ""}
+            <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 8px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
+            ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:4px;">${escapeHtml(gb.not)}</div>` : ""}
           </div>
         </div>`;
       }).join("");
@@ -1548,7 +1544,7 @@ async function tumYorumNoktalariniGoster() {
       const icerikHtml = `
         <div style="font-family:'Inter',sans-serif;width:220px;border-radius:15px;overflow:hidden;">
           <div style="background:${r.bg};padding:11px 13px 8px;">
-            <div style="font-size:12.5px;font-weight:700;color:${r.text900};">${ETIKET_KISA[baskin]} <span style="opacity:0.7;font-weight:600;">(%${grupYuzde})</span></div>
+            <div style="font-size:12.5px;font-weight:700;color:${r.text900};">${ilkHarfBuyuk(ETIKET_KISA[baskin])} <span style="opacity:0.7;font-weight:600;">(%${grupYuzde})</span></div>
             <div style="font-size:10.5px;color:${r.text600};margin-top:1px;">${grup.kayitlar.length} kişi bildirdi</div>
           </div>
           <div style="background:#fff;padding:2px 13px 4px;max-height:200px;overflow-y:auto;">${yorumlarHtml}</div>
@@ -1682,48 +1678,54 @@ const GB_ISIM_ANAHTARI = 'deniz-durumu-kullanici-adi';
 function kayitliIsmiGetir() {
   try { return localStorage.getItem(GB_ISIM_ANAHTARI) || ""; } catch (e) { return ""; }
 }
-// Sayfada isim girilen İKİ ayrı yer var (deniz durumu yorumu ve site geri bildirimi),
-// ama ikisi de AYNI localStorage anahtarını paylaşıyor. Kullanıcının birine yazıp
-// diğerine tekrar yazmak zorunda kalmaması için, isim her kaydedildiğinde HER İKİ
-// alanın görünümünü de aynı anda güncelliyoruz (bkz. tumIsimAlanlariniGuncelle).
+// Sayfada isim girilen TEK bir yer var (sayfanın en üstündeki isim kartı) — hem deniz
+// durumu yorumu hem site geri bildirimi bu tek kayıtlı ismi kullanır, ikisi de kendi
+// başına isim istemez. Bir yerde ismi değiştirmek her yeri günceller.
 function ismiKaydet(isim) {
   try { localStorage.setItem(GB_ISIM_ANAHTARI, isim); } catch (e) {}
-  tumIsimAlanlariniGuncelle();
+  isimAlaniniGuncelle();
 }
 
-function tumIsimAlanlariniGuncelle() {
+function isimAlaniniGuncelle() {
   const kayitli = kayitliIsmiGetir();
-
   const gbRow = document.getElementById('gb-name-row');
   const gbSaved = document.getElementById('gb-name-saved');
   const gbSavedText = document.getElementById('gb-name-saved-text');
-  if (gbRow && gbSaved && gbSavedText) {
-    if (kayitli) {
-      gbRow.style.display = "none";
-      gbSaved.style.display = "flex";
-      gbSavedText.textContent = `${kayitli} olarak yorum yapacaksın`;
-    } else {
-      gbRow.style.display = "block";
-      gbSaved.style.display = "none";
-      document.getElementById('gb-isim').value = "";
-    }
-  }
-
-  const sfRow = document.getElementById('site-feedback-name-row');
-  const sfSaved = document.getElementById('site-feedback-name-saved');
-  const sfSavedText = document.getElementById('site-feedback-name-saved-text');
-  if (sfRow && sfSaved && sfSavedText) {
-    if (kayitli) {
-      sfRow.style.display = "none";
-      sfSaved.style.display = "flex";
-      sfSavedText.textContent = `${kayitli} olarak gönderilecek`;
-    } else {
-      sfRow.style.display = "block";
-      sfSaved.style.display = "none";
-      document.getElementById('site-feedback-isim').value = "";
-    }
+  if (kayitli) {
+    gbRow.style.display = "none";
+    gbSaved.style.display = "flex";
+    gbSavedText.textContent = `${kayitli} olarak yorum/değerlendirme yapacaksın`;
+  } else {
+    gbRow.style.display = "flex";
+    gbSaved.style.display = "none";
+    document.getElementById('gb-isim').value = "";
   }
 }
+isimAlaniniGuncelle();
+
+// Bir yorum/değerlendirme göndermeye çalışırken isim kayıtlı değilse, ikinci bir isim
+// kutusu göstermek yerine kullanıcıyı sayfanın en üstündeki TEK isim alanına yönlendiriyoruz.
+function isimGerekliUyar() {
+  const input = document.getElementById('gb-isim');
+  if (!input) return;
+  input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  input.focus();
+  input.style.borderColor = "#D85A30";
+  input.placeholder = "Devam etmek için önce bir isim gir.";
+}
+
+function isimKaydetTiklandi() {
+  const girilenIsim = document.getElementById('gb-isim').value.trim();
+  if (!girilenIsim) {
+    isimGerekliUyar();
+    return;
+  }
+  ismiKaydet(girilenIsim);
+}
+document.getElementById('gb-isim-kaydet-btn').addEventListener('click', isimKaydetTiklandi);
+document.getElementById('gb-isim').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') isimKaydetTiklandi();
+});
 
 document.getElementById('gb-name-degistir').addEventListener('click', () => {
   ismiKaydet("");
@@ -1733,8 +1735,6 @@ async function gbAlaniniGuncelle() {
   const gbSection = document.getElementById('gb-section');
   const communityLabel = document.getElementById('community-label');
   const summaryWrap = document.getElementById('community-summary-wrap');
-  const listWrap = document.getElementById('gb-list-wrap');
-  const listEl = document.getElementById('gb-list');
   const conflictNote = document.getElementById('conflict-note');
 
   // Karadaysak geri bildirim bölümünü tamamen gizle — kumsalda olmayan bir nokta için
@@ -1743,7 +1743,6 @@ async function gbAlaniniGuncelle() {
     gbSection.style.display = "none";
     communityLabel.style.display = "none";
     summaryWrap.style.display = "none";
-    listWrap.style.display = "none";
     conflictNote.style.display = "none";
     if (state.marker) state.marker.closePopup();
     return;
@@ -1760,7 +1759,6 @@ async function gbAlaniniGuncelle() {
     b.style.color = "#6B6A60";
   });
   document.getElementById('gb-note').value = "";
-  tumIsimAlanlariniGuncelle();
 
   communityLabel.style.display = "block";
   summaryWrap.style.display = "block";
@@ -1770,14 +1768,12 @@ async function gbAlaniniGuncelle() {
 
   if (hata) {
     summaryWrap.innerHTML = `<div class="community-empty">Sahadan gelen bildirimler şu an yüklenemedi.</div>`;
-    listWrap.style.display = "none";
     if (state.marker) state.marker.closePopup();
     return;
   }
 
   if (liste.length === 0) {
     summaryWrap.innerHTML = `<div class="community-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Son 2 saatte bu çevrede kimse bildirim bırakmadı. Aşağıdaki butonlardan birini seçerek ilk bildirimi sen yap. ↓</span></div>`;
-    listWrap.style.display = "none";
     conflictNote.style.display = "none";
     if (state.marker) state.marker.closePopup();
     return;
@@ -1800,53 +1796,6 @@ async function gbAlaniniGuncelle() {
     </div>`;
 
   haritaBaloncuguGoster(baskinDurum, sayim, liste);
-
-  listWrap.style.display = "block";
-  listEl.innerHTML = liste.map(gb => {
-    const rr = aktifRenkler()[gb.durum];
-    const faydaliGosterilsin = gb.id != null;
-    const isimGuvenli = escapeHtml(gb.isim || "Anonim");
-    // 2 saatlik pencerede yorum ne kadar eskiyse o kadar soluklaşır; ilk 15 dakika "Yeni" rozeti taşır.
-    const dakikaFark = (Date.now() - gb.zaman) / 60000;
-    const opaklik = Math.max(0.45, 1 - dakikaFark / 120);
-    const yeniMi = dakikaFark <= 15;
-    return `<div class="gb-item" style="opacity:${opaklik.toFixed(2)};">
-      <span class="gb-avatar" style="background:${rr.bg};border-color:${rr.border};color:${rr.text900}">
-        <span class="dot" style="background:${rr.border}"></span>
-      </span>
-      <div class="gb-item-body">
-        <div class="gb-item-top">
-          <span class="gb-item-status" style="color:${rr.text900}">${ETIKET_KISA[gb.durum]}</span>
-          <span class="gb-time">${yeniMi ? `<span class="gb-yeni-rozet">Yeni</span> ` : ""}${zamanFormat(gb.zaman)}</span>
-        </div>
-        <div class="gb-item-isim">${isimGuvenli}</div>
-        ${gb.konum ? `<div style="font-size:10px;color:#9AAEBA;margin-top:1px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${escapeHtml(gb.konum)}</div>` : ""}
-        ${gb.not ? `<div class="gb-item-note">${escapeHtml(gb.not)}</div>` : ""}
-        ${faydaliGosterilsin ? `<button class="gb-faydali-btn" data-id="${gb.id}" type="button">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-          <span class="gb-faydali-sayi">${gb.faydali > 0 ? gb.faydali : "Faydalı"}</span>
-        </button>` : ""}
-      </div>
-    </div>`;
-  }).join("");
-
-  listEl.querySelectorAll('.gb-faydali-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      if (btn.disabled) return;
-      btn.disabled = true;
-      const id = parseInt(btn.dataset.id, 10);
-      try {
-        await supabaseClient.rpc('faydali_isaretle', { bildirim_id: id });
-        const sayiEl = btn.querySelector('.gb-faydali-sayi');
-        const guncelSayi = (parseInt(sayiEl.textContent, 10) || 0) + 1;
-        sayiEl.textContent = guncelSayi;
-        btn.classList.add('isaretlendi');
-      } catch (e) {
-        console.error("Faydalı işaretleme hatası:", e);
-        btn.disabled = false;
-      }
-    });
-  });
 
   if (state.bizimDurum && baskinDurum !== state.bizimDurum) {
     conflictNote.style.display = "flex";
@@ -1877,16 +1826,10 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
 document.getElementById('gb-send').addEventListener('click', async () => {
   if (!state.secilenGB || state.lat == null) return;
 
-  let isim = kayitliIsmiGetir();
+  const isim = kayitliIsmiGetir();
   if (!isim) {
-    const girilenIsim = document.getElementById('gb-isim').value.trim();
-    if (!girilenIsim) {
-      document.getElementById('gb-isim').style.borderColor = "#D85A30";
-      document.getElementById('gb-isim').placeholder = "Devam etmek için bir isim gir.";
-      return;
-    }
-    isim = girilenIsim;
-    ismiKaydet(isim);
+    isimGerekliUyar();
+    return;
   }
 
   const not = document.getElementById('gb-note').value.trim();
@@ -1933,11 +1876,11 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
         </span>
         <div style="flex:1;min-width:0;">
           <div style="display:flex;justify-content:space-between;gap:6px;">
-            <span style="font-size:12px;font-weight:600;color:${rr.text900};">${isimGuvenli}</span>
+            <span style="font-size:12px;font-weight:600;color:${YORUM_ISIM_RENGI};">${isimGuvenli}</span>
             <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
           </div>
-          <div style="font-size:11px;font-weight:600;color:${rr.text600};margin-top:1px;">${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
-          ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:2px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
+          <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 9px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10.5px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
+          ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:4px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
         </div>
       </div>`;
   }).join("");
@@ -2106,15 +2049,6 @@ setInterval(saatiGuncelle, 1000);
 (function() {
   let secilenPuan = 0;
 
-  // İsim alanı — "Anonim" gösterilmesini istemiyoruz, bu yüzden marine geri bildiriminde
-  // kullanılan isimle aynı isim, kayıtlı değilse gönderim öncesi zorunlu olarak isteniyor.
-  // (Görünümü tumIsimAlanlariniGuncelle güncelliyor — gb-section'daki isim alanıyla paylaşımlı.)
-  tumIsimAlanlariniGuncelle();
-
-  document.getElementById('site-feedback-name-degistir').addEventListener('click', () => {
-    ismiKaydet("");
-  });
-
   // Yıldız tıklamaları
   document.querySelectorAll('#site-feedback-stars button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2139,16 +2073,10 @@ setInterval(saatiGuncelle, 1000);
       return;
     }
 
-    let isim = kayitliIsmiGetir();
+    const isim = kayitliIsmiGetir();
     if (!isim) {
-      const girilenIsim = document.getElementById('site-feedback-isim').value.trim();
-      if (!girilenIsim) {
-        document.getElementById('site-feedback-isim').style.borderColor = "#D85A30";
-        document.getElementById('site-feedback-isim').placeholder = "Devam etmek için bir isim gir.";
-        return;
-      }
-      isim = girilenIsim;
-      ismiKaydet(isim);
+      isimGerekliUyar();
+      return;
     }
 
     gondBtn.disabled = true;
