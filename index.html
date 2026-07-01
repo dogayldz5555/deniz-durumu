@@ -594,35 +594,6 @@
   }
   .locate-btn:hover { background: rgba(255,255,255,0.95); }
   .locate-btn:disabled { opacity: 0.5; cursor: default; }
-  .fav-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-  .fav-chip {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--locate-text);
-    background: var(--locate-bg);
-    border: 1px solid var(--locate-border);
-    border-radius: 999px;
-    padding: 4px 10px 4px 8px;
-    cursor: pointer;
-  }
-  .fav-chip:hover { background: rgba(255,255,255,0.95); }
-  .fav-chip svg { width: 11px; height: 11px; flex-shrink: 0; }
-  .fav-star-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-  }
   .section-label {
     font-size: 11.5px;
     color: var(--section-label);
@@ -737,8 +708,6 @@
       Konumum
     </button>
   </div>
-
-  <div class="fav-row" id="fav-row" style="display:none;"></div>
 
   <div id="map"></div>
 
@@ -1360,9 +1329,6 @@ async function veriCekVeGoster(lat, lon) {
           <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
         </div>
         <div style="display:flex;gap:4px;">
-          <button class="refresh-btn" id="fav-btn" aria-label="Favorilere ekle" style="color:${r.text600}">
-            <svg id="fav-star-svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </button>
           <button class="refresh-btn" id="share-btn" aria-label="Paylaş" style="color:${r.text600}">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
@@ -1379,12 +1345,6 @@ async function veriCekVeGoster(lat, lon) {
     `;
 
     document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
-
-    document.getElementById('fav-btn').onclick = async () => {
-      await favToggle(lat, lon, baslikYer);
-      favYildiziGuncelle(lat, lon);
-    };
-    favYildiziGuncelle(lat, lon);
 
     document.getElementById('share-btn').onclick = async () => {
       const yerMetni = baslikYer || `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
@@ -1408,6 +1368,7 @@ async function veriCekVeGoster(lat, lon) {
     state.denizdeyiz = denizdeyiz;
     state.yerAdi = baslikYer;
     state.konumMetni = konumMetni;
+    yanPaneliGuncelle(sonGruplarOnbellek);
     await gbAlaniniGuncelle();
 
     // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
@@ -1488,6 +1449,20 @@ const GB_BEKLEME_SURESI_MS = 5 * 60 * 1000; // aynı tarayıcıdan iki bildirim 
 // tek bir işaret koyuyoruz, üstüne tıklayınca o noktanın yorumlarını gösteriyoruz.
 let yorumNoktaIsaretleri = [];
 
+// Uzaktan (tüm Türkiye görünümünde) onlarca küçük nokta kalabalık ve anlamsız görünüyor —
+// bu yüzden yorum işaretlerini sadece kullanıcı belli bir bölgeye yeterince yakınlaştırdığında
+// (şehir/ilçe ölçeği) gösteriyoruz. Eşik, başlangıç zoom seviyesiyle (11) aynı tutuldu.
+const YORUM_ISARET_MIN_ZOOM = 11;
+
+function yorumIsaretGorunurlukGuncelle() {
+  const goster = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
+  yorumNoktaIsaretleri.forEach(m => {
+    const haritada = map.hasLayer(m);
+    if (goster && !haritada) m.addTo(map);
+    else if (!goster && haritada) map.removeLayer(m);
+  });
+}
+
 function konumGrupAnahtari(lat, lon) {
   // ~0.007 derece ~ 700m; bu, bireysel tıklama hassasiyetinden (1.3km) daha sık gruplama yapar
   // çünkü burada amaç "haritada görünür ayrı noktalar", tek bir noktanın yorumlarını
@@ -1530,7 +1505,7 @@ async function tumYorumNoktalariniGoster() {
         weight: 2,
         fillColor: r.border,
         fillOpacity: 0.95,
-      }).addTo(map);
+      });
 
       const liste = grup.kayitlar.map(d => ({
         durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
@@ -1569,6 +1544,7 @@ async function tumYorumNoktalariniGoster() {
       yorumNoktaIsaretleri.push(isaret);
     });
 
+    yorumIsaretGorunurlukGuncelle();
     yanPaneliGuncelle(gruplar);
   } catch (e) {
     console.error("Yorum noktaları yüklenemedi:", e);
@@ -1577,16 +1553,21 @@ async function tumYorumNoktalariniGoster() {
 
 // Sağ taraftaki (mobilde alta düşen) panelde, son 2.5 saatte yorum alan noktaları
 // çoğunluk görüşüne göre listeler — en çok yorum alandan en aza doğru sıralı.
-// Sağ paneldeki listeyi haritanın ŞU AN GÖRÜNEN alanına göre filtreliyoruz — uygulama
-// tüm Türkiye'yi kapsadığı için, filtre olmadan Atakum'a bakan biri Antalya'daki bir
-// yorumu da görebilir, bu kafa karıştırıcı olurdu. Harita kaydırılıp yakınlaştırıldıkça
-// liste de otomatik güncellenir (bkz. map.on('moveend') aşağıda).
+// BİLEREK haritanın görünen alanına (pan/zoom) göre GÜNCELLENMİYOR — sadece kullanıcı
+// haritada bir noktaya TIKLADIĞINDA, o noktanın 50km çevresindeki yorumları gösteriyoruz.
+// Sebep: viewport bazlı otomatik güncelleme, kullanıcı haritayı sürüklerken listenin
+// sürekli değişmesine (istenmeyen bir "göz kırpma" hissine) yol açıyordu.
 let sonGruplarOnbellek = {};
 
 function yanPaneliGuncelle(gruplar) {
   sonGruplarOnbellek = gruplar;
   const kapsayici = document.getElementById('yan-panel-liste');
   if (!kapsayici) return;
+
+  if (state.lat == null) {
+    kapsayici.innerHTML = `<div class="yan-panel-empty">Haritada bir noktaya tıkla, yakınındaki yorumları burada gör.</div>`;
+    return;
+  }
 
   const tumListe = Object.values(gruplar).map(grup => {
     const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
@@ -1599,20 +1580,8 @@ function yanPaneliGuncelle(gruplar) {
     return { lat: grup.lat, lon: grup.lon, baskin, sayi: grup.kayitlar.length, sonZaman, ad: adKisa };
   });
 
-  // Tıklanan nokta varsa 50km çevresindeki yorumları göster;
-  // hiç yoksa haritanın görünen alanındakileri göster.
-  let liste;
-  if (state.lat != null) {
-    const YAKIN_KM = 50;
-    liste = tumListe.filter(item => kmMesafe(state.lat, state.lon, item.lat, item.lon) <= YAKIN_KM);
-    if (liste.length === 0) {
-      const sinirlar = map.getBounds();
-      liste = tumListe.filter(item => sinirlar.contains([item.lat, item.lon]));
-    }
-  } else {
-    const sinirlar = map.getBounds();
-    liste = tumListe.filter(item => sinirlar.contains([item.lat, item.lon]));
-  }
+  const YAKIN_KM = 50;
+  const liste = tumListe.filter(item => kmMesafe(state.lat, state.lon, item.lat, item.lon) <= YAKIN_KM);
 
   liste.sort((a, b) => b.sayi - a.sayi || b.sonZaman - a.sonZaman);
 
@@ -1962,94 +1931,6 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   state.marker.openPopup();
 }
 
-// === Favoriler (paylaşımlı) ===
-// Favoriler artık herkesin görebileceği, herkesin ekleyebileceği ortak bir liste —
-// Supabase'deki favori_noktalar tablosunda saklanıyor. Kendi tarayıcında sadece "ben
-// hangi noktaları favorilemişim" bilgisini (yıldızın dolu/boş görünmesi için) tutuyoruz.
-const FAV_BENIM_ANAHTARI = 'deniz-durumu-favorilerim';
-const FAV_TOLERANS = 0.01; // ~1km içindeki noktalar "aynı favori" sayılır
-let favListesiOnbellek = [];
-
-function benimFavorilerimGetir() {
-  try {
-    const ham = localStorage.getItem(FAV_BENIM_ANAHTARI);
-    return ham ? JSON.parse(ham) : [];
-  } catch (e) { return []; }
-}
-function benimFavorilerimKaydet(liste) {
-  try { localStorage.setItem(FAV_BENIM_ANAHTARI, JSON.stringify(liste)); } catch (e) {}
-}
-function favBul(lat, lon) {
-  return favListesiOnbellek.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
-}
-async function favToggle(lat, lon, ad) {
-  const benimkiler = benimFavorilerimGetir();
-  const benIdx = benimkiler.findIndex(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
-
-  if (benIdx >= 0) {
-    // Kendi işaretini kaldır (paylaşımlı listeden silmiyoruz, sadece kendi yıldız durumunu)
-    benimkiler.splice(benIdx, 1);
-    benimFavorilerimKaydet(benimkiler);
-  } else {
-    benimkiler.push({ lat, lon });
-    benimFavorilerimKaydet(benimkiler);
-    if (supabaseClient && favBul(lat, lon) < 0) {
-      const isim = kayitliIsmiGetir() || null;
-      try {
-        await supabaseClient.from('favori_noktalar').insert({ lat, lon, ad: ad || null, ekleyen: isim });
-      } catch (e) { console.error("Favori eklenemedi:", e); }
-    }
-  }
-  await favSeridiGuncelle();
-}
-function favYildiziGuncelle(lat, lon) {
-  const btn = document.getElementById('fav-btn');
-  if (!btn) return;
-  const svg = document.getElementById('fav-star-svg');
-  const benimkiler = benimFavorilerimGetir();
-  const aktif = benimkiler.some(f => Math.abs(f.lat - lat) < FAV_TOLERANS && Math.abs(f.lon - lon) < FAV_TOLERANS);
-  svg.setAttribute('fill', aktif ? 'currentColor' : 'none');
-  btn.setAttribute('aria-label', aktif ? 'Favorilerden çıkar' : 'Favorilere ekle');
-}
-async function favSeridiGuncelle() {
-  const row = document.getElementById('fav-row');
-  if (!row) return;
-
-  if (supabaseClient) {
-    try {
-      const { data, error } = await supabaseClient
-        .from('favori_noktalar')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
-      if (!error && data) {
-        favListesiOnbellek = data.map(f => ({ lat: f.lat, lon: f.lon, ad: f.ad || `${f.lat.toFixed(2)}, ${f.lon.toFixed(2)}` }));
-      }
-    } catch (e) { console.error("Favoriler yüklenemedi:", e); }
-  } else {
-    favListesiOnbellek = benimFavorilerimGetir().map(f => ({ ...f, ad: `${f.lat.toFixed(2)}, ${f.lon.toFixed(2)}` }));
-  }
-
-  if (favListesiOnbellek.length === 0) {
-    row.style.display = "none";
-    row.innerHTML = "";
-    return;
-  }
-  row.style.display = "flex";
-  row.innerHTML = favListesiOnbellek.map((f, i) => `
-    <button class="fav-chip" data-i="${i}" type="button">
-      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      ${escapeHtml(f.ad)}
-    </button>`).join("");
-  row.querySelectorAll('.fav-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const f = favListesiOnbellek[parseInt(chip.dataset.i, 10)];
-      map.setView([f.lat, f.lon], 13);
-      noktayaGit(f.lat, f.lon, false);
-    });
-  });
-}
-
 // Damla (pin) şeklinde özel marker ikonu — Leaflet'in standart circleMarker'ı yerine
 // gerçek bir konum iğnesi görünümü için divIcon kullanıyoruz.
 const PIN_IKON = L.divIcon({
@@ -2106,7 +1987,6 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 
 setTimeout(() => {
   map.invalidateSize();
-  favSeridiGuncelle();
   tumYorumNoktalariniGoster();
   // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Samsun/Karadeniz kıyısı.
   let sonNokta = null;
@@ -2123,14 +2003,9 @@ setTimeout(() => {
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
 
-// Harita kaydırıldığında/yakınlaştırıldığında sağ paneli (görünen alana göre) tazele.
-let yanPanelDebounce = null;
-map.on('moveend', () => {
-  clearTimeout(yanPanelDebounce);
-  yanPanelDebounce = setTimeout(() => {
-    if (Object.keys(sonGruplarOnbellek).length > 0) yanPaneliGuncelle(sonGruplarOnbellek);
-  }, 300);
-});
+// Yorum işaretleri sadece belli bir yakınlıktan sonra görünür (bkz. yorumIsaretGorunurlukGuncelle) —
+// harita her yakınlaştırıldığında/uzaklaştırıldığında görünürlüğü tazele.
+map.on('zoomend', yorumIsaretGorunurlukGuncelle);
 
 // Sayfa uzun süre açık kalırsa (örn. akşamdan geceye geçiş), temayı her 5 dakikada bir tazele.
 function temaGuncelle() {
