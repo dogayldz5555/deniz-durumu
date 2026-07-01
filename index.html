@@ -222,6 +222,30 @@
   #map.map-yakin {
     filter: saturate(1.18) contrast(1.03);
   }
+  /* Kullanıcı "büyüt" butonuna basınca haritayı tüm ekranı kaplayacak şekilde büyütüyoruz
+     (bkz. haritaTamEkranAcKapat) — hem telefonda hem bilgisayarda haritayı çok daha büyük
+     kullanabilsin diye. */
+  #map.map-tam-ekran {
+    position: fixed !important;
+    inset: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 4000;
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+  }
+  body.harita-tam-ekran-acik { overflow: hidden; }
+  .map-buyut-kontrol a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2A7FB8;
+    background: #fff;
+  }
+  .map-buyut-kontrol a:hover { background: #f2f2f2; }
   .leaflet-container { background: var(--map-bg); font-family: inherit; }
   .deniz-balon .leaflet-popup-content-wrapper {
     border-radius: 15px;
@@ -1054,7 +1078,43 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
   maxZoom: 19,
   opacity: 0.85,
 }).addTo(map);
-map.setView([41.29, 36.33], 11);
+// Uydu görüntüsü düşük zoom'da (11) bulanık/detaysız kalıyor — anlamlı bir görüntü ancak
+// biraz daha yakınlaşınca ortaya çıkıyor, bu yüzden başlangıç zoom'unu biraz artırdık.
+map.setView([41.29, 36.33], 13);
+
+// Haritayı tüm ekranı kaplayacak şekilde büyütüp küçültme kontrolü — telefonda ve
+// bilgisayarda haritayı çok daha büyük kullanabilmek için (bkz. #map.map-tam-ekran CSS'i).
+const IKON_BUYUT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
+const IKON_KUCULT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
+let haritaTamEkranAktif = false;
+function haritaTamEkranAcKapat() {
+  haritaTamEkranAktif = !haritaTamEkranAktif;
+  document.getElementById('map').classList.toggle('map-tam-ekran', haritaTamEkranAktif);
+  document.body.classList.toggle('harita-tam-ekran-acik', haritaTamEkranAktif);
+  const btn = document.getElementById('map-buyut-btn');
+  if (btn) {
+    btn.innerHTML = haritaTamEkranAktif ? IKON_KUCULT : IKON_BUYUT;
+    btn.title = haritaTamEkranAktif ? "Haritayı küçült" : "Haritayı büyüt";
+    btn.setAttribute('aria-label', btn.title);
+  }
+  // CSS boyut değişimi bir sonraki karede tamamlanır, harita boyutunu ondan sonra tazeliyoruz.
+  setTimeout(() => map.invalidateSize(), 150);
+}
+const buyutKontrol = L.control({ position: 'topright' });
+buyutKontrol.onAdd = function () {
+  const div = L.DomUtil.create('div', 'leaflet-bar map-buyut-kontrol');
+  div.innerHTML = `<a href="#" id="map-buyut-btn" title="Haritayı büyüt" aria-label="Haritayı büyüt" role="button">${IKON_BUYUT}</a>`;
+  L.DomEvent.disableClickPropagation(div);
+  L.DomEvent.on(div, 'click', (e) => {
+    L.DomEvent.preventDefault(e);
+    haritaTamEkranAcKapat();
+  });
+  return div;
+};
+buyutKontrol.addTo(map);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && haritaTamEkranAktif) haritaTamEkranAcKapat();
+});
 
 function konumAnahtari(lat, lon) {
   return lat.toFixed(2) + "," + lon.toFixed(2);
@@ -1233,7 +1293,7 @@ async function veriCekVeGoster(lat, lon) {
   const card = document.getElementById('status-card');
   document.getElementById('our-label').style.display = "block";
   card.className = "card";
-  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar, dalga ve kıyı şekli analiz ediliyor… (birkaç saniye sürebilir)</div>`;
+  card.innerHTML = `<div style="text-align:center;padding:20px 0;color:#6B6A60;font-size:14px;">Rüzgar ve dalga verisi alınıyor…</div>`;
 
   document.getElementById('gb-section').style.display = "none";
   document.getElementById('community-label').style.display = "none";
@@ -1306,32 +1366,7 @@ async function veriCekVeGoster(lat, lon) {
     // hesabına gerek yok. Değilsek, gerçek zamanlı fetch hesabı yapıp ona göre eşikleri
     // otomatik ayarlıyoruz — bu, Türkiye'nin her koyu/burnu için elle tanımlama yapmadan
     // otomatik bir "korunaklı mı açık mı" tahmini sağlar.
-    let ozelEsik = null;
-    let fetchKm = null;
-    if (denizdeyiz && !limanBul(lat, lon)) {
-      const bolgeGenel = denizBolgesi(lat, lon);
-      if (bolgeGenel) {
-        // Kaba tarama artık paralel olsa da (bkz. yonFetchMesafesi), TÜM hesaba yine de
-        // 5sn'lik bir genel üst sınır koyuyoruz — servis çok yavaşsa/yanıt vermiyorsa bu
-        // isteğe bağlı ince ayarı atlayıp bölgenin varsayılan eşikleriyle devam ediyoruz;
-        // kart asla uzun süre "analiz ediliyor" yazısında takılı kalmaz.
-        const fetchSonuc = await Promise.race([
-          fetchMesafesiHesapla(lat, lon),
-          new Promise((resolve) => setTimeout(() => resolve(null), 5000)),
-        ]);
-        if (fetchSonuc) {
-          ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
-          fetchKm = fetchSonuc.ortalamaKm;
-        }
-      }
-    }
-
-    const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
-    const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
-    const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
-
-    card.style.background = r.bg;
-    card.style.borderColor = r.border;
+    const bolgeGenel = (denizdeyiz && !limanBul(lat, lon)) ? denizBolgesi(lat, lon) : null;
 
     const yonAdi = (derece) => {
       if (derece == null) return null;
@@ -1346,110 +1381,139 @@ async function veriCekVeGoster(lat, lon) {
       return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-left:3px;transform:rotate(${aci}deg)" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>`;
     };
 
-    let metricsHtml = "";
-    if (kmh != null) {
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"/><path d="M12.59 11.59A2 2 0 1 1 14 15H2"/><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"/></svg><b>${Math.round(kmh)} km/sa</b> rüzgar${ruzgarYonu != null ? ` (${yonAdi(ruzgarYonu)}'dan)${yonOku(ruzgarYonu)}` : ""}</div>`;
-    }
-    if (gust != null) {
-      metricsHtml += `<div>Hamle <b>${Math.round(gust)} km/sa</b></div>`;
-    }
-    if (denizdeyiz && dalgaM != null) {
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><b>${dalgaM.toFixed(1)} m</b> dalga${dalgaYonu != null ? ` (${yonAdi(dalgaYonu)}'dan)${yonOku(dalgaYonu)}` : ""}</div>`;
-    }
-    if (denizdeyiz && dalgaPeriyodu != null) {
-      metricsHtml += `<div>Periyot <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
-    }
-    if (temp != null) {
-      metricsHtml += `<div>Hava <b>${Math.round(temp)}°C</b></div>`;
-    }
-    if (denizdeyiz && deniztSicaklik != null) {
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>Deniz <b>${Math.round(deniztSicaklik)}°C</b></div>`;
-    }
-    if (uvIndex != null && uvIndex > 0) {
-      const uvRenk = (v) => v < 3 ? "#1D9E75" : v < 6 ? "#C9A227" : v < 8 ? "#BA7517" : v < 11 ? "#D85A30" : "#8B3FBA";
-      metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>UV <b style="color:${uvRenk(uvIndex)}">${Math.round(uvIndex)}</b></div>`;
-    }
+    // Kartı ÇİZEN fonksiyon: rüzgar/dalga verisi gelir gelmez (bölgenin varsayılan
+    // eşikleriyle) HEMEN bir kez, sonra kıyı şekli (fetch mesafesi) hesabı arka planda
+    // bitince (varsa, hâlâ aynı noktadaysak) ince ayarlı eşikle TEKRAR çağrılır. Böylece
+    // kullanıcı rüzgar/dalga rakamlarını görmek için o yavaş, çok istekli hesabın
+    // bitmesini beklemek zorunda kalmaz — dalga verisi hemen gelir, fetch mesafesi notu
+    // (varsa) birkaç saniye sonra ayrıca belirir.
+    async function kartiCiz(ozelEsik, fetchKm) {
+      if (!tokenGecerli()) return;
+      const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
+      const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
+      const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
 
-    const ruzgarDalgasiBaskin = denizdeyiz && windWaveM != null && windWaveM >= 0.25 && windWavePeriyot != null && windWavePeriyot < 4;
-    const ruzgarDalgasiNotu = ruzgarDalgasiBaskin
-      ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Dalganın büyük kısmı yerel rüzgarın az önce oluşturduğu kısa, çırpıntılı dalga (periyot ${windWavePeriyot.toFixed(1)} sn) — bu yüzden tahmin biraz daha temkinli.</div>`
-      : "";
+      card.style.background = r.bg;
+      card.style.borderColor = r.border;
 
-    const fetchNotu = (fetchKm != null)
-      ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Açık deniz mesafesi (fetch) yaklaşık <b>${fetchKm.toFixed(0)} km</b> — ${fetchKm < 15 ? "koy/körfez gibi korunaklı bir bölge, eşikler buna göre gevşetildi." : "açık kıyı, standart bölgesel eşikler kullanıldı."}</div>`
-      : "";
-
-    // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
-    // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
-    // basit bir "kuvvetli rüzgar" uyarısı gösteriyoruz — resmi bir uyarı DEĞİL, sadece
-    // elimizdeki veriden türetilen bir gözlem.
-    const kuvvetliRuzgarUyarisi = (gust != null && gust >= 40) || (kmh != null && kmh >= 35);
-    const ruzgarUyariHtml = kuvvetliRuzgarUyarisi
-      ? `<div class="wind-warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil</div>`
-      : "";
-
-    const bolge = denizBolgesi(lat, lon);
-    const baslikYer = yerAdi || (bolge ? bolge.ad : null);
-    const durumBasligi = denizdeyiz ? ETIKET[durum] : "Kıyıdan rüzgar bilgisi";
-
-    const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null);
-
-    card.innerHTML = `
-      ${ruzgarUyariHtml}
-      <div class="card-top">
-        <div>
-          <div class="loc-label" style="color:${r.text600}">${baslikYer ? escapeHtml(baslikYer) + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
-          <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
-        </div>
-        <div style="display:flex;gap:4px;">
-          <button class="refresh-btn" id="share-btn" aria-label="Paylaş" style="color:${r.text600}">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          </button>
-          <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
-      ${ruzgarDalgasiNotu}
-      ${fetchNotu}
-      ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.</div>`}
-      ${denizdeyiz ? saatlikSeritHtml : ""}
-    `;
-
-    document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
-
-    document.getElementById('share-btn').onclick = async () => {
-      const yerMetni = baslikYer || `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
-      const metin = `${yerMetni} şu an: ${durumBasligi}\nDeniz durumu için: ${window.location.href}`;
-      if (navigator.share) {
-        try { await navigator.share({ text: metin }); } catch (e) {}
-      } else {
-        try {
-          await navigator.clipboard.writeText(metin);
-          const btn = document.getElementById('share-btn');
-          const eskiSvg = btn.innerHTML;
-          btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-          setTimeout(() => { btn.innerHTML = eskiSvg; }, 1500);
-        } catch (e) {}
+      let metricsHtml = "";
+      if (kmh != null) {
+        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"/><path d="M12.59 11.59A2 2 0 1 1 14 15H2"/><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"/></svg><b>${Math.round(kmh)} km/sa</b> rüzgar${ruzgarYonu != null ? ` (${yonAdi(ruzgarYonu)}'dan)${yonOku(ruzgarYonu)}` : ""}</div>`;
       }
-    };
+      if (gust != null) {
+        metricsHtml += `<div>Hamle <b>${Math.round(gust)} km/sa</b></div>`;
+      }
+      if (denizdeyiz && dalgaM != null) {
+        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 6c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><b>${dalgaM.toFixed(1)} m</b> dalga${dalgaYonu != null ? ` (${yonAdi(dalgaYonu)}'dan)${yonOku(dalgaYonu)}` : ""}</div>`;
+      }
+      if (denizdeyiz && dalgaPeriyodu != null) {
+        metricsHtml += `<div>Periyot <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
+      }
+      if (temp != null) {
+        metricsHtml += `<div>Hava <b>${Math.round(temp)}°C</b></div>`;
+      }
+      if (denizdeyiz && deniztSicaklik != null) {
+        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>Deniz <b>${Math.round(deniztSicaklik)}°C</b></div>`;
+      }
+      if (uvIndex != null && uvIndex > 0) {
+        const uvRenk = (v) => v < 3 ? "#1D9E75" : v < 6 ? "#C9A227" : v < 8 ? "#BA7517" : v < 11 ? "#D85A30" : "#8B3FBA";
+        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>UV <b style="color:${uvRenk(uvIndex)}">${Math.round(uvIndex)}</b></div>`;
+      }
 
-    state.lat = lat;
-    state.lon = lon;
-    state.bizimDurum = durum;
-    state.denizdeyiz = denizdeyiz;
-    state.yerAdi = baslikYer;
-    state.konumMetni = konumMetni;
-    yanPaneliGuncelle(sonGruplarOnbellek);
-    await gbAlaniniGuncelle();
+      const ruzgarDalgasiBaskin = denizdeyiz && windWaveM != null && windWaveM >= 0.25 && windWavePeriyot != null && windWavePeriyot < 4;
+      const ruzgarDalgasiNotu = ruzgarDalgasiBaskin
+        ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Dalganın büyük kısmı yerel rüzgarın az önce oluşturduğu kısa, çırpıntılı dalga (periyot ${windWavePeriyot.toFixed(1)} sn) — bu yüzden tahmin biraz daha temkinli.</div>`
+        : "";
 
-    // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
-    try {
-      localStorage.setItem('deniz-durumu-son-veri', JSON.stringify({
-        lat, lon, baslikYer, durum, durumBasligi, kmh, dalgaM, zaman: Date.now()
-      }));
-    } catch (e) {}
+      const fetchNotu = (fetchKm != null)
+        ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Açık deniz mesafesi (fetch) yaklaşık <b>${fetchKm.toFixed(0)} km</b> — ${fetchKm < 15 ? "koy/körfez gibi korunaklı bir bölge, eşikler buna göre gevşetildi." : "açık kıyı, standart bölgesel eşikler kullanıldı."}</div>`
+        : (bolgeGenel ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…</div>` : "");
+
+      // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
+      // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
+      // basit bir "kuvvetli rüzgar" uyarısı gösteriyoruz — resmi bir uyarı DEĞİL, sadece
+      // elimizdeki veriden türetilen bir gözlem.
+      const kuvvetliRuzgarUyarisi = (gust != null && gust >= 40) || (kmh != null && kmh >= 35);
+      const ruzgarUyariHtml = kuvvetliRuzgarUyarisi
+        ? `<div class="wind-warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil</div>`
+        : "";
+
+      const bolge = denizBolgesi(lat, lon);
+      const baslikYer = yerAdi || (bolge ? bolge.ad : null);
+      const durumBasligi = denizdeyiz ? ETIKET[durum] : "Kıyıdan rüzgar bilgisi";
+
+      const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null);
+
+      card.innerHTML = `
+        ${ruzgarUyariHtml}
+        <div class="card-top">
+          <div>
+            <div class="loc-label" style="color:${r.text600}">${baslikYer ? escapeHtml(baslikYer) + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
+            <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
+          </div>
+          <div style="display:flex;gap:4px;">
+            <button class="refresh-btn" id="share-btn" aria-label="Paylaş" style="color:${r.text600}">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+            <button class="refresh-btn" id="refresh-btn" aria-label="Yenile" style="color:${r.text600}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
+        ${ruzgarDalgasiNotu}
+        ${fetchNotu}
+        ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.</div>`}
+        ${denizdeyiz ? saatlikSeritHtml : ""}
+      `;
+
+      document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
+
+      document.getElementById('share-btn').onclick = async () => {
+        const yerMetni = baslikYer || `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+        const metin = `${yerMetni} şu an: ${durumBasligi}\nDeniz durumu için: ${window.location.href}`;
+        if (navigator.share) {
+          try { await navigator.share({ text: metin }); } catch (e) {}
+        } else {
+          try {
+            await navigator.clipboard.writeText(metin);
+            const btn = document.getElementById('share-btn');
+            const eskiSvg = btn.innerHTML;
+            btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+            setTimeout(() => { btn.innerHTML = eskiSvg; }, 1500);
+          } catch (e) {}
+        }
+      };
+
+      state.lat = lat;
+      state.lon = lon;
+      state.bizimDurum = durum;
+      state.denizdeyiz = denizdeyiz;
+      state.yerAdi = baslikYer;
+      state.konumMetni = konumMetni;
+      yanPaneliGuncelle(sonGruplarOnbellek);
+      await gbAlaniniGuncelle();
+
+      // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
+      try {
+        localStorage.setItem('deniz-durumu-son-veri', JSON.stringify({
+          lat, lon, baslikYer, durum, durumBasligi, kmh, dalgaM, zaman: Date.now()
+        }));
+      } catch (e) {}
+    }
+
+    await kartiCiz(null, null);
+
+    // Kıyı şekli (fetch mesafesi) hesabını ARKA PLANDA başlatıyoruz — bitmesini beklemeden
+    // yukarıdaki ilk çizim zaten kullanıcıya gösterildi. Sonuç gelince (hâlâ aynı noktadaysak)
+    // kartı sadece eşik/renk açısından ikinci kez çiziyoruz.
+    if (bolgeGenel) {
+      fetchMesafesiHesapla(lat, lon).then((fetchSonuc) => {
+        if (!fetchSonuc || !tokenGecerli()) return;
+        const ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+        kartiCiz(ozelEsik, fetchSonuc.ortalamaKm);
+      }).catch(() => {});
+    }
   } catch (e) {
     let onbellekHtml = "";
     try {
@@ -1550,6 +1614,40 @@ function konumGrupAnahtari(lat, lon) {
   return Math.round(lat / 0.007) + "," + Math.round(lon / 0.007);
 }
 
+// Harita üzerindeki işaretlerin rengi artık deniz durumuna göre DEĞİL, konuma göre —
+// her farklı nokta (ör. Mimar Sinan Mah. / İncesu Mah.) kendine has, sabit ama "rastgele"
+// görünen bir renk alır; aynı konum her zaman aynı rengi alır (basit bir string hash'i),
+// böylece sayfa yenilendiğinde renkler değişip kullanıcıyı şaşırtmaz. Durum (iyi/tehlikeli
+// vb.) bilgisi zaten balon içindeki rozette ayrıca gösteriliyor, kaybolmuyor.
+const KONUM_RENK_PALETI = [
+  "#8E44AD", "#E67E22", "#16A085", "#D35400", "#2980B9",
+  "#C0392B", "#27AE60", "#B8860B", "#DB4C8C", "#1ABC9C",
+  "#6C5CE7", "#CD6133",
+];
+function konumRengi(anahtar) {
+  let h = 0;
+  for (let i = 0; i < anahtar.length; i++) h = (h * 31 + anahtar.charCodeAt(i)) >>> 0;
+  return KONUM_RENK_PALETI[h % KONUM_RENK_PALETI.length];
+}
+
+// Hem harita üzerindeki yorum noktaları hem de o an tıklanan/seçili nokta AYNI damla (pin)
+// şeklini kullanır — sadece rengi (konuma göre) ve boyutu (seçili nokta biraz daha büyük)
+// değişir. Önceki tasarım hem çok büyüktü (30x40) hem de "seçili nokta" için düz bir
+// yuvarlaktı; bu ikisi arasında tutarlı, tanıdık bir "harita iğnesi" görünümüne döndük.
+function pinIkonOlustur(renkHex, buyukMu) {
+  const w = buyukMu ? 24 : 20, h = buyukMu ? 31 : 26;
+  return L.divIcon({
+    className: 'deniz-pin-wrap',
+    html: `<svg width="${w}" height="${h}" viewBox="0 0 22 29" style="filter:drop-shadow(0 2px 4px rgba(20,56,74,0.4));">
+      <path d="M11 0C4.9 0 0 4.9 0 11c0 8 11 18 11 18s11-10 11-18C22 4.9 17.1 0 11 0z" fill="${renkHex}"/>
+      <circle cx="11" cy="11" r="4.8" fill="white"/>
+    </svg>`,
+    iconSize: [w, h],
+    iconAnchor: [w / 2, h],
+    popupAnchor: [0, -h + 3],
+  });
+}
+
 async function tumYorumNoktalariniGoster() {
   if (!supabaseClient) return;
   try {
@@ -1573,19 +1671,13 @@ async function tumYorumNoktalariniGoster() {
       gruplar[key].kayitlar.push(d);
     });
 
-    Object.values(gruplar).forEach(grup => {
+    Object.entries(gruplar).forEach(([key, grup]) => {
       const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
       grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
       const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
       const r = aktifRenkler()[baskin];
 
-      const isaret = L.circleMarker([grup.lat, grup.lon], {
-        radius: 6,
-        color: "white",
-        weight: 2,
-        fillColor: r.border,
-        fillOpacity: 0.95,
-      });
+      const isaret = L.marker([grup.lat, grup.lon], { icon: pinIkonOlustur(konumRengi(key), false) });
 
       const liste = grup.kayitlar.map(d => ({
         durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
@@ -2004,25 +2096,16 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   state.marker.openPopup();
 }
 
-// Seçili noktayı gösteren marker — eskiden 30x40'lık büyük bir damla (pin) ikonuydu,
-// haritada gereksiz yer kaplıyordu. Onun yerine daha küçük, yuvarlak/halka şeklinde,
-// tam tıklanan noktanın MERKEZİNDE duran kompakt bir işaret kullanıyoruz.
-const PIN_IKON = L.divIcon({
-  className: 'deniz-pin-wrap',
-  html: `<svg width="20" height="20" viewBox="0 0 20 20" style="filter:drop-shadow(0 2px 3px rgba(20,56,74,0.4));">
-    <circle cx="10" cy="10" r="8" fill="#2A7FB8" stroke="white" stroke-width="2.5"/>
-    <circle cx="10" cy="10" r="2.8" fill="white"/>
-  </svg>`,
-  iconSize: [20, 20],
-  iconAnchor: [10, 10],
-  popupAnchor: [0, -12],
-});
-
 function noktayaGit(lat, lng, haritayiOdakla) {
+  // Seçili noktanın rengi de diğer noktalarla aynı mantıkla (konum bazlı) belirlenir —
+  // aynı konuma tekrar tıklanırsa/dönülürse hep aynı renk çıkar.
+  const renk = konumRengi(konumGrupAnahtari(lat, lng));
+  const ikon = pinIkonOlustur(renk, true);
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
+    state.marker.setIcon(ikon);
   } else {
-    state.marker = L.marker([lat, lng], { icon: PIN_IKON }).addTo(map);
+    state.marker = L.marker([lat, lng], { icon: ikon }).addTo(map);
   }
   if (haritayiOdakla) map.setView([lat, lng], YORUM_ISARET_MIN_ZOOM);
   veriCekVeGoster(lat, lng);
@@ -2068,10 +2151,10 @@ setTimeout(() => {
     if (kayit) sonNokta = JSON.parse(kayit);
   } catch (e) {}
   if (sonNokta && typeof sonNokta.lat === "number" && typeof sonNokta.lng === "number") {
-    map.setView([sonNokta.lat, sonNokta.lng], 12);
+    map.setView([sonNokta.lat, sonNokta.lng], 14);
     noktayaGit(sonNokta.lat, sonNokta.lng, false);
   } else {
-    map.setView([41.29, 36.33], 11);
+    map.setView([41.29, 36.33], 13);
   }
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
