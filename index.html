@@ -1122,7 +1122,13 @@ function koordinatKaydir(lat, lon, aciDerece, mesafeKm) {
 
 async function noktaSuMu(lat, lon) {
   try {
-    const res = await fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`);
+    // is-on-water.balbona.me bazen hiç yanıt vermeyip isteği askıda bırakabiliyor —
+    // fetch'in kendi başına zaman aşımı yok, bu yüzden AbortController ile 3sn sonra
+    // kendimiz iptal ediyoruz (bkz. fetchMesafesiHesapla'daki genel zaman aşımı da).
+    const controller = new AbortController();
+    const zamanAsimi = setTimeout(() => controller.abort(), 3000);
+    const res = await fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`, { signal: controller.signal });
+    clearTimeout(zamanAsimi);
     if (!res.ok) return null;
     const data = await res.json();
     // API'nin kendi "isWater" alanına güveniyoruz — "feature" alanına (OCEAN/RIVER/LAKE/LAND)
@@ -1283,7 +1289,15 @@ async function veriCekVeGoster(lat, lon) {
     if (denizdeyiz && !limanBul(lat, lon)) {
       const bolgeGenel = denizBolgesi(lat, lon);
       if (bolgeGenel) {
-        const fetchSonuc = await fetchMesafesiHesapla(lat, lon);
+        // Tek tek isteklerdeki 3sn'lik zaman aşımına rağmen (bkz. noktaSuMu), 8 yön x en
+        // fazla 10 sorgu üst üste yavaş dönerse toplam süre yine de uzayabilir — bu yüzden
+        // TÜM hesaba 8sn'lik genel bir üst sınır koyuyoruz. Süre dolarsa bu isteğe bağlı
+        // ince ayarı atlayıp bölgenin varsayılan eşikleriyle devam ediyoruz; kart asla
+        // sonsuza kadar "analiz ediliyor" yazısında takılı kalmaz.
+        const fetchSonuc = await Promise.race([
+          fetchMesafesiHesapla(lat, lon),
+          new Promise((resolve) => setTimeout(() => resolve(null), 8000)),
+        ]);
         if (fetchSonuc) {
           ozelEsik = fetchTabanliEsik(fetchSonuc.ortalamaKm, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
           fetchKm = fetchSonuc.ortalamaKm;
