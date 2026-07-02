@@ -1282,8 +1282,14 @@ function haritaTamEkranAcKapat() {
 // Tam ekran haritada veri kartını gösterir ve 13sn etkileşimsiz kalırsa otomatik gizler —
 // kullanıcı çarpıya basarak da istediği an elle kapatabilir (bkz. #tam-ekran-veri-kapat).
 let tamEkranVeriTimeout = null;
+// Kullanıcı çarpıya basıp paneli kapattıktan SONRA, aynı nokta için arka planda bitmiş bir
+// kıyı şekli (fetch mesafesi) hesabı kartı yeniden çizerse (bkz. kartiCiz -> tamEkranVeriGoster
+// her render'da çağrılıyor), panel istemeden tekrar açılıyordu — "1. tıklamada tekrar açılıyor"
+// diye bildirilen hata buydu. Bu bayrak, kullanıcı BİLEREK kapattıysa yeni bir nokta
+// seçilene kadar (bkz. noktayaGit) otomatik yeniden açılmayı engelliyor.
+let tamEkranPanelKapatildiMi = false;
 function tamEkranVeriGoster() {
-  if (!haritaTamEkranAktif) return;
+  if (!haritaTamEkranAktif || tamEkranPanelKapatildiMi) return;
   document.getElementById('status-card').classList.remove('tam-ekran-gizli');
   document.getElementById('tam-ekran-veri-kapat').classList.remove('tam-ekran-gizli');
   clearTimeout(tamEkranVeriTimeout);
@@ -1293,6 +1299,7 @@ function tamEkranVeriGoster() {
   }, 13000);
 }
 document.getElementById('tam-ekran-veri-kapat').addEventListener('click', () => {
+  tamEkranPanelKapatildiMi = true;
   clearTimeout(tamEkranVeriTimeout);
   document.getElementById('status-card').classList.add('tam-ekran-gizli');
   document.getElementById('tam-ekran-veri-kapat').classList.add('tam-ekran-gizli');
@@ -2456,6 +2463,9 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
 }
 
 function noktayaGit(lat, lng, haritayiOdakla) {
+  // Yeni bir nokta seçiliyor — kullanıcı önceki noktada tam ekran panelini elle kapatmış
+  // olsa bile, bu YENİ nokta için panel yine normal şekilde açılabilsin.
+  tamEkranPanelKapatildiMi = false;
   // Seçili noktanın rengi de diğer noktalarla aynı mantıkla (konum bazlı) belirlenir —
   // aynı konuma tekrar tıklanırsa/dönülürse hep aynı renk çıkar.
   const renk = konumRengi(konumGrupAnahtari(lat, lng));
@@ -2473,6 +2483,32 @@ function noktayaGit(lat, lng, haritayiOdakla) {
 
 map.on('click', (e) => {
   noktayaGit(e.latlng.lat, e.latlng.lng, false);
+});
+
+// Kullanıcı haritayı SÜRÜKLEMEYE (elle kaydırmaya) başlar başlamaz — artık başka bir yere
+// bakıyor olabileceği için — tıkladığımız pini (yorum yapılmış konum noktaları DEĞİL, sadece
+// bizim seçtiğimiz tekil işaret) ve rüzgar/dalga veri kartını (hem normal hem tam ekran
+// haritada) kaldırıyoruz. 'dragstart' bilerek kullanıldı: 'movestart' bizim kendi
+// map.setView(...) çağrılarımızda da (ör. bir noktaya git) tetiklenir, oysa burada SADECE
+// kullanıcının eliyle sürüklemesini yakalamak istiyoruz.
+map.on('dragstart', () => {
+  state.veriCekSayac++; // eski noktaya ait arka planda bekleyen işler artık geçersiz sayılsın
+  if (state.marker) {
+    map.removeLayer(state.marker);
+    state.marker = null;
+  }
+  document.getElementById('our-label').style.display = "none";
+  const card = document.getElementById('status-card');
+  card.className = "card placeholder";
+  card.innerHTML = "Haritada bir noktaya tıkla.";
+  document.getElementById('gb-section').style.display = "none";
+  document.getElementById('community-label').style.display = "none";
+  document.getElementById('community-summary-wrap').style.display = "none";
+  document.getElementById('conflict-note').style.display = "none";
+  tamEkranPanelKapatildiMi = true;
+  clearTimeout(tamEkranVeriTimeout);
+  card.classList.add('tam-ekran-gizli');
+  document.getElementById('tam-ekran-veri-kapat').classList.add('tam-ekran-gizli');
 });
 
 // "Bildir" butonları Leaflet balonlarının (popup) İÇİNDE, dinamik olarak eklenen HTML —
