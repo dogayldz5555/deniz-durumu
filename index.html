@@ -1059,6 +1059,7 @@ const CEVIRI = {
     fetch_notu_acik: (km) => `Açık deniz mesafesi (fetch) yaklaşık <b>${km} km</b> — açık kıyı, standart bölgesel eşikler kullanıldı.`,
     fetch_notu_bekleniyor: "Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
+    swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -1177,6 +1178,7 @@ const CEVIRI = {
     fetch_notu_acik: (km) => `Open-water distance (fetch) is about <b>${km} km</b> — open coast, standard regional thresholds used.`,
     fetch_notu_bekleniyor: "Analyzing the coastline shape, a fine-tuned threshold may arrive in a few seconds…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
+    swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -1467,13 +1469,22 @@ function durumPuani(durum) {
 // daha rahatsız edici olur — bu yüzden böyle durumlarda yarım puan ekliyoruz. Ama bunu SADECE
 // dalga zaten bir miktar varken (0.25m üstü) uyguluyoruz; yoksa çok küçük dalgalarda bile
 // yanlış alarm verir.
-function durumDenizden(dalgaM, kmh, gustKmh, windWaveM, windWavePeriyot, lat, lon, ozelEsik) {
+function durumDenizden(dalgaM, kmh, gustKmh, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) {
   // ozelEsik varsa (gerçek zamanlı fetch hesabından geldiyse) onu kullan; yoksa elle
   // tanımlı liman/bölge sistemine düş. Liman gibi KESİN bilinen noktalar her zaman
   // fetch tahmininden daha güvenilir kabul edilip önceliklidir (limanBul kontrolü
   // çağıran kodda zaten yapılıyor, ozelEsik sadece liman DEĞİLSE gönderiliyor).
   const bolge = denizBolgesi(lat, lon);
-  const esikDalga = ozelEsik ? ozelEsik.esikDalga : (bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA);
+  // ÖNEMLİ: fetch hesabı SADECE yerel rüzgarın o an estiği yöndeki açık su mesafesine
+  // bakar — rüzgar karadan esiyorsa (bkz. yukarıdaki not) bu mesafe gerçekten sıfıra
+  // yakın olur ve dalga eşiklerini haklı olarak gevşetir. AMA "swell" (uzaktaki, farklı
+  // yönde esen bir fırtınanın ürettiği, yerel rüzgardan bağımsız, uzun periyotlu dalga)
+  // bu yerel engelden hiç etkilenmez — zaten açık sudan gelip kıyıya ulaşmıştır. Belirgin
+  // bir swell varken yerel fetch'e göre gevşetilmiş eşiği kullanmak, "kara rüzgarı esiyor,
+  // deniz sakin olmalı" varsayımıyla gerçek swell'i gözden kaçırabilir — bu yüzden swell
+  // belirginse (>=0.15m VE >=6sn periyot, kısa/huysuz yerel dalgadan ayırt etmek için)
+  // dalga eşiği için bölgenin standart (gevşetilmemiş) değerine dönüyoruz.
+  const esikDalga = (ozelEsik && !swellBelirginMi(swellM, swellPeriyot)) ? ozelEsik.esikDalga : (bolge ? bolge.esikDalga : VARSAYILAN_ESIK_DALGA);
   const esikRuzgar = ozelEsik ? ozelEsik.esikRuzgar : (bolge ? bolge.esikRuzgar : VARSAYILAN_ESIK_RUZGAR);
   // Hamle eşiği, ortalama rüzgar eşiğinden biraz daha gevşek tutuluyor — kısa süreli ani
   // esintiler ortalama rüzgar kadar belirleyici olmasın, ama tamamen göz ardı edilmesin.
@@ -1851,6 +1862,13 @@ async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
   }
 }
 
+// Belirgin bir swell (uzaktan gelen, yerel rüzgardan bağımsız, uzun periyotlu dalga) var mı?
+// >=0.15m VE >=6sn periyot şartı, kısa/huysuz yerel rüzgar dalgasından (windWave) ayırt etmek
+// için (bkz. durumDenizden'deki fetch-eşiği notu).
+function swellBelirginMi(swellM, swellPeriyot) {
+  return swellM != null && swellPeriyot != null && swellM >= 0.15 && swellPeriyot >= 6;
+}
+
 // fetchKm'e göre kullanıcıya gösterilecek notu seçer. 2km altı ayrı bir kademe: bu genelde
 // coğrafi bir koy/körfez değil, o anki rüzgarın kıyıdan (karadan) esiyor olmasından
 // kaynaklanır — rüzgar yönü değişince fetch de değişeceği için bunu "kalıcı korunaklı
@@ -1986,7 +2004,7 @@ async function veriCekVeGoster(lat, lon) {
     // (varsa) birkaç saniye sonra ayrıca belirir.
     async function kartiCiz(ozelEsik, fetchKm) {
       if (!tokenGecerli()) return;
-      const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
+      const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) : null;
       const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
       const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
 
@@ -2026,8 +2044,11 @@ async function veriCekVeGoster(lat, lon) {
       // aşağıdaki kartiCiz çağrısının dışı) bu iki alan, kartı BAŞTAN çizmeden, sadece
       // içeriklerini değiştirerek güncellenebiliyor — böylece küçük bir eşik ince ayarı
       // için ana başlığı/rengi yeniden çizmeye gerek kalmıyor.
+      const swellNotu = (fetchKm != null && swellBelirginMi(swellM, swellPeriyot))
+        ? ` ${t('swell_notu', swellM.toFixed(1), swellPeriyot.toFixed(0))}`
+        : "";
       const fetchNotuIcerik = fetchKm != null
-        ? fetchNotuMetni(fetchKm)
+        ? fetchNotuMetni(fetchKm) + swellNotu
         : (bolgeGenel ? t('fetch_notu_bekleniyor') : "");
       const fetchNotu = `<div id="fetch-notu-alani" style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchNotuIcerik}</div><div id="fetch-uyari-alani"></div>`;
 
@@ -2123,7 +2144,7 @@ async function veriCekVeGoster(lat, lon) {
       fetchMesafesiHesapla(lat, lon, ruzgarYonu).then((fetchSonuc) => {
         if (!fetchSonuc || !tokenGecerli()) return;
         const ozelEsik = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
-        const yeniDurum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
+        const yeniDurum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) : null;
         const eskiPuan = durumPuani(state.bizimDurum);
         const yeniPuan = durumPuani(yeniDurum);
         const fark = (eskiPuan != null && yeniPuan != null) ? Math.abs(yeniPuan - eskiPuan) : 0;
@@ -2134,7 +2155,8 @@ async function veriCekVeGoster(lat, lon) {
         const notuAlani = document.getElementById('fetch-notu-alani');
         const uyariAlani = document.getElementById('fetch-uyari-alani');
         if (notuAlani) {
-          notuAlani.innerHTML = fetchNotuMetni(fetchSonuc.km);
+          const swellNotu = swellBelirginMi(swellM, swellPeriyot) ? ` ${t('swell_notu', swellM.toFixed(1), swellPeriyot.toFixed(0))}` : "";
+          notuAlani.innerHTML = fetchNotuMetni(fetchSonuc.km) + swellNotu;
         }
         if (uyariAlani) {
           uyariAlani.innerHTML = `<div class="fetch-fark-uyari">${t('fetch_farkli_sonuc_uyarisi', ilkHarfBuyuk(ETIKET_KISA(yeniDurum)))}</div>`;
