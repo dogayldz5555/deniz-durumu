@@ -980,6 +980,37 @@ function durumRozetiSvg(durum) {
   return `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${yol}</svg>`;
 }
 
+// === Şüpheli/uygunsuz yorum bildirme ===
+// Anon kullanıcılara kalıcı silme yetkisi BİLEREK verilmedi (bkz. schema.sql) — bu yüzden
+// topluluk kendi kendini denetlesin diye sadece bir sayaç artıran güvenli bir "bildir"
+// düğmesi koyuyoruz. Sayaç bir eşiği geçince yorum burada (istemci tarafında) soluklaştırılır;
+// fotoğraf İSE daha düşük bir eşikte tamamen gizlenir — görsel içerik metne göre daha riskli,
+// bu yüzden daha az bildirimle kayboluyor. Gerçekten silmek istersen (proje sahibi olarak)
+// Supabase Table Editor/Storage'dan kendin silebilirsin.
+const SIKAYET_ESIK_YORUM = 3;
+const SIKAYET_ESIK_FOTO = 2;
+const SIKAYET_ANAHTARI = 'deniz-durumu-sikayet-edilenler';
+
+function sikayetEdilenIdleriGetir() {
+  try { return JSON.parse(localStorage.getItem(SIKAYET_ANAHTARI) || "[]"); } catch (e) { return []; }
+}
+function sikayetEdildiIsaretle(id) {
+  try {
+    const liste = sikayetEdilenIdleriGetir();
+    if (!liste.includes(id)) { liste.push(id); localStorage.setItem(SIKAYET_ANAHTARI, JSON.stringify(liste)); }
+  } catch (e) {}
+}
+
+const BAYRAK_IKON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>';
+
+// gb.id yoksa (ör. konum_metni gibi bu kolon da henüz migration'ı çalıştırılmamışsa) hiçbir
+// şey göstermiyoruz — tıklanacak, RPC'ye gönderilecek bir kimlik olmaz.
+function bildirButonuHtml(gb) {
+  if (gb.id == null) return "";
+  const bildirilmis = sikayetEdilenIdleriGetir().includes(gb.id);
+  return `<button type="button" class="gb-bildir-btn" data-id="${gb.id}" ${bildirilmis ? "disabled" : ""} aria-label="${bildirilmis ? "Bildirildi" : "Şüpheli/uygunsuz bildir"}" title="${bildirilmis ? "Bildirildi, teşekkürler" : "Şüpheli/uygunsuz bildir"}" style="background:none;border:none;padding:2px;margin:0;cursor:${bildirilmis ? "default" : "pointer"};color:${bildirilmis ? "#D9362E" : "#B7C2CC"};flex-shrink:0;display:flex;align-items:center;">${BAYRAK_IKON}</button>`;
+}
+
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
 // bu yüzden eşikler denize göre değişir. Her bölge için BEŞ kademe tanımlı:
@@ -1763,7 +1794,7 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null, foto: d.foto_url || null })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null, foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0 })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
@@ -1886,22 +1917,29 @@ async function tumYorumNoktalariniGoster() {
       const isaret = L.marker([grup.lat, grup.lon], { icon: noktaIkonuOlustur(konumRengi(key)) });
 
       const liste = grup.kayitlar.map(d => ({
-        durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
-        isim: d.kullanici_adi || "Anonim", foto: d.foto_url || null,
+        id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
+        isim: d.kullanici_adi || "Anonim", foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0,
       }));
       const yorumlarHtml = liste.slice(0, 8).map(gb => {
         const rr = aktifRenkler()[gb.durum];
         const isimGuvenli = escapeHtml(gb.isim || "Anonim");
-        return `<div style="display:flex;gap:7px;padding:6px 0;border-top:1px solid rgba(20,56,74,0.08);">
+        const cokSikayetli = (gb.sikayet || 0) >= SIKAYET_ESIK_YORUM;
+        const fotoGizli = (gb.sikayet || 0) >= SIKAYET_ESIK_FOTO;
+        return `<div style="display:flex;gap:7px;padding:6px 0;border-top:1px solid rgba(20,56,74,0.08);opacity:${cokSikayetli ? 0.4 : 1};">
           <span style="width:18px;height:18px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;margin-top:1px;"></span>
           <div style="flex:1;min-width:0;">
-            <div style="display:flex;justify-content:space-between;gap:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
               <span style="font-size:11.5px;font-weight:600;color:${YORUM_ISIM_RENGI};">${isimGuvenli}</span>
-              <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+              <span style="display:flex;align-items:center;gap:4px;flex-shrink:0;">
+                <span style="font-size:10px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+                ${bildirButonuHtml(gb)}
+              </span>
             </div>
             <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 8px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
             ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:4px;">${escapeHtml(gb.not)}</div>` : ""}
-            ${gb.foto ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:150px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
+            ${gb.foto && !fotoGizli ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:150px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
+            ${gb.foto && fotoGizli ? `<div style="font-size:10px;color:#993C1D;margin-top:4px;">Fotoğraf, birden fazla bildirim nedeniyle gizlendi.</div>` : ""}
+            ${cokSikayetli ? `<div style="font-size:10px;color:#993C1D;margin-top:4px;">⚠ Bu yorum birden fazla kişi tarafından şüpheli/uygunsuz bulundu.</div>` : ""}
           </div>
         </div>`;
       }).join("");
@@ -2296,20 +2334,27 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
     const rr = aktifRenkler()[gb.durum];
     const isimGuvenli = escapeHtml(gb.isim || "Anonim");
     const dakikaFark = (Date.now() - gb.zaman) / 60000;
-    const opaklik = Math.max(0.5, 1 - dakikaFark / 120);
+    const cokSikayetli = (gb.sikayet || 0) >= SIKAYET_ESIK_YORUM;
+    const fotoGizli = (gb.sikayet || 0) >= SIKAYET_ESIK_FOTO;
+    const opaklik = cokSikayetli ? 0.35 : Math.max(0.5, 1 - dakikaFark / 120);
     return `
       <div style="display:flex;gap:7px;padding:7px 0;border-top:1px solid rgba(20,56,74,0.08);opacity:${opaklik.toFixed(2)};">
         <span style="width:22px;height:22px;border-radius:50%;background:${rr.bg};border:1.5px solid ${rr.border};flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;">
           <span style="width:6px;height:6px;border-radius:50%;background:${rr.border};display:inline-block;"></span>
         </span>
         <div style="flex:1;min-width:0;">
-          <div style="display:flex;justify-content:space-between;gap:6px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
             <span style="font-size:12px;font-weight:600;color:${YORUM_ISIM_RENGI};">${isimGuvenli}</span>
-            <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+            <span style="display:flex;align-items:center;gap:4px;flex-shrink:0;">
+              <span style="font-size:10.5px;color:#9AAEBA;white-space:nowrap;">${zamanFormat(gb.zaman)}</span>
+              ${bildirButonuHtml(gb)}
+            </span>
           </div>
           <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 9px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10.5px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
           ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:4px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
-          ${gb.foto ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:170px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
+          ${gb.foto && !fotoGizli ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:170px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
+          ${gb.foto && fotoGizli ? `<div style="font-size:10.5px;color:#993C1D;margin-top:4px;">Fotoğraf, birden fazla bildirim nedeniyle gizlendi.</div>` : ""}
+          ${cokSikayetli ? `<div style="font-size:10.5px;color:#993C1D;margin-top:4px;">⚠ Bu yorum birden fazla kişi tarafından şüpheli/uygunsuz bulundu.</div>` : ""}
         </div>
       </div>`;
   }).join("");
@@ -2386,6 +2431,27 @@ function noktayaGit(lat, lng, haritayiOdakla) {
 
 map.on('click', (e) => {
   noktayaGit(e.latlng.lat, e.latlng.lng, false);
+});
+
+// "Bildir" butonları Leaflet balonlarının (popup) İÇİNDE, dinamik olarak eklenen HTML —
+// her balon yeniden çizildiğinde tek tek dinleyici bağlamak yerine, document üzerinden
+// olay devretme (event delegation) ile TEK bir dinleyici her zaman çalışır.
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.gb-bildir-btn');
+  if (!btn || btn.disabled) return;
+  const id = parseInt(btn.dataset.id, 10);
+  if (!id || !supabaseClient) return;
+
+  btn.disabled = true;
+  btn.style.color = "#D9362E";
+  sikayetEdildiIsaretle(id);
+
+  try {
+    const { error } = await supabaseClient.rpc('sikayet_isaretle', { bildirim_id: id });
+    if (error) console.error("Şikayet gönderilemedi:", error);
+  } catch (err) {
+    console.error("Şikayet gönderilemedi:", err);
+  }
 });
 
 document.getElementById('locate-btn').addEventListener('click', () => {

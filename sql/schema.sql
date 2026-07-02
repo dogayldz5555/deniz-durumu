@@ -155,3 +155,24 @@ on storage.objects for select
 to anon
 using (bucket_id = 'yorum-fotolari');
 
+-- === Şüpheli/uygunsuz yorum bildirme ===
+-- Anon kullanıcıların bir yorumu (ve varsa fotoğrafını) doğrudan silme/değiştirme yetkisi
+-- yok (bkz. yukarıdaki notlar) — bu yüzden "faydali_isaretle" ile AYNI güvenli desen: SADECE
+-- sayacı artıran bir fonksiyon. Sayaç bir eşiği geçince istemci tarafında (index.html)
+-- yorum soluklaştırılıyor / fotoğrafı gizleniyor — satırı gerçekten silmek istersen proje
+-- sahibi olarak Supabase Table Editor'dan/Storage'dan kendin silebilirsin.
+alter table geri_bildirimler add column if not exists sikayet_sayisi int not null default 0;
+
+create or replace function sikayet_isaretle(bildirim_id bigint)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update geri_bildirimler
+  set sikayet_sayisi = sikayet_sayisi + 1
+  where id = bildirim_id;
+$$;
+
+grant execute on function sikayet_isaretle(bigint) to anon;
+
