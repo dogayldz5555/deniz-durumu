@@ -129,3 +129,29 @@ using (true);
 -- gösterilmiyor, sadece toplanıyor. İstersen ileride Supabase Table Editor'dan
 -- kendin görüntüleyebilirsin (proje sahibi olarak zaten erişimin var).
 
+-- === Fotoğraflı yorumlar ===
+-- Kullanıcılar deniz durumu yorumuna isteğe bağlı bir fotoğraf ekleyebilir.
+alter table geri_bildirimler add column if not exists foto_url text;
+
+-- Fotoğrafların yükleneceği, herkese açık okunabilir bir Storage bucket'ı.
+-- (storage.buckets normal bir tablo olduğu için buraya SQL ile de eklenebiliyor,
+-- Dashboard > Storage'dan elle oluşturmana gerek yok.)
+insert into storage.buckets (id, name, public)
+values ('yorum-fotolari', 'yorum-fotolari', true)
+on conflict (id) do nothing;
+
+-- Herkes (anon) bu bucket'a fotoğraf yükleyebilsin — ama SADECE ekleyebilir, diğer
+-- tablolardaki aynı prensip: var olan bir fotoğrafı kimse değiştiremez/silemez.
+drop policy if exists "Herkes yorum fotoğrafı yükleyebilir" on storage.objects;
+create policy "Herkes yorum fotoğrafı yükleyebilir"
+on storage.objects for insert
+to anon
+with check (bucket_id = 'yorum-fotolari');
+
+-- Herkes fotoğrafları görebilsin (bucket zaten public ama garanti olsun):
+drop policy if exists "Herkes yorum fotoğraflarını görebilir" on storage.objects;
+create policy "Herkes yorum fotoğraflarını görebilir"
+on storage.objects for select
+to anon
+using (bucket_id = 'yorum-fotolari');
+

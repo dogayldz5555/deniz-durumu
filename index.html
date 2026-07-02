@@ -469,6 +469,35 @@
   .gb-btn:hover { border-color: rgba(40,40,30,0.22); }
   .gb-btn svg { width: 16px; height: 16px; }
   .gb-btn.active { border-width: 1.5px; }
+  .gb-foto-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .gb-foto-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: #6B6A60;
+    cursor: pointer;
+    border: 1px dashed rgba(40,40,30,0.28);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  .gb-foto-btn:hover { border-color: rgba(40,40,30,0.45); }
+  .gb-foto-onizleme { width: 34px; height: 34px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+  .gb-foto-kaldir {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(40,40,30,0.14);
+    color: #4A1B0C;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
   .gb-input-row { display: flex; gap: 8px; }
   .gb-input-row input {
     flex: 1;
@@ -669,6 +698,25 @@
     font-weight: 500;
     margin: 0 0 7px 2px;
   }
+  .populer-noktalar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .populer-nokta-btn {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--locate-text);
+    background: var(--locate-bg);
+    border: 1px solid var(--locate-border);
+    border-radius: 999px;
+    padding: 5px 11px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .populer-nokta-btn:hover { background: rgba(255,255,255,0.95); }
   .community-summary {
     display: flex;
     align-items: center;
@@ -790,6 +838,9 @@
     </button>
   </div>
 
+  <p class="section-label">Popüler noktalar</p>
+  <div class="populer-noktalar" id="populer-noktalar"></div>
+
   <div id="map"></div>
   <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" aria-label="Veri panelini kapat">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -813,6 +864,16 @@
       <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg>Hafif</button>
       <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Fazla</button>
       <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Tehlikeli</button>
+    </div>
+    <div class="gb-foto-row" id="gb-foto-row" style="display:none;">
+      <label for="gb-foto-input" class="gb-foto-btn" id="gb-foto-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <span>Fotoğraf ekle (opsiyonel)</span>
+      </label>
+      <input type="file" id="gb-foto-input" accept="image/*" style="display:none;" />
+      <img id="gb-foto-onizleme" class="gb-foto-onizleme" style="display:none;" alt="Seçilen fotoğraf önizlemesi" />
+      <button type="button" id="gb-foto-kaldir" class="gb-foto-kaldir" style="display:none;" aria-label="Fotoğrafı kaldır">×</button>
+      <span id="gb-foto-hata" style="display:none;font-size:11px;color:#993C1D;"></span>
     </div>
     <div class="gb-input-row" id="gb-input-row" style="display:none;">
       <input type="text" id="gb-note" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
@@ -985,6 +1046,24 @@ const LIMANLAR = [
   { ad: "Samsun Limanı", lat: 41.30, lon: 36.367, yaricapKm: 1.2,
     esikDalga:  { carsaf: 0.3, iyi: 0.6, hafif: 1.0, fazla: 1.6 },
     esikRuzgar: { carsaf: 8,   iyi: 16,  hafif: 26,  fazla: 38  } },
+];
+
+// Türkiye'nin bilinen sahil noktalarına tek tıkla gidebilmek için — hem kullanıcı için
+// hızlı bir kısayol, hem de arama motorlarının sayfada gerçek yer adları (Atakum, Çeşme,
+// Bodrum vb.) görmesini sağlayan tıklanabilir, anlamlı içerik.
+const POPULER_NOKTALAR = [
+  { ad: "Atakum, Samsun", lat: 41.330, lon: 36.240 },
+  { ad: "Kilyos, İstanbul", lat: 41.252, lon: 29.021 },
+  { ad: "Çeşme, İzmir", lat: 38.332, lon: 26.288 },
+  { ad: "Alaçatı, İzmir", lat: 38.279, lon: 26.379 },
+  { ad: "Bodrum, Muğla", lat: 37.028, lon: 27.412 },
+  { ad: "Marmaris, Muğla", lat: 36.813, lon: 28.238 },
+  { ad: "Ölüdeniz, Fethiye", lat: 36.548, lon: 29.118 },
+  { ad: "Konyaaltı, Antalya", lat: 36.860, lon: 30.650 },
+  { ad: "Kaş, Antalya", lat: 36.195, lon: 29.641 },
+  { ad: "Ayvalık, Balıkesir", lat: 39.278, lon: 26.690 },
+  { ad: "Trabzon", lat: 41.005, lon: 39.755 },
+  { ad: "Sinop", lat: 42.025, lon: 35.150 },
 ];
 
 // Kullanıcıya gösterilecek her metni (yorumlar, isimler VE Nominatim/OSM'den gelen yer adları)
@@ -1233,22 +1312,27 @@ function zamanFormat(ts) {
 // (örn. yurt dışından bir Türkiye kıyısına bakan biri) "şimdi" yanlış saate denk gelirdi.
 // hourly.time de aynı "YYYY-MM-DDTHH:mm" biçiminde, aynı yerel saatte geldiği için Date
 // nesnesine hiç çevirmeden, doğrudan metinden saat basamağını okuyoruz — belirsizlik yok.
+// ÖNEMLİ: past_days=1 eklediğimizden beri dizi DÜNÜN saatlerini de içeriyor — bu yüzden
+// artık sadece "saat >= şimdiki saat" diye bakmıyoruz (dünün öğleden sonrası da bu koşulu
+// sağlar ve yanlışlıkla "bugünmüş" gibi gösterilirdi); tam tarih+saat eşleşen index'i bulup
+// oradan İLERİ doğru sayıyoruz.
 function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan, suAndakiZamanStr) {
   if (!havaSaatlik || !havaSaatlik.time) return "";
-  const simdikiSaat = suAndakiZamanStr ? parseInt(suAndakiZamanStr.slice(11, 13), 10) : new Date().getHours();
+  const simdiAnahtari = suAndakiZamanStr ? suAndakiZamanStr.slice(0, 13) : null;
+  let baslangicIndex = simdiAnahtari ? havaSaatlik.time.findIndex(t => t.slice(0, 13) === simdiAnahtari) : -1;
+  if (baslangicIndex < 0) baslangicIndex = 0;
   const gosterilecekSaatSayisi = 6;
 
   let hucreler = "";
-  for (let i = 0; i < havaSaatlik.time.length && hucreler.split('class="hour-cell"').length - 1 < gosterilecekSaatSayisi; i++) {
+  for (let i = baslangicIndex; i < havaSaatlik.time.length && hucreler.split('class="hour-cell"').length - 1 < gosterilecekSaatSayisi; i++) {
     const saatStr = havaSaatlik.time[i];
     const saat = parseInt(saatStr.slice(11, 13), 10);
-    if (saat < simdikiSaat) continue;
 
     const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
     const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
     const durum = durumDenizden(dalgaM, kmh, null, null, null, lat, lon);
     const r = aktifRenkler()[durum] || renkVarsayilan;
-    const saatEtiketi = saat === simdikiSaat ? "Şimdi" : (saat + ":00");
+    const saatEtiketi = i === baslangicIndex ? "Şimdi" : (saat + ":00");
 
     hucreler += `<div class="hour-cell">
       <span class="hour-time">${saatEtiketi}</span>
@@ -1259,6 +1343,57 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
 
   if (!hucreler) return "";
   return `<div class="hourly-strip">${hucreler}</div>`;
+}
+
+// Son 24 saatte (past_days=1 ile aldığımız GERÇEK, tahmin değil geçmiş veriyle) asıl ölçüt
+// (denizdeysek dalga, değilsek rüzgar) nasıl değişmiş — küçük bir sparkline + kısa özet
+// olarak gösteriyoruz. "Şu an 0.4 mi, dün de mi 0.4'tü yoksa yeni mi arttı" sorusuna cevap.
+function sonSaatlerTrendOlustur(havaSaatlik, denizSaatlik, denizdeyiz, suAndakiZamanStr, renk) {
+  if (!havaSaatlik || !havaSaatlik.time || !suAndakiZamanStr) return "";
+  const simdiAnahtari = suAndakiZamanStr.slice(0, 13);
+  const simdiIndex = havaSaatlik.time.findIndex(t => t.slice(0, 13) === simdiAnahtari);
+  if (simdiIndex < 1) return ""; // geçmiş veri yoksa (past_days desteklenmediyse) gösterme
+
+  const baslangic = Math.max(0, simdiIndex - 23);
+  const kaynakDizi = denizdeyiz && denizSaatlik && denizSaatlik.wave_height
+    ? denizSaatlik.wave_height
+    : havaSaatlik.wind_speed_10m;
+  if (!kaynakDizi) return "";
+  const dizi = kaynakDizi.slice(baslangic, simdiIndex + 1);
+  const gecerliDegerler = dizi.filter(v => v != null);
+  if (gecerliDegerler.length < 2) return "";
+
+  const birim = denizdeyiz ? "m" : "km/sa";
+  const ondalik = denizdeyiz ? 1 : 0;
+  const min = Math.min(...gecerliDegerler);
+  const max = Math.max(...gecerliDegerler);
+  const aralik = Math.max(max - min, 0.001);
+  const genislik = 100, yukseklik = 28;
+  const adim = dizi.length > 1 ? genislik / (dizi.length - 1) : genislik;
+
+  let noktalar = "";
+  dizi.forEach((v, i) => {
+    if (v == null) return;
+    const x = (i * adim).toFixed(1);
+    const y = (yukseklik - 2 - ((v - min) / aralik) * (yukseklik - 4)).toFixed(1);
+    noktalar += `${x},${y} `;
+  });
+
+  const ilkDeger = gecerliDegerler[0];
+  const sonDeger = gecerliDegerler[gecerliDegerler.length - 1];
+  const fark = sonDeger - ilkDeger;
+  const esik = denizdeyiz ? 0.05 : 2; // bu kadarlık değişim "sabit" sayılır, gürültü ile karışmasın
+  const yonMetni = fark > esik ? "artıyor" : fark < -esik ? "azalıyor" : "sabit";
+  const yonOk = fark > esik ? "↑" : fark < -esik ? "↓" : "→";
+
+  return `
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(40,40,30,0.08);">
+      <div style="font-size:10.5px;color:${renk.text600};margin-bottom:4px;">Son 24 saat (${denizdeyiz ? "dalga" : "rüzgar"})</div>
+      <svg width="100%" height="${yukseklik}" viewBox="0 0 ${genislik} ${yukseklik}" preserveAspectRatio="none" style="display:block;" aria-hidden="true">
+        <polyline points="${noktalar.trim()}" fill="none" stroke="${renk.border}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-size:11px;color:${renk.text900};margin-top:3px;">${ilkDeger.toFixed(ondalik)}${birim} → ${sonDeger.toFixed(ondalik)}${birim} <b>${yonOk} ${yonMetni}</b></div>
+    </div>`;
 }
 
 // === Gerçek zamanlı fetch hesabı ===
@@ -1397,8 +1532,8 @@ async function veriCekVeGoster(lat, lon) {
 
   try {
     const [havaRes, denizRes, yerRes, kiyidaMi] = await Promise.all([
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&wind_speed_unit=kmh&timezone=auto`),
-      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&timezone=auto`),
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&past_days=1&wind_speed_unit=kmh&timezone=auto`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&past_days=1&timezone=auto`),
       fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
       noktaSuMu(lat, lon),
     ]);
@@ -1539,6 +1674,7 @@ async function veriCekVeGoster(lat, lon) {
       const durumBasligi = denizdeyiz ? ETIKET[durum] : "Kıyıdan rüzgar bilgisi";
 
       const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null);
+      const trendHtml = sonSaatlerTrendOlustur(havaSaatlik, denizSaatlik, denizdeyiz, hava ? hava.time : null, r);
 
       card.innerHTML = `
         ${ruzgarUyariHtml}
@@ -1561,6 +1697,7 @@ async function veriCekVeGoster(lat, lon) {
         ${fetchNotu}
         ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.</div>`}
         ${denizdeyiz ? saatlikSeritHtml : ""}
+        ${trendHtml}
       `;
 
       document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
@@ -1666,7 +1803,7 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null, foto: d.foto_url || null })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
@@ -1790,7 +1927,7 @@ async function tumYorumNoktalariniGoster() {
 
       const liste = grup.kayitlar.map(d => ({
         durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
-        isim: d.kullanici_adi || "Anonim",
+        isim: d.kullanici_adi || "Anonim", foto: d.foto_url || null,
       }));
       const yorumlarHtml = liste.slice(0, 8).map(gb => {
         const rr = aktifRenkler()[gb.durum];
@@ -1804,6 +1941,7 @@ async function tumYorumNoktalariniGoster() {
             </div>
             <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 8px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
             ${gb.not ? `<div style="font-size:11px;color:#4F7286;margin-top:4px;">${escapeHtml(gb.not)}</div>` : ""}
+            ${gb.foto ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:150px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
           </div>
         </div>`;
       }).join("");
@@ -1908,23 +2046,42 @@ function gbGonderimZamaniKaydet() {
   try { localStorage.setItem('deniz-durumu-son-gonderim', String(Date.now())); } catch (e) {}
 }
 
-async function bildirimEkle(lat, lon, durum, not, isim, konumMetni) {
+// Kullanıcının seçtiği fotoğrafı Supabase Storage'a yükler, herkese açık URL'sini döndürür.
+// Bucket ve politikalar sql/schema.sql'de tanımlı — anon SADECE ekleyebilir, silemez/değiştiremez
+// (diğer tablolarla aynı güvenlik prensibi). Bucket/migration henüz kurulmadıysa (storage
+// hatası) sessizce null döner — fotoğrafsız gönderim yine de devam eder.
+const GB_FOTO_BUCKET = 'yorum-fotolari';
+async function fotoYukle(dosya) {
+  if (!supabaseClient || !dosya) return null;
+  try {
+    const uzanti = (dosya.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    const dosyaAdi = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${uzanti}`;
+    const { error } = await supabaseClient.storage.from(GB_FOTO_BUCKET).upload(dosyaAdi, dosya, { cacheControl: '3600', upsert: false });
+    if (error) { console.error("Fotoğraf yüklenemedi:", error); return null; }
+    const { data } = supabaseClient.storage.from(GB_FOTO_BUCKET).getPublicUrl(dosyaAdi);
+    return data ? data.publicUrl : null;
+  } catch (e) {
+    console.error("Fotoğraf yüklenemedi:", e);
+    return null;
+  }
+}
+
+async function bildirimEkle(lat, lon, durum, not, isim, konumMetni, fotoUrl) {
   const kalanDk = gbBeklemeKontrolEt();
   if (kalanDk > 0) {
     return { basarili: false, mesaj: `Çok sık bildirim gönderiyorsun, ${kalanDk} dakika sonra tekrar dene.` };
   }
   if (supabaseClient) {
-    // Önce konum_metni ile dene; kolon henüz eklenmemişse sütun hatası alırız —
-    // bu durumda onsuz tekrar deneriz, böylece SQL migration yapılmadan da çalışır.
-    let result = await supabaseClient
-      .from('geri_bildirimler')
-      .insert({ lat, lon, durum, not_metni: not || null, kullanici_adi: isim, konum_metni: konumMetni || null });
-
-    if (result.error && result.error.message && result.error.message.includes('konum_metni')) {
-      // Kolon yok — konum_metni olmadan tekrar dene
-      result = await supabaseClient
-        .from('geri_bildirimler')
-        .insert({ lat, lon, durum, not_metni: not || null, kullanici_adi: isim });
+    // Önce tüm alanlarla dene; konum_metni/foto_url kolonları henüz eklenmemişse (SQL
+    // migration çalıştırılmadıysa) sütun hatası alırız — bu durumda o alanı çıkarıp
+    // tekrar deneriz, böylece migration yapılmayan kurulumlarda da site çökmez.
+    const kayit = { lat, lon, durum, not_metni: not || null, kullanici_adi: isim, konum_metni: konumMetni || null, foto_url: fotoUrl || null };
+    let result = await supabaseClient.from('geri_bildirimler').insert(kayit);
+    for (let deneme = 0; deneme < 2 && result.error && result.error.message; deneme++) {
+      const eksikAlan = ['konum_metni', 'foto_url'].find(k => k in kayit && result.error.message.includes(k));
+      if (!eksikAlan) break;
+      delete kayit[eksikAlan];
+      result = await supabaseClient.from('geri_bildirimler').insert(kayit);
     }
 
     if (result.error) {
@@ -1936,7 +2093,7 @@ async function bildirimEkle(lat, lon, durum, not, isim, konumMetni) {
   }
   const key = konumAnahtari(lat, lon);
   if (!state.geriBildirimlerYerel[key]) state.geriBildirimlerYerel[key] = [];
-  state.geriBildirimlerYerel[key].unshift({ durum, not, isim, konum: konumMetni, zaman: Date.now() });
+  state.geriBildirimlerYerel[key].unshift({ durum, not, isim, konum: konumMetni, foto: fotoUrl || null, zaman: Date.now() });
   gbGonderimZamaniKaydet();
   return { basarili: true };
 }
@@ -2019,6 +2176,7 @@ async function gbAlaniniGuncelle() {
   gbSection.style.display = "block";
   document.getElementById('gb-sent').style.display = "none";
   document.getElementById('gb-input-row').style.display = "none";
+  document.getElementById('gb-foto-row').style.display = "none";
   state.secilenGB = null;
   document.querySelectorAll('.gb-btn').forEach(b => {
     b.classList.remove('active');
@@ -2027,6 +2185,7 @@ async function gbAlaniniGuncelle() {
     b.style.color = "#6B6A60";
   });
   document.getElementById('gb-note').value = "";
+  fotoSecimTemizle();
 
   communityLabel.style.display = "block";
   summaryWrap.style.display = "block";
@@ -2088,8 +2247,46 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
       b.style.color = active ? r.text900 : "#6B6A60";
     });
     document.getElementById('gb-input-row').style.display = "flex";
+    document.getElementById('gb-foto-row').style.display = "flex";
   });
 });
+
+const GB_FOTO_MAX_MB = 5;
+function fotoSecimTemizle() {
+  const input = document.getElementById('gb-foto-input');
+  input.value = "";
+  const onizleme = document.getElementById('gb-foto-onizleme');
+  if (onizleme.src) { try { URL.revokeObjectURL(onizleme.src); } catch (e) {} }
+  onizleme.style.display = "none";
+  onizleme.removeAttribute('src');
+  document.getElementById('gb-foto-btn').style.display = "flex";
+  document.getElementById('gb-foto-kaldir').style.display = "none";
+  document.getElementById('gb-foto-hata').style.display = "none";
+}
+document.getElementById('gb-foto-input').addEventListener('change', (e) => {
+  const dosya = e.target.files[0];
+  const hataEl = document.getElementById('gb-foto-hata');
+  hataEl.style.display = "none";
+  if (!dosya) return;
+  if (!dosya.type.startsWith('image/')) {
+    fotoSecimTemizle();
+    hataEl.textContent = "Sadece resim dosyası seçebilirsin.";
+    hataEl.style.display = "inline";
+    return;
+  }
+  if (dosya.size > GB_FOTO_MAX_MB * 1024 * 1024) {
+    fotoSecimTemizle();
+    hataEl.textContent = `Fotoğraf en fazla ${GB_FOTO_MAX_MB}MB olabilir.`;
+    hataEl.style.display = "inline";
+    return;
+  }
+  const onizleme = document.getElementById('gb-foto-onizleme');
+  onizleme.src = URL.createObjectURL(dosya);
+  onizleme.style.display = "block";
+  document.getElementById('gb-foto-btn').style.display = "none";
+  document.getElementById('gb-foto-kaldir').style.display = "flex";
+});
+document.getElementById('gb-foto-kaldir').addEventListener('click', fotoSecimTemizle);
 
 document.getElementById('gb-send').addEventListener('click', async () => {
   if (!state.secilenGB || state.lat == null) return;
@@ -2105,7 +2302,10 @@ document.getElementById('gb-send').addEventListener('click', async () => {
   sendBtn.disabled = true;
   sendBtn.style.opacity = "0.5";
 
-  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim, state.konumMetni);
+  const secilenFoto = document.getElementById('gb-foto-input').files[0] || null;
+  const fotoUrl = secilenFoto ? await fotoYukle(secilenFoto) : null;
+
+  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim, state.konumMetni, fotoUrl);
 
   sendBtn.disabled = false;
   sendBtn.style.opacity = "1";
@@ -2149,6 +2349,7 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
           </div>
           <div style="display:inline-flex;align-items:center;gap:4px;margin-top:3px;padding:2px 9px;border-radius:999px;background:${rr.bg};border:1px solid ${rr.border};font-size:10.5px;font-weight:700;color:${rr.text900};">${durumRozetiSvg(gb.durum)}${ilkHarfBuyuk(ETIKET_KISA[gb.durum])}</div>
           ${gb.not ? `<div style="font-size:11.5px;color:#4F7286;margin-top:4px;line-height:1.35;">${escapeHtml(gb.not)}</div>` : ""}
+          ${gb.foto ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:170px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
         </div>
       </div>`;
   }).join("");
@@ -2226,6 +2427,22 @@ function noktayaGit(lat, lng, haritayiOdakla) {
 map.on('click', (e) => {
   noktayaGit(e.latlng.lat, e.latlng.lng, false);
 });
+
+// Popüler nokta çipleri — tıklayınca haritayı o noktaya götürür ve verisini gösterir.
+(function () {
+  const kapsayici = document.getElementById('populer-noktalar');
+  if (!kapsayici) return;
+  kapsayici.innerHTML = POPULER_NOKTALAR.map((n, i) =>
+    `<button type="button" class="populer-nokta-btn" data-idx="${i}">${escapeHtml(n.ad)}</button>`
+  ).join("");
+  kapsayici.querySelectorAll('.populer-nokta-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const n = POPULER_NOKTALAR[parseInt(btn.dataset.idx, 10)];
+      map.setView([n.lat, n.lon], 13);
+      noktayaGit(n.lat, n.lon, false);
+    });
+  });
+})();
 
 document.getElementById('locate-btn').addEventListener('click', () => {
   const btn = document.getElementById('locate-btn');
