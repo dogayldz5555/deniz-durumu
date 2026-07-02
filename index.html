@@ -2436,6 +2436,11 @@ map.on('click', (e) => {
 // "Bildir" butonları Leaflet balonlarının (popup) İÇİNDE, dinamik olarak eklenen HTML —
 // her balon yeniden çizildiğinde tek tek dinleyici bağlamak yerine, document üzerinden
 // olay devretme (event delegation) ile TEK bir dinleyici her zaman çalışır.
+// ÖNEMLİ: Leaflet, popup içeriğindeki tıklamaların haritaya "sızıp" onu da tetiklememesi
+// için popup'ın kendi içinde tıklamayı durduruyor (stopPropagation) — bu, olayın normal
+// "bubble" (kabarcık) aşamasında document'a kadar ULAŞMASINI engelliyordu, buton hiç
+// tepki vermiyormuş gibi duruyordu. "capture" aşamasında dinleyerek (üçüncü parametre
+// true) olayı, popup onu durdurmadan ÖNCE, document'tan aşağı inerken yakalıyoruz.
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.gb-bildir-btn');
   if (!btn || btn.disabled) return;
@@ -2452,7 +2457,7 @@ document.addEventListener('click', async (e) => {
   } catch (err) {
     console.error("Şikayet gönderilemedi:", err);
   }
-});
+}, true);
 
 document.getElementById('locate-btn').addEventListener('click', () => {
   const btn = document.getElementById('locate-btn');
