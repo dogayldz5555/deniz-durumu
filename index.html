@@ -2234,7 +2234,7 @@ async function tumYorumNoktalariniGoster() {
     Object.entries(gruplar).forEach(([key, grup]) => {
       const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
       grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
-      const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+      const baskin = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
       const r = aktifRenkler()[baskin];
 
       const isaret = L.marker([grup.lat, grup.lon], { icon: noktaIkonuOlustur(konumRengi(key)) });
@@ -2319,7 +2319,7 @@ function yanPaneliGuncelle(gruplar) {
     .map(grup => {
       const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
       grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
-      const baskin = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+      const baskin = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
       const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
       const bolge = denizBolgesi(grup.lat, grup.lon);
       const kayitlaKonum = grup.kayitlar.find(d => d.konum_metni)?.konum_metni || null;
@@ -2532,7 +2532,7 @@ async function gbAlaniniGuncelle() {
   const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
   liste.forEach(gb => { sayim[gb.durum]++; });
 
-  const baskinDurum = SIRA.reduce((a, b) => sayim[b] > sayim[a] ? b : a, "carsaf");
+  const baskinDurum = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
   const r = aktifRenkler()[baskinDurum];
   const baskinYuzdeKart = liste.length > 0 ? Math.round((sayim[baskinDurum] / liste.length) * 100) : 0;
 
