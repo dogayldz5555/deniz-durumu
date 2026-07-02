@@ -1730,7 +1730,8 @@ function koordinatKaydir(lat, lon, aciDerece, mesafeKm) {
   return { lat: lat + dLat * 180 / Math.PI, lon: lon + dLon * 180 / Math.PI };
 }
 
-async function noktaSuMu(lat, lon) {
+async function noktaSuMu(lat, lon, deneme) {
+  deneme = deneme || 0;
   try {
     // is-on-water.balbona.me bazen hiç yanıt vermeyip isteği askıda bırakabiliyor —
     // fetch'in kendi başına zaman aşımı yok, bu yüzden AbortController ile 3sn sonra
@@ -1739,15 +1740,16 @@ async function noktaSuMu(lat, lon) {
     const zamanAsimi = setTimeout(() => controller.abort(), 3000);
     const res = await fetch(`https://is-on-water.balbona.me/api/v1/get/${lat}/${lon}`, { signal: controller.signal });
     clearTimeout(zamanAsimi);
-    if (!res.ok) return null;
+    if (!res.ok) return deneme < 1 ? noktaSuMu(lat, lon, deneme + 1) : null;
     const data = await res.json();
     // API'nin kendi "isWater" alanına güveniyoruz — "feature" alanına (OCEAN/RIVER/LAKE/LAND)
     // bakıp elle karşılaştırmak YANLIŞ: API bazı noktalarda feature="UNKNOWN" ama isWater=true
     // döndürebiliyor (özellikle açık denizde, kıyıdan uzak noktalarda) — eski kod bunu "OCEAN/
     // RIVER/LAKE değil" diye KARA sayıyordu, bu da fetch hesabının açık denizde erken kesilmesine
     // VE gerçek deniz noktalarının yanlışlıkla "kara" sayılıp dalga verisinin gizlenmesine yol açıyordu.
-    return typeof data.isWater === "boolean" ? data.isWater : null;
-  } catch (e) { return null; }
+    if (typeof data.isWater === "boolean") return data.isWater;
+    return deneme < 1 ? noktaSuMu(lat, lon, deneme + 1) : null;
+  } catch (e) { return deneme < 1 ? noktaSuMu(lat, lon, deneme + 1) : null; }
 }
 
 const FETCH_KABA_ADIM_KM = 10; // kaba tarama adımı — bkz. yonFetchMesafesi
@@ -1786,7 +1788,11 @@ async function yonFetchMesafesi(lat, lon, aciDerece) {
       const orta = (alt + ust) / 2;
       const incelenenNokta = koordinatKaydir(lat, lon, aciDerece, orta);
       const incelenenSonuc = await noktaSuMu(incelenenNokta.lat, incelenenNokta.lon);
-      if (incelenenSonuc === null) break;
+      // Belirsiz kalırsa (API yine hata verdiyse) alt sınıra (en kötümser/en "korunaklı"
+      // uca) çökmek yerine mevcut aralığın ortasını kaba bir tahmin olarak döndürüyoruz —
+      // aksi halde tek bir başarısız istek fetch mesafesini yanlışlıkla 0'a indirip
+      // eşikleri gereğinden fazla gevşetebiliyordu (bkz. sonBilinenSu başlangıcı 0).
+      if (incelenenSonuc === null) return (alt + ust) / 2;
       if (incelenenSonuc) alt = orta; else ust = orta;
     }
     return alt;
