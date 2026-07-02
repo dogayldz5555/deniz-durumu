@@ -198,3 +198,35 @@ $$;
 
 grant execute on function begenmedi_isaretle(bigint) to anon;
 
+-- Kullanıcı kendi verdiği oyu (aynı butona tekrar tıklayarak) geri alabilsin diye — bu da
+-- SADECE azaltan, 0'ın altına inmesini engelleyen (greatest(...,0)) güvenli bir fonksiyon.
+-- "Kimin oyu" bilgisi sunucuda değil istemcide (localStorage) tutuluyor — bu app'te hiç
+-- kullanıcı hesabı/girişi yok, bu yüzden diğer sayaçlarla (faydali_isaretle, sikayet_isaretle
+-- vb.) aynı güven modelini izliyor: arayüz sadece uygun anda çağırır, güvenlik anon'un genel
+-- olarak SADECE artırıp/azaltabilmesinden (satırı silememesinden/başka alanı değiştirememesinden) gelir.
+create or replace function faydali_geri_al(bildirim_id bigint)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update geri_bildirimler
+  set faydali_sayisi = greatest(faydali_sayisi - 1, 0)
+  where id = bildirim_id;
+$$;
+
+grant execute on function faydali_geri_al(bigint) to anon;
+
+create or replace function begenmedi_geri_al(bildirim_id bigint)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update geri_bildirimler
+  set begenmedi_sayisi = greatest(begenmedi_sayisi - 1, 0)
+  where id = bildirim_id;
+$$;
+
+grant execute on function begenmedi_geri_al(bigint) to anon;
+

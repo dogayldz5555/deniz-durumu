@@ -1028,17 +1028,28 @@ function oyKaydet(id, tur) {
     localStorage.setItem(OY_ANAHTARI, JSON.stringify(oylar));
   } catch (e) {}
 }
+function oySil(id) {
+  try {
+    const oylar = oylananlariGetir();
+    delete oylar[id];
+    localStorage.setItem(OY_ANAHTARI, JSON.stringify(oylar));
+  } catch (e) {}
+}
 
 const IKON_BEGENI = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>';
 const IKON_BEGENMEDI = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>';
 
+// Oy verdiğin buton kilitlenMİYOR — tekrar tıklayınca oyunu geri alabilesin diye. Sadece
+// KARŞI buton (aynı anda hem beğenip hem beğenmemeni önlemek için) kilitleniyor; oyunu geri
+// alınca o da tekrar tıklanabilir hale geliyor (bkz. tıklama işleyicisi).
 function begeniButonlariHtml(gb) {
   if (gb.id == null) return "";
   const oyDurumu = oylananlariGetir()[gb.id]; // undefined | "begeni" | "begenmedi"
-  const kilitli = oyDurumu != null;
+  const begeniKilitli = oyDurumu === "begenmedi";
+  const begenmediKilitli = oyDurumu === "begeni";
   return `<span style="display:flex;align-items:center;gap:10px;margin-top:5px;">
-    <button type="button" class="gb-begeni-btn" data-id="${gb.id}" ${kilitli ? "disabled" : ""} aria-label="Beğen" title="Beğen" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${kilitli ? "default" : "pointer"};color:${oyDurumu === "begeni" ? "#1FA35C" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENI}<span>${gb.faydali || 0}</span></button>
-    <button type="button" class="gb-begenmedi-btn" data-id="${gb.id}" ${kilitli ? "disabled" : ""} aria-label="Beğenme" title="Beğenme" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${kilitli ? "default" : "pointer"};color:${oyDurumu === "begenmedi" ? "#D9362E" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENMEDI}<span>${gb.begenmedi || 0}</span></button>
+    <button type="button" class="gb-begeni-btn" data-id="${gb.id}" ${begeniKilitli ? "disabled" : ""} aria-label="Beğen" title="${oyDurumu === "begeni" ? "Oyunu geri al" : "Beğen"}" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${begeniKilitli ? "default" : "pointer"};color:${oyDurumu === "begeni" ? "#1FA35C" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENI}<span>${gb.faydali || 0}</span></button>
+    <button type="button" class="gb-begenmedi-btn" data-id="${gb.id}" ${begenmediKilitli ? "disabled" : ""} aria-label="Beğenme" title="${oyDurumu === "begenmedi" ? "Oyunu geri al" : "Beğenme"}" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${begenmediKilitli ? "default" : "pointer"};color:${oyDurumu === "begenmedi" ? "#D9362E" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENMEDI}<span>${gb.begenmedi || 0}</span></button>
   </span>`;
 }
 
@@ -2494,7 +2505,9 @@ document.addEventListener('click', async (e) => {
 }, true);
 
 // Beğen/beğenme — aynı sebepten (Leaflet popup'ı tıklamayı kendi içinde durduruyor)
-// capture aşamasında dinliyoruz (bkz. yukarıdaki bildir butonu açıklaması).
+// capture aşamasında dinliyoruz (bkz. yukarıdaki bildir butonu açıklaması). Oy verdiğin
+// buton KİLİTLİ değil (bkz. begeniButonlariHtml) — bu yüzden aynı butona TEKRAR tıklamak
+// "geri al" anlamına geliyor; karşı butona tıklamak (ilk defa oy vermekle aynı) yeni oy.
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.gb-begeni-btn, .gb-begenmedi-btn');
   if (!btn || btn.disabled) return;
@@ -2502,21 +2515,36 @@ document.addEventListener('click', async (e) => {
   if (!id || !supabaseClient) return;
 
   const begeniMi = btn.classList.contains('gb-begeni-btn');
-  const rpcAdi = begeniMi ? 'faydali_isaretle' : 'begenmedi_isaretle';
-  // İki buton aynı sarmalayıcı içinde — biri seçilince ikisini birden kilitliyoruz, aynı
-  // yorum bir daha (ne aynı balondan ne başka bir balondan) oylanamasın.
+  const tur = begeniMi ? "begeni" : "begenmedi";
   const kapsayici = btn.parentElement;
   const digerBtn = kapsayici ? kapsayici.querySelector(begeniMi ? '.gb-begenmedi-btn' : '.gb-begeni-btn') : null;
+  const sayacSpan = btn.querySelector('span');
+  const mevcutSayi = sayacSpan ? (parseInt(sayacSpan.textContent, 10) || 0) : 0;
+  const zatenBuOy = oylananlariGetir()[id] === tur;
 
-  btn.disabled = true;
+  if (zatenBuOy) {
+    // Kendi oyunu geri alıyorsun.
+    if (digerBtn) digerBtn.disabled = false;
+    btn.style.color = "#9AAEBA";
+    if (sayacSpan) sayacSpan.textContent = String(Math.max(mevcutSayi - 1, 0));
+    oySil(id);
+    try {
+      const { error } = await supabaseClient.rpc(begeniMi ? 'faydali_geri_al' : 'begenmedi_geri_al', { bildirim_id: id });
+      if (error) console.error("Oy geri alınamadı:", error);
+    } catch (err) {
+      console.error("Oy geri alınamadı:", err);
+    }
+    return;
+  }
+
+  // Yeni oy — karşı butonu kilitliyoruz (aynı yorumu hem beğenip hem beğenmemeyi önler).
   if (digerBtn) digerBtn.disabled = true;
   btn.style.color = begeniMi ? "#1FA35C" : "#D9362E";
-  const sayacSpan = btn.querySelector('span');
-  if (sayacSpan) sayacSpan.textContent = String((parseInt(sayacSpan.textContent, 10) || 0) + 1);
-  oyKaydet(id, begeniMi ? "begeni" : "begenmedi");
+  if (sayacSpan) sayacSpan.textContent = String(mevcutSayi + 1);
+  oyKaydet(id, tur);
 
   try {
-    const { error } = await supabaseClient.rpc(rpcAdi, { bildirim_id: id });
+    const { error } = await supabaseClient.rpc(begeniMi ? 'faydali_isaretle' : 'begenmedi_isaretle', { bildirim_id: id });
     if (error) console.error("Oy gönderilemedi:", error);
   } catch (err) {
     console.error("Oy gönderilemedi:", err);
