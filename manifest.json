@@ -1,6 +1,6 @@
 {
   "name": "SeaData",
-  "short_name": "SeaData",
+  "short_name": "SD",
   "description": "Türkiye kıyılarında anlık rüzgar ve dalga durumu, sahadan gelen gerçek yorumlarla birlikte.",
   "start_url": "/",
   "display": "standalone",
