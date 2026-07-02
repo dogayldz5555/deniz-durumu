@@ -2051,18 +2051,22 @@ async function veriCekVeGoster(lat, lon) {
       tamEkranVeriGoster(); // harita tam ekrandaysa kartı göster ve 13sn'lik zamanlayıcıyı başlat/tazele
     }
 
-    await kartiCiz(null, null);
-
-    // Kıyı şekli (fetch mesafesi) hesabını ARKA PLANDA başlatıyoruz — bitmesini beklemeden
-    // yukarıdaki ilk çizim zaten kullanıcıya gösterildi. Sonuç gelince (hâlâ aynı noktadaysak)
-    // kartı sadece eşik/renk açısından ikinci kez çiziyoruz.
+    // Kıyı şekli (fetch mesafesi) hesabını kart çizilmeden ÖNCE bitiriyoruz — böylece
+    // kullanıcı tıklayınca gördüğü anlık değerlendirme, birkaç saniye sonra arka planda
+    // biten hesapla başka bir kademeye kendiliğinden değişmiyor; kart tek seferde,
+    // doğrudan nihai eşiklerle çiziliyor.
+    let ozelEsikSonuc = null, fetchKmSonuc = null;
     if (bolgeGenel) {
-      fetchMesafesiHesapla(lat, lon, ruzgarYonu).then((fetchSonuc) => {
-        if (!fetchSonuc || !tokenGecerli()) return;
-        const ozelEsik = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
-        kartiCiz(ozelEsik, fetchSonuc.km);
-      }).catch(() => {});
+      try {
+        const fetchSonuc = await fetchMesafesiHesapla(lat, lon, ruzgarYonu);
+        if (fetchSonuc && tokenGecerli()) {
+          ozelEsikSonuc = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+          fetchKmSonuc = fetchSonuc.km;
+        }
+      } catch (e) {}
     }
+    if (!tokenGecerli()) return;
+    await kartiCiz(ozelEsikSonuc, fetchKmSonuc);
   } catch (e) {
     let onbellekHtml = "";
     try {
