@@ -1,6 +1,6 @@
 {
-  "name": "Deniz Durumu",
-  "short_name": "Deniz Durumu",
+  "name": "SeaData",
+  "short_name": "SeaData",
   "description": "Türkiye kıyılarında anlık rüzgar ve dalga durumu, sahadan gelen gerçek yorumlarla birlikte.",
   "start_url": "/",
   "display": "standalone",
@@ -9,13 +9,13 @@
   "lang": "tr",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232A7FB8'/%3E%3Cpath d='M15 35c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 55c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 75c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%235FC2F0'/%3E%3Cstop offset='100%25' stop-color='%231D6FA5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cpath d='M24 32 Q 46 12, 70 28 Q 80 36, 68 43 Q 54 50, 40 43' stroke='white' stroke-width='7.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M76 68 Q 54 88, 30 72 Q 20 64, 32 57 Q 46 50, 60 57' stroke='white' stroke-width='7.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='78' cy='24' r='2.6' fill='white' opacity='0.85'/%3E%3Ccircle cx='85' cy='32' r='1.8' fill='white' opacity='0.6'/%3E%3C/svg%3E",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232A7FB8'/%3E%3Cpath d='M15 35c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 55c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 75c8 8 16 8 24 0s16-8 24 0 16 8 24 0' stroke='white' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%235FC2F0'/%3E%3Cstop offset='100%25' stop-color='%231D6FA5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cpath d='M24 32 Q 46 12, 70 28 Q 80 36, 68 43 Q 54 50, 40 43' stroke='white' stroke-width='7.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M76 68 Q 54 88, 30 72 Q 20 64, 32 57 Q 46 50, 60 57' stroke='white' stroke-width='7.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='78' cy='24' r='2.6' fill='white' opacity='0.85'/%3E%3Ccircle cx='85' cy='32' r='1.8' fill='white' opacity='0.6'/%3E%3C/svg%3E",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
