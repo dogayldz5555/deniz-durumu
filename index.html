@@ -9,7 +9,7 @@
 <meta property="og:description" content="Haritadan seçtiğin herhangi bir noktada anlık rüzgar ve dalga durumunu öğren." />
 <meta property="og:type" content="website" />
 <link rel="manifest" href="manifest.json" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2366C9EE'/%3E%3Cstop offset='100%25' stop-color='%231B6FA8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cpath d='M66 16 C 40 10, 20 22, 24 34 C 27 43, 42 42, 50 46 C 60 51, 62 60, 55 64 C 46 69, 30 66, 22 56' fill='none' stroke='white' stroke-width='10.5' stroke-linecap='round'/%3E%3Ccircle cx='72' cy='18' r='2.4' fill='white' opacity='0.85'/%3E%3Ccircle cx='79' cy='24' r='1.6' fill='white' opacity='0.55'/%3E%3Cpath d='M18 58 C 14 60, 11 63, 11 67' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round' opacity='0.7'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" href="icon.png" />
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -187,11 +187,9 @@
     width: 34px;
     height: 34px;
     border-radius: 10px;
-    background: linear-gradient(155deg, #66C9EE 0%, #1B6FA8 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
     flex-shrink: 0;
+    display: block;
   }
   h1 {
     font-family: "Fraunces", Georgia, serif;
@@ -784,9 +782,7 @@
 <div id="app-wrap">
 <div id="app">
   <div class="brand">
-    <div class="brand-mark">
-      <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><path d="M66 16 C 40 10, 20 22, 24 34 C 27 43, 42 42, 50 46 C 60 51, 62 60, 55 64 C 46 69, 30 66, 22 56" fill="none" stroke="white" stroke-width="10.5" stroke-linecap="round"/><circle cx="72" cy="18" r="2.4" fill="white" opacity="0.85"/><circle cx="79" cy="24" r="1.6" fill="white" opacity="0.55"/><path d="M18 58 C 14 60, 11 63, 11 67" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.7"/></svg>
-    </div>
+    <img class="brand-mark" src="icon.png" alt="SeaData logosu" />
     <h1>SeaData</h1>
   </div>
   <p class="sub">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
