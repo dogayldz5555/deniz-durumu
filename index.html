@@ -1507,7 +1507,7 @@ const state = {
   bizimDurum: null,
 };
 
-const map = L.map('map', { zoomControl: true, center: [41.29, 36.33], zoom: 11 });
+const map = L.map('map', { zoomControl: true, center: [39.0, 35.5], zoom: 6 });
 // Stilize (çizilmiş) haritalarda kumsal/deniz/beton gibi alanlar hep TEK TİP, kategoriye
 // göre boyanmış renkte görünür — "gerçek renk" diye bir şey yoktur, hepsi aynı sarı/mavi
 // kod. Bunun yerine Esri'nin ücretsiz, anahtar gerektirmeyen uydu görüntüsü katmanını
@@ -1524,10 +1524,6 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
   maxZoom: 19,
   opacity: 0.85,
 }).addTo(map);
-// Uydu görüntüsü düşük zoom'da (11) bulanık/detaysız kalıyor — anlamlı bir görüntü ancak
-// biraz daha yakınlaşınca ortaya çıkıyor, bu yüzden başlangıç zoom'unu biraz artırdık.
-map.setView([41.29, 36.33], 13);
-
 // Haritayı tüm ekranı kaplayacak şekilde büyütüp küçültme kontrolü — telefonda ve
 // bilgisayarda haritayı çok daha büyük kullanabilmek için (bkz. #map.map-tam-ekran CSS'i).
 const IKON_BUYUT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
@@ -2893,7 +2889,7 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 setTimeout(() => {
   map.invalidateSize();
   tumYorumNoktalariniGoster();
-  // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Samsun/Karadeniz kıyısı.
+  // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Türkiye geneli.
   let sonNokta = null;
   try {
     const kayit = localStorage.getItem('deniz-durumu-son-nokta');
@@ -2903,7 +2899,7 @@ setTimeout(() => {
     map.setView([sonNokta.lat, sonNokta.lng], 14);
     noktayaGit(sonNokta.lat, sonNokta.lng, false);
   } else {
-    map.setView([41.29, 36.33], 13);
+    map.setView([39.0, 35.5], 6);
   }
 }, 150);
 window.addEventListener('resize', () => map.invalidateSize());
