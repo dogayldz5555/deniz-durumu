@@ -1054,6 +1054,7 @@ const CEVIRI = {
     deniz_sicaklik: "Deniz",
     dan: (yon) => `(${yon}'dan)`,
     ruzgar_dalgasi_notu: (periyot) => `Dalganın büyük kısmı yerel rüzgarın az önce oluşturduğu kısa, çırpıntılı dalga (periyot ${periyot} sn) — bu yüzden tahmin biraz daha temkinli.`,
+    fetch_notu_kiyidan_ruzgar: (km) => `Rüzgar şu an karadan esiyor (bu yönde açık su mesafesi yalnızca <b>${km} km</b>) — bu geçici bir durum, rüzgar yönü değişince fetch mesafesi de değişir. Kara rüzgarında dalga oluşumu çok sınırlı kalır, deniz rüzgar hızından bağımsız olarak sakin görünür.`,
     fetch_notu_korunakli: (km) => `Açık deniz mesafesi (fetch) yaklaşık <b>${km} km</b> — koy/körfez gibi korunaklı bir bölge, eşikler buna göre gevşetildi.`,
     fetch_notu_acik: (km) => `Açık deniz mesafesi (fetch) yaklaşık <b>${km} km</b> — açık kıyı, standart bölgesel eşikler kullanıldı.`,
     fetch_notu_bekleniyor: "Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…",
@@ -1171,6 +1172,7 @@ const CEVIRI = {
     deniz_sicaklik: "Sea",
     dan: (yon) => `(from ${yon})`,
     ruzgar_dalgasi_notu: (periyot) => `Most of the wave is short, choppy wind-wave generated locally just now (period ${periyot} s) — so the estimate is a bit more cautious.`,
+    fetch_notu_kiyidan_ruzgar: (km) => `The wind is currently blowing off the land (open-water distance in this direction is only <b>${km} km</b>) — this is temporary and changes with wind direction. Wave formation stays very limited during an offshore wind, so the sea looks calm regardless of wind speed.`,
     fetch_notu_korunakli: (km) => `Open-water distance (fetch) is about <b>${km} km</b> — a sheltered area like a bay/cove, thresholds were relaxed accordingly.`,
     fetch_notu_acik: (km) => `Open-water distance (fetch) is about <b>${km} km</b> — open coast, standard regional thresholds used.`,
     fetch_notu_bekleniyor: "Analyzing the coastline shape, a fine-tuned threshold may arrive in a few seconds…",
@@ -1849,6 +1851,16 @@ async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
   }
 }
 
+// fetchKm'e göre kullanıcıya gösterilecek notu seçer. 2km altı ayrı bir kademe: bu genelde
+// coğrafi bir koy/körfez değil, o anki rüzgarın kıyıdan (karadan) esiyor olmasından
+// kaynaklanır — rüzgar yönü değişince fetch de değişeceği için bunu "kalıcı korunaklı
+// bölge" mesajından ayırıyoruz, yoksa kullanıcı "0 km" görünce bunu hata sanabilir.
+function fetchNotuMetni(fetchKm) {
+  if (fetchKm < 2) return t('fetch_notu_kiyidan_ruzgar', fetchKm.toFixed(1));
+  if (fetchKm < 15) return t('fetch_notu_korunakli', fetchKm.toFixed(0));
+  return t('fetch_notu_acik', fetchKm.toFixed(0));
+}
+
 // Hesaplanan fetch mesafesine göre dinamik bir eşik seti üretir. Mantık: az önce elle
 // tanımladığımız "liman" ve "Karadeniz açık" eşiklerini iki uç nokta olarak alıp,
 // gerçek fetch mesafesine göre aradan orantılı bir değer üretiyoruz — kısa fetch
@@ -2015,7 +2027,7 @@ async function veriCekVeGoster(lat, lon) {
       // içeriklerini değiştirerek güncellenebiliyor — böylece küçük bir eşik ince ayarı
       // için ana başlığı/rengi yeniden çizmeye gerek kalmıyor.
       const fetchNotuIcerik = fetchKm != null
-        ? (fetchKm < 15 ? t('fetch_notu_korunakli', fetchKm.toFixed(0)) : t('fetch_notu_acik', fetchKm.toFixed(0)))
+        ? fetchNotuMetni(fetchKm)
         : (bolgeGenel ? t('fetch_notu_bekleniyor') : "");
       const fetchNotu = `<div id="fetch-notu-alani" style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchNotuIcerik}</div><div id="fetch-uyari-alani"></div>`;
 
@@ -2122,7 +2134,7 @@ async function veriCekVeGoster(lat, lon) {
         const notuAlani = document.getElementById('fetch-notu-alani');
         const uyariAlani = document.getElementById('fetch-uyari-alani');
         if (notuAlani) {
-          notuAlani.innerHTML = fetchSonuc.km < 15 ? t('fetch_notu_korunakli', fetchSonuc.km.toFixed(0)) : t('fetch_notu_acik', fetchSonuc.km.toFixed(0));
+          notuAlani.innerHTML = fetchNotuMetni(fetchSonuc.km);
         }
         if (uyariAlani) {
           uyariAlani.innerHTML = `<div class="fetch-fark-uyari">${t('fetch_farkli_sonuc_uyarisi', ilkHarfBuyuk(ETIKET_KISA(yeniDurum)))}</div>`;
