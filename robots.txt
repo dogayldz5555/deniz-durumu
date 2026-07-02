@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deniz-durum.vercel.app/sitemap.xml
+Sitemap: https://seadata.vercel.app/sitemap.xml
