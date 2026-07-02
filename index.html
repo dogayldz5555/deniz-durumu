@@ -788,6 +788,17 @@
     line-height: 1.45;
   }
   .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
+  .fetch-fark-uyari {
+    background: #FAEEDA;
+    color: #6B4A0E;
+    border: 1px solid #D9A53E;
+    border-radius: 9px;
+    padding: 7px 11px;
+    font-size: 11.5px;
+    font-weight: 500;
+    margin-top: 6px;
+    line-height: 1.35;
+  }
 
 </style>
 <script>
@@ -1046,6 +1057,7 @@ const CEVIRI = {
     fetch_notu_korunakli: (km) => `Açık deniz mesafesi (fetch) yaklaşık <b>${km} km</b> — koy/körfez gibi korunaklı bir bölge, eşikler buna göre gevşetildi.`,
     fetch_notu_acik: (km) => `Açık deniz mesafesi (fetch) yaklaşık <b>${km} km</b> — açık kıyı, standart bölgesel eşikler kullanıldı.`,
     fetch_notu_bekleniyor: "Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…",
+    fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -1162,6 +1174,7 @@ const CEVIRI = {
     fetch_notu_korunakli: (km) => `Open-water distance (fetch) is about <b>${km} km</b> — a sheltered area like a bay/cove, thresholds were relaxed accordingly.`,
     fetch_notu_acik: (km) => `Open-water distance (fetch) is about <b>${km} km</b> — open coast, standard regional thresholds used.`,
     fetch_notu_bekleniyor: "Analyzing the coastline shape, a fine-tuned threshold may arrive in a few seconds…",
+    fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -1805,11 +1818,32 @@ async function yonFetchMesafesi(lat, lon, aciDerece) {
 // koordinatKaydir de aynı pusula yönü kuralını kullandığından, doğrudan o yönde
 // yürüyerek "rüzgarın üstünden estiği" mesafeyi ölçmüş oluyoruz; bu tam olarak fetch'in
 // tanımı.
+//
+// TEK bir ışına (çizgiye) güvenmek kırılgan: kıyı şeklindeki ufak bir pürüz (küçük bir ada,
+// dar bir burun ucu) tam o çizginin üstüne denk gelirse, gerçekte açık olan bir nokta
+// yanlışlıkla "tamamen korunaklı" çıkabiliyordu. Bunun yerine ABD Sahil Koruma El Kitabı'nın
+// (Shore Protection Manual, USACE) standart "etkili fetch" yöntemini kullanıyoruz: asıl
+// rüzgar yönünün etrafına yayılmış birkaç işin çekilip, her birinin fetch'i asıl yönden
+// sapma açısının kosinüsüyle ağırlıklandırılıp ortalaması alınır:
+//   F_etkili = Σ(Fᵢ · cos(αᵢ)) / Σcos(αᵢ)
+// Tam yöntem 9-15 ışın kullanır (±42-45°); burada ücretsiz/anahtarsız is-on-water API'sine
+// binen isteği makul tutmak için 3 ışına (-20°, 0°, +20°) indirgenmiş, daha hafif bir
+// sürümü kullanılıyor. Yine de tek ışına göre çok daha dayanıklı: kıyıdaki tek bir
+// pürüzün sonucu tek başına belirlemesi artık mümkün değil.
+const FETCH_ISIN_ACILARI = [-20, 0, 20];
 async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
   if (ruzgarYonu == null) return null;
   try {
-    const km = await yonFetchMesafesi(lat, lon, ruzgarYonu);
-    return { km };
+    const isinSonuclari = await Promise.all(
+      FETCH_ISIN_ACILARI.map(aci => yonFetchMesafesi(lat, lon, (ruzgarYonu + aci + 360) % 360))
+    );
+    let toplamAgirlik = 0, agirlikliToplam = 0;
+    FETCH_ISIN_ACILARI.forEach((aci, i) => {
+      const agirlik = Math.cos(aci * Math.PI / 180);
+      toplamAgirlik += agirlik;
+      agirlikliToplam += isinSonuclari[i] * agirlik;
+    });
+    return { km: agirlikliToplam / toplamAgirlik };
   } catch (e) {
     return null;
   }
@@ -1976,9 +2010,14 @@ async function veriCekVeGoster(lat, lon) {
         ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">${t('ruzgar_dalgasi_notu', windWavePeriyot.toFixed(1))}</div>`
         : "";
 
-      const fetchNotu = (fetchKm != null)
-        ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchKm < 15 ? t('fetch_notu_korunakli', fetchKm.toFixed(0)) : t('fetch_notu_acik', fetchKm.toFixed(0))}</div>`
-        : (bolgeGenel ? `<div style="font-size:12px;color:${r.text600};margin-top:6px;">${t('fetch_notu_bekleniyor')}</div>` : "");
+      // fetch-notu-alani / fetch-uyari-alani: fetch hesabı arka planda bittiğinde (bkz.
+      // aşağıdaki kartiCiz çağrısının dışı) bu iki alan, kartı BAŞTAN çizmeden, sadece
+      // içeriklerini değiştirerek güncellenebiliyor — böylece küçük bir eşik ince ayarı
+      // için ana başlığı/rengi yeniden çizmeye gerek kalmıyor.
+      const fetchNotuIcerik = fetchKm != null
+        ? (fetchKm < 15 ? t('fetch_notu_korunakli', fetchKm.toFixed(0)) : t('fetch_notu_acik', fetchKm.toFixed(0)))
+        : (bolgeGenel ? t('fetch_notu_bekleniyor') : "");
+      const fetchNotu = `<div id="fetch-notu-alani" style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchNotuIcerik}</div><div id="fetch-uyari-alani"></div>`;
 
       // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
       // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
@@ -2057,22 +2096,39 @@ async function veriCekVeGoster(lat, lon) {
       tamEkranVeriGoster(); // harita tam ekrandaysa kartı göster ve 13sn'lik zamanlayıcıyı başlat/tazele
     }
 
-    // Kıyı şekli (fetch mesafesi) hesabını kart çizilmeden ÖNCE bitiriyoruz — böylece
-    // kullanıcı tıklayınca gördüğü anlık değerlendirme, birkaç saniye sonra arka planda
-    // biten hesapla başka bir kademeye kendiliğinden değişmiyor; kart tek seferde,
-    // doğrudan nihai eşiklerle çiziliyor.
-    let ozelEsikSonuc = null, fetchKmSonuc = null;
+    await kartiCiz(null, null);
+
+    // Kıyı şekli (fetch mesafesi) hesabını ARKA PLANDA başlatıyoruz — kullanıcı rüzgar/dalga
+    // rakamlarını görmek için bu yavaş, çok istekli hesabın bitmesini beklemiyor. Sonuç
+    // gelince (hâlâ aynı noktadaysak) ilk gösterilen kademeyle karşılaştırılıyor:
+    // - Fark yoksa ya da komşu bir kademeyse (ör. Mükemmel↔İyi), kart sessizce, TAMAMEN
+    //   güncellenir (bkz. kartiCiz) — küçük bir ince ayar, göze batacak bir "değişim" değil.
+    // - Fark birden fazla kademeyse (ör. Mükemmel'den Kötü'ye), ana başlık/renk KASITLI
+    //   OLARAK değiştirilmiyor — kullanıcının tıklayınca gördüğü karar aniden "başka bir
+    //   şeye" dönüşmesin diye. Bunun yerine sadece fetch notu güncellenir ve ayrı, göze
+    //   batan bir uyarı eklenir; isteyen "yenile"ye basıp güncel kademeyi görebilir.
     if (bolgeGenel) {
-      try {
-        const fetchSonuc = await fetchMesafesiHesapla(lat, lon, ruzgarYonu);
-        if (fetchSonuc && tokenGecerli()) {
-          ozelEsikSonuc = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
-          fetchKmSonuc = fetchSonuc.km;
+      fetchMesafesiHesapla(lat, lon, ruzgarYonu).then((fetchSonuc) => {
+        if (!fetchSonuc || !tokenGecerli()) return;
+        const ozelEsik = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+        const yeniDurum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik) : null;
+        const eskiPuan = durumPuani(state.bizimDurum);
+        const yeniPuan = durumPuani(yeniDurum);
+        const fark = (eskiPuan != null && yeniPuan != null) ? Math.abs(yeniPuan - eskiPuan) : 0;
+        if (fark <= 1) {
+          kartiCiz(ozelEsik, fetchSonuc.km);
+          return;
         }
-      } catch (e) {}
+        const notuAlani = document.getElementById('fetch-notu-alani');
+        const uyariAlani = document.getElementById('fetch-uyari-alani');
+        if (notuAlani) {
+          notuAlani.innerHTML = fetchSonuc.km < 15 ? t('fetch_notu_korunakli', fetchSonuc.km.toFixed(0)) : t('fetch_notu_acik', fetchSonuc.km.toFixed(0));
+        }
+        if (uyariAlani) {
+          uyariAlani.innerHTML = `<div class="fetch-fark-uyari">${t('fetch_farkli_sonuc_uyarisi', ilkHarfBuyuk(ETIKET_KISA(yeniDurum)))}</div>`;
+        }
+      }).catch(() => {});
     }
-    if (!tokenGecerli()) return;
-    await kartiCiz(ozelEsikSonuc, fetchKmSonuc);
   } catch (e) {
     let onbellekHtml = "";
     try {
