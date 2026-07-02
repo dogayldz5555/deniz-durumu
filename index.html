@@ -698,25 +698,6 @@
     font-weight: 500;
     margin: 0 0 7px 2px;
   }
-  .populer-noktalar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .populer-nokta-btn {
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--locate-text);
-    background: var(--locate-bg);
-    border: 1px solid var(--locate-border);
-    border-radius: 999px;
-    padding: 5px 11px;
-    cursor: pointer;
-    transition: background 0.15s;
-    white-space: nowrap;
-  }
-  .populer-nokta-btn:hover { background: rgba(255,255,255,0.95); }
   .community-summary {
     display: flex;
     align-items: center;
@@ -837,9 +818,6 @@
       Konumum
     </button>
   </div>
-
-  <p class="section-label">Popüler noktalar</p>
-  <div class="populer-noktalar" id="populer-noktalar"></div>
 
   <div id="map"></div>
   <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" aria-label="Veri panelini kapat">
@@ -1046,24 +1024,6 @@ const LIMANLAR = [
   { ad: "Samsun Limanı", lat: 41.30, lon: 36.367, yaricapKm: 1.2,
     esikDalga:  { carsaf: 0.3, iyi: 0.6, hafif: 1.0, fazla: 1.6 },
     esikRuzgar: { carsaf: 8,   iyi: 16,  hafif: 26,  fazla: 38  } },
-];
-
-// Türkiye'nin bilinen sahil noktalarına tek tıkla gidebilmek için — hem kullanıcı için
-// hızlı bir kısayol, hem de arama motorlarının sayfada gerçek yer adları (Atakum, Çeşme,
-// Bodrum vb.) görmesini sağlayan tıklanabilir, anlamlı içerik.
-const POPULER_NOKTALAR = [
-  { ad: "Atakum, Samsun", lat: 41.330, lon: 36.240 },
-  { ad: "Kilyos, İstanbul", lat: 41.252, lon: 29.021 },
-  { ad: "Çeşme, İzmir", lat: 38.332, lon: 26.288 },
-  { ad: "Alaçatı, İzmir", lat: 38.279, lon: 26.379 },
-  { ad: "Bodrum, Muğla", lat: 37.028, lon: 27.412 },
-  { ad: "Marmaris, Muğla", lat: 36.813, lon: 28.238 },
-  { ad: "Ölüdeniz, Fethiye", lat: 36.548, lon: 29.118 },
-  { ad: "Konyaaltı, Antalya", lat: 36.860, lon: 30.650 },
-  { ad: "Kaş, Antalya", lat: 36.195, lon: 29.641 },
-  { ad: "Ayvalık, Balıkesir", lat: 39.278, lon: 26.690 },
-  { ad: "Trabzon", lat: 41.005, lon: 39.755 },
-  { ad: "Sinop", lat: 42.025, lon: 35.150 },
 ];
 
 // Kullanıcıya gösterilecek her metni (yorumlar, isimler VE Nominatim/OSM'den gelen yer adları)
@@ -2427,22 +2387,6 @@ function noktayaGit(lat, lng, haritayiOdakla) {
 map.on('click', (e) => {
   noktayaGit(e.latlng.lat, e.latlng.lng, false);
 });
-
-// Popüler nokta çipleri — tıklayınca haritayı o noktaya götürür ve verisini gösterir.
-(function () {
-  const kapsayici = document.getElementById('populer-noktalar');
-  if (!kapsayici) return;
-  kapsayici.innerHTML = POPULER_NOKTALAR.map((n, i) =>
-    `<button type="button" class="populer-nokta-btn" data-idx="${i}">${escapeHtml(n.ad)}</button>`
-  ).join("");
-  kapsayici.querySelectorAll('.populer-nokta-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const n = POPULER_NOKTALAR[parseInt(btn.dataset.idx, 10)];
-      map.setView([n.lat, n.lon], 13);
-      noktayaGit(n.lat, n.lon, false);
-    });
-  });
-})();
 
 document.getElementById('locate-btn').addEventListener('click', () => {
   const btn = document.getElementById('locate-btn');
