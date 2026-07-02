@@ -1011,6 +1011,37 @@ function bildirButonuHtml(gb) {
   return `<button type="button" class="gb-bildir-btn" data-id="${gb.id}" ${bildirilmis ? "disabled" : ""} aria-label="${bildirilmis ? "Bildirildi" : "Şüpheli/uygunsuz bildir"}" title="${bildirilmis ? "Bildirildi, teşekkürler" : "Şüpheli/uygunsuz bildir"}" style="background:none;border:none;padding:2px;margin:0;cursor:${bildirilmis ? "default" : "pointer"};color:${bildirilmis ? "#D9362E" : "#B7C2CC"};flex-shrink:0;display:flex;align-items:center;">${BAYRAK_IKON}</button>`;
 }
 
+// === Beğen / beğenme ===
+// Bir yorum haritada BİRDEN FAZLA yerde gösterilebiliyor (hem yorum grubunun küçük
+// balonunda, hem tıkladığın noktanın üstündeki balonda) — sayaç bu ikisi arasında PAYLAŞILAN
+// tek bir kaynaktan (geri_bildirimler.faydali_sayisi/begenmedi_sayisi) geliyor, her yerde aynı
+// sayıyı gösteriyor. "Bu tarayıcıdan zaten oy verildi mi" bilgisini de TEK bir yerde
+// (localStorage) tutuyoruz ki aynı yorum iki farklı balondan ayrı ayrı oylanamasın.
+const OY_ANAHTARI = 'deniz-durumu-oylanan-yorumlar'; // { [id]: 'begeni' | 'begenmedi' }
+function oylananlariGetir() {
+  try { return JSON.parse(localStorage.getItem(OY_ANAHTARI) || "{}"); } catch (e) { return {}; }
+}
+function oyKaydet(id, tur) {
+  try {
+    const oylar = oylananlariGetir();
+    oylar[id] = tur;
+    localStorage.setItem(OY_ANAHTARI, JSON.stringify(oylar));
+  } catch (e) {}
+}
+
+const IKON_BEGENI = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>';
+const IKON_BEGENMEDI = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>';
+
+function begeniButonlariHtml(gb) {
+  if (gb.id == null) return "";
+  const oyDurumu = oylananlariGetir()[gb.id]; // undefined | "begeni" | "begenmedi"
+  const kilitli = oyDurumu != null;
+  return `<span style="display:flex;align-items:center;gap:10px;margin-top:5px;">
+    <button type="button" class="gb-begeni-btn" data-id="${gb.id}" ${kilitli ? "disabled" : ""} aria-label="Beğen" title="Beğen" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${kilitli ? "default" : "pointer"};color:${oyDurumu === "begeni" ? "#1FA35C" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENI}<span>${gb.faydali || 0}</span></button>
+    <button type="button" class="gb-begenmedi-btn" data-id="${gb.id}" ${kilitli ? "disabled" : ""} aria-label="Beğenme" title="Beğenme" style="display:flex;align-items:center;gap:3px;background:none;border:none;padding:2px;margin:0;cursor:${kilitli ? "default" : "pointer"};color:${oyDurumu === "begenmedi" ? "#D9362E" : "#9AAEBA"};font-size:10.5px;font-weight:600;">${IKON_BEGENMEDI}<span>${gb.begenmedi || 0}</span></button>
+  </span>`;
+}
+
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
 // bu yüzden eşikler denize göre değişir. Her bölge için BEŞ kademe tanımlı:
@@ -1794,7 +1825,7 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null, foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0 })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, begenmedi: d.begenmedi_sayisi || 0, isim: d.kullanici_adi || "Anonim", konum: d.konum_metni || null, foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0 })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
@@ -1919,6 +1950,7 @@ async function tumYorumNoktalariniGoster() {
       const liste = grup.kayitlar.map(d => ({
         id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(),
         isim: d.kullanici_adi || "Anonim", foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0,
+        faydali: d.faydali_sayisi || 0, begenmedi: d.begenmedi_sayisi || 0,
       }));
       const yorumlarHtml = liste.slice(0, 8).map(gb => {
         const rr = aktifRenkler()[gb.durum];
@@ -1940,6 +1972,7 @@ async function tumYorumNoktalariniGoster() {
             ${gb.foto && !fotoGizli ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:150px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
             ${gb.foto && fotoGizli ? `<div style="font-size:10px;color:#993C1D;margin-top:4px;">Fotoğraf, birden fazla bildirim nedeniyle gizlendi.</div>` : ""}
             ${cokSikayetli ? `<div style="font-size:10px;color:#993C1D;margin-top:4px;">⚠ Bu yorum birden fazla kişi tarafından şüpheli/uygunsuz bulundu.</div>` : ""}
+            ${begeniButonlariHtml(gb)}
           </div>
         </div>`;
       }).join("");
@@ -2355,6 +2388,7 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
           ${gb.foto && !fotoGizli ? `<a href="${escapeHtml(gb.foto)}" target="_blank" rel="noopener"><img src="${escapeHtml(gb.foto)}" loading="lazy" alt="Kullanıcı fotoğrafı" style="display:block;width:100%;max-width:170px;border-radius:8px;margin-top:5px;object-fit:cover;"/></a>` : ""}
           ${gb.foto && fotoGizli ? `<div style="font-size:10.5px;color:#993C1D;margin-top:4px;">Fotoğraf, birden fazla bildirim nedeniyle gizlendi.</div>` : ""}
           ${cokSikayetli ? `<div style="font-size:10.5px;color:#993C1D;margin-top:4px;">⚠ Bu yorum birden fazla kişi tarafından şüpheli/uygunsuz bulundu.</div>` : ""}
+          ${begeniButonlariHtml(gb)}
         </div>
       </div>`;
   }).join("");
@@ -2456,6 +2490,36 @@ document.addEventListener('click', async (e) => {
     if (error) console.error("Şikayet gönderilemedi:", error);
   } catch (err) {
     console.error("Şikayet gönderilemedi:", err);
+  }
+}, true);
+
+// Beğen/beğenme — aynı sebepten (Leaflet popup'ı tıklamayı kendi içinde durduruyor)
+// capture aşamasında dinliyoruz (bkz. yukarıdaki bildir butonu açıklaması).
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.gb-begeni-btn, .gb-begenmedi-btn');
+  if (!btn || btn.disabled) return;
+  const id = parseInt(btn.dataset.id, 10);
+  if (!id || !supabaseClient) return;
+
+  const begeniMi = btn.classList.contains('gb-begeni-btn');
+  const rpcAdi = begeniMi ? 'faydali_isaretle' : 'begenmedi_isaretle';
+  // İki buton aynı sarmalayıcı içinde — biri seçilince ikisini birden kilitliyoruz, aynı
+  // yorum bir daha (ne aynı balondan ne başka bir balondan) oylanamasın.
+  const kapsayici = btn.parentElement;
+  const digerBtn = kapsayici ? kapsayici.querySelector(begeniMi ? '.gb-begenmedi-btn' : '.gb-begeni-btn') : null;
+
+  btn.disabled = true;
+  if (digerBtn) digerBtn.disabled = true;
+  btn.style.color = begeniMi ? "#1FA35C" : "#D9362E";
+  const sayacSpan = btn.querySelector('span');
+  if (sayacSpan) sayacSpan.textContent = String((parseInt(sayacSpan.textContent, 10) || 0) + 1);
+  oyKaydet(id, begeniMi ? "begeni" : "begenmedi");
+
+  try {
+    const { error } = await supabaseClient.rpc(rpcAdi, { bildirim_id: id });
+    if (error) console.error("Oy gönderilemedi:", error);
+  } catch (err) {
+    console.error("Oy gönderilemedi:", err);
   }
 }, true);
 

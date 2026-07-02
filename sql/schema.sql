@@ -176,3 +176,25 @@ $$;
 
 grant execute on function sikayet_isaretle(bigint) to anon;
 
+-- === Beğen / beğenme ===
+-- "faydali_sayisi" ve "faydali_isaretle" zaten vardı (ilk kurulumdan beri) ama arayüzde hiç
+-- kullanılmıyordu — şimdi bunu "beğen" (👍) sayacı olarak kullanıyoruz. Simetriği olan
+-- "beğenmedi" (👎) için de AYNI güvenli desende (sadece artıran fonksiyon) yeni bir kolon/
+-- fonksiyon ekliyoruz. İkisi de artık geri_bildirimler tablosunda saklanıyor, yani harita
+-- üzerindeki hangi balonda gösterilirse gösterilsin AYNI (paylaşılan, tekil) sayaç —
+-- iki farklı yerde ayrı ayrı "beğenilmiş" gibi görünmüyor.
+alter table geri_bildirimler add column if not exists begenmedi_sayisi int not null default 0;
+
+create or replace function begenmedi_isaretle(bildirim_id bigint)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update geri_bildirimler
+  set begenmedi_sayisi = begenmedi_sayisi + 1
+  where id = bildirim_id;
+$$;
+
+grant execute on function begenmedi_isaretle(bigint) to anon;
+
