@@ -830,6 +830,55 @@
     margin-top: 6px;
     line-height: 1.35;
   }
+  .gun-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 10px;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+  .gun-ok {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 2px 10px;
+    border-radius: 8px;
+    color: inherit;
+    flex-shrink: 0;
+  }
+  .gun-ok:hover:not(:disabled) { background: rgba(120,120,110,0.12); }
+  .gun-ok:disabled { opacity: 0.22; cursor: default; }
+  .gun-nav-bilgi {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+  }
+  .gun-tarih { font-size: 12px; font-weight: 600; }
+  .gun-etiket {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .gun-etiket-simdi { background: rgba(30,160,90,0.16); color: #1C7A44; }
+  .gun-etiket-tahmin { border: 1px dashed currentColor; opacity: 0.8; }
+  .tahmin-not {
+    font-size: 11.5px;
+    opacity: 0.8;
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.4;
+  }
 
 </style>
 <script>
@@ -1023,6 +1072,11 @@ const CEVIRI = {
     tahminimiz: "Tahminimiz (rüzgar + dalga verisi)",
     harita_placeholder: "Haritada bir noktaya tıkla.",
     veri_aliniyor: "Rüzgar ve dalga verisi alınıyor…",
+    simdi_gercek_veri: (saat) => `Şimdi · ${saat} — gerçek zamanlı veri`,
+    tahmin_etiketi: "Tahmin",
+    tahmin_aciklama: "Bu bir tahmindir, gerçekleşen bir ölçüm değil — öğlen saatleri (13:00) civarı için hesaplanmıştır. Sahadan gelen yorumlar ve saatlik detaylar sadece \"Şimdi\" görünümünde gösterilir.",
+    onceki_gun: "Önceki gün",
+    sonraki_gun: "Sonraki gün",
     sahadan_gelenler: "Sahadan gelenler",
     deniz_nasil_baslik: "Şu an oradaysan deniz nasıl?",
     durum_carsaf: "Mükemmel",
@@ -1142,6 +1196,11 @@ const CEVIRI = {
     tahminimiz: "Our estimate (wind + wave data)",
     harita_placeholder: "Tap a point on the map.",
     veri_aliniyor: "Fetching wind and wave data…",
+    simdi_gercek_veri: (saat) => `Now · ${saat} — live data`,
+    tahmin_etiketi: "Forecast",
+    tahmin_aciklama: "This is a forecast, not a live measurement — calculated for around midday (13:00). Field reports and hourly detail are only shown in the \"Now\" view.",
+    onceki_gun: "Previous day",
+    sonraki_gun: "Next day",
     sahadan_gelenler: "From the field",
     deniz_nasil_baslik: "If you're there right now, how's the sea?",
     durum_carsaf: "Flat calm",
@@ -1563,6 +1622,7 @@ const state = {
   konumMetni: null,
   secilenGB: null,
   bizimDurum: null,
+  gunOfset: 0, // 0 = bugün/şimdi (gerçek veri), 1..GUN_SAYISI-1 = ileri günlerin tahmini
 };
 
 const map = L.map('map', { zoomControl: true, center: [39.0, 35.5], zoom: 6 });
@@ -1943,6 +2003,18 @@ function fetchTabanliEsik(fetchKm, esikDalgaAcik, esikRuzgarAcik) {
   return { esikDalga: carpVer(esikDalgaAcik), esikRuzgar: carpVer(esikRuzgarAcik) };
 }
 
+// === Günlük tahmin gezinme (bugün dahil 1 hafta) ===
+// GUN_SAYISI: bugün + kaç gün ileri gösterilecek. TEMSILI_SAAT: tahmin günlerinde
+// (bugün DIŞINDA) o günü temsil eden saat — öğlen/plaj vakti, tek bir "günün özeti" olarak.
+const GUN_SAYISI = 7;
+const TEMSILI_SAAT = "13:00";
+
+// aktifGunDegistir: en son çizilen kartın gün değiştirme fonksiyonuna işaret eder — kart
+// her veriCekVeGoster çağrısında (yeni tıklamada) yeniden oluşturulduğu için, ok
+// butonlarına/kaydırmaya tepki veren tek, KALICI bir olay dinleyicisinin (bkz. aşağıda,
+// script sonunda) her zaman GÜNCEL kapanışı çağırabilmesi için bu değişkene atanıyor.
+let aktifGunDegistir = null;
+
 async function veriCekVeGoster(lat, lon) {
   // Race-condition koruması: her click kendi token'ını alır.
   // Yavaş bir istek geç dönerse (başka yere tıklandıysa) DOM'a dokunmadan durur.
@@ -1961,8 +2033,8 @@ async function veriCekVeGoster(lat, lon) {
 
   try {
     const [havaRes, denizRes, yerRes, kiyidaMi] = await Promise.all([
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m&forecast_days=1&past_days=1&wind_speed_unit=kmh&timezone=auto`),
-      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height&forecast_days=1&past_days=1&timezone=auto`),
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,uv_index&forecast_days=${GUN_SAYISI}&past_days=1&wind_speed_unit=kmh&timezone=auto`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&hourly=wave_height,wave_direction,wave_period,wind_wave_height,wind_wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature&forecast_days=${GUN_SAYISI}&past_days=1&timezone=auto`),
       fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16&accept-language=tr`).catch(() => null),
       noktaSuMu(lat, lon),
     ]);
@@ -1974,7 +2046,7 @@ async function veriCekVeGoster(lat, lon) {
     const denizJson = denizOk ? await denizRes.json() : null;
     const deniz = denizJson ? denizJson.current : null;
     const denizSaatlik = denizJson ? denizJson.hourly : null;
-    const dalgaM = deniz ? deniz.wave_height : null;
+    let dalgaM = deniz ? deniz.wave_height : null;
 
     if (!hava && dalgaM == null) throw new Error("no data");
 
@@ -2007,20 +2079,86 @@ async function veriCekVeGoster(lat, lon) {
     // bir şekilde "kara" derse (false), marine modeli ne dönerse dönsün dalga verisini
     // GİZLİYORUZ — sınır artık kumsalın gerçek ıslak ucu. is-on-water'ın kendisi hata verir/
     // bilinmez dönerse (null), eski davranışa (marine modelinin kendi verisine güven) düşüyoruz.
-    const denizdeyiz = denizOk && dalgaM != null && kiyidaMi !== false;
+    let denizdeyiz = denizOk && dalgaM != null && kiyidaMi !== false;
 
-    const kmh = hava ? hava.wind_speed_10m : null;
-    const gust = hava ? hava.wind_gusts_10m : null;
-    const temp = hava ? hava.temperature_2m : null;
-    const ruzgarYonu = hava ? hava.wind_direction_10m : null;
-    const uvIndex = hava ? hava.uv_index : null;
-    const dalgaPeriyodu = deniz ? deniz.wave_period : null;
-    const dalgaYonu = deniz ? deniz.wave_direction : null;
-    const windWaveM = deniz ? deniz.wind_wave_height : null;
-    const windWavePeriyot = deniz ? deniz.wind_wave_period : null;
-    const swellM = deniz ? deniz.swell_wave_height : null;
-    const swellPeriyot = deniz ? deniz.swell_wave_period : null;
-    const deniztSicaklik = deniz ? deniz.sea_surface_temperature : null;
+    let kmh = hava ? hava.wind_speed_10m : null;
+    let gust = hava ? hava.wind_gusts_10m : null;
+    let temp = hava ? hava.temperature_2m : null;
+    let ruzgarYonu = hava ? hava.wind_direction_10m : null;
+    let uvIndex = hava ? hava.uv_index : null;
+    let dalgaPeriyodu = deniz ? deniz.wave_period : null;
+    let dalgaYonu = deniz ? deniz.wave_direction : null;
+    let windWaveM = deniz ? deniz.wind_wave_height : null;
+    let windWavePeriyot = deniz ? deniz.wind_wave_period : null;
+    let swellM = deniz ? deniz.swell_wave_height : null;
+    let swellPeriyot = deniz ? deniz.swell_wave_period : null;
+    let deniztSicaklik = deniz ? deniz.sea_surface_temperature : null;
+
+    // Bugünün GERÇEK (şu anki) ölçümünün anlık görüntüsü — kullanıcı ileri/geri gün
+    // gezinip "bugüne" döndüğünde buradan geri yükleniyor (bkz. gunVerisiUygula).
+    const gercekVeriSimdi = {
+      denizdeyiz, kmh, gust, temp, ruzgarYonu, uvIndex, dalgaPeriyodu, dalgaYonu,
+      windWaveM, windWavePeriyot, swellM, swellPeriyot, deniztSicaklik, dalgaM,
+      zamanStr: hava ? hava.time : (deniz ? deniz.time : null),
+    };
+    state.gunOfset = 0;
+
+    // "YYYY-MM-DD" tarihine gunSayisi gün ekler — takvim aritmetiği (UTC ile inşa edip
+    // geri okumak, tarayıcının kendi saat dilimini karıştırmadan sadece takvim günü
+    // ilerletir; noktanın gerçek saat dilimiyle hiç ilgisi yok, bkz. dosyadaki diğer
+    // "new Date() ile saat dilimi karıştırmayın" notları).
+    function tarihEkle(tarihStr, gunSayisi) {
+      const [yil, ay, gun] = tarihStr.split('-').map(Number);
+      const d = new Date(Date.UTC(yil, ay - 1, gun));
+      d.setUTCDate(d.getUTCDate() + gunSayisi);
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+    }
+
+    // gunOfset=0 -> bugünün GERÇEK/anlık verisine döner. gunOfset>0 -> o günün
+    // TEMSILI_SAAT'teki (13:00) TAHMİNİ değerlerini saatlik dizilerden okur. Fetch tabanlı
+    // eşik ince ayarı SADECE bugün için geçerli (bkz. çağıran kod) — tahmin günlerinde
+    // rüzgar yönü değişeceğinden bugünün fetch sonucunu diğer günlere taşımıyoruz,
+    // bölgenin standart eşiğine dönüyoruz.
+    function gunVerisiUygula(gunOfset) {
+      state.gunOfset = gunOfset;
+      if (gunOfset === 0 || !gercekVeriSimdi.zamanStr) {
+        ({ denizdeyiz, kmh, gust, temp, ruzgarYonu, uvIndex, dalgaPeriyodu, dalgaYonu,
+           windWaveM, windWavePeriyot, swellM, swellPeriyot, deniztSicaklik, dalgaM } = gercekVeriSimdi);
+        return { zamanStr: gercekVeriSimdi.zamanStr, gercekMi: true };
+      }
+      const bugunTarih = gercekVeriSimdi.zamanStr.split('T')[0];
+      const hedefZamanStr = `${tarihEkle(bugunTarih, gunOfset)}T${TEMSILI_SAAT}`;
+      const i = havaSaatlik && havaSaatlik.time ? havaSaatlik.time.indexOf(hedefZamanStr) : -1;
+      const j = denizSaatlik && denizSaatlik.time ? denizSaatlik.time.indexOf(hedefZamanStr) : -1;
+      kmh = i >= 0 && havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
+      gust = i >= 0 && havaSaatlik.wind_gusts_10m ? havaSaatlik.wind_gusts_10m[i] : null;
+      temp = i >= 0 && havaSaatlik.temperature_2m ? havaSaatlik.temperature_2m[i] : null;
+      ruzgarYonu = i >= 0 && havaSaatlik.wind_direction_10m ? havaSaatlik.wind_direction_10m[i] : null;
+      uvIndex = i >= 0 && havaSaatlik.uv_index ? havaSaatlik.uv_index[i] : null;
+      dalgaM = j >= 0 && denizSaatlik.wave_height ? denizSaatlik.wave_height[j] : null;
+      dalgaPeriyodu = j >= 0 && denizSaatlik.wave_period ? denizSaatlik.wave_period[j] : null;
+      dalgaYonu = j >= 0 && denizSaatlik.wave_direction ? denizSaatlik.wave_direction[j] : null;
+      windWaveM = j >= 0 && denizSaatlik.wind_wave_height ? denizSaatlik.wind_wave_height[j] : null;
+      windWavePeriyot = j >= 0 && denizSaatlik.wind_wave_period ? denizSaatlik.wind_wave_period[j] : null;
+      swellM = j >= 0 && denizSaatlik.swell_wave_height ? denizSaatlik.swell_wave_height[j] : null;
+      swellPeriyot = j >= 0 && denizSaatlik.swell_wave_period ? denizSaatlik.swell_wave_period[j] : null;
+      deniztSicaklik = j >= 0 && denizSaatlik.sea_surface_temperature ? denizSaatlik.sea_surface_temperature[j] : null;
+      denizdeyiz = denizOk && dalgaM != null && kiyidaMi !== false;
+      return { zamanStr: hedefZamanStr, gercekMi: false };
+    }
+
+    // Gün başlığını (tarih + "Şimdi"/"Tahmin" rozeti) oluşturur.
+    function gunBasligiOlustur(zamanStr, gercekMi) {
+      if (!zamanStr) return "";
+      const [tarihKismi, saatKismi] = zamanStr.split('T');
+      const [yil, ay, gun] = tarihKismi.split('-').map(Number);
+      const haftaGunu = new Date(Date.UTC(yil, ay - 1, gun)).getUTCDay();
+      const tarihMetni = `${gun} ${AY_ADLARI()[ay - 1]}, ${GUN_ADLARI()[haftaGunu]}`;
+      const etiketHtml = gercekMi
+        ? `<span class="gun-etiket gun-etiket-simdi">${t('simdi_gercek_veri', saatKismi ? saatKismi.slice(0, 5) : '')}</span>`
+        : `<span class="gun-etiket gun-etiket-tahmin">${t('tahmin_etiketi')}</span>`;
+      return `<div class="gun-tarih">${tarihMetni}</div>${etiketHtml}`;
+    }
 
     // Eğer bilinen bir liman içindeysek o zaten kesin/güvenilir bir eşik veriyor, fetch
     // hesabına gerek yok. Değilsek, gerçek zamanlı fetch hesabı yapıp ona göre eşikleri
@@ -2051,6 +2189,7 @@ async function veriCekVeGoster(lat, lon) {
     // (varsa) birkaç saniye sonra ayrıca belirir.
     async function kartiCiz(ozelEsik, fetchKm) {
       if (!tokenGecerli()) return;
+      const { zamanStr: gunZamanStr, gercekMi: gunGercekMi } = gunVerisiUygula(state.gunOfset);
       const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) : null;
       const r = durum ? aktifRenkler()[durum] : aktifRenkler().notr;
       const yogunluk = dalgaM != null ? Math.min(dalgaM * 9, 20) : (kmh ? Math.min(kmh / 2, 18) : 6);
@@ -2094,9 +2233,9 @@ async function veriCekVeGoster(lat, lon) {
       const swellNotu = (fetchKm != null && swellBelirginMi(swellM, swellPeriyot))
         ? ` ${t('swell_notu', swellM.toFixed(1), swellPeriyot.toFixed(0))}`
         : "";
-      const fetchNotuIcerik = fetchKm != null
+      const fetchNotuIcerik = !gunGercekMi ? "" : (fetchKm != null
         ? fetchNotuMetni(fetchKm) + swellNotu
-        : (bolgeGenel ? t('fetch_notu_bekleniyor') : "");
+        : (bolgeGenel ? t('fetch_notu_bekleniyor') : ""));
       const fetchNotu = `<div id="fetch-notu-alani" style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchNotuIcerik}</div><div id="fetch-uyari-alani"></div>`;
 
       // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
@@ -2112,11 +2251,19 @@ async function veriCekVeGoster(lat, lon) {
       const baslikYer = yerAdi || bolgeAdi(bolge);
       const durumBasligi = denizdeyiz ? ETIKET(durum) : t('kiyidan_ruzgar_bilgisi');
 
-      const saatlikSeritHtml = saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null);
-      const trendHtml = sonSaatlerTrendOlustur(havaSaatlik, denizSaatlik, denizdeyiz, hava ? hava.time : null, r);
+      const saatlikSeritHtml = gunGercekMi ? saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null) : "";
+      const trendHtml = gunGercekMi ? sonSaatlerTrendOlustur(havaSaatlik, denizSaatlik, denizdeyiz, hava ? hava.time : null, r) : "";
+      const gunNavHtml = `
+        <div class="gun-nav-row" style="color:${r.text600}">
+          <button type="button" class="gun-ok" id="gun-onceki" aria-label="${t('onceki_gun')}" ${state.gunOfset <= 0 ? 'disabled' : ''}>&lsaquo;</button>
+          <div class="gun-nav-bilgi">${gunBasligiOlustur(gunZamanStr, gunGercekMi)}</div>
+          <button type="button" class="gun-ok" id="gun-sonraki" aria-label="${t('sonraki_gun')}" ${state.gunOfset >= GUN_SAYISI - 1 ? 'disabled' : ''}>&rsaquo;</button>
+        </div>`;
+      const tahminNotHtml = gunGercekMi ? "" : `<div class="tahmin-not" style="color:${r.text600}">${t('tahmin_aciklama')}</div>`;
 
       card.innerHTML = `
         ${ruzgarUyariHtml}
+        ${gunNavHtml}
         <div class="card-top">
           <div>
             <div class="loc-label" style="color:${r.text600}">${baslikYer ? escapeHtml(baslikYer) + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
@@ -2137,6 +2284,7 @@ async function veriCekVeGoster(lat, lon) {
         ${denizdeyiz ? (durum === 'carsaf' ? svgDuzCizgiPattern(r.border) : svgDalgaPattern(r.border, yogunluk)) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">${t('kara_uzerinde')}</div>`}
         ${denizdeyiz ? saatlikSeritHtml : ""}
         ${trendHtml}
+        ${tahminNotHtml}
       `;
 
       document.getElementById('refresh-btn').onclick = () => veriCekVeGoster(lat, lon);
@@ -2176,6 +2324,21 @@ async function veriCekVeGoster(lat, lon) {
       tamEkranVeriGoster(); // harita tam ekrandaysa kartı göster ve 13sn'lik zamanlayıcıyı başlat/tazele
     }
 
+    // Bugün için fetch hesabı bitince (aşağıda) burada saklanıyor — kullanıcı tahmin
+    // günlerine gidip "bugüne" geri döndüğünde eşiği yeniden hesaplamadan geri getirebilelim.
+    let sonOzelEsikDegeri = null, sonFetchKmDegeri = null;
+
+    // Sağ/sol ok butonları ve kaydırma (swipe) BUNU çağırır (bkz. aktifGunDegistir, script
+    // sonundaki kalıcı dinleyici). Bugün (0) dışına çıkarken fetch ince ayarı uygulanmıyor
+    // (bkz. gunVerisiUygula'daki not); bugüne dönünce varsa hesaplanmış eşik geri gelir.
+    function gunDegistir(delta) {
+      const yeni = Math.max(0, Math.min(GUN_SAYISI - 1, state.gunOfset + delta));
+      if (yeni === state.gunOfset) return;
+      state.gunOfset = yeni;
+      kartiCiz(yeni === 0 ? sonOzelEsikDegeri : null, yeni === 0 ? sonFetchKmDegeri : null);
+    }
+    aktifGunDegistir = gunDegistir;
+
     await kartiCiz(null, null);
 
     // Kıyı şekli (fetch mesafesi) hesabını ARKA PLANDA başlatıyoruz — kullanıcı rüzgar/dalga
@@ -2191,6 +2354,11 @@ async function veriCekVeGoster(lat, lon) {
       fetchMesafesiHesapla(lat, lon, ruzgarYonu).then((fetchSonuc) => {
         if (!fetchSonuc || !tokenGecerli()) return;
         const ozelEsik = fetchTabanliEsik(fetchSonuc.km, bolgeGenel.esikDalga, bolgeGenel.esikRuzgar);
+        sonOzelEsikDegeri = ozelEsik;
+        sonFetchKmDegeri = fetchSonuc.km;
+        // Kullanıcı bu sırada başka bir güne (tahmine) geçmişse, "bugünün" kartını arkadan
+        // değiştirme — sonuç sonOzelEsikDegeri'de saklı kaldı, bugüne dönünce uygulanır.
+        if (state.gunOfset !== 0) return;
         const yeniDurum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) : null;
         const eskiPuan = durumPuani(state.bizimDurum);
         const yeniPuan = durumPuani(yeniDurum);
@@ -2633,8 +2801,10 @@ async function gbAlaniniGuncelle() {
   const conflictNote = document.getElementById('conflict-note');
 
   // Karadaysak geri bildirim bölümünü tamamen gizle — kumsalda olmayan bir nokta için
-  // "deniz nasıl" sormak anlamsız.
-  if (!state.denizdeyiz) {
+  // "deniz nasıl" sormak anlamsız. Aynı şekilde bir TAHMİN günü (bugün değil) görüntüleniyorsa
+  // da gizle — "şu an oradaysan deniz nasıl?" sorusu ve sahadan gelen yorumlar sadece "şimdi"
+  // için anlamlı, gelecekteki bir gün için değil.
+  if (!state.denizdeyiz || state.gunOfset !== 0) {
     gbSection.style.display = "none";
     communityLabel.style.display = "none";
     summaryWrap.style.display = "none";
@@ -2908,6 +3078,32 @@ function noktayaGit(lat, lng, haritayiOdakla) {
 map.on('click', (e) => {
   noktayaGit(e.latlng.lat, e.latlng.lng, false);
 });
+
+// Gün gezinme (önceki/sonraki gün): kart her yeni tıklamada innerHTML ile baştan
+// yazıldığından ok butonlarına doğrudan dinleyici eklemek yerine, hiç yok edilmeyen
+// #status-card kabına TEK SEFERLİK bir "event delegation" dinleyicisi ekliyoruz —
+// hangi tıklamanın kartı olursa olsun aktifGunDegistir (bkz. veriCekVeGoster) o an
+// hangi noktaya bakılıyorsa onun gün değiştirme mantığını çağırır.
+const gunKartiKabı = document.getElementById('status-card');
+gunKartiKabı.addEventListener('click', (e) => {
+  if (e.target.closest('#gun-onceki')) aktifGunDegistir && aktifGunDegistir(-1);
+  else if (e.target.closest('#gun-sonraki')) aktifGunDegistir && aktifGunDegistir(1);
+});
+let gunDokunmaX = null, gunDokunmaY = null;
+gunKartiKabı.addEventListener('touchstart', (e) => {
+  gunDokunmaX = e.touches[0].clientX;
+  gunDokunmaY = e.touches[0].clientY;
+}, { passive: true });
+gunKartiKabı.addEventListener('touchend', (e) => {
+  if (gunDokunmaX == null) return;
+  const dx = e.changedTouches[0].clientX - gunDokunmaX;
+  const dy = e.changedTouches[0].clientY - gunDokunmaY;
+  gunDokunmaX = null;
+  // Sola kaydırma (dx<0) = sonraki gün (içerik sağdan gelir); sağa kaydırma (dx>0) = önceki gün.
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+    aktifGunDegistir && aktifGunDegistir(dx < 0 ? 1 : -1);
+  }
+}, { passive: true });
 
 // Kullanıcı haritayı SÜRÜKLEMEYE (elle kaydırmaya) başlar başlamaz — artık başka bir yere
 // bakıyor olabileceği için — tıkladığımız pini (yorum yapılmış konum noktaları DEĞİL, sadece
