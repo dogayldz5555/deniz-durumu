@@ -175,6 +175,12 @@ if ('serviceWorker' in navigator) {
     flex: 1;
     min-width: 0;
     max-width: 540px;
+    /* #app-wrap'te align-items:flex-start olduğu için (dikey ortalama yerine üstten
+       hizalama) bu, width olmadan sadece İÇERİĞİNE göre (fit-content) genişlerdi — kart
+       içindeki geniş, kaydırılabilir saatlik şerit (bkz. .hourly-strip-kaydirilabilir) bu
+       yüzden #app'i de kendisiyle birlikte genişletip telefonda sayfayı yatayda taşırıyordu.
+       width:100% ile #app'i gerçekten mevcut genişliğe (max-width'e kadar) sabitliyoruz. */
+    width: 100%;
   }
   #yan-panel {
     width: 260px;
@@ -397,6 +403,10 @@ if ('serviceWorker' in navigator) {
     min-height: 96px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
     transition: background 0.25s, border-color 0.25s;
+    /* İçindeki kaydırılabilir saatlik şerit (bkz. .hourly-strip-kaydirilabilir) KENDİ
+       içinde kaymalı, kartı genişletmemeli — bu olmadan telefonda sayfa yatayda taşıp
+       tarayıcı otomatik uzaklaşıyordu (bkz. ilgili commit notu). */
+    overflow-x: hidden;
   }
   .card.placeholder {
     display: flex;
@@ -915,6 +925,50 @@ if ('serviceWorker' in navigator) {
     font-style: italic;
     line-height: 1.4;
   }
+  .ana-ekrana-ekle-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+  }
+  .ana-ekrana-ekle-banner svg { flex-shrink: 0; color: #2A7FB8; }
+  .ana-ekrana-ekle-banner span { flex: 1; }
+  .kapat-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 19px;
+    line-height: 1;
+    color: var(--text-sub);
+    padding: 2px 4px;
+  }
+  .ana-ekrana-ekle-ipucu {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 8px 30px rgba(20,30,25,0.25);
+    z-index: 500;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
 
 </style>
 <script>
@@ -942,6 +996,16 @@ if ('serviceWorker' in navigator) {
     </div>
   </div>
   <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
+
+  <div class="ana-ekrana-ekle-banner" id="ana-ekrana-ekle-banner" style="display:none;" role="button" tabindex="0">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M20 21H4a1 1 0 0 1-1-1v-4"/><path d="M4 21a1 1 0 0 1-1-1v-4"/><path d="M20 21a1 1 0 0 0 1-1v-4"/></svg>
+    <span data-i18n="ana_ekrana_ekle_metin">Uygulama gibi kullanmak için ana ekrana ekle</span>
+    <button type="button" class="kapat-btn" id="ana-ekrana-ekle-kapat" data-i18n-aria="kapat" aria-label="Kapat">×</button>
+  </div>
+  <div class="ana-ekrana-ekle-ipucu" id="ana-ekrana-ekle-ipucu" style="display:none;">
+    <div id="ana-ekrana-ekle-ipucu-metin"></div>
+    <button type="button" class="kapat-btn" id="ana-ekrana-ekle-ipucu-kapat" data-i18n-aria="kapat" aria-label="Kapat" style="margin-top:8px;">×</button>
+  </div>
 
   <div class="isim-kart">
     <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
@@ -1114,6 +1178,9 @@ const CEVIRI = {
     saatlik_tahmin_basligi: "Saatlik tahmin",
     onceki_gun: "Önceki gün",
     sonraki_gun: "Sonraki gün",
+    ana_ekrana_ekle_metin: "Uygulama gibi kullanmak için ana ekrana ekle",
+    kapat: "Kapat",
+    ana_ekrana_ekle_ios_ipucu: "Aşağıdaki <b>Paylaş</b> düğmesine (kare içinden yukarı ok) dokun, açılan listede <b>“Ana Ekrana Ekle”</b>yi seç.",
     sahadan_gelenler: "Sahadan gelenler",
     deniz_nasil_baslik: "Şu an oradaysan deniz nasıl?",
     durum_carsaf: "Mükemmel",
@@ -1239,6 +1306,9 @@ const CEVIRI = {
     saatlik_tahmin_basligi: "Hourly forecast",
     onceki_gun: "Previous day",
     sonraki_gun: "Next day",
+    ana_ekrana_ekle_metin: "Add to home screen to use it like an app",
+    kapat: "Close",
+    ana_ekrana_ekle_ios_ipucu: "Tap the <b>Share</b> button (square with an up arrow) below, then choose <b>“Add to Home Screen”</b>.",
     sahadan_gelenler: "From the field",
     deniz_nasil_baslik: "If you're there right now, how's the sea?",
     durum_carsaf: "Flat calm",
@@ -3177,6 +3247,51 @@ gunKartiKabı.addEventListener('touchend', (e) => {
     aktifGunDegistir && aktifGunDegistir(dx < 0 ? 1 : -1);
   }
 }, { passive: true });
+
+// === "Ana ekrana ekle" düğmesi ===
+// Android/Chrome (ve destekleyen masaüstü tarayıcılar) 'beforeinstallprompt' olayını
+// tetikler — bunu yakalayıp SAKLIYORUZ, kullanıcı bizim düğmemize basınca native kurulum
+// istemini (prompt) biz açıyoruz. iOS Safari bu olayı HİÇ desteklemiyor (Apple'ın JS'e
+// açtığı bir "Ana Ekrana Ekle" API'si yok) — o yüzden iOS'ta düğme yerine, Paylaş
+// düğmesinden nasıl ekleneceğini gösteren küçük bir ipucu açıyoruz.
+let ertelenmisKurulumIstemi = null;
+const zatenYuklu = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+const iosMu = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+const anaEkranaEkleBanner = document.getElementById('ana-ekrana-ekle-banner');
+const anaEkranaEkleIpucu = document.getElementById('ana-ekrana-ekle-ipucu');
+
+if (!zatenYuklu) {
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    ertelenmisKurulumIstemi = e;
+    anaEkranaEkleBanner.style.display = 'flex';
+  });
+  // iOS'ta 'beforeinstallprompt' hiç ateşlenmeyeceği için düğmeyi doğrudan gösteriyoruz.
+  if (iosMu) anaEkranaEkleBanner.style.display = 'flex';
+}
+
+anaEkranaEkleBanner.addEventListener('click', async (e) => {
+  if (e.target.closest('#ana-ekrana-ekle-kapat')) {
+    anaEkranaEkleBanner.style.display = 'none';
+    return;
+  }
+  if (ertelenmisKurulumIstemi) {
+    anaEkranaEkleBanner.style.display = 'none';
+    ertelenmisKurulumIstemi.prompt();
+    try { await ertelenmisKurulumIstemi.userChoice; } catch (err) {}
+    ertelenmisKurulumIstemi = null;
+    return;
+  }
+  // iOS: programatik bir kurulum yolu yok, adım adım nasıl yapılacağını gösteriyoruz.
+  document.getElementById('ana-ekrana-ekle-ipucu-metin').innerHTML = t('ana_ekrana_ekle_ios_ipucu');
+  anaEkranaEkleIpucu.style.display = 'block';
+});
+document.getElementById('ana-ekrana-ekle-ipucu-kapat').addEventListener('click', () => {
+  anaEkranaEkleIpucu.style.display = 'none';
+});
+window.addEventListener('appinstalled', () => {
+  anaEkranaEkleBanner.style.display = 'none';
+});
 
 // Kullanıcı haritayı SÜRÜKLEMEYE (elle kaydırmaya) başlar başlamaz — artık başka bir yere
 // bakıyor olabileceği için — tıkladığımız pini (yorum yapılmış konum noktaları DEĞİL, sadece
