@@ -1,0 +1,12 @@
+{
+  "appId": "com.seadata.app",
+  "appName": "SeaData",
+  "webDir": "www",
+  "server": {
+    "url": "https://seadata.vercel.app",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

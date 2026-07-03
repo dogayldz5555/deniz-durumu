@@ -1,0 +1,14 @@
+node_modules/
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+android/captures/
+android/app/release/
+
+# GÜVENLİK: imzalama anahtarı ve şifresi ASLA GitHub'a gitmemeli — bu dosyalar
+# kaybolursa/sızarsa bile buradaki gerçek keystore'u SİLMEYİN, sadece git'e
+# eklenmemesini sağlıyoruz. Bu dosyaların yedeğini git DIŞINDA güvenli bir
+# yerde (parola yöneticisi, harici disk vb.) tutun.
+android/keystore.properties
+keystore/

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SeaData</string>
+    <string name="title_activity_main">SeaData</string>
+    <string name="package_name">com.seadata.app</string>
+    <string name="custom_url_scheme">com.seadata.app</string>
+</resources>
