@@ -20,6 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
+  /* Gün içi 4 kademe (sabah > öğlen > akşam > gece, her biri bir öncekinden daha "kapalı"):
+     :root = sabah (05:00-12:00), en açık kademe ve varsayılan/referans nokta — bkz. aşağıda
+     sırasıyla oglen/aksam/gece için html[data-tema-hazirlik="..."] blokları. */
   :root {
     --bg-grad-1: rgba(255,255,255,0.9);
     --bg-grad-2: rgba(186,224,242,0.7);
@@ -46,30 +49,58 @@
     --locate-border: rgba(42,127,184,0.3);
     --star-empty: rgba(40,40,30,0.28);
   }
+  /* Öğlen (12:00-16:00): sabaha göre bir kademe daha "kapalı" — hâlâ gündüz mavisi ama
+     daha koyu/doygun. Gün içi 4 kademenin (sabah > öğlen > akşam > gece) ikinci basamağı. */
+  html[data-tema-hazirlik="oglen"] {
+    --bg-grad-1: rgba(255,255,255,0.75);
+    --bg-grad-2: rgba(140,195,225,0.65);
+    --bg-grad-3-from: #D4E9F5;
+    --bg-grad-3-mid: #B7D9EC;
+    --bg-grad-3-to: #9AC7E0;
+    --text-primary: #163244;
+    --text-h1: #102838;
+    --text-sub: #3E637A;
+    --map-border: rgba(20,40,50,0.12);
+    --map-bg: #b8d8ea;
+    --card-border: rgba(20,40,50,0.11);
+    --card-bg: #FDFEFF;
+    --legend-text: #2E5468;
+    --section-label: #5A7E92;
+    --footnote-text: #5A7E92;
+    --seo-text: #6890A0;
+    --gb-input-border: rgba(20,40,50,0.16);
+    --hour-text: #5A7E92;
+    --hour-val: #163244;
+    --locate-bg: rgba(253,254,255,0.7);
+    --locate-text: #1F6E9E;
+    --locate-border: rgba(31,110,158,0.32);
+    --star-empty: rgba(20,40,50,0.3);
+  }
+  /* Akşam (16:00-22:00): öğlene göre daha kapalı — gün batımı sıcaklığı, ama daha derin. */
   html[data-tema-hazirlik="aksam"] {
-    --bg-grad-1: rgba(255,224,178,0.55);
-    --bg-grad-2: rgba(255,150,130,0.45);
-    --bg-grad-3-from: #FFE8D6;
-    --bg-grad-3-mid: #FBC9A8;
-    --bg-grad-3-to: #E89B8A;
-    --text-primary: #5A2E1E;
-    --text-h1: #5A2418;
-    --text-sub: #8A4F38;
-    --map-border: rgba(80,30,10,0.15);
-    --map-bg: #f0c9ad;
-    --card-border: rgba(80,30,10,0.12);
-    --card-bg: #FFFAF5;
-    --legend-text: #8A4530;
-    --section-label: #A06A4E;
-    --footnote-text: #A06A4E;
-    --seo-text: #B08068;
-    --gb-input-border: rgba(80,30,10,0.18);
-    --hour-text: #A06A4E;
-    --hour-val: #5A2E1E;
-    --locate-bg: rgba(255,250,245,0.7);
-    --locate-text: #B8542A;
-    --locate-border: rgba(184,84,42,0.3);
-    --star-empty: rgba(80,30,10,0.28);
+    --bg-grad-1: rgba(255,214,164,0.5);
+    --bg-grad-2: rgba(230,120,95,0.5);
+    --bg-grad-3-from: #F3D6BB;
+    --bg-grad-3-mid: #E3AC85;
+    --bg-grad-3-to: #C97F5C;
+    --text-primary: #5A3420;
+    --text-h1: #5A2A16;
+    --text-sub: #8A5A3E;
+    --map-border: rgba(80,30,10,0.16);
+    --map-bg: #e0ad84;
+    --card-border: rgba(80,30,10,0.13);
+    --card-bg: #FFF8F2;
+    --legend-text: #8A4E30;
+    --section-label: #A5744E;
+    --footnote-text: #A5744E;
+    --seo-text: #B08868;
+    --gb-input-border: rgba(80,30,10,0.19);
+    --hour-text: #A5744E;
+    --hour-val: #5A3420;
+    --locate-bg: rgba(255,248,242,0.7);
+    --locate-text: #B8602A;
+    --locate-border: rgba(184,96,42,0.32);
+    --star-empty: rgba(80,30,10,0.3);
   }
   html[data-tema-hazirlik="gece"] {
     --bg-grad-1: rgba(70,90,140,0.4);
@@ -806,9 +837,10 @@
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
 (function() {
   var saat = new Date().getHours();
-  var tema = "gunduz";
-  if (saat >= 20 || saat < 6) tema = "gece";
-  else if (saat >= 17) tema = "aksam";
+  var tema = "sabah";
+  if (saat >= 22 || saat < 5) tema = "gece";
+  else if (saat >= 16) tema = "aksam";
+  else if (saat >= 12) tema = "oglen";
   document.documentElement.setAttribute('data-tema-hazirlik', tema);
 })();
 </script>
@@ -1237,7 +1269,7 @@ const RENK_GECE = {
   notr:      { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
 };
 function aktifTema() {
-  return document.documentElement.getAttribute('data-tema-hazirlik') || 'gunduz';
+  return document.documentElement.getAttribute('data-tema-hazirlik') || 'sabah';
 }
 function aktifRenkler() {
   return aktifTema() === 'gece' ? RENK_GECE : RENK_GUNDUZ;
@@ -1632,6 +1664,21 @@ function svgDalgaPattern(renkHex, yogunluk) {
     const y = 22 + i * 6;
     const amp = 10 + i * 4 - yogunluk;
     paths += `<path d="M0,${y} Q37.5,${amp} 75,${y} T150,${y} T225,${y} T300,${y}" fill="none" stroke="${renkHex}" stroke-width="2.5" stroke-linecap="round" opacity="${1 - i * 0.28}"/>`;
+  }
+  return `<svg class="wavepattern" viewBox="0 0 300 44" aria-hidden="true">${paths}</svg>`;
+}
+
+// "Çarşaf gibi" kartına özel: diğer 4 durumun hepsi aynı dalgalı çizgiyi kullandığından,
+// bu kartın (rengi sayfanın kendi mavi zeminine en yakın olan) sayfadan ayrışması zorlaşıyordu.
+// Renk paletine dokunmadan, sadece bu tek durum için düz/yatay çizgiler çiziyoruz — "çarşaf"
+// (ütülü, kırışıksız yatak çarşafı) fikrini doğrudan şekle taşıyıp diğerlerinden şekil
+// olarak da ayırt edilmesini sağlıyor.
+function svgDuzCizgiPattern(renkHex) {
+  const cizgiSayisi = 3;
+  let paths = "";
+  for (let i = 0; i < cizgiSayisi; i++) {
+    const y = 20 + i * 8;
+    paths += `<path d="M0,${y} L300,${y}" fill="none" stroke="${renkHex}" stroke-width="2" stroke-linecap="round" opacity="${0.9 - i * 0.28}"/>`;
   }
   return `<svg class="wavepattern" viewBox="0 0 300 44" aria-hidden="true">${paths}</svg>`;
 }
@@ -2087,7 +2134,7 @@ async function veriCekVeGoster(lat, lon) {
         <div class="metrics" style="color:${r.text900}">${metricsHtml}</div>
         ${ruzgarDalgasiNotu}
         ${fetchNotu}
-        ${denizdeyiz ? svgDalgaPattern(r.border, yogunluk) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">${t('kara_uzerinde')}</div>`}
+        ${denizdeyiz ? (durum === 'carsaf' ? svgDuzCizgiPattern(r.border) : svgDalgaPattern(r.border, yogunluk)) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">${t('kara_uzerinde')}</div>`}
         ${denizdeyiz ? saatlikSeritHtml : ""}
         ${trendHtml}
       `;
@@ -3025,9 +3072,10 @@ map.on('moveend', haritaGorunumuDegisti);
 // Sayfa uzun süre açık kalırsa (örn. akşamdan geceye geçiş), temayı her 5 dakikada bir tazele.
 function temaGuncelle() {
   const saat = new Date().getHours();
-  let tema = "gunduz";
-  if (saat >= 20 || saat < 6) tema = "gece";
-  else if (saat >= 17) tema = "aksam";
+  let tema = "sabah";
+  if (saat >= 22 || saat < 5) tema = "gece";
+  else if (saat >= 16) tema = "aksam";
+  else if (saat >= 12) tema = "oglen";
   document.documentElement.setAttribute('data-tema-hazirlik', tema);
 }
 setInterval(temaGuncelle, 5 * 60 * 1000);
