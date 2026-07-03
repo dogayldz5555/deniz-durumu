@@ -439,6 +439,31 @@
   .hour-time { font-weight: 500; }
   .hour-dot { width: 8px; height: 8px; border-radius: 50%; }
   .hour-val { font-weight: 600; color: var(--hour-val); font-size: 12px; }
+  .saatlik-tahmin-baslik {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(40,40,30,0.08);
+  }
+  /* Tahmin günlerinde 24 saatin tamamı gösterildiği için sığmıyor — yatay kaydırma ile
+     gezilir (bkz. gunlukTumSaatlerSeridi). Bugünün 6 hücrelik "kalan saatler" şeridi
+     (plain .hourly-strip) buna dokunulmadan eskisi gibi kalıyor. */
+  .hourly-strip-kaydirilabilir {
+    margin-top: 8px;
+    padding-top: 0;
+    border-top: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    justify-content: flex-start;
+  }
+  .hourly-strip-kaydirilabilir .hour-cell {
+    flex: 0 0 auto;
+    min-width: 38px;
+  }
   .gb-section { margin-bottom: 18px; }
   .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
   .isim-kart {
@@ -1074,7 +1099,8 @@ const CEVIRI = {
     veri_aliniyor: "Rüzgar ve dalga verisi alınıyor…",
     simdi_gercek_veri: (saat) => `Şimdi · ${saat} — gerçek zamanlı veri`,
     tahmin_etiketi: "Tahmin",
-    tahmin_aciklama: "Bu bir tahmindir, gerçekleşen bir ölçüm değil — öğlen saatleri (13:00) civarı için hesaplanmıştır. Sahadan gelen yorumlar ve saatlik detaylar sadece \"Şimdi\" görünümünde gösterilir.",
+    tahmin_aciklama: "Bu bir tahmindir, gerçekleşen bir ölçüm değil. Sahadan gelen yorumlar sadece \"Şimdi\" görünümünde gösterilir.",
+    saatlik_tahmin_basligi: "Saatlik tahmin",
     onceki_gun: "Önceki gün",
     sonraki_gun: "Sonraki gün",
     sahadan_gelenler: "Sahadan gelenler",
@@ -1198,7 +1224,8 @@ const CEVIRI = {
     veri_aliniyor: "Fetching wind and wave data…",
     simdi_gercek_veri: (saat) => `Now · ${saat} — live data`,
     tahmin_etiketi: "Forecast",
-    tahmin_aciklama: "This is a forecast, not a live measurement — calculated for around midday (13:00). Field reports and hourly detail are only shown in the \"Now\" view.",
+    tahmin_aciklama: "This is a forecast, not a live measurement. Field reports are only shown in the \"Now\" view.",
+    saatlik_tahmin_basligi: "Hourly forecast",
     onceki_gun: "Previous day",
     sonraki_gun: "Next day",
     sahadan_gelenler: "From the field",
@@ -1790,6 +1817,33 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
   return `<div class="hourly-strip">${hucreler}</div>`;
 }
 
+// Tahmin günleri için: o günün TÜM saatlerini (00:00-23:00) yan yana, kaydırılabilir bir
+// şerit olarak gösterir — "bugün" görünümündeki (yukarıdaki fonksiyon) sabit 6 hücrelik
+// "kalan saatler" şeridinden farklı olarak, burada sığmayan hücreler CSS ile yatay kaydırma
+// (touch/mouse) ile gezilir (bkz. .hourly-strip-kaydirilabilir). hedefTarih: "YYYY-MM-DD".
+function gunlukTumSaatlerSeridi(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan, hedefTarih) {
+  if (!havaSaatlik || !havaSaatlik.time) return "";
+  let hucreler = "";
+  for (let saat = 0; saat < 24; saat++) {
+    const saatStr = `${hedefTarih}T${String(saat).padStart(2, '0')}:00`;
+    const i = havaSaatlik.time.indexOf(saatStr);
+    if (i < 0) continue;
+    const kmh = havaSaatlik.wind_speed_10m ? havaSaatlik.wind_speed_10m[i] : null;
+    const dalgaM = denizSaatlik && denizSaatlik.wave_height ? denizSaatlik.wave_height[i] : null;
+    const durum = durumDenizden(dalgaM, kmh, null, null, null, lat, lon);
+    const r = aktifRenkler()[durum] || renkVarsayilan;
+    hucreler += `<div class="hour-cell">
+      <span class="hour-time">${saat}:00</span>
+      <span class="hour-dot" style="background:${r.border}"></span>
+      <span class="hour-val">${kmh != null ? Math.round(kmh) : "—"}</span>
+    </div>`;
+  }
+  if (!hucreler) return "";
+  return `
+    <div class="saatlik-tahmin-baslik" style="color:${renkVarsayilan.text600}">${t('saatlik_tahmin_basligi')}</div>
+    <div class="hourly-strip hourly-strip-kaydirilabilir">${hucreler}</div>`;
+}
+
 // Son 24 saatte (past_days=1 ile aldığımız GERÇEK, tahmin değil geçmiş veriyle) asıl ölçüt
 // (denizdeysek dalga, değilsek rüzgar) nasıl değişmiş — küçük bir sparkline + kısa özet
 // olarak gösteriyoruz. "Şu an 0.4 mi, dün de mi 0.4'tü yoksa yeni mi arttı" sorusuna cevap.
@@ -2251,7 +2305,9 @@ async function veriCekVeGoster(lat, lon) {
       const baslikYer = yerAdi || bolgeAdi(bolge);
       const durumBasligi = denizdeyiz ? ETIKET(durum) : t('kiyidan_ruzgar_bilgisi');
 
-      const saatlikSeritHtml = gunGercekMi ? saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null) : "";
+      const saatlikSeritHtml = gunGercekMi
+        ? saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null)
+        : gunlukTumSaatlerSeridi(havaSaatlik, denizSaatlik, lat, lon, r, gunZamanStr.split('T')[0]);
       const trendHtml = gunGercekMi ? sonSaatlerTrendOlustur(havaSaatlik, denizSaatlik, denizdeyiz, hava ? hava.time : null, r) : "";
       const gunNavHtml = `
         <div class="gun-nav-row" style="color:${r.text600}">
@@ -3089,16 +3145,22 @@ gunKartiKabı.addEventListener('click', (e) => {
   if (e.target.closest('#gun-onceki')) aktifGunDegistir && aktifGunDegistir(-1);
   else if (e.target.closest('#gun-sonraki')) aktifGunDegistir && aktifGunDegistir(1);
 });
-let gunDokunmaX = null, gunDokunmaY = null;
+let gunDokunmaX = null, gunDokunmaY = null, gunDokunmaSaatSeridindeMi = false;
 gunKartiKabı.addEventListener('touchstart', (e) => {
   gunDokunmaX = e.touches[0].clientX;
   gunDokunmaY = e.touches[0].clientY;
+  // Saatlik tahmin şeridinin (tahmin günlerinde) KENDİ yatay kaydırması var — dokunuş oradan
+  // başladıysa gün değiştirme mantığını devre dışı bırakıyoruz, yoksa saatleri kaydırmak
+  // istenen her hareket yanlışlıkla günü de değiştirirdi.
+  gunDokunmaSaatSeridindeMi = !!e.target.closest('.hourly-strip-kaydirilabilir');
 }, { passive: true });
 gunKartiKabı.addEventListener('touchend', (e) => {
   if (gunDokunmaX == null) return;
   const dx = e.changedTouches[0].clientX - gunDokunmaX;
   const dy = e.changedTouches[0].clientY - gunDokunmaY;
+  const saatSeridindeydi = gunDokunmaSaatSeridindeMi;
   gunDokunmaX = null;
+  if (saatSeridindeydi) return;
   // Sola kaydırma (dx<0) = sonraki gün (içerik sağdan gelir); sağa kaydırma (dx>0) = önceki gün.
   if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
     aktifGunDegistir && aktifGunDegistir(dx < 0 ? 1 : -1);
