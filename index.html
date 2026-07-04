@@ -799,6 +799,17 @@ if ('serviceWorker' in navigator) {
   .sss-madde { margin-bottom: 12px; }
   .sss-madde h3 { font-size: 12.5px; font-weight: 600; color: var(--text-primary); margin: 0 0 3px; }
   .sss-madde p { font-size: 12px; color: var(--seo-text); line-height: 1.6; margin: 0; }
+  .sehir-sayfalari-bolum { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
+  .sehir-sayfalari-bolum > h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 10px; }
+  .sehir-grup { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 12px; }
+  .sehir-grup a {
+    color: var(--seo-text);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(40,40,30,0.1);
+  }
+  .sehir-grup a.sehir-ana-link { font-weight: 700; color: var(--text-primary); background: rgba(42,127,184,0.08); }
 
   /* Kullanıcı yorumları bölümü */
   #site-yorumlar-bolum {
@@ -1205,21 +1216,6 @@ if ('serviceWorker' in navigator) {
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 
-  <div class="site-feedback-card">
-    <p class="site-feedback-title" data-i18n="site_feedback_baslik">Bu uygulamayı nasıl buldun?</p>
-    <p class="site-feedback-sub" data-i18n="site_feedback_alt">Deniz durumuyla ilgili değil; sitenin kendisi hakkındaki görüşün. Haritada görünmez, yalnızca geliştirmemize katkı sağlar.</p>
-    <div class="site-feedback-stars" id="site-feedback-stars">
-      <button type="button" data-puan="1" aria-label="1 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-      <button type="button" data-puan="2" aria-label="2 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-      <button type="button" data-puan="3" aria-label="3 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-      <button type="button" data-puan="4" aria-label="4 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-      <button type="button" data-puan="5" aria-label="5 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-    </div>
-    <textarea id="site-feedback-mesaj" data-i18n-placeholder="site_feedback_mesaj_placeholder" placeholder="İsteğe bağlı: ne eksik, ne beğendin, ne değiştirilmeli?" rows="2"></textarea>
-    <button type="button" id="site-feedback-gonder" class="site-feedback-btn" data-i18n="gonder">Gönder</button>
-    <div id="site-feedback-sonuc" class="site-feedback-sonuc" style="display:none;"></div>
-  </div>
-
   <div class="seo-text">
     <h2 data-i18n="seo_baslik">Türkiye kıyılarında deniz durumu</h2>
     <p data-i18n="seo_metin">Bu sayfa, Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada (Samsun, Atakum, Trabzon, Sinop, İstanbul, İzmir, Antalya ve diğer tüm sahil bölgeleri dahil) anlık rüzgar hızı, rüzgar yönü, dalga yüksekliği ve dalga periyodu verisini gösterir. Haritada herhangi bir sahil noktasına tıklayarak o bölgede denize girmenin bugün keyifli mi, yoksa dalgalı mı olacağını öğrenebilir, aynı zamanda sahilde bulunan diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
@@ -1252,6 +1248,28 @@ if ('serviceWorker' in navigator) {
       <p data-i18n="sss_s6_cevap">Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir.</p>
     </div>
   </div>
+
+  <div class="sehir-sayfalari-bolum">
+    <h2 data-i18n="sehir_sayfalari_baslik">Şehir ve ilçelere göre deniz durumu</h2>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/samsun-deniz-durumu.html">Samsun</a>
+      <a href="/atakum-deniz-durumu.html">Atakum</a>
+      <a href="/19mayis-deniz-durumu.html">19 Mayıs</a>
+      <a href="/terme-deniz-durumu.html">Terme</a>
+    </div>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/istanbul-deniz-durumu.html">İstanbul</a>
+      <a href="/sile-deniz-durumu.html">Şile</a>
+      <a href="/kilyos-deniz-durumu.html">Kilyos</a>
+      <a href="/silivri-deniz-durumu.html">Silivri</a>
+    </div>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/izmir-deniz-durumu.html">İzmir</a>
+      <a href="/cesme-deniz-durumu.html">Çeşme</a>
+      <a href="/foca-deniz-durumu.html">Foça</a>
+      <a href="/seferihisar-deniz-durumu.html">Seferihisar</a>
+    </div>
+  </div>
 </div>
 
 
@@ -1262,6 +1280,24 @@ if ('serviceWorker' in navigator) {
     <div id="yan-panel-liste"></div>
   </div>
 </div>
+</div>
+
+<!-- Siteyi değerlendirme formu + kullanıcı yorumları — en altta, tam genişlik, grid'in dışında -->
+<div style="max-width:560px;margin:0 auto;padding:36px 20px 0;">
+  <div class="site-feedback-card" style="margin-top:0;">
+    <p class="site-feedback-title" data-i18n="site_feedback_baslik">Bu uygulamayı nasıl buldun?</p>
+    <p class="site-feedback-sub" data-i18n="site_feedback_alt">Deniz durumuyla ilgili değil; sitenin kendisi hakkındaki görüşün. Haritada görünmez, yalnızca geliştirmemize katkı sağlar.</p>
+    <div class="site-feedback-stars" id="site-feedback-stars">
+      <button type="button" data-puan="1" aria-label="1 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+      <button type="button" data-puan="2" aria-label="2 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+      <button type="button" data-puan="3" aria-label="3 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+      <button type="button" data-puan="4" aria-label="4 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+      <button type="button" data-puan="5" aria-label="5 yıldız"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    </div>
+    <textarea id="site-feedback-mesaj" data-i18n-placeholder="site_feedback_mesaj_placeholder" placeholder="İsteğe bağlı: ne eksik, ne beğendin, ne değiştirilmeli?" rows="2"></textarea>
+    <button type="button" id="site-feedback-gonder" class="site-feedback-btn" data-i18n="gonder">Gönder</button>
+    <div id="site-feedback-sonuc" class="site-feedback-sonuc" style="display:none;"></div>
+  </div>
 </div>
 
 <!-- Kullanıcı yorumları — tam genişlik, grid'in dışında -->
@@ -1381,6 +1417,7 @@ const CEVIRI = {
     sss_s5_cevap: "Tahminler Open-Meteo'nun canlı rüzgar/dalga verisine ve kıyı şeklinin gerçek zamanlı analizine dayanır. Buna ek olarak, sahadan (o an oradaki kullanıcılardan) gelen gerçek gözlemleri de aynı ekranda gösteriyoruz, böylece tahmin ile gerçek durumu karşılaştırabilirsin.",
     sss_s6_soru: "SeaData hangi kıyılarda çalışıyor?",
     sss_s6_cevap: "Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir.",
+    sehir_sayfalari_baslik: "Şehir ve ilçelere göre deniz durumu",
     yan_panel_baslik: "Denize girilen yerler",
     yan_panel_alt: "Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre",
     yan_panel_yakinlastir: "Yakınlaştırınca haritada görünen noktalardaki yorumlar burada listelenir.",
@@ -1524,6 +1561,7 @@ const CEVIRI = {
     sss_s5_cevap: "Forecasts are based on Open-Meteo's live wind/wave data and a real-time analysis of the coastline shape. We also show real observations from users currently at that location on the same screen, so you can compare the forecast with the actual situation.",
     sss_s6_soru: "Which coasts does SeaData cover?",
     sss_s6_cevap: "Every point along Turkey's Black Sea, Marmara, Aegean and Mediterranean coasts — it works for any coastal spot you tap on the map, not just specific cities.",
+    sehir_sayfalari_baslik: "Sea conditions by city and district",
     yan_panel_baslik: "Places people are swimming",
     yan_panel_alt: "Points with reports in the last 2 hours, by majority verdict",
     yan_panel_yakinlastir: "Zoom in to see reports at points visible on the map here.",
