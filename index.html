@@ -371,7 +371,10 @@ if ('serviceWorker' in navigator) {
   .tam-ekran-kapat-btn {
     display: none;
     position: fixed;
-    top: 70px;
+    /* Kartın (top:64px'te başlıyor, bkz. body.harita-tam-ekran-acik #status-card) TAM
+       ÜSTÜNDE, harita zemininde duruyor — kart içindeki ilk satır neyse (rüzgar uyarısı,
+       gün gezinme oku, vb.) hiçbirine karışmıyor; içerik değişse de hep aynı, boş noktada. */
+    top: 30px;
     right: 20px;
     z-index: 4600;
     width: 26px;
@@ -915,17 +918,22 @@ if ('serviceWorker' in navigator) {
     user-select: none;
   }
   .gun-ok {
-    background: none;
-    border: none;
+    background: rgba(127,127,127,0.16);
+    border: 1px solid rgba(127,127,127,0.32);
     cursor: pointer;
-    font-size: 22px;
+    font-size: 19px;
+    font-weight: 700;
     line-height: 1;
-    padding: 2px 10px;
-    border-radius: 8px;
     color: inherit;
     flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .gun-ok:hover:not(:disabled) { background: rgba(120,120,110,0.12); }
+  .gun-ok:hover:not(:disabled) { background: rgba(127,127,127,0.28); }
   .gun-ok:disabled { opacity: 0.22; cursor: default; }
   .gun-nav-bilgi {
     flex: 1;
@@ -934,6 +942,11 @@ if ('serviceWorker' in navigator) {
     align-items: center;
     gap: 3px;
     min-width: 0;
+  }
+  .gun-nav-ipucu {
+    font-size: 10px;
+    opacity: 0.62;
+    margin-top: 1px;
   }
   .gun-tarih { font-size: 12px; font-weight: 600; }
   .gun-etiket {
@@ -1207,6 +1220,7 @@ const CEVIRI = {
     saatlik_tahmin_basligi: "Saatlik tahmin",
     onceki_gun: "Önceki gün",
     sonraki_gun: "Sonraki gün",
+    gun_kaydir_ipucu: "kaydırarak da gezinebilirsin",
     ana_ekrana_ekle_metin: "Uygulama gibi kullanmak için ana ekrana ekle",
     kapat: "Kapat",
     ana_ekrana_ekle_ios_ipucu: "Aşağıdaki <b>Paylaş</b> düğmesine (kare içinden yukarı ok) dokun, açılan listede <b>“Ana Ekrana Ekle”</b>yi seç.",
@@ -1335,6 +1349,7 @@ const CEVIRI = {
     saatlik_tahmin_basligi: "Hourly forecast",
     onceki_gun: "Previous day",
     sonraki_gun: "Next day",
+    gun_kaydir_ipucu: "you can also swipe to browse",
     ana_ekrana_ekle_metin: "Add to home screen to use it like an app",
     kapat: "Close",
     ana_ekrana_ekle_ios_ipucu: "Tap the <b>Share</b> button (square with an up arrow) below, then choose <b>“Add to Home Screen”</b>.",
@@ -2422,7 +2437,7 @@ async function veriCekVeGoster(lat, lon) {
       const gunNavHtml = `
         <div class="gun-nav-row" style="color:${r.text600}">
           <button type="button" class="gun-ok" id="gun-onceki" aria-label="${t('onceki_gun')}" ${state.gunOfset <= 0 ? 'disabled' : ''}>&lsaquo;</button>
-          <div class="gun-nav-bilgi">${gunBasligiOlustur(gunZamanStr, gunGercekMi)}</div>
+          <div class="gun-nav-bilgi">${gunBasligiOlustur(gunZamanStr, gunGercekMi)}<div class="gun-nav-ipucu">${t('gun_kaydir_ipucu')}</div></div>
           <button type="button" class="gun-ok" id="gun-sonraki" aria-label="${t('sonraki_gun')}" ${state.gunOfset >= GUN_SAYISI - 1 ? 'disabled' : ''}>&rsaquo;</button>
         </div>`;
       const tahminNotHtml = gunGercekMi ? "" : `<div class="tahmin-not" style="color:${r.text600}">${t('tahmin_aciklama')}</div>`;
