@@ -342,10 +342,13 @@ if ('serviceWorker' in navigator) {
      basılınca gizlenir (bkz. .tam-ekran-gizli). */
   body.harita-tam-ekran-acik #status-card {
     position: fixed;
-    top: 64px;
+    /* top:88px — haritanın sağ üstündeki küçült/büyüt düğmesi (10-44px arası) ile aşağıdaki
+       kapatma çarpısının (bkz. .tam-ekran-kapat-btn, 52-78px) ikisine de yer açacak şekilde
+       aşağı kaydırıldı; üçü de gerçek konumlarıyla ölçülüp çakışmadıkları doğrulandı. */
+    top: 88px;
     right: 14px;
     width: min(270px, calc(100vw - 24px));
-    max-height: calc(100vh - 90px);
+    max-height: calc(100vh - 114px);
     overflow-y: auto;
     z-index: 4500;
     padding: 12px 14px 8px;
@@ -364,9 +367,8 @@ if ('serviceWorker' in navigator) {
   body.harita-tam-ekran-acik #status-card .hour-val { font-size: 10px; }
   body.harita-tam-ekran-acik #status-card .refresh-btn svg { width: 14px; height: 14px; }
   /* Dar tam ekran panelinde gün gezinme satırı (ok + tarih + rozet) sıkışıp ok işaretleri
-     yazının üstüne biniyordu — okları küçültüp, tarih/rozet yazı boyutunu düşürüp, uzun
-     kaydırma ipucunu (bkz. .gun-nav-ipucu) burada tamamen gizliyoruz; oklar zaten kaydırma
-     imkanını gösteriyor, bu dar alanda ekstra bir açıklama metnine yer yok. */
+     yazının üstüne biniyordu — okları küçültüp, tarih/rozet/ipucu yazı boyutunu düşürüp,
+     rozet ve ipucunun gerektiğinde birden fazla satıra sarmasına izin veriyoruz. */
   body.harita-tam-ekran-acik #status-card .gun-ok { width: 24px; height: 24px; font-size: 15px; }
   body.harita-tam-ekran-acik #status-card .gun-tarih { font-size: 10.5px; text-align: center; }
   body.harita-tam-ekran-acik #status-card .gun-etiket {
@@ -377,7 +379,7 @@ if ('serviceWorker' in navigator) {
     max-width: 100%;
     box-sizing: border-box;
   }
-  body.harita-tam-ekran-acik #status-card .gun-nav-ipucu { display: none; }
+  body.harita-tam-ekran-acik #status-card .gun-nav-ipucu { font-size: 8.5px; }
   body.harita-tam-ekran-acik #status-card.tam-ekran-gizli {
     opacity: 0;
     transform: translateY(-8px);
@@ -386,10 +388,11 @@ if ('serviceWorker' in navigator) {
   .tam-ekran-kapat-btn {
     display: none;
     position: fixed;
-    /* Kartın (top:64px'te başlıyor, bkz. body.harita-tam-ekran-acik #status-card) TAM
-       ÜSTÜNDE, harita zemininde duruyor — kart içindeki ilk satır neyse (rüzgar uyarısı,
-       gün gezinme oku, vb.) hiçbirine karışmıyor; içerik değişse de hep aynı, boş noktada. */
-    top: 30px;
+    /* Kartın (top:88px'te başlıyor, bkz. body.harita-tam-ekran-acik #status-card) TAM
+       ÜSTÜNDE, harita zemininde duruyor — kart içindeki ilk satırla asla karışmıyor. top:52,
+       haritanın sağ üstündeki küçült/büyüt düğmesinin (top:10, 34px yüksek, bkz.
+       .map-buyut-kontrol) HEMEN ALTINDA — ikisi ölçülüp çakışmadıkları doğrulandı. */
+    top: 52px;
     right: 20px;
     z-index: 4600;
     width: 26px;
