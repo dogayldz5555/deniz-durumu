@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gizlilik Politikası — SeaData</title>
+<meta name="description" content="SeaData gizlilik politikası: hangi verileri topluyoruz, üçüncü taraf hizmetler, çerezler ve reklamlar." />
+<link rel="icon" type="image/png" href="icon.png" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #EAF5FB;
+    color: #1E3A4A;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
+  .ust-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .geri-link {
+    color: #2A7FB8;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .dil-degistir { display: flex; gap: 4px; background: rgba(40,40,30,0.06); border-radius: 999px; padding: 2px; }
+  .dil-btn {
+    border: none; background: transparent; color: #4F7286; font-size: 12px; font-weight: 600;
+    padding: 5px 12px; border-radius: 999px; cursor: pointer;
+  }
+  .dil-btn.aktif { background: #fff; color: #2A7FB8; box-shadow: 0 1px 3px rgba(20,30,25,0.15); }
+  h1 { font-size: 22px; font-weight: 700; margin: 0 0 6px; }
+  .guncelleme-tarihi { font-size: 12.5px; color: #4F7286; margin: 0 0 32px; }
+  h2 { font-size: 15.5px; font-weight: 700; margin: 28px 0 8px; color: #14384A; }
+  p, li { font-size: 14px; color: #2C4652; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  a { color: #2A7FB8; }
+  .kutu {
+    background: #fff;
+    border: 1px solid rgba(40,40,30,0.09);
+    border-radius: 14px;
+    padding: 24px 26px 8px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+  }
+  .dil-bolum { display: none; }
+  .dil-bolum.aktif { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ust-bar">
+    <a class="geri-link" href="/">&larr; <span id="geri-metin">SeaData'ya dön</span></a>
+    <div class="dil-degistir">
+      <button type="button" class="dil-btn aktif" id="btn-tr" onclick="dilSec('tr')">TR</button>
+      <button type="button" class="dil-btn" id="btn-en" onclick="dilSec('en')">EN</button>
+    </div>
+  </div>
+
+  <div class="kutu">
+    <div class="dil-bolum aktif" id="bolum-tr">
+      <h1>Gizlilik Politikası</h1>
+      <p class="guncelleme-tarihi">Son güncelleme: 4 Temmuz 2026</p>
+
+      <p>SeaData ("uygulama", "site"), Türkiye kıyılarında rüzgar ve dalga durumu gösteren, kullanıcıların sahadan gözlem paylaşabildiği ücretsiz bir web uygulamasıdır. Bu sayfa, hangi verileri topladığımızı ve nasıl kullandığımızı açıklar.</p>
+
+      <h2>Topladığımız Bilgiler</h2>
+      <ul>
+        <li><b>Konum:</b> Sadece "Konumum" düğmesine bastığınızda, tarayıcınızın izniyle konumunuz alınır ve haritayı o noktaya götürmek için kullanılır. Sunucularımızda saklanmaz.</li>
+        <li><b>Harita tıklamaları:</b> Haritada tıkladığınız koordinatlar, o noktanın hava/dalga verisini almak için kullanılır.</li>
+        <li><b>Kullanıcı içeriği:</b> Girdiğiniz isim/rumuz, deniz durumu yorumlarınız, isteğe bağlı fotoğraflar ve site değerlendirmeleriniz, herkese açık şekilde göstermek üzere veritabanımızda (Supabase) saklanır. Bu bilgileri paylaşmak isteğe bağlıdır.</li>
+        <li><b>Yerel depolama:</b> İsminiz, dil tercihiniz, oy geçmişiniz gibi bazı bilgiler yalnızca kendi tarayıcınızda (localStorage) saklanır, bize gönderilmez.</li>
+      </ul>
+
+      <h2>Üçüncü Taraf Hizmetler</h2>
+      <p>Uygulama şu hizmetleri kullanır:</p>
+      <ul>
+        <li><a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> — rüzgar/dalga/hava verisi (anonim, konum koordinatı dışında bilgi gönderilmez)</li>
+        <li><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> — koordinattan yer adı bulma</li>
+        <li><a href="https://www.esri.com/" target="_blank" rel="noopener">Esri / ArcGIS</a> — uydu harita görüntüleri</li>
+        <li><a href="https://supabase.com/" target="_blank" rel="noopener">Supabase</a> — kullanıcı yorumlarının ve fotoğrafların saklanması</li>
+        <li>Google Fonts — yazı tipleri</li>
+      </ul>
+
+      <h2>Çerezler ve Reklamlar</h2>
+      <p>Üçüncü taraf satıcılar (Google dahil) çerezleri kullanarak, kullanıcıların sitemize ve/veya internetteki diğer sitelere önceki ziyaretlerine dayanarak reklam gösterebilir. Google'ın reklam çerezlerini kullanması, Google ve iş ortaklarının kullanıcılara sitemize ve/veya internetteki diğer sitelere yaptıkları ziyaretlere göre reklam sunmasına imkan tanır. Kullanıcılar, <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Reklam Ayarları</a> sayfasını ziyaret ederek kişiselleştirilmiş reklamcılığı devre dışı bırakabilir.</p>
+
+      <h2>Veri Güvenliği</h2>
+      <p>Yorumlar herkese açık olarak paylaşılır ve aynı çevredeki kullanıcılar birbirinin yorumlarını görebilir. Kimse (anonim kullanıcı olarak) başkasının yorumunu düzenleyemez veya silemez — veritabanı erişim kuralları (Row Level Security) bunu teknik olarak engeller.</p>
+
+      <h2>Çocukların Gizliliği</h2>
+      <p>Uygulama bilerek 13 yaşından küçük çocuklardan kişisel bilgi toplamaz.</p>
+
+      <h2>Bu Politikadaki Değişiklikler</h2>
+      <p>Bu politikayı zaman zaman güncelleyebiliriz. Değişiklikler bu sayfada yayınlandığı anda yürürlüğe girer.</p>
+
+      <h2>İletişim</h2>
+      <p>Sorularınız için: <a href="mailto:dogayldz5555@gmail.com">dogayldz5555@gmail.com</a></p>
+    </div>
+
+    <div class="dil-bolum" id="bolum-en">
+      <h1>Privacy Policy</h1>
+      <p class="guncelleme-tarihi">Last updated: July 4, 2026</p>
+
+      <p>SeaData ("the app", "the site") is a free web app showing live wind and wave conditions on Turkey's coasts, where users can share field observations. This page explains what data we collect and how we use it.</p>
+
+      <h2>Information We Collect</h2>
+      <ul>
+        <li><b>Location:</b> Only when you tap "My location", your location is requested (with your browser's permission) to center the map there. It is not stored on our servers.</li>
+        <li><b>Map clicks:</b> Coordinates you click on the map are used to fetch weather/wave data for that point.</li>
+        <li><b>User content:</b> Your entered name/nickname, sea condition comments, optional photos, and site feedback are stored in our database (Supabase) to be shown publicly. Sharing this is optional.</li>
+        <li><b>Local storage:</b> Some info (your name, language preference, vote history) is stored only in your own browser (localStorage) and is never sent to us.</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <p>The app uses the following services:</p>
+      <ul>
+        <li><a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> — wind/wave/weather data (anonymous, only coordinates are sent)</li>
+        <li><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> — reverse geocoding (coordinates to place name)</li>
+        <li><a href="https://www.esri.com/" target="_blank" rel="noopener">Esri / ArcGIS</a> — satellite map imagery</li>
+        <li><a href="https://supabase.com/" target="_blank" rel="noopener">Supabase</a> — storing user comments and photos</li>
+        <li>Google Fonts — typefaces</li>
+      </ul>
+
+      <h2>Cookies and Advertising</h2>
+      <p>Third-party vendors, including Google, may use cookies to serve ads based on a user's prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet. Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+
+      <h2>Data Security</h2>
+      <p>Comments are shared publicly and nearby users can see each other's comments. No one (as an anonymous user) can edit or delete someone else's comment — this is technically enforced by database access rules (Row Level Security).</p>
+
+      <h2>Children's Privacy</h2>
+      <p>The app does not knowingly collect personal information from children under 13.</p>
+
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. Changes take effect as soon as they are posted on this page.</p>
+
+      <h2>Contact</h2>
+      <p>For questions: <a href="mailto:dogayldz5555@gmail.com">dogayldz5555@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+function dilSec(dil) {
+  document.getElementById('bolum-tr').classList.toggle('aktif', dil === 'tr');
+  document.getElementById('bolum-en').classList.toggle('aktif', dil === 'en');
+  document.getElementById('btn-tr').classList.toggle('aktif', dil === 'tr');
+  document.getElementById('btn-en').classList.toggle('aktif', dil === 'en');
+  document.getElementById('geri-metin').textContent = dil === 'tr' ? "SeaData'ya dön" : 'Back to SeaData';
+  document.documentElement.lang = dil;
+  try { localStorage.setItem('deniz-durumu-dil', dil); } catch (e) {}
+}
+try {
+  const kayitli = localStorage.getItem('deniz-durumu-dil');
+  if (kayitli === 'en') dilSec('en');
+} catch (e) {}
+</script>
+</body>
+</html>
