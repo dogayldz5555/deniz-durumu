@@ -801,6 +801,9 @@ if ('serviceWorker' in navigator) {
   .sss-madde p { font-size: 12px; color: var(--seo-text); line-height: 1.6; margin: 0; }
   .sehir-sayfalari-bolum { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .sehir-sayfalari-bolum > h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 10px; }
+  /* Haritanın hemen üstünde: yukarıdaki legend-row zaten bir ayraç görevi gördüğü için
+     tekrar üst çizgi/boşluk gerekmiyor, sadece haritayla arasına biraz boşluk bırakıyoruz. */
+  .sehir-sayfalari-ust { margin-top: 4px; padding-top: 0; border-top: none; margin-bottom: 16px; }
   .sehir-grup { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 12px; }
   .sehir-grup a {
     color: var(--seo-text);
@@ -1171,6 +1174,28 @@ if ('serviceWorker' in navigator) {
     </button>
   </div>
 
+  <div class="sehir-sayfalari-bolum sehir-sayfalari-ust">
+    <h2 data-i18n="sehir_sayfalari_baslik">Şehir ve ilçelere göre deniz durumu</h2>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/samsun-deniz-durumu.html">Samsun</a>
+      <a href="/atakum-deniz-durumu.html">Atakum</a>
+      <a href="/19mayis-deniz-durumu.html">19 Mayıs</a>
+      <a href="/terme-deniz-durumu.html">Terme</a>
+    </div>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/istanbul-deniz-durumu.html">İstanbul</a>
+      <a href="/sile-deniz-durumu.html">Şile</a>
+      <a href="/kilyos-deniz-durumu.html">Kilyos</a>
+      <a href="/silivri-deniz-durumu.html">Silivri</a>
+    </div>
+    <div class="sehir-grup">
+      <a class="sehir-ana-link" href="/izmir-deniz-durumu.html">İzmir</a>
+      <a href="/cesme-deniz-durumu.html">Çeşme</a>
+      <a href="/foca-deniz-durumu.html">Foça</a>
+      <a href="/seferihisar-deniz-durumu.html">Seferihisar</a>
+    </div>
+  </div>
+
   <div id="map"></div>
   <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -1249,27 +1274,6 @@ if ('serviceWorker' in navigator) {
     </div>
   </div>
 
-  <div class="sehir-sayfalari-bolum">
-    <h2 data-i18n="sehir_sayfalari_baslik">Şehir ve ilçelere göre deniz durumu</h2>
-    <div class="sehir-grup">
-      <a class="sehir-ana-link" href="/samsun-deniz-durumu.html">Samsun</a>
-      <a href="/atakum-deniz-durumu.html">Atakum</a>
-      <a href="/19mayis-deniz-durumu.html">19 Mayıs</a>
-      <a href="/terme-deniz-durumu.html">Terme</a>
-    </div>
-    <div class="sehir-grup">
-      <a class="sehir-ana-link" href="/istanbul-deniz-durumu.html">İstanbul</a>
-      <a href="/sile-deniz-durumu.html">Şile</a>
-      <a href="/kilyos-deniz-durumu.html">Kilyos</a>
-      <a href="/silivri-deniz-durumu.html">Silivri</a>
-    </div>
-    <div class="sehir-grup">
-      <a class="sehir-ana-link" href="/izmir-deniz-durumu.html">İzmir</a>
-      <a href="/cesme-deniz-durumu.html">Çeşme</a>
-      <a href="/foca-deniz-durumu.html">Foça</a>
-      <a href="/seferihisar-deniz-durumu.html">Seferihisar</a>
-    </div>
-  </div>
 </div>
 
 
