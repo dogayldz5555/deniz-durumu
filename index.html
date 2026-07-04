@@ -3606,6 +3606,17 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 setTimeout(() => {
   map.invalidateSize();
   tumYorumNoktalariniGoster();
+  // Şehir/ilçe sayfalarının (bkz. örn. samsun.html) içine gömdüğümüz iframe'ler
+  // ?lat=&lon= ile belirli bir noktayı otomatik açtırıyor — bu, kullanıcının kendi
+  // "son nokta" geçmişinden ÖNCELİKLİ: o sayfaya has, sabit bir konum göstermesi gerekiyor.
+  const urlParam = new URLSearchParams(window.location.search);
+  const urlLat = parseFloat(urlParam.get('lat'));
+  const urlLon = parseFloat(urlParam.get('lon'));
+  if (!isNaN(urlLat) && !isNaN(urlLon)) {
+    map.setView([urlLat, urlLon], parseInt(urlParam.get('zoom'), 10) || 13);
+    noktayaGit(urlLat, urlLon, false);
+    return;
+  }
   // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Türkiye geneli.
   let sonNokta = null;
   try {

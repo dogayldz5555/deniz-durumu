@@ -1,0 +1,73 @@
+/* Şehir/ilçe sayfalarının (samsun.html, atakum.html vb.) ortak stili — tek dosyada
+   tutuluyor ki bir görsel değişiklik yaptığımızda tüm sayfalara tek seferde yansısın. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #EAF5FB;
+  color: #1E3A4A;
+  line-height: 1.6;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px 20px 56px; }
+.ust-bar { margin-bottom: 20px; }
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #14384A;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+.logo-icon { width: 28px; height: 28px; border-radius: 7px; }
+h1 { font-size: 24px; font-weight: 700; margin: 8px 0 10px; color: #14384A; }
+.aciklama { font-size: 14.5px; color: #2C4652; margin: 0 0 18px; }
+.hizli-linkler {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.hizli-linkler .etiket { color: #4F7286; font-weight: 600; margin-right: 2px; }
+.hizli-linkler a {
+  background: #fff;
+  border: 1px solid rgba(40,40,30,0.12);
+  border-radius: 999px;
+  padding: 6px 14px;
+  color: #2A7FB8;
+  text-decoration: none;
+  font-weight: 600;
+}
+.hizli-linkler a.aktif { background: #2A7FB8; color: #fff; border-color: #2A7FB8; }
+.harita-kutusu {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(40,40,30,0.1);
+  box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+  margin-bottom: 28px;
+  background: #fff;
+}
+.harita-kutusu iframe {
+  display: block;
+  width: 100%;
+  height: 780px;
+  border: none;
+}
+.sss { padding-top: 8px; }
+.sss > h2 { font-size: 16px; font-weight: 700; margin: 0 0 14px; color: #14384A; }
+.sss-madde { margin-bottom: 14px; }
+.sss-madde h3 { font-size: 13.5px; font-weight: 600; margin: 0 0 3px; color: #1E3A4A; }
+.sss-madde p { font-size: 13px; color: #4F7286; margin: 0; }
+.alt-linkler {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(40,40,30,0.1);
+  font-size: 12.5px;
+  color: #4F7286;
+}
+.alt-linkler a { color: #2A7FB8; text-decoration: none; }
+.footer-link { margin-top: 10px; font-size: 12px; }
+.footer-link a { color: #7A9AAA; }
