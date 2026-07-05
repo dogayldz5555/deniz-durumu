@@ -1416,6 +1416,7 @@ const CEVIRI = {
     fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
     swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
     canli_kamera_link: (ad) => `🔴 Yakında canlı kamera var (${ad}) — belediyenin yayın sayfasını aç`,
+    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Mavi Bayraklı plaj (TÜRÇEV sertifikalı)`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -1560,6 +1561,7 @@ const CEVIRI = {
     fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
     swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
     canli_kamera_link: (ad) => `🔴 A live camera is nearby (${ad}) — open the city's live stream page`,
+    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Blue Flag certified beach (TÜRÇEV)`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -1851,6 +1853,38 @@ function kameraBul(lat, lon) {
   for (const k of CANLI_KAMERALAR) {
     const mesafe = kmMesafe(lat, lon, k.lat, k.lon);
     if (mesafe <= k.yaricapKm && mesafe < enYakinMesafe) { enYakin = k; enYakinMesafe = mesafe; }
+  }
+  return enYakin;
+}
+
+// Samsun'daki (TÜRÇEV) resmi Mavi Bayraklı plajlar — kaynak: cevrekoruma.samsun.bel.tr'nin
+// yayınladığı liste, her plajın koordinatı mavibayrak.org.tr'nin kendi plaj detay
+// sayfalarından (harita verisi JSON içine gömülü, "Lat"/"Lng" ya da düz ondalık biçimde)
+// tek tek çekildi ve km işaretleriyle (Atakum sahilinin X. km'si) coğrafi sırayla
+// tutarlılığı doğrulandı (5 Temmuz 2026).
+const MAVI_BAYRAK_PLAJLAR = [
+  { ad: "Golf Plajı", adEn: "Golf Beach", lat: 41.3291894, lon: 36.3008906, yaricapKm: 0.3 },
+  { ad: "Denizevleri Plajı", adEn: "Denizevleri Beach", lat: 41.3311356, lon: 36.2932918, yaricapKm: 0.3 },
+  { ad: "Dantel Plajı", adEn: "Dantel Beach", lat: 41.3336246, lon: 36.2854474, yaricapKm: 0.3 },
+  { ad: "İnci Plajı", adEn: "İnci Beach", lat: 41.336843, lon: 36.276125, yaricapKm: 0.3 },
+  { ad: "Nazar Plajı", adEn: "Nazar Beach", lat: 41.339581, lon: 36.268591, yaricapKm: 0.3 },
+  { ad: "Palmiye Plajı", adEn: "Palmiye Beach", lat: 41.341226, lon: 36.264639, yaricapKm: 0.3 },
+  { ad: "Denizkızı Plajı", adEn: "Denizkızı Beach", lat: 41.343829, lon: 36.259209, yaricapKm: 0.3 },
+  { ad: "Mercan Plajı", adEn: "Mercan Beach", lat: 41.346655, lon: 36.253422, yaricapKm: 0.3 },
+  { ad: "Gençlik Plajı", adEn: "Gençlik Beach", lat: 41.349270, lon: 36.248508, yaricapKm: 0.3 },
+  { ad: "Marina Plajı", adEn: "Marina Beach", lat: 41.362696, lon: 36.233654, yaricapKm: 0.3 },
+  { ad: "Körfez Plajı", adEn: "Körfez Beach", lat: 41.375486, lon: 36.227218, yaricapKm: 0.3 },
+  { ad: "Omtel Plajı", adEn: "Omtel Beach", lat: 41.379905, lon: 36.220617, yaricapKm: 0.3 },
+  { ad: "İncesu Plajı", adEn: "İncesu Beach", lat: 41.386054, lon: 36.212525, yaricapKm: 0.3 },
+  { ad: "Altınkum Plajı", adEn: "Altınkum Beach", lat: 41.391935, lon: 36.205599, yaricapKm: 0.3 },
+  { ad: "Miliç Çevre Eğitim Plajı", adEn: "Miliç Çevre Eğitim Beach", lat: 41.183968, lon: 37.037558, yaricapKm: 0.3 },
+  { ad: "Terme Karavan Kampı Plajı", adEn: "Terme Karavan Kampı Beach", lat: 41.181547, lon: 37.041092, yaricapKm: 0.3 },
+];
+function maviBayrakBul(lat, lon) {
+  let enYakin = null, enYakinMesafe = Infinity;
+  for (const p of MAVI_BAYRAK_PLAJLAR) {
+    const mesafe = kmMesafe(lat, lon, p.lat, p.lon);
+    if (mesafe <= p.yaricapKm && mesafe < enYakinMesafe) { enYakin = p; enYakinMesafe = mesafe; }
   }
   return enYakin;
 }
@@ -2605,6 +2639,12 @@ async function veriCekVeGoster(lat, lon) {
         ? `<div style="font-size:12px;margin-top:6px;"><a href="${SAMSUN_CANLI_YAYIN_SAYFASI}" target="_blank" rel="noopener" style="color:${r.text600};text-decoration:underline;">${t('canli_kamera_link', bolgeAdi(kamera))}</a></div>`
         : "";
 
+      // TÜRÇEV'in resmi listesi — tahmine dayalı değil, doğrulanmış/sertifikalı bir bilgi.
+      const maviBayrakPlaj = maviBayrakBul(lat, lon);
+      const maviBayrakHtml = maviBayrakPlaj
+        ? `<div style="font-size:12px;margin-top:6px;color:${r.text600};">${t('mavi_bayrak_rozeti', bolgeAdi(maviBayrakPlaj))}</div>`
+        : "";
+
       // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
       // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
       // basit bir "kuvvetli rüzgar" uyarısı gösteriyoruz — resmi bir uyarı DEĞİL, sadece
@@ -2651,6 +2691,7 @@ async function veriCekVeGoster(lat, lon) {
         ${ruzgarDalgasiNotu}
         ${fetchNotu}
         ${kameraHtml}
+        ${maviBayrakHtml}
         ${denizdeyiz ? (durum === 'carsaf' ? svgDuzCizgiPattern(r.border) : svgDalgaPattern(r.border, yogunluk)) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">${t('kara_uzerinde')}</div>`}
         ${denizdeyiz ? saatlikSeritHtml : ""}
         ${trendHtml}
