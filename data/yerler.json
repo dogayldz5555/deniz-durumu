@@ -1,0 +1,354 @@
+{
+  "iller": [
+    {
+      "slug": "samsun",
+      "ad": "Samsun",
+      "baslik": "Samsun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Samsun'da deniz bugün nasıl? Atakum ve Terme başta olmak üzere Samsun kıyısı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Samsun, Türkiye'nin Karadeniz kıyısındaki en büyük şehirlerinden biri — sahil şeridinin büyük kısmı, plajları ve gezinti yoluyla şehrin gündelik yaşamının merkezi olan Atakum ilçesinde toplanır. Doğuya doğru Terme ilçesine gelindiğinde kıyı daha sakin ve yeşile döner, Yeşilırmak deltasının etkisiyle daha korunaklı koylar görülür. Karadeniz'in genel özelliği gereği, burada rüzgarın karadan mı denizden mi estiği dalga yüksekliğini doğrudan etkiler — kuzeyden esen rüzgar açık denizden geldiği için dalgayı hızla yükseltebilirken, güneyden (karadan) esen rüzgarda deniz genelde daha sakin kalır.",
+      "ilceler": ["atakum", "terme"]
+    },
+    {
+      "slug": "antalya",
+      "ad": "Antalya",
+      "baslik": "Antalya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Antalya'da deniz bugün nasıl? Alanya, Kemer, Kaş, Side ve tüm Antalya kıyısındaki halka açık Mavi Bayraklı plajlar için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Antalya, Türkiye'nin Akdeniz kıyısındaki en uzun ve en yoğun turizm şeridine sahip ili — doğuda Gazipaşa'dan başlayıp Alanya, Manavgat, Serik, Antalya merkez (Muratpaşa/Konyaaltı), Kemer, Kumluca, Demre ve batıda Kaş'a kadar uzanır. Bu genişlik, kıyının karakterini de çeşitlendirir: doğu kesiminde (Alanya-Side) uzun kumsallar ve sığ girişler öne çıkarken, batıya gidildikçe (Kemer'den itibaren) Toros Dağları denize iner ve kıyı daha kayalık, koylu bir yapıya bürünür. Akdeniz'in genel olarak Karadeniz'e göre daha uzun periyotlu ve yumuşak dalga ürettiği bilinir, ama yaz öğleden sonraları batı kesiminde de rüzgar belirginleşebilir.",
+      "ilceler": ["gazipasa", "alanya", "manavgat", "serik", "muratpasa", "konyaalti", "kemer", "kumluca", "demre", "kas"]
+    },
+    {
+      "slug": "mugla",
+      "ad": "Muğla",
+      "baslik": "Muğla Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Muğla'da deniz bugün nasıl? Bodrum, Marmaris, Fethiye ve Akyaka için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Muğla, Ege ile Akdeniz'in kesiştiği noktada, Türkiye'nin en girintili çıkıntılı kıyı şeridine sahip illerinden biri — bu yüzden aynı ilde bile kıyı karakteri kısa mesafelerde çok değişir. Bodrum yarımadasının kuzey ve güney kıyıları farklı rüzgar rejimlerine sahiptir (kuzeydeki Gündoğan/Göltürkbükü ile güneydeki Bitez/Ortakent aynı gün çok farklı görünebilir), Marmaris ve çevresindeki körfezler (İçmeler, Orhaniye) rüzgardan büyük ölçüde korunur, Ula'daki Akyaka ise Gökova Körfezi'nin ucunda güçlü öğleden sonra rüzgarıyla (İmbat) tanınır, Fethiye ise Ölüdeniz'in kapalı lagünü sayesinde genelde en sakin kesimlerden biridir.",
+      "ilceler": ["fethiye", "marmaris", "ula", "bodrum"]
+    },
+    {
+      "slug": "izmir",
+      "ad": "İzmir",
+      "baslik": "İzmir Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "İzmir'de deniz bugün nasıl? Çeşme, Foça, Urla, Seferihisar ve tüm İzmir kıyısı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "İzmir'in kıyı şeridi, kuzeyde Dikili ve Foça'nın nispeten sakin koylarından başlayıp Karaburun yarımadasının rüzgara açık kayalık burunlarından geçerek Urla, Güzelbahçe ve Seferihisar'ın Ege koylarına, güneyde ise Menderes ve Çeşme'ye kadar uzanır. Bu kıyının en belirgin özelliği rüzgardır: özellikle yaz aylarında öğleden sonra hızlanan meltem (imbat), Çeşme'nin Alaçatı kesiminde ve Karaburun'da dalgayı hızla yükseltebilir — bu yüzden buradaki eşikler bazı sakin Ege koylarına göre biraz daha temkinlidir. Sabah saatleri genelde bütün bu kıyı boyunca daha sakin geçer.",
+      "ilceler": ["menderes", "seferihisar", "cesme", "karaburun", "urla", "guzelbahce", "foca", "dikili"]
+    },
+    {
+      "slug": "aydin",
+      "ad": "Aydın",
+      "baslik": "Aydın Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Aydın'da deniz bugün nasıl? Kuşadası ve Didim için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Aydın'ın kıyı şeridi ilin güneybatısında, Kuşadası ve Didim ilçelerinde toplanır — ikisi de Ege'nin popüler tatil merkezlerinden. Kuşadası, kuzeyde İzmir Körfezi'ne yakın konumu ve kruvaziyer limanıyla; Didim ise güneyde, Apollon Tapınağı'nın hemen yanı başındaki Altınkum sahiliyle bilinir. Bölge, Ege'nin tipik yaz rüzgar düzenine (sabah sakin, öğleden sonra belirginleşen meltem) tabidir.",
+      "ilceler": ["didim", "kusadasi"]
+    }
+  ],
+  "ilceler": [
+    {
+      "slug": "atakum",
+      "ilSlug": "samsun",
+      "ad": "Atakum",
+      "baslik": "Atakum Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Atakum'da (Samsun) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Atakum, Samsun'un en kalabalık ve şehrin sahil hayatının merkezi olan ilçesi — plaj şeridi, gezinti yolu ve marina burada toplanır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Karadeniz'in bu kesiminde kuzeyden esen rüzgar açık sudan geldiği için dalgayı hızla büyütebilir; karadan (güneyden) estiğinde ise deniz genelde daha sakin kalır.",
+      "miniSss": [
+        { "soru": "Atakum'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Atakum'da deniz ne zaman daha sakin olur?", "cevap": "Rüzgar karadan (güneyden) estiğinde deniz genelde daha sakin olur; kuzeyden esen rüzgarda açık sudan gelen dalga hızla büyüyebilir." },
+        { "soru": "Atakum'a en yakın diğer Samsun plajları nerede?", "cevap": "Terme ilçesindeki plajlar, Atakum'a göre daha doğuda ve Yeşilırmak deltasına yakın, genelde daha sakin bir kıyı sunar." }
+      ]
+    },
+    {
+      "slug": "terme",
+      "ilSlug": "samsun",
+      "ad": "Terme",
+      "baslik": "Terme Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Terme'de (Samsun) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Terme, Samsun'un doğusunda, Yeşilırmak deltasına yakın konumuyla ilin daha sakin ve yeşil kıyı kesimlerinden biri. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Deltanın etkisiyle kıyı şeridi Atakum'a göre daha korunaklıdır.",
+      "miniSss": [
+        { "soru": "Terme'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Terme'nin kıyısı neden daha sakin sayılır?", "cevap": "Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar." },
+        { "soru": "Terme'ye en yakın diğer Samsun plajları nerede?", "cevap": "Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip." }
+      ]
+    },
+    {
+      "slug": "gazipasa",
+      "ilSlug": "antalya",
+      "ad": "Gazipaşa",
+      "baslik": "Gazipaşa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gazipaşa'da (Antalya) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gazipaşa, Antalya'nın en doğusundaki ilçesi — Alanya'nın ötesinde, kendi havalimanına sahip, daha az kalabalık ve sakin plajlarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Gazipaşa'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Gazipaşa Alanya'ya göre daha mı sakindir?", "cevap": "Evet, Gazipaşa turizm yoğunluğu bakımından Alanya'nın gerisinde kalır, bu da plajlarının genelde daha az kalabalık olmasını sağlar." }
+      ]
+    },
+    {
+      "slug": "alanya",
+      "ilSlug": "antalya",
+      "ad": "Alanya",
+      "baslik": "Alanya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Alanya'da deniz bugün nasıl? Kleopatra ve Damlataş dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Alanya, Türkiye'nin en bilinen turizm merkezlerinden biri — dünyaca ünlü Kleopatra Plajı ve tarihi Alanya Kalesi ile tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Yaz aylarında yoğun turizm trafiğine sahne olsa da, deniz durumu değerlendirmesi tamamen o anki rüzgar/dalga verisine dayanır.",
+      "miniSss": [
+        { "soru": "Alanya'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Kleopatra Plajı'nda deniz durumu nasıl kontrol edilir?", "cevap": "Yukarıdaki haritadan Kleopatra Doğu/Batı Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayarak anlık rüzgar ve dalga durumunu görebilirsin." },
+        { "soru": "Alanya Gazipaşa'ya göre nasıl farklı?", "cevap": "Alanya çok daha yoğun bir turizm merkezi ve daha uzun/gelişmiş bir plaj şeridine sahipken, komşusu Gazipaşa daha sakin ve az kalabalıktır." }
+      ]
+    },
+    {
+      "slug": "manavgat",
+      "ilSlug": "antalya",
+      "ad": "Manavgat",
+      "baslik": "Manavgat (Side) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Manavgat ve Side'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Manavgat ilçesi, antik Side kentinin ve ünlü Manavgat Şelalesi'nin bulunduğu bölge — uzun, geniş kumsallarıyla Antalya'nın en bilinen turizm bölgelerinden biri. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Manavgat'ta hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Side'de deniz durumu nasıl kontrol edilir?", "cevap": "Side, idari olarak Manavgat ilçesine bağlıdır — yukarıdaki haritadan Side kıyısındaki Nar Beach plajlarına ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+      ]
+    },
+    {
+      "slug": "serik",
+      "ilSlug": "antalya",
+      "ad": "Serik",
+      "baslik": "Serik (Belek) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Serik ve Belek'te deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Serik ilçesi, golf tatilleriyle ünlü Belek bölgesini kapsar — çamlık arka planı ve geniş kumsallarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Serik'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Belek'te deniz durumu nasıl kontrol edilir?", "cevap": "Belek, idari olarak Serik ilçesine bağlıdır — yukarıdaki haritadan Belek Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+      ]
+    },
+    {
+      "slug": "muratpasa",
+      "ilSlug": "antalya",
+      "ad": "Muratpaşa",
+      "baslik": "Muratpaşa (Lara) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Antalya Muratpaşa ve Lara'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Muratpaşa, Antalya şehir merkezinin en kalabalık ilçesi — ünlü Lara plajları burada yer alır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Muratpaşa/Lara'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Muratpaşa, Konyaaltı'ndan nasıl farklı?", "cevap": "Muratpaşa/Lara tarafı kumsal plajlarla bilinirken, komşu Konyaaltı ilçesi daha çok çakıllı bir kıyı şeridine sahiptir." }
+      ]
+    },
+    {
+      "slug": "konyaalti",
+      "ilSlug": "antalya",
+      "ad": "Konyaaltı",
+      "baslik": "Konyaaltı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Antalya Konyaaltı'nda deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Konyaaltı, Antalya şehir merkezinin batı yakası — Beydağları'nın manzarasıyla, uzun çakıllı plaj şeridiyle bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Konyaaltı'nda hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Konyaaltı'nda plaj çakıllı mı kumlu mu?", "cevap": "Konyaaltı sahili genel olarak çakıllıdır, komşu Lara/Muratpaşa tarafı ise daha kumludur." }
+      ]
+    },
+    {
+      "slug": "kemer",
+      "ilSlug": "antalya",
+      "ad": "Kemer",
+      "baslik": "Kemer Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kemer'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kemer, Toros Dağları'nın denize indiği noktada yer alan, çakıllı koylarıyla bilinen bir Akdeniz ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Kemer'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Kemer'de deniz neden genelde berrak görünür?", "cevap": "Dağların denize dik indiği kayalık/çakıllı kıyı yapısı, Kemer kıyısında suyun genelde daha berrak görünmesini sağlar." }
+      ]
+    },
+    {
+      "slug": "kumluca",
+      "ilSlug": "antalya",
+      "ad": "Kumluca",
+      "baslik": "Kumluca Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kumluca'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kumluca, seracılığıyla bilinen, Kemer ile Demre arasında kalan daha sakin ve az turistik bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Kumluca'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "demre",
+      "ilSlug": "antalya",
+      "ad": "Demre",
+      "baslik": "Demre Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Demre'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Demre, antik Myra kenti ve Aziz Nikolaos (Noel Baba) Kilisesi'yle bilinen tarihi bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}.",
+      "miniSss": [
+        { "soru": "Demre'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "kas",
+      "ilSlug": "antalya",
+      "ad": "Kaş",
+      "baslik": "Kaş Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kaş'ta deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kaş, dalış turizmiyle ünlü, kayalık koylarıyla bilinen ve Yunanistan'a ait Meis (Kastellorizo) adasına çok yakın bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Kaş'ta hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Kaş neden dalış için tercih ediliyor?", "cevap": "Kayalık, derin ve berrak koyları Kaş'ı Türkiye'nin bilinen dalış merkezlerinden biri yapar." }
+      ]
+    },
+    {
+      "slug": "fethiye",
+      "ilSlug": "mugla",
+      "ad": "Fethiye",
+      "baslik": "Fethiye Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Fethiye'de deniz bugün nasıl? Ölüdeniz dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Fethiye, yamaç paraşütüyle ünlü Babadağ'ın eteğindeki kapalı lagünü Ölüdeniz ve Kelebekler Vadisi'ne yakınlığıyla bilinen bir Muğla ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Ölüdeniz'in kapalı lagün yapısı, burayı genelde bölgenin en sakin kesimlerinden biri yapar.",
+      "miniSss": [
+        { "soru": "Fethiye'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Ölüdeniz neden genelde sakin görünür?", "cevap": "Ölüdeniz kapalı bir lagün olduğu için açık denizden gelen dalgadan büyük ölçüde korunur, bu da onu genelde sakin bir kesim yapar." }
+      ]
+    },
+    {
+      "slug": "marmaris",
+      "ilSlug": "mugla",
+      "ad": "Marmaris",
+      "baslik": "Marmaris Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Marmaris'te deniz bugün nasıl? İçmeler ve Orhaniye dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Marmaris, marinası ve gece hayatıyla bilinen büyük bir turizm merkezi — İçmeler ve güneyindeki Orhaniye/Hisarönü körfezi de idari olarak bu ilçeye bağlı. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Körfez içi konumu, Marmaris'i açık Ege'ye göre genelde daha korunaklı yapar.",
+      "miniSss": [
+        { "soru": "Marmaris'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Marmaris neden genelde korunaklı sayılır?", "cevap": "Marmaris Körfezi, açık Ege'ye göre daha kapalı bir yapıya sahip olduğu için dalga genelde daha düşük kalır." }
+      ]
+    },
+    {
+      "slug": "ula",
+      "ilSlug": "mugla",
+      "ad": "Ula",
+      "baslik": "Ula (Akyaka) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ula ve Akyaka'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ula ilçesi, Gökova Körfezi'nin ucundaki Akyaka beldesini kapsar — rüzgar sörfüyle ve Azmak Nehri'nin denize kavuştuğu doğal güzelliğiyle bilinir. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}. Akyaka, öğleden sonra güçlenen İmbat rüzgarıyla tanınır.",
+      "miniSss": [
+        { "soru": "Akyaka'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Akyaka'da rüzgar günün hangi saatinde güçlenir?", "cevap": "Akyaka, öğleden sonra belirginleşen İmbat rüzgarıyla bilinir — bu yüzden rüzgar sörfü genelde öğleden sonra tercih edilir." }
+      ]
+    },
+    {
+      "slug": "bodrum",
+      "ilSlug": "mugla",
+      "ad": "Bodrum",
+      "baslik": "Bodrum Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bodrum'da deniz bugün nasıl? Gümbet, Bitez, Gündoğan, Göltürkbükü dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bodrum yarımadası, beyaz mimarisi ve Bodrum Kalesi'yle bilinen Ege'nin en tanınan turizm merkezlerinden biri — kuzey kıyısı (Gündoğan, Göltürkbükü, Gölköy) ile güney kıyısı (Bitez, Ortakent, Gümbet) farklı rüzgar rejimlerine sahiptir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Bodrum'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Bodrum'un kuzeyi mi güneyi mi daha sakin?", "cevap": "Bu günden güne değişir — kuzey (Gündoğan/Göltürkbükü) ve güney (Bitez/Gümbet) kıyıları farklı rüzgar yönlerinden etkilenir, bu yüzden aynı gün biri sakinken diğeri dalgalı olabilir. Haritadan ikisini de ayrı ayrı kontrol edebilirsin." }
+      ]
+    },
+    {
+      "slug": "menderes",
+      "ilSlug": "izmir",
+      "ad": "Menderes",
+      "baslik": "Menderes (Özdere) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Menderes ve Özdere'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Menderes ilçesi, İzmir'in güneyinde Özdere ve Gümüldür sahilleriyle bilinen sakin bir tatil bölgesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Menderes'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "seferihisar",
+      "ilSlug": "izmir",
+      "ad": "Seferihisar",
+      "baslik": "Seferihisar Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Seferihisar'da deniz bugün nasıl? Sığacık ve Akkum dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Seferihisar, Türkiye'nin ilk \"Cittaslow\" (sakin şehir) unvanı alan ilçesi — Sığacık'taki Büyük Akkum plajı ve Ürkmez, Doğanbey gibi sakin koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Seferihisar'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Seferihisar'ın \"Cittaslow\" unvanı ne anlama gelir?", "cevap": "Cittaslow, İtalya kaynaklı bir \"sakin şehir\" hareketi — Seferihisar bu unvanı Türkiye'de ilk alan ilçe olmuştur." }
+      ]
+    },
+    {
+      "slug": "cesme",
+      "ilSlug": "izmir",
+      "ad": "Çeşme",
+      "baslik": "Çeşme Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Çeşme'de deniz bugün nasıl? Ilıca ve Altınkum başta olmak üzere Çeşme'nin {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Çeşme, Ege'nin rüzgarıyla özdeşleşmiş bir ilçe — Alaçatı tarafındaki rüzgar sörfü/kitesurf rüzgarı yaz öğleden sonraları belirginleşir, bu yüzden sabah saatleri genelde daha sakin geçer. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Çeşme'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Çeşme'de deniz ne zaman daha sakin olur?", "cevap": "Öğleden sonra belirginleşen İmbat rüzgarı dalgayı yükseltebilir, bu yüzden sabah saatleri genelde daha sakin geçer." },
+        { "soru": "Alaçatı'da deniz durumu nasıl kontrol edilir?", "cevap": "Alaçatı, idari olarak Çeşme ilçesine bağlıdır — yukarıdaki haritadan Alaçatı kıyısına ya da Çeşme'nin herhangi bir noktasına tıklayabilirsin." }
+      ]
+    },
+    {
+      "slug": "karaburun",
+      "ilSlug": "izmir",
+      "ad": "Karaburun",
+      "baslik": "Karaburun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Karaburun'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Karaburun, İzmir'in en batısındaki dağlık yarımada — daha az kalabalık ve el değmemiş kıyı şeridiyle bilinir, açık Ege'ye bakan konumu nedeniyle rüzgara daha açıktır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Karaburun'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "urla",
+      "ilSlug": "izmir",
+      "ad": "Urla",
+      "baslik": "Urla Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Urla'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Urla, zeytinlikleri ve şarap bağlarıyla bilinen bir İzmir yarımada ilçesi — sakin koylarıyla da tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Urla'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "guzelbahce",
+      "ilSlug": "izmir",
+      "ad": "Güzelbahçe",
+      "baslik": "Güzelbahçe Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Güzelbahçe'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Güzelbahçe, İzmir Körfezi'nin güneyinde, şehir merkezine yakın sakin bir kıyı ilçesi. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}.",
+      "miniSss": [
+        { "soru": "Güzelbahçe'de hangi plaj Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "foca",
+      "ilSlug": "izmir",
+      "ad": "Foça",
+      "baslik": "Foça Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Foça'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Foça, antik Phokaia kentinin üzerine kurulu tarihi bir liman kasabası — sakin sokakları ve korunaklı koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Foça'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "dikili",
+      "ilSlug": "izmir",
+      "ad": "Dikili",
+      "baslik": "Dikili Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Dikili'de deniz bugün nasıl? Çandarlı dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Dikili, İzmir'in kuzeyinde, Yunanistan'a ait Midilli adasına feribot bağlantısıyla ve Çandarlı beldesindeki tarihi kaleyle bilinen sakin bir kıyı ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Dikili'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+      ]
+    },
+    {
+      "slug": "didim",
+      "ilSlug": "aydin",
+      "ad": "Didim",
+      "baslik": "Didim Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Didim'de deniz bugün nasıl? Altınkum dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Didim, antik Apollon Tapınağı'nın hemen yanı başındaki Altınkum sahiliyle bilinen, Ege'nin güneyindeki popüler bir tatil beldesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Didim'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Altınkum'da deniz durumu nasıl kontrol edilir?", "cevap": "Altınkum, Didim'in en bilinen sahili — yukarıdaki haritadan Didim Altınkum Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+      ]
+    },
+    {
+      "slug": "kusadasi",
+      "ilSlug": "aydin",
+      "ad": "Kuşadası",
+      "baslik": "Kuşadası Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kuşadası'nda deniz bugün nasıl? Kadınlar Denizi ve Güvercinada dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kuşadası, Efes antik kentine yakınlığı, kruvaziyer limanı ve Güvercinada'sıyla bilinen büyük bir Ege turizm merkezi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        { "soru": "Kuşadası'nda hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
+        { "soru": "Güvercinada'da deniz durumu nasıl kontrol edilir?", "cevap": "Yukarıdaki haritadan Güvercinada Plajı işaretine ya da Kuşadası kıyısının herhangi bir noktasına tıklayarak anlık durumu görebilirsin." }
+      ]
+    }
+  ]
+}

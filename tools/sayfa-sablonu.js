@@ -1,112 +1,85 @@
-<!DOCTYPE html>
+// İl/ilçe/SSS sayfaları için HTML üreten şablon fonksiyonları.
+// generate-pages.js tarafından çağrılır. Üretilen il/ilçe sayfaları, index.html'in
+// #app-wrap iskeletinin (harita, durum kartı, yorumlar vb.) BİREBİR AYNISINI içerir —
+// app.js'in varsaymadığı bir DOM parçası eksik kalırsa script tamamen durur (bkz. plan).
+
+const NAV_HTML = `<nav class="site-nav" id="site-nav">
+  <a href="/">Ana Sayfa</a>
+  <a href="/samsun/">Samsun</a>
+  <a href="/izmir/">İzmir</a>
+  <a href="/mugla/">Muğla</a>
+  <a href="/aydin/">Aydın</a>
+  <a href="/antalya/">Antalya</a>
+  <a href="/sss/">Sıkça Sorulan Sorular</a>
+</nav>`;
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function plajListesiHtml(plajlar) {
+  if (!plajlar.length) return "";
+  const liler = plajlar.map((p) => `<li>${escapeHtml(p.ad)}</li>`).join("\n      ");
+  return `<div class="yer-plajlar">
+      <h2>Mavi Bayraklı Plajlar</h2>
+      <ul class="yer-plaj-listesi">
+      ${liler}
+      </ul>
+    </div>`;
+}
+
+function miniSssHtml(miniSss) {
+  if (!miniSss || !miniSss.length) return "";
+  const maddeler = miniSss
+    .map(
+      (s) => `<div class="sss-madde">
+      <h3>${escapeHtml(s.soru)}</h3>
+      <p>${s.cevap}</p>
+    </div>`
+    )
+    .join("\n    ");
+  return `<div class="sss-bolum">
+    <h2>Sıkça sorulan sorular</h2>
+    ${maddeler}
+    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+  </div>`;
+}
+
+// Ortak <head> + #app-wrap iskeletini üreten fonksiyon. `ustSectionHtml` .sub tagline'ından
+// hemen sonra, `altSectionHtml` #conflict-note'tan hemen sonra (plaj listesi + mini SSS +
+// geri dönüş linki gibi bölümler için) enjekte edilir.
+function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml }) {
+  const sayfaKonumJs = sayfaKonum
+    ? `<script>window.SAYFA_KONUM = ${JSON.stringify(sayfaKonum)};</script>\n`
+    : "";
+  return `<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4137511669971685" crossorigin="anonymous"></script>
-<title id="sayfa-baslik">SeaData — Bugün Deniz Nasıl?</title>
-<meta id="meta-aciklama" name="description" content="Türkiye kıyılarında anlık rüzgar ve dalga durumu. Haritadan bir nokta seç, denizin bugün keyifli mi yoksa dalgalı mı olduğunu öğren, sahadan gelen gerçek kullanıcı yorumlarını oku." />
-<meta id="og-baslik" property="og:title" content="SeaData — Bugün Deniz Nasıl?" />
-<meta id="og-aciklama" property="og:description" content="Haritadan seçtiğin herhangi bir noktada anlık rüzgar ve dalga durumunu öğren." />
+<title id="sayfa-baslik">${escapeHtml(title)}</title>
+<meta id="meta-aciklama" name="description" content="${escapeHtml(metaAciklama)}" />
+<meta id="og-baslik" property="og:title" content="${escapeHtml(title)}" />
+<meta id="og-aciklama" property="og:description" content="${escapeHtml(metaAciklama)}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SeaData" />
-<meta property="og:url" content="https://seadata.vercel.app/" />
+<meta property="og:url" content="${canonicalUrl}" />
 <meta property="og:image" content="https://seadata.vercel.app/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="SeaData — Bugün Deniz Nasıl?" />
-<meta name="twitter:description" content="Haritadan seçtiğin herhangi bir noktada anlık rüzgar ve dalga durumunu öğren." />
+<meta name="twitter:title" content="${escapeHtml(title)}" />
+<meta name="twitter:description" content="${escapeHtml(metaAciklama)}" />
 <meta name="twitter:image" content="https://seadata.vercel.app/og-image.png" />
+<link rel="canonical" href="${canonicalUrl}" />
 <link rel="manifest" href="/manifest.json" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "SeaData",
-  "alternateName": "SeaData — Bugün Deniz Nasıl?",
-  "description": "Türkiye kıyılarında anlık rüzgar ve dalga durumu, 1 haftalık tahmin ve sahadan gelen gerçek kullanıcı yorumları.",
-  "url": "https://seadata.vercel.app/",
-  "applicationCategory": "WeatherApplication",
-  "operatingSystem": "Web",
-  "browserRequirements": "Requires JavaScript",
-  "inLanguage": ["tr", "en"],
-  "image": "https://seadata.vercel.app/icon-512.png",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Deniz bugün nasıl?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Haritadan bir noktaya tıkla — SeaData o an için rüzgar ve dalga verisine dayanan anlık bir tahmin gösterir (Mükemmel, İyi, Orta, Kötü veya Tehlikeli). Aynı kartta, o bölgede daha önce bulunan kullanıcıların gerçek gözlemlerini de görebilirsin."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Deniz yarın nasıl olacak?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Kart üzerindeki ok işaretlerine basarak ya da kartı kaydırarak sonraki günlere geçebilirsin — her gün için ayrı bir tahmin, saat saat gösterilir."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Deniz kaç gün sonrasına kadar tahmin ediliyor?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bugün dahil, önümüzdeki 1 hafta (7 gün) için tahmin sunuyoruz."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Deniz dalgalı mı, sakin mi nasıl anlaşılır?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SeaData, rüzgar hızı, dalga yüksekliği ve dalga periyodunu birlikte değerlendirip 5 kademeli bir sonuç üretir: Mükemmel (çarşaf gibi), İyi, Orta, Kötü, Tehlikeli. Kıyının açık deniz mesafesine (fetch) göre eşikler otomatik ayarlanır."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Deniz durumu tahmini ne kadar doğru?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tahminler Open-Meteo'nun canlı rüzgar/dalga verisine ve kıyı şeklinin gerçek zamanlı analizine dayanır. Ayrıca sahadan gelen gerçek kullanıcı gözlemleri de aynı ekranda gösterilir, böylece tahmin ile gerçek durumu karşılaştırabilirsin."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "SeaData hangi kıyılarda çalışıyor?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir."
-      }
-    }
-  ]
-}
-</script>
-<script>
-// PWA "Ana ekrana ekle" (installable) sayılması için Chrome bir service worker ister —
-// iOS Safari'nin buna ihtiyacı yok ama zararı da yok. Kayıt başarısız olursa (ör. eski
-// tarayıcı) sessizce yok sayılır, sitenin normal çalışmasını hiç etkilemez.
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  });
-}
-</script>
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -116,7 +89,7 @@ if ('serviceWorker' in navigator) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>
+${sayfaKonumJs}<script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
 (function() {
@@ -131,15 +104,7 @@ if ('serviceWorker' in navigator) {
 </head>
 <body>
 <!-- NAV:START -->
-<nav class="site-nav" id="site-nav">
-  <a href="/">Ana Sayfa</a>
-  <a href="/samsun/">Samsun</a>
-  <a href="/izmir/">İzmir</a>
-  <a href="/mugla/">Muğla</a>
-  <a href="/aydin/">Aydın</a>
-  <a href="/antalya/">Antalya</a>
-  <a href="/sss/">Sıkça Sorulan Sorular</a>
-</nav>
+${NAV_HTML}
 <!-- NAV:END -->
 <div id="app-wrap">
 <div id="app">
@@ -153,10 +118,7 @@ if ('serviceWorker' in navigator) {
   </div>
   <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
-  <div class="yer-arama" id="yer-arama">
-    <input type="text" id="yer-arama-input" autocomplete="off" placeholder="Bir yer ara (örn. Çeşme, Alanya, İzmir)" />
-    <ul id="yer-arama-sonuclar" class="yer-arama-sonuclar" style="display:none;"></ul>
-  </div>
+  ${ustSectionHtml}
 
   <div class="ana-ekrana-ekle-banner" id="ana-ekrana-ekle-banner" style="display:none;" role="button" tabindex="0">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M20 21H4a1 1 0 0 1-1-1v-4"/><path d="M4 21a1 1 0 0 1-1-1v-4"/><path d="M20 21a1 1 0 0 0 1-1v-4"/></svg>
@@ -207,6 +169,8 @@ if ('serviceWorker' in navigator) {
 
   <div id="conflict-note" class="conflict-note" style="display:none;"></div>
 
+  ${altSectionHtml}
+
   <p class="section-label" id="community-label" style="display:none;" data-i18n="sahadan_gelenler">Sahadan gelenler</p>
   <div id="community-summary-wrap" style="display:none;"></div>
 
@@ -239,40 +203,6 @@ if ('serviceWorker' in navigator) {
   </div>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
-
-  <div class="seo-text">
-    <h2 data-i18n="seo_baslik">Türkiye kıyılarında deniz durumu</h2>
-    <p data-i18n="seo_metin">Bu sayfa, Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada (Samsun, Atakum, Trabzon, Sinop, İstanbul, İzmir, Antalya ve diğer tüm sahil bölgeleri dahil) anlık rüzgar hızı, rüzgar yönü, dalga yüksekliği ve dalga periyodu verisini gösterir. Haritada herhangi bir sahil noktasına tıklayarak o bölgede denize girmenin bugün keyifli mi, yoksa dalgalı mı olacağını öğrenebilir, aynı zamanda sahilde bulunan diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
-  </div>
-
-  <div class="sss-bolum">
-    <h2 data-i18n="sss_baslik">Sıkça sorulan sorular</h2>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s1_soru">Deniz bugün nasıl?</h3>
-      <p data-i18n="sss_s1_cevap">Haritadan bir noktaya tıkla — SeaData o an için rüzgar ve dalga verisine dayanan anlık bir tahmin gösterir (Mükemmel, İyi, Orta, Kötü veya Tehlikeli). Aynı kartta, o bölgede daha önce bulunan kullanıcıların gerçek gözlemlerini de görebilirsin.</p>
-    </div>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s2_soru">Deniz yarın nasıl olacak?</h3>
-      <p data-i18n="sss_s2_cevap">Kart üzerindeki ok işaretlerine basarak ya da kartı kaydırarak sonraki günlere geçebilirsin — her gün için ayrı bir tahmin, saat saat gösterilir.</p>
-    </div>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s3_soru">Deniz kaç gün sonrasına kadar tahmin ediliyor?</h3>
-      <p data-i18n="sss_s3_cevap">Bugün dahil, önümüzdeki 1 hafta (7 gün) için tahmin sunuyoruz.</p>
-    </div>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s4_soru">Deniz dalgalı mı, sakin mi nasıl anlaşılır?</h3>
-      <p data-i18n="sss_s4_cevap">SeaData, rüzgar hızı, dalga yüksekliği ve dalga periyodunu birlikte değerlendirip 5 kademeli bir sonuç üretir: Mükemmel (çarşaf gibi), İyi, Orta, Kötü, Tehlikeli. Kıyının açık deniz mesafesine (fetch) göre eşikler otomatik ayarlanır — bir koyda "iyi" sayılan dalga, açık kıyıda "orta" sayılabilir.</p>
-    </div>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s5_soru">Deniz durumu tahmini ne kadar doğru?</h3>
-      <p data-i18n="sss_s5_cevap">Tahminler Open-Meteo'nun canlı rüzgar/dalga verisine ve kıyı şeklinin gerçek zamanlı analizine dayanır. Buna ek olarak, sahadan (o an oradaki kullanıcılardan) gelen gerçek gözlemleri de aynı ekranda gösteriyoruz, böylece tahmin ile gerçek durumu karşılaştırabilirsin.</p>
-    </div>
-    <div class="sss-madde">
-      <h3 data-i18n="sss_s6_soru">SeaData hangi kıyılarda çalışıyor?</h3>
-      <p data-i18n="sss_s6_cevap">Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir.</p>
-    </div>
-  </div>
-
 </div>
 
 
@@ -320,3 +250,135 @@ if ('serviceWorker' in navigator) {
 <script src="/js/app.js"></script>
 </body>
 </html>
+`;
+}
+
+function ilceSayfasiUret({ ilce, il, plajlar, lat, lon, zoom }) {
+  const plajAdlari = plajlar.map((p) => p.ad).join(", ") || "henüz eklenmemiş";
+  const plajSayisi = plajlar.length;
+  const doldur = (s) => s.replace(/\{plajAdlari\}/g, plajAdlari).replace(/\{plajSayisi\}/g, String(plajSayisi));
+
+  const ustSectionHtml = `<div class="yer-giris">
+    <h2>${escapeHtml(ilce.baslik)}</h2>
+    <p>${doldur(ilce.girisMetni)}</p>
+  </div>`;
+
+  const altSectionHtml = `${plajListesiHtml(plajlar)}
+  ${miniSssHtml((ilce.miniSss || []).map((s) => ({ soru: s.soru, cevap: doldur(s.cevap) })))}
+  <p class="yer-donus"><a href="/${il.slug}/">← ${escapeHtml(il.ad)} deniz durumuna dön</a></p>`;
+
+  const canonicalUrl = `https://seadata.vercel.app/${il.slug}/${ilce.slug}/`;
+
+  return sayfaIskeleti({
+    title: ilce.baslik,
+    metaAciklama: doldur(ilce.metaAciklama),
+    canonicalUrl,
+    sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: ilce.ad },
+    ustSectionHtml,
+    altSectionHtml,
+  });
+}
+
+function ilSayfasiUret({ il, ilceler, plajlar, lat, lon, zoom }) {
+  const ustSectionHtml = `<div class="yer-giris">
+    <h2>${escapeHtml(il.baslik)}</h2>
+    <p>${il.girisMetni}</p>
+  </div>`;
+
+  const ilceLinkleri = ilceler
+    .map((ic) => `<li><a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}</a></li>`)
+    .join("\n      ");
+  const ilceSectionHtml = `<div class="yer-ilceler">
+    <h2>${escapeHtml(il.ad)}'nin kıyı ilçeleri</h2>
+    <ul class="yer-ilceler-listesi">
+      ${ilceLinkleri}
+    </ul>
+  </div>`;
+
+  const altSectionHtml = `${plajListesiHtml(plajlar)}
+  ${ilceSectionHtml}
+  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>`;
+
+  const canonicalUrl = `https://seadata.vercel.app/${il.slug}/`;
+
+  return sayfaIskeleti({
+    title: il.baslik,
+    metaAciklama: il.metaAciklama,
+    canonicalUrl,
+    sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: null },
+    ustSectionHtml,
+    altSectionHtml,
+  });
+}
+
+function sssSayfasiUret({ sorular }) {
+  const maddeler = sorular
+    .map(
+      (s) => `<div class="sss-madde">
+      <h3>${escapeHtml(s.soru)}</h3>
+      <p>${escapeHtml(s.cevap)}</p>
+    </div>`
+    )
+    .join("\n    ");
+
+  const jsonLd = JSON.stringify(
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: sorular.map((s) => ({
+        "@type": "Question",
+        name: s.soru,
+        acceptedAnswer: { "@type": "Answer", text: s.cevap },
+      })),
+    },
+    null,
+    2
+  );
+
+  const title = "Sıkça Sorulan Sorular — SeaData";
+  const metaAciklama = "SeaData nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları.";
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeaData" />
+<meta property="og:url" content="https://seadata.vercel.app/sss/" />
+<link rel="canonical" href="https://seadata.vercel.app/sss/" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/app.css" />
+<script type="application/ld+json">
+${jsonLd}
+</script>
+</head>
+<body>
+<!-- NAV:START -->
+${NAV_HTML}
+<!-- NAV:END -->
+<div id="app-wrap">
+<div id="app">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaData logosu" />
+    <h1>SeaData</h1>
+  </div>
+  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
+    <h2 style="font-size:20px;">Sıkça Sorulan Sorular</h2>
+    ${maddeler}
+  </div>
+  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
+</div>
+</div>
+</body>
+</html>
+`;
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, NAV_HTML, escapeHtml };

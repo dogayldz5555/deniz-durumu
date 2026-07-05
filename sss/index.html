@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sıkça Sorulan Sorular — SeaData</title>
+<meta name="description" content="SeaData nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları." />
+<meta property="og:title" content="Sıkça Sorulan Sorular — SeaData" />
+<meta property="og:description" content="SeaData nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeaData" />
+<meta property="og:url" content="https://seadata.vercel.app/sss/" />
+<link rel="canonical" href="https://seadata.vercel.app/sss/" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/app.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "SeaData nasıl çalışıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Haritada bir noktaya tıkladığında, o an için Open-Meteo'nun rüzgar (hız, hamle, yön) ve deniz (dalga yüksekliği, dalga periyodu, swell, deniz suyu sıcaklığı) verileri canlı olarak çekilir; bu veriler Mükemmel, İyi, Orta, Kötü veya Tehlikeli olarak özetlenen tek bir sonuca dönüştürülür."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Veriler ne sıklıkla güncelleniyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir. Aynı istekle birlikte önümüzdeki 7 gün için tahmin de gösterilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SeaData Türkiye'nin her yerini kapsıyor mu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ana harita, Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki herhangi bir noktaya tıklamaya izin verir — belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mavi Bayrak ne anlama geliyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mavi Bayrak, TÜRÇEV (Türkiye Çevre Eğitim Vakfı) tarafından su kalitesi, çevre yönetimi, can güvenliği ve tesis kriterlerine göre verilen uluslararası bir sertifikadır. SeaData'da bu plajlar, yakınlaştırıldığında haritada küçük bir bayrak simgesiyle işaretlenir ve yalnızca halka açık (otel/tesis özel olmayan) plajlar gösterilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Yoğunluk/kalabalık bilgisi var mı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hayır — bunun için güvenilir, gerçek zamanlı ve ücretsiz bir veri kaynağı bulunmadığından bu bilgi kasıtlı olarak sunulmuyor. SeaData yalnızca gerçek ölçüme dayanan deniz ve hava durumu verisi gösterir, tahmini bir kalabalık bilgisi eklemiyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kullanıcı yorumları ne işe yarıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sahadan, o an orada bulunan ziyaretçilerin bıraktığı gerçek gözlemler, uygulamanın kendi hesapladığı anlık tahminle yan yana gösterilir — böylece hesaplanan tahmin ile sahadaki gerçek durumu karşılaştırabilirsin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Liman/marina gibi korunaklı yerler farklı mı değerlendiriliyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, dalgakıran veya mendirekle korunan bilinen limanlar (şu an için Samsun Limanı) için, aynı bölgenin açık kıyısından daha yüksek/gevşek eşikler kullanılır — çünkü bu noktalar fiziksel olarak dalgadan korunur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Konumumu haritada nasıl gösteririm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Haritanın üstündeki \"Konumum\" butonuna basarak, tarayıcı konum izni verdiğinde harita otomatik olarak bulunduğun noktaya odaklanır ve o noktanın deniz durumunu gösterir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SeaData'yı telefonuma nasıl eklerim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uygulama bir PWA (Progressive Web App) olarak çalışır — tarayıcınızda \"Ana ekrana ekle\" bildirimi çıktığında onaylayarak telefonunuza bir uygulama gibi ekleyebilirsiniz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Türkçe ve İngilizce arasında geçiş yapabilir miyim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, sayfanın sağ üstündeki TR/EN düğmesiyle arayüz dili anında değiştirilebilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dalga yüksekliği düşükken bile deniz neden \"Orta\" ya da \"Kötü\" gösterilebiliyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Değerlendirme sadece dalga yüksekliğine değil, rüzgar hızına, ani rüzgar hamlelerine ve kıyının açık denize olan mesafesine (fetch) göre ayarlanan eşiklere birlikte bakar — bu yüzden aynı dalga yüksekliği, farklı bir kıyı şeklinde farklı bir sonuç verebilir."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- NAV:START -->
+<nav class="site-nav" id="site-nav">
+  <a href="/">Ana Sayfa</a>
+  <a href="/samsun/">Samsun</a>
+  <a href="/izmir/">İzmir</a>
+  <a href="/mugla/">Muğla</a>
+  <a href="/aydin/">Aydın</a>
+  <a href="/antalya/">Antalya</a>
+  <a href="/sss/">Sıkça Sorulan Sorular</a>
+</nav>
+<!-- NAV:END -->
+<div id="app-wrap">
+<div id="app">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaData logosu" />
+    <h1>SeaData</h1>
+  </div>
+  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
+    <h2 style="font-size:20px;">Sıkça Sorulan Sorular</h2>
+    <div class="sss-madde">
+      <h3>SeaData nasıl çalışıyor?</h3>
+      <p>Haritada bir noktaya tıkladığında, o an için Open-Meteo'nun rüzgar (hız, hamle, yön) ve deniz (dalga yüksekliği, dalga periyodu, swell, deniz suyu sıcaklığı) verileri canlı olarak çekilir; bu veriler Mükemmel, İyi, Orta, Kötü veya Tehlikeli olarak özetlenen tek bir sonuca dönüştürülür.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Veriler ne sıklıkla güncelleniyor?</h3>
+      <p>Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir. Aynı istekle birlikte önümüzdeki 7 gün için tahmin de gösterilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>SeaData Türkiye'nin her yerini kapsıyor mu?</h3>
+      <p>Ana harita, Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki herhangi bir noktaya tıklamaya izin verir — belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Mavi Bayrak ne anlama geliyor?</h3>
+      <p>Mavi Bayrak, TÜRÇEV (Türkiye Çevre Eğitim Vakfı) tarafından su kalitesi, çevre yönetimi, can güvenliği ve tesis kriterlerine göre verilen uluslararası bir sertifikadır. SeaData'da bu plajlar, yakınlaştırıldığında haritada küçük bir bayrak simgesiyle işaretlenir ve yalnızca halka açık (otel/tesis özel olmayan) plajlar gösterilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Yoğunluk/kalabalık bilgisi var mı?</h3>
+      <p>Hayır — bunun için güvenilir, gerçek zamanlı ve ücretsiz bir veri kaynağı bulunmadığından bu bilgi kasıtlı olarak sunulmuyor. SeaData yalnızca gerçek ölçüme dayanan deniz ve hava durumu verisi gösterir, tahmini bir kalabalık bilgisi eklemiyoruz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Kullanıcı yorumları ne işe yarıyor?</h3>
+      <p>Sahadan, o an orada bulunan ziyaretçilerin bıraktığı gerçek gözlemler, uygulamanın kendi hesapladığı anlık tahminle yan yana gösterilir — böylece hesaplanan tahmin ile sahadaki gerçek durumu karşılaştırabilirsin.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Liman/marina gibi korunaklı yerler farklı mı değerlendiriliyor?</h3>
+      <p>Evet, dalgakıran veya mendirekle korunan bilinen limanlar (şu an için Samsun Limanı) için, aynı bölgenin açık kıyısından daha yüksek/gevşek eşikler kullanılır — çünkü bu noktalar fiziksel olarak dalgadan korunur.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Konumumu haritada nasıl gösteririm?</h3>
+      <p>Haritanın üstündeki &quot;Konumum&quot; butonuna basarak, tarayıcı konum izni verdiğinde harita otomatik olarak bulunduğun noktaya odaklanır ve o noktanın deniz durumunu gösterir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>SeaData'yı telefonuma nasıl eklerim?</h3>
+      <p>Uygulama bir PWA (Progressive Web App) olarak çalışır — tarayıcınızda &quot;Ana ekrana ekle&quot; bildirimi çıktığında onaylayarak telefonunuza bir uygulama gibi ekleyebilirsiniz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Türkçe ve İngilizce arasında geçiş yapabilir miyim?</h3>
+      <p>Evet, sayfanın sağ üstündeki TR/EN düğmesiyle arayüz dili anında değiştirilebilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Dalga yüksekliği düşükken bile deniz neden &quot;Orta&quot; ya da &quot;Kötü&quot; gösterilebiliyor?</h3>
+      <p>Değerlendirme sadece dalga yüksekliğine değil, rüzgar hızına, ani rüzgar hamlelerine ve kıyının açık denize olan mesafesine (fetch) göre ayarlanan eşiklere birlikte bakar — bu yüzden aynı dalga yüksekliği, farklı bir kıyı şeklinde farklı bir sonuç verebilir.</p>
+    </div>
+  </div>
+  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
+</div>
+</div>
+</body>
+</html>
