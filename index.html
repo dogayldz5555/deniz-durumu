@@ -2003,6 +2003,22 @@ const MAVI_BAYRAK_PLAJLAR = [
   { ad: "Dikili Belediye Plajı", adEn: "Dikili Municipal Beach", lat: 39.077798, lon: 26.887171, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
   { ad: "Dikili Belediye Plajı 2", adEn: "Dikili Municipal Beach 2", lat: 39.07587, lon: 26.88702, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
   { ad: "Dikili Plaj Sporları Halk Plajı", adEn: "Dikili Beach Sports Beach", lat: 39.0912, lon: 26.8812, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
+
+  // Aydın'daki (TÜRÇEV 2024 resmi listesi) halka açık Mavi Bayraklı plajlar (5 Temmuz 2026).
+  // Güvercinada Plajı için mavibayrak.org.tr'nin kendi sayfası ~4km hatalı koordinat veriyordu
+  // (Wikipedia'daki gerçek Güvercinada konumuyla uyuşmuyordu) — Yandex Maps'ten doğrulanan
+  // koordinat kullanıldı.
+  { ad: "Didim Oteller Önü Plajı", adEn: "Didim Hotels Front Beach", lat: 37.356924, lon: 27.287326, yaricapKm: 0.3, il: "Aydın", ilce: "Didim" },
+  { ad: "Didim Altınkum Plajı", adEn: "Didim Altınkum Beach", lat: 37.355216, lon: 27.277679, yaricapKm: 0.3, il: "Aydın", ilce: "Didim" },
+  { ad: "Didim 2. Koy Plajı", adEn: "Didim 2nd Cove Beach", lat: 37.346728, lon: 27.269814, yaricapKm: 0.3, il: "Aydın", ilce: "Didim" },
+  { ad: "Didim 3. Koy Plajı", adEn: "Didim 3rd Cove Beach", lat: 37.343306, lon: 27.262710, yaricapKm: 0.3, il: "Aydın", ilce: "Didim" },
+  { ad: "Tavşanburnu Tabiat Parkı Plajı", adEn: "Tavşanburnu Nature Park Beach", lat: 37.418843, lon: 27.220435, yaricapKm: 0.3, il: "Aydın", ilce: "Didim" },
+  { ad: "Ada Kum Plajı", adEn: "Ada Kum Beach", lat: 37.741157, lon: 27.249020, yaricapKm: 0.3, il: "Aydın", ilce: "Kuşadası" },
+  { ad: "Sevgi Plajı", adEn: "Sevgi (Love) Beach", lat: 37.743979, lon: 27.250982, yaricapKm: 0.3, il: "Aydın", ilce: "Kuşadası" },
+  { ad: "Kadınlar Denizi Plajı", adEn: "Ladies Beach", lat: 37.845499, lon: 27.243245, yaricapKm: 0.3, il: "Aydın", ilce: "Kuşadası" },
+  // Güvercinada: mavibayrak.org.tr'nin verdiği koordinat ~4km hatalıydı, bağımsız kaynaktan düzeltildi.
+  { ad: "Güvercinada Plajı", adEn: "Pigeon Island Beach", lat: 37.866896, lon: 27.260813, yaricapKm: 0.3, il: "Aydın", ilce: "Kuşadası" },
+  { ad: "Kuştur Plajı", adEn: "Kuştur Beach", lat: 37.901987, lon: 27.272597, yaricapKm: 0.3, il: "Aydın", ilce: "Kuşadası" },
 ];
 function maviBayrakBul(lat, lon) {
   let enYakin = null, enYakinMesafe = Infinity;
