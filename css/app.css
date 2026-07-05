@@ -1007,6 +1007,19 @@
   .sss-daha-fazla { margin-top: 14px; font-size: 12.5px; }
   .sss-daha-fazla a { color: var(--locate-text); text-decoration: none; font-weight: 500; }
   .sss-daha-fazla a:hover { text-decoration: underline; }
+  .sss-git-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--locate-text);
+    background: var(--locate-bg);
+    border: 1px solid var(--locate-border);
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .sss-git-btn:hover { text-decoration: underline; }
 
   .yer-arama { position: relative; margin: 14px 0 4px; max-width: 360px; }
   .yer-arama input {

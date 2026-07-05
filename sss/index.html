@@ -23,26 +23,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "SeaData nasıl çalışıyor?",
+      "name": "Deniz bugün nasıl?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Haritada bir noktaya tıkladığında, o an için Open-Meteo'nun rüzgar (hız, hamle, yön) ve deniz (dalga yüksekliği, dalga periyodu, swell, deniz suyu sıcaklığı) verileri canlı olarak çekilir; bu veriler Mükemmel, İyi, Orta, Kötü veya Tehlikeli olarak özetlenen tek bir sonuca dönüştürülür."
+        "text": "Haritadan bir noktaya tıkla — SeaData o an için rüzgar ve dalga verisine dayanan anlık bir tahmin gösterir (Mükemmel, İyi, Orta, Kötü veya Tehlikeli). Aynı kartta, o bölgede daha önce bulunan kullanıcıların gerçek gözlemlerini de görebilirsin."
       }
     },
     {
       "@type": "Question",
-      "name": "Veriler ne sıklıkla güncelleniyor?",
+      "name": "Deniz yarın nasıl olacak?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir. Aynı istekle birlikte önümüzdeki 7 gün için tahmin de gösterilir."
+        "text": "Kart üzerindeki ok işaretlerine basarak ya da kartı kaydırarak sonraki günlere geçebilirsin — her gün için ayrı bir tahmin, saat saat gösterilir."
       }
     },
     {
       "@type": "Question",
-      "name": "SeaData Türkiye'nin her yerini kapsıyor mu?",
+      "name": "Deniz kaç gün sonrasına kadar tahmin ediliyor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ana harita, Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki herhangi bir noktaya tıklamaya izin verir — belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur."
+        "text": "Bugün dahil, önümüzdeki 1 hafta (7 gün) için tahmin sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deniz dalgalı mı, sakin mi nasıl anlaşılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SeaData, rüzgar hızı, dalga yüksekliği ve dalga periyodunu birlikte değerlendirip 5 kademeli bir sonuç üretir: Mükemmel (çarşaf gibi), İyi, Orta, Kötü, Tehlikeli. Kıyının açık deniz mesafesine (fetch) göre eşikler otomatik ayarlanır — bir koyda \"iyi\" sayılan dalga, açık kıyıda \"orta\" sayılabilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deniz durumu tahmini ne kadar doğru?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tahminler Open-Meteo'nun canlı rüzgar/dalga verisine ve kıyı şeklinin gerçek zamanlı analizine dayanır. Buna ek olarak, sahadan (o an oradaki kullanıcılardan) gelen gerçek gözlemleri de aynı ekranda gösteriyoruz, böylece tahmin ile gerçek durumu karşılaştırabilirsin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SeaData hangi kıyılarda çalışıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur."
       }
     },
     {
@@ -103,10 +127,10 @@
     },
     {
       "@type": "Question",
-      "name": "Dalga yüksekliği düşükken bile deniz neden \"Orta\" ya da \"Kötü\" gösterilebiliyor?",
+      "name": "Veriler ne sıklıkla güncelleniyor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Değerlendirme sadece dalga yüksekliğine değil, rüzgar hızına, ani rüzgar hamlelerine ve kıyının açık denize olan mesafesine (fetch) göre ayarlanan eşiklere birlikte bakar — bu yüzden aynı dalga yüksekliği, farklı bir kıyı şeklinde farklı bir sonuç verebilir."
+        "text": "Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir."
       }
     }
   ]
@@ -134,16 +158,28 @@
   <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
     <h2 style="font-size:20px;">Sıkça Sorulan Sorular</h2>
     <div class="sss-madde">
-      <h3>SeaData nasıl çalışıyor?</h3>
-      <p>Haritada bir noktaya tıkladığında, o an için Open-Meteo'nun rüzgar (hız, hamle, yön) ve deniz (dalga yüksekliği, dalga periyodu, swell, deniz suyu sıcaklığı) verileri canlı olarak çekilir; bu veriler Mükemmel, İyi, Orta, Kötü veya Tehlikeli olarak özetlenen tek bir sonuca dönüştürülür.</p>
+      <h3>Deniz bugün nasıl?</h3>
+      <p>Haritadan bir noktaya tıkla — SeaData o an için rüzgar ve dalga verisine dayanan anlık bir tahmin gösterir (Mükemmel, İyi, Orta, Kötü veya Tehlikeli). Aynı kartta, o bölgede daha önce bulunan kullanıcıların gerçek gözlemlerini de görebilirsin.</p>
     </div>
     <div class="sss-madde">
-      <h3>Veriler ne sıklıkla güncelleniyor?</h3>
-      <p>Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir. Aynı istekle birlikte önümüzdeki 7 gün için tahmin de gösterilir.</p>
+      <h3>Deniz yarın nasıl olacak?</h3>
+      <p>Kart üzerindeki ok işaretlerine basarak ya da kartı kaydırarak sonraki günlere geçebilirsin — her gün için ayrı bir tahmin, saat saat gösterilir.</p>
     </div>
     <div class="sss-madde">
-      <h3>SeaData Türkiye'nin her yerini kapsıyor mu?</h3>
-      <p>Ana harita, Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki herhangi bir noktaya tıklamaya izin verir — belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur.</p>
+      <h3>Deniz kaç gün sonrasına kadar tahmin ediliyor?</h3>
+      <p>Bugün dahil, önümüzdeki 1 hafta (7 gün) için tahmin sunuyoruz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Deniz dalgalı mı, sakin mi nasıl anlaşılır?</h3>
+      <p>SeaData, rüzgar hızı, dalga yüksekliği ve dalga periyodunu birlikte değerlendirip 5 kademeli bir sonuç üretir: Mükemmel (çarşaf gibi), İyi, Orta, Kötü, Tehlikeli. Kıyının açık deniz mesafesine (fetch) göre eşikler otomatik ayarlanır — bir koyda &quot;iyi&quot; sayılan dalga, açık kıyıda &quot;orta&quot; sayılabilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Deniz durumu tahmini ne kadar doğru?</h3>
+      <p>Tahminler Open-Meteo'nun canlı rüzgar/dalga verisine ve kıyı şeklinin gerçek zamanlı analizine dayanır. Buna ek olarak, sahadan (o an oradaki kullanıcılardan) gelen gerçek gözlemleri de aynı ekranda gösteriyoruz, böylece tahmin ile gerçek durumu karşılaştırabilirsin.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>SeaData hangi kıyılarda çalışıyor?</h3>
+      <p>Türkiye'nin Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada — haritada tıkladığın herhangi bir sahil konumu için çalışır, sadece belirli şehirlerle sınırlı değildir. Ayrıca Samsun, İzmir, Muğla, Aydın ve Antalya'nın kıyı ilçeleri için bu sayfa gibi bölgeye özel sayfalar da bulunur.</p>
     </div>
     <div class="sss-madde">
       <h3>Mavi Bayrak ne anlama geliyor?</h3>
@@ -174,8 +210,8 @@
       <p>Evet, sayfanın sağ üstündeki TR/EN düğmesiyle arayüz dili anında değiştirilebilir.</p>
     </div>
     <div class="sss-madde">
-      <h3>Dalga yüksekliği düşükken bile deniz neden &quot;Orta&quot; ya da &quot;Kötü&quot; gösterilebiliyor?</h3>
-      <p>Değerlendirme sadece dalga yüksekliğine değil, rüzgar hızına, ani rüzgar hamlelerine ve kıyının açık denize olan mesafesine (fetch) göre ayarlanan eşiklere birlikte bakar — bu yüzden aynı dalga yüksekliği, farklı bir kıyı şeklinde farklı bir sonuç verebilir.</p>
+      <h3>Veriler ne sıklıkla güncelleniyor?</h3>
+      <p>Önbelleklenmiş ya da geçmişte hesaplanmış bir veri kullanılmıyor — her tıklamada/sayfa yüklemesinde Open-Meteo'dan anlık veri çekilir.</p>
     </div>
   </div>
   <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
