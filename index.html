@@ -2934,6 +2934,27 @@ function pinIkonuOlustur(renkHex) {
   });
 }
 
+// Mavi Bayraklı plajlar haritada SABİT, küçük bir rozetle işaretli — tıklamaya gerek kalmadan
+// nerede olduğu görülsün diye. Üzerine gelince (hover) tooltip ile ad + rozet metni çıkar.
+const MAVI_BAYRAK_IKON = L.divIcon({
+  className: 'mavi-bayrak-isaret-wrap',
+  html: `<span style="display:flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#fff;border:1.5px solid #2A7FB8;box-shadow:0 1px 2px rgba(20,56,74,0.45);">
+    <svg width="9" height="9" viewBox="0 0 24 24"><line x1="4" y1="2" x2="4" y2="22" stroke="#2A7FB8" stroke-width="3" stroke-linecap="round"/><path d="M5 3 L21 7.5 L5 12 Z" fill="#2A7FB8"/></svg>
+  </span>`,
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+});
+let maviBayrakIsaretleri = [];
+function maviBayrakIsaretleriniGoster() {
+  maviBayrakIsaretleri.forEach(m => map.removeLayer(m));
+  maviBayrakIsaretleri = [];
+  MAVI_BAYRAK_PLAJLAR.forEach(plaj => {
+    const isaret = L.marker([plaj.lat, plaj.lon], { icon: MAVI_BAYRAK_IKON, zIndexOffset: -100 }).addTo(map);
+    isaret.bindTooltip(t('mavi_bayrak_rozeti', bolgeAdi(plaj)), { direction: 'top', offset: [0, -6] });
+    maviBayrakIsaretleri.push(isaret);
+  });
+}
+
 async function tumYorumNoktalariniGoster() {
   if (!supabaseClient) return;
   try {
@@ -3694,6 +3715,7 @@ document.getElementById('locate-btn').addEventListener('click', () => {
 setTimeout(() => {
   map.invalidateSize();
   tumYorumNoktalariniGoster();
+  maviBayrakIsaretleriniGoster();
   // Önceki ziyarette bakılan bir nokta varsa onu otomatik göster; yoksa Türkiye geneli.
   let sonNokta = null;
   try {
@@ -3879,6 +3901,7 @@ function dilUygula() {
   isimAlaniniGuncelle();
   if (state.lat != null) veriCekVeGoster(state.lat, state.lon);
   tumYorumNoktalariniGoster();
+  maviBayrakIsaretleriniGoster();
   yanPaneliGuncelle(sonGruplarOnbellek);
   siteYorumlariYukle();
 }
