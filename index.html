@@ -2269,17 +2269,20 @@ async function yonFetchMesafesi(lat, lon, aciDerece) {
 // tanımı.
 //
 // TEK bir ışına (çizgiye) güvenmek kırılgan: kıyı şeklindeki ufak bir pürüz (küçük bir ada,
-// dar bir burun ucu) tam o çizginin üstüne denk gelirse, gerçekte açık olan bir nokta
-// yanlışlıkla "tamamen korunaklı" çıkabiliyordu. Bunun yerine ABD Sahil Koruma El Kitabı'nın
-// (Shore Protection Manual, USACE) standart "etkili fetch" yöntemini kullanıyoruz: asıl
-// rüzgar yönünün etrafına yayılmış birkaç işin çekilip, her birinin fetch'i asıl yönden
-// sapma açısının kosinüsüyle ağırlıklandırılıp ortalaması alınır:
+// dar bir burun ucu, bir dalgakıranın ucu) tam o çizginin üstüne denk gelirse, gerçekte açık
+// olan bir nokta yanlışlıkla "tamamen korunaklı" çıkabiliyordu. Bunun yerine ABD Sahil Koruma
+// El Kitabı'nın (Shore Protection Manual, USACE) standart "etkili fetch" yöntemini
+// kullanıyoruz: asıl rüzgar yönünün etrafına yayılmış birkaç ışın çekilip, her birinin
+// fetch'i asıl yönden sapma açısının kosinüsüyle ağırlıklandırılıp ortalaması alınır:
 //   F_etkili = Σ(Fᵢ · cos(αᵢ)) / Σcos(αᵢ)
-// Tam yöntem 9-15 ışın kullanır (±42-45°); burada ücretsiz/anahtarsız is-on-water API'sine
-// binen isteği makul tutmak için 3 ışına (-20°, 0°, +20°) indirgenmiş, daha hafif bir
-// sürümü kullanılıyor. Yine de tek ışına göre çok daha dayanıklı: kıyıdaki tek bir
-// pürüzün sonucu tek başına belirlemesi artık mümkün değil.
-const FETCH_ISIN_ACILARI = [-20, 0, 20];
+// Tam yöntem 9-15 ışın kullanır (±42-45°). Önce 3 ışına (±20°) indirgenmiş hafif bir sürüm
+// kullanıyorduk, ama bir dalgakıranın hemen kenarındaki bir noktada bunun HÂLÂ kırılgan
+// olduğu görüldü: dar açı aralığı yüzünden tek bir ışın dalgakıranın dar "gölgesine" denk
+// gelip ortalamayı yanlışlıkla aşağı çekebiliyordu (gerçekte o nokta koy/körfez değil, açık
+// kıyıydı — bkz. proje notları, 5 Temmuz 2026 kullanıcı geri bildirimi). 5 ışına (±40°)
+// çıkarmak gerçek yönteme daha yakın ve bu tür dar gölgelerin ortalamayı ele geçirmesini
+// engelliyor; is-on-water isteği biraz artıyor ama arka planda, tıklama başına bir kez.
+const FETCH_ISIN_ACILARI = [-40, -20, 0, 20, 40];
 async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
   if (ruzgarYonu == null) return null;
   try {
