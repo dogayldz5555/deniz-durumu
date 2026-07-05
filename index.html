@@ -869,13 +869,6 @@ if ('serviceWorker' in navigator) {
   }
   .legend span { display: flex; align-items: center; gap: 6px; font-weight: 500; }
   .legend .dot { width: 9px; height: 9px; }
-  .clock-row {
-    font-size: 12px;
-    color: var(--legend-text);
-    margin-bottom: 14px;
-    font-variant-numeric: tabular-nums;
-    font-weight: 500;
-  }
   .legend-row {
     display: flex;
     align-items: center;
@@ -1142,8 +1135,6 @@ if ('serviceWorker' in navigator) {
       <button type="button" id="gb-name-degistir" data-i18n="isim_degistir">değiştir</button>
     </div>
   </div>
-
-  <div class="clock-row" id="clock-row"></div>
 
   <div class="legend-row">
     <div class="legend">
@@ -3669,17 +3660,6 @@ const AY_ADLARI_EN = ["January", "February", "March", "April", "May", "June", "J
 function GUN_ADLARI() { return AKTIF_DIL === 'en' ? GUN_ADLARI_EN : GUN_ADLARI_TR; }
 function AY_ADLARI() { return AKTIF_DIL === 'en' ? AY_ADLARI_EN : AY_ADLARI_TR; }
 
-function saatiGuncelle() {
-  const simdi = new Date();
-  const iki = (n) => String(n).padStart(2, "0");
-  const tarihStr = `${simdi.getDate()} ${AY_ADLARI()[simdi.getMonth()]} ${simdi.getFullYear()}, ${GUN_ADLARI()[simdi.getDay()]}`;
-  const saatStr = `${iki(simdi.getHours())}:${iki(simdi.getMinutes())}:${iki(simdi.getSeconds())}`;
-  const el = document.getElementById('clock-row');
-  if (el) el.textContent = `${tarihStr} · ${saatStr}`;
-}
-saatiGuncelle();
-setInterval(saatiGuncelle, 1000);
-
 // === Site hakkında geri bildirim (yıldız + mesaj) ===
 (function() {
   let secilenPuan = 0;
@@ -3812,7 +3792,6 @@ function dilUygula() {
   document.getElementById('og-baslik').setAttribute('content', t('sayfa_baslik'));
   document.getElementById('og-aciklama').setAttribute('content', t('og_aciklama'));
   isimAlaniniGuncelle();
-  saatiGuncelle();
   if (state.lat != null) veriCekVeGoster(state.lat, state.lon);
   tumYorumNoktalariniGoster();
   yanPaneliGuncelle(sonGruplarOnbellek);
