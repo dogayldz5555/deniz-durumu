@@ -1415,7 +1415,7 @@ const CEVIRI = {
     fetch_notu_bekleniyor: "Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
     swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
-    canli_kamera_link: (ad) => `🔴 ${ad} kamerasından canlı izle (YouTube)`,
+    canli_kamera_link: (ad) => `🔴 Yakında canlı kamera var (${ad}) — belediyenin yayın sayfasını aç`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -1559,7 +1559,7 @@ const CEVIRI = {
     fetch_notu_bekleniyor: "Analyzing the coastline shape, a fine-tuned threshold may arrive in a few seconds…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
     swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
-    canli_kamera_link: (ad) => `🔴 Watch live from the ${ad} camera (YouTube)`,
+    canli_kamera_link: (ad) => `🔴 A live camera is nearby (${ad}) — open the city's live stream page`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -1826,12 +1826,17 @@ function denizBolgesi(lat, lon) {
 // yayınlar (samsun.bel.tr/canli). Belediyenin diğer kameraları (Opera, Saathane Meydanı, Onur
 // Anıtı) denize bakmadığı için ALINMADI — Onur Anıtı özellikle: zamanla yapılan dolgularla
 // artık kıyıdan uzakta kaldığı doğrulandı. Kanal embed'i kapattığı için videoyu sayfaya
-// gömemiyoruz, sadece YouTube'a giden bir link gösterebiliyoruz.
+// gömemiyoruz. ÖNEMLİ: belirli bir video ID'sine değil, doğrudan belediyenin kendi canlı
+// yayın sayfasına LİNK VERİYORUZ — tek tek video ID'lerini denedik, birkaç saat içinde
+// "video özel/kullanılamıyor" hâline gelebiliyorlar (yayın bittiğinde/yeniden başladığında
+// ID değişmese bile erişilebilirlik değişebiliyor). samsun.bel.tr/canli sayfası belediye
+// tarafından güncel tutulduğu için asla bayatlamıyor.
+const SAMSUN_CANLI_YAYIN_SAYFASI = "https://samsun.bel.tr/canli";
 const CANLI_KAMERALAR = [
-  { ad: "Çobanlı İskelesi", adEn: "Çobanlı Pier", lat: 41.343, lon: 36.279, yaricapKm: 1.5, youtubeId: "psz_zes78_8" },
-  { ad: "Tütün İskelesi", adEn: "Tütün Pier", lat: 41.2929, lon: 36.3403, yaricapKm: 1.5, youtubeId: "Q-HUsAL-4sw" },
-  { ad: "Amisos Tepesi", adEn: "Amisos Hill", lat: 41.31889, lon: 36.32306, yaricapKm: 1.5, youtubeId: "3kJ5MFvBNtA" },
-  { ad: "Batıpark", adEn: "Batıpark", lat: 41.3446, lon: 36.2617, yaricapKm: 1.5, youtubeId: "VQeoUcJ44uU" },
+  { ad: "Çobanlı İskelesi", adEn: "Çobanlı Pier", lat: 41.343, lon: 36.279, yaricapKm: 1.5 },
+  { ad: "Tütün İskelesi", adEn: "Tütün Pier", lat: 41.2929, lon: 36.3403, yaricapKm: 1.5 },
+  { ad: "Amisos Tepesi", adEn: "Amisos Hill", lat: 41.31889, lon: 36.32306, yaricapKm: 1.5 },
+  { ad: "Batıpark", adEn: "Batıpark", lat: 41.3446, lon: 36.2617, yaricapKm: 1.5 },
 ];
 function kameraBul(lat, lon) {
   // Çobanlı İskelesi ve Batıpark birbirine ~1.5km mesafede, yarıçapları çakışabiliyor —
@@ -2586,11 +2591,12 @@ async function veriCekVeGoster(lat, lon) {
         : (bolgeGenel ? t('fetch_notu_bekleniyor') : ""));
       const fetchNotu = `<div id="fetch-notu-alani" style="font-size:12px;color:${r.text600};margin-top:6px;">${fetchNotuIcerik}</div><div id="fetch-uyari-alani"></div>`;
 
-      // Belediyenin YouTube kanalı embed'i kapattığı için videoyu gömemiyoruz (bkz.
-      // CANLI_KAMERALAR tanımı) — sadece yeni sekmede açılan bir link gösterebiliyoruz.
+      // Belediyenin YouTube kanalı embed'i kapattığı için videoyu gömemiyoruz, ayrıca tek tek
+      // video ID'leri bayatlayabildiği için (bkz. CANLI_KAMERALAR tanımı) doğrudan belediyenin
+      // güncel tuttuğu canlı yayın sayfasına link veriyoruz.
       const kamera = kameraBul(lat, lon);
       const kameraHtml = kamera
-        ? `<div style="font-size:12px;margin-top:6px;"><a href="https://www.youtube.com/watch?v=${kamera.youtubeId}" target="_blank" rel="noopener" style="color:${r.text600};text-decoration:underline;">${t('canli_kamera_link', bolgeAdi(kamera))}</a></div>`
+        ? `<div style="font-size:12px;margin-top:6px;"><a href="${SAMSUN_CANLI_YAYIN_SAYFASI}" target="_blank" rel="noopener" style="color:${r.text600};text-decoration:underline;">${t('canli_kamera_link', bolgeAdi(kamera))}</a></div>`
         : "";
 
       // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
