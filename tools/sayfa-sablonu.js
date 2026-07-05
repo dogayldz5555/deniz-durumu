@@ -78,8 +78,12 @@ function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSecti
 <meta name="twitter:image" content="https://seadata.vercel.app/og-image.png" />
 <link rel="canonical" href="${canonicalUrl}" />
 <link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://seadata.vercel.app/#website" }, "publisher": { "@id": "https://seadata.vercel.app/#organization" } }
+</script>
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -352,6 +356,7 @@ function sssSayfasiUret({ sorular }) {
 <meta property="og:url" content="https://seadata.vercel.app/sss/" />
 <link rel="canonical" href="https://seadata.vercel.app/sss/" />
 <link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="stylesheet" href="/css/app.css" />
