@@ -2275,14 +2275,15 @@ async function yonFetchMesafesi(lat, lon, aciDerece) {
 // kullanıyoruz: asıl rüzgar yönünün etrafına yayılmış birkaç ışın çekilip, her birinin
 // fetch'i asıl yönden sapma açısının kosinüsüyle ağırlıklandırılıp ortalaması alınır:
 //   F_etkili = Σ(Fᵢ · cos(αᵢ)) / Σcos(αᵢ)
-// Tam yöntem 9-15 ışın kullanır (±42-45°). Önce 3 ışına (±20°) indirgenmiş hafif bir sürüm
-// kullanıyorduk, ama bir dalgakıranın hemen kenarındaki bir noktada bunun HÂLÂ kırılgan
-// olduğu görüldü: dar açı aralığı yüzünden tek bir ışın dalgakıranın dar "gölgesine" denk
-// gelip ortalamayı yanlışlıkla aşağı çekebiliyordu (gerçekte o nokta koy/körfez değil, açık
-// kıyıydı — bkz. proje notları, 5 Temmuz 2026 kullanıcı geri bildirimi). 5 ışına (±40°)
-// çıkarmak gerçek yönteme daha yakın ve bu tür dar gölgelerin ortalamayı ele geçirmesini
-// engelliyor; is-on-water isteği biraz artıyor ama arka planda, tıklama başına bir kez.
-const FETCH_ISIN_ACILARI = [-40, -20, 0, 20, 40];
+// Tam yöntem 9-15 ışın kullanır (±42-45°). Samsun kıyısında rüzgar yönü kıyı çizgisine
+// neredeyse PARALEL olduğunda (kıyı burada hafifçe kavis yapıyor) tek bir ışın onlarca km
+// öteden bile kıyıya "değebiliyor" — dar açı aralıkları (önce ±20°, sonra ±40°) bunu HÂLÂ
+// yeterince seyreltemiyordu: gerçekte açık, dümdüz bir sahil şeridi (İncesu Yalı, Kurupelit)
+// yanlışlıkla "koy/körfez gibi korunaklı" çıkıyordu (bkz. proje notları, 5 Temmuz 2026
+// kullanıcı geri bildirimi — iki ayrı noktada doğrulandı). 7 ışına, ±60°'ye çıkarmak bu
+// paralel-kıyı durumunda ortalamayı gerçek açıklığa çok daha yakın veriyor; is-on-water
+// isteği artıyor ama arka planda, tıklama başına bir kez.
+const FETCH_ISIN_ACILARI = [-60, -40, -20, 0, 20, 40, 60];
 async function fetchMesafesiHesapla(lat, lon, ruzgarYonu) {
   if (ruzgarYonu == null) return null;
   try {
