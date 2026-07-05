@@ -2944,14 +2944,27 @@ const MAVI_BAYRAK_IKON = L.divIcon({
   iconSize: [16, 16],
   iconAnchor: [8, 8],
 });
+// Türkiye geneli (uzak) zoom'da 16 işaretin hepsi aynı anda görünmesi hem kalabalık hem de
+// anlamsız (nokta gibi kalıyorlar) — kullanıcı o şehre/bölgeye yakınlaşınca (bkz.
+// YORUM_ISARET_MIN_ZOOM'daki aynı mantık) belirmeleri istendi.
+const MAVI_BAYRAK_MIN_ZOOM = 11;
 let maviBayrakIsaretleri = [];
 function maviBayrakIsaretleriniGoster() {
   maviBayrakIsaretleri.forEach(m => map.removeLayer(m));
   maviBayrakIsaretleri = [];
   MAVI_BAYRAK_PLAJLAR.forEach(plaj => {
-    const isaret = L.marker([plaj.lat, plaj.lon], { icon: MAVI_BAYRAK_IKON, zIndexOffset: -100 }).addTo(map);
+    const isaret = L.marker([plaj.lat, plaj.lon], { icon: MAVI_BAYRAK_IKON, zIndexOffset: -100 });
     isaret.bindTooltip(t('mavi_bayrak_rozeti', bolgeAdi(plaj)), { direction: 'top', offset: [0, -6] });
+    if (map.getZoom() >= MAVI_BAYRAK_MIN_ZOOM) isaret.addTo(map);
     maviBayrakIsaretleri.push(isaret);
+  });
+}
+function maviBayrakGorunurlukGuncelle() {
+  const goster = map.getZoom() >= MAVI_BAYRAK_MIN_ZOOM;
+  maviBayrakIsaretleri.forEach(m => {
+    const haritada = map.hasLayer(m);
+    if (goster && !haritada) m.addTo(map);
+    else if (!goster && haritada) { m.closeTooltip(); map.removeLayer(m); }
   });
 }
 
@@ -3742,6 +3755,7 @@ function haritaRenkYogunluguGuncelle() {
 
 function haritaGorunumuDegisti() {
   yorumIsaretGorunurlukGuncelle();
+  maviBayrakGorunurlukGuncelle();
   haritaRenkYogunluguGuncelle();
   clearTimeout(yanPanelDebounce);
   yanPanelDebounce = setTimeout(() => yanPaneliGuncelle(sonGruplarOnbellek), 200);
