@@ -1416,7 +1416,7 @@ const CEVIRI = {
     fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
     swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
     canli_kamera_link: (ad) => `🔴 Yakında canlı kamera var (${ad}) — belediyenin yayın sayfasını aç`,
-    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Mavi Bayraklı plaj (TÜRÇEV sertifikalı)`,
+    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Halka Açık Mavi Bayraklı Plaj (TÜRÇEV sertifikalı)`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -1561,7 +1561,7 @@ const CEVIRI = {
     fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
     swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
     canli_kamera_link: (ad) => `🔴 A live camera is nearby (${ad}) — open the city's live stream page`,
-    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Blue Flag certified beach (TÜRÇEV)`,
+    mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Public Blue Flag Beach (TÜRÇEV certified)`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -1879,6 +1879,130 @@ const MAVI_BAYRAK_PLAJLAR = [
   { ad: "Altınkum Plajı", adEn: "Altınkum Beach", lat: 41.391935, lon: 36.205599, yaricapKm: 0.3 },
   { ad: "Miliç Çevre Eğitim Plajı", adEn: "Miliç Çevre Eğitim Beach", lat: 41.183968, lon: 37.037558, yaricapKm: 0.3 },
   { ad: "Terme Karavan Kampı Plajı", adEn: "Terme Karavan Kampı Beach", lat: 41.181547, lon: 37.041092, yaricapKm: 0.3 },
+
+  // Antalya'daki (TÜRÇEV 2024 resmi listesi) halka açık Mavi Bayraklı plajlar — otel/tesis özel
+  // plajları hariç tutuldu. Koordinatlar mavibayrak.org.tr plaj detay sayfalarından (plaj_refno)
+  // çekildi, ilçe merkezine göre coğrafi makullük kontrolünden geçirildi (5 Temmuz 2026).
+  // Konyaaltı Halk Plajı 11/12/13 mavibayrak.org.tr'de bulunamadığı için eklenmedi.
+  { ad: "Gazipaşa Koru Halk Plajı", adEn: "Gazipaşa Koru Beach", lat: 36.245046, lon: 32.291667, yaricapKm: 0.3, il: "Antalya", ilce: "Gazipaşa" },
+  { ad: "Gazipaşa Selinus Halk Plajı", adEn: "Gazipaşa Selinus Beach", lat: 36.268089, lon: 32.280252, yaricapKm: 0.3, il: "Antalya", ilce: "Gazipaşa" },
+  { ad: "Gençlik Merkezi Önü Halk Plajı", adEn: "Youth Center Beach", lat: 36.537868, lon: 32.028011, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Keykubat Doğu Halk Plajı", adEn: "Keykubat East Beach", lat: 36.537467, lon: 32.028708, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Keykubat Batı Halk Plajı", adEn: "Keykubat West Beach", lat: 36.542995, lon: 32.015733, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Damlataş Halk Plajı", adEn: "Damlataş Beach", lat: 36.543986, lon: 31.985183, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Alanya Engelsiz Halk Plajı", adEn: "Alanya Accessible Beach", lat: 36.541965, lon: 31.987667, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Kleopatra Doğu Halk Plajı", adEn: "Cleopatra East Beach", lat: 36.551038, lon: 31.976159, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  // Kleopatra Batı: mavibayrak.org.tr'de ayrı refno bulunamadı, bağımsız kaynaktan yaklaşık konum (düşük güven).
+  { ad: "Kleopatra Batı Halk Plajı", adEn: "Cleopatra West Beach", lat: 36.5545, lon: 31.9719, yaricapKm: 0.3, il: "Antalya", ilce: "Alanya" },
+  { ad: "Manavgat Kızılot Halk Plajı", adEn: "Manavgat Kızılot Beach", lat: 36.701991, lon: 31.581923, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Manavgat Halk Plajı", adEn: "Manavgat Public Beach", lat: 36.729491, lon: 31.515961, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Manavgat Boğaz Otel Halk Plajı", adEn: "Manavgat Boğaz Otel Beach", lat: 36.745442, lon: 31.470044, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Nar Beach 3", adEn: "Nar Beach 3", lat: 36.765539, lon: 31.390422, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Nar Beach 1", adEn: "Nar Beach 1", lat: 36.767116, lon: 31.386629, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Manavgat Ilıca Halk Plajı", adEn: "Manavgat Ilıca Beach", lat: 36.800052, lon: 31.357252, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Evrenseki Halk Plajı", adEn: "Evrenseki Beach", lat: 36.764977, lon: 31.386629, yaricapKm: 0.3, il: "Antalya", ilce: "Manavgat" },
+  { ad: "Serik Boğazkent Halk Plajı", adEn: "Serik Boğazkent Beach", lat: 36.835450, lon: 31.126131, yaricapKm: 0.3, il: "Antalya", ilce: "Serik" },
+  // Belek Halk Plajı: mavibayrak.org.tr'deki enleme (36.503098) güvenilmedi (~40km hatalı çıkıyordu),
+  // bağımsız kaynaktan doğrulanan koordinat kullanıldı.
+  { ad: "Belek Halk Plajı", adEn: "Belek Public Beach", lat: 36.842724, lon: 31.078667, yaricapKm: 0.3, il: "Antalya", ilce: "Serik" },
+  { ad: "Kadriye Halk Plajı", adEn: "Kadriye Public Beach", lat: 36.858079, lon: 31.005691, yaricapKm: 0.3, il: "Antalya", ilce: "Serik" },
+  { ad: "Lara Halk Plajı Lazlo Beach", adEn: "Lara Lazlo Beach", lat: 36.850316, lon: 30.844921, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Lara Halk Plajı 2", adEn: "Lara Public Beach 2", lat: 36.848870, lon: 30.831980, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Lara Halk Plajı 1", adEn: "Lara Public Beach 1", lat: 36.848126, lon: 30.823076, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Lara Red&White Beach", adEn: "Lara Red&White Beach", lat: 36.847141, lon: 30.809415, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Konserve Halk Plajı", adEn: "Konserve Beach", lat: 36.853347, lon: 30.745549, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Mobil Halk Plajı", adEn: "Mobil Beach", lat: 36.856043, lon: 30.735245, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "İnciraltı Halk Plajı", adEn: "İnciraltı Beach", lat: 36.859809, lon: 30.728946, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Erdal İnönü Kent Parkı Plajı", adEn: "Erdal İnönü City Park Beach", lat: 36.861506, lon: 30.727119, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Erenkuş Halk Plajı", adEn: "Erenkuş Beach", lat: 36.866191, lon: 30.723382, yaricapKm: 0.3, il: "Antalya", ilce: "Muratpaşa" },
+  { ad: "Sarısu Plajı", adEn: "Sarısu Beach", lat: 36.827103, lon: 30.600031, yaricapKm: 0.3, il: "Antalya", ilce: "Konyaaltı" },
+  { ad: "Kadınlar Plajı", adEn: "Women's Beach", lat: 36.821241, lon: 30.595053, yaricapKm: 0.3, il: "Antalya", ilce: "Konyaaltı" },
+  { ad: "Beldibi Bahçecik Halk Plajı", adEn: "Beldibi Bahçecik Beach", lat: 36.733217, lon: 30.564634, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  // Çifteçeşmeler: mavibayrak.org.tr Çamyuva ile aynı (hatalı, kopya) koordinatı vermişti; adres
+  // kaydı "Beldibi Mah." olduğu için Beldibi Bahçecik'e yakın, yaklaşık konum kullanıldı (düşük güven).
+  { ad: "Çifteçeşmeler Halk Plajı", adEn: "Çifteçeşmeler Beach", lat: 36.7300, lon: 30.5680, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  // Göynük: mavibayrak.org.tr'de ayrı refno bulunamadı, bağımsız kaynaktan yaklaşık konum (düşük güven).
+  { ad: "Göynük Halk Plajı", adEn: "Göynük Beach", lat: 36.670104, lon: 30.566990, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  { ad: "Mustafa Ertuğrul Aker Halk Plajı", adEn: "Mustafa Ertuğrul Aker Beach", lat: 36.600838, lon: 30.569479, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  { ad: "Çamyuva Halk Plajı", adEn: "Çamyuva Beach", lat: 36.682015, lon: 30.570035, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  { ad: "Tekirova Halk Plajı", adEn: "Tekirova Beach", lat: 36.491425, lon: 30.526505, yaricapKm: 0.3, il: "Antalya", ilce: "Kemer" },
+  { ad: "Kumluca Beykent Halk Plajı", adEn: "Kumluca Beykent Beach", lat: 36.307046, lon: 30.305658, yaricapKm: 0.3, il: "Antalya", ilce: "Kumluca" },
+  { ad: "Kumluca Kent Parkı Halk Plajı", adEn: "Kumluca City Park Beach", lat: 36.314450, lon: 30.282530, yaricapKm: 0.3, il: "Antalya", ilce: "Kumluca" },
+  { ad: "Kumluca Fener Halk Plajı", adEn: "Kumluca Fener Beach", lat: 36.314841, lon: 30.271617, yaricapKm: 0.3, il: "Antalya", ilce: "Kumluca" },
+  { ad: "Demre Taşdibi Plajı", adEn: "Demre Taşdibi Beach", lat: 36.221269, lon: 29.987026, yaricapKm: 0.3, il: "Antalya", ilce: "Demre" },
+  { ad: "Kaş İnceboğaz Halk Plajı 1", adEn: "Kaş İnceboğaz Beach 1", lat: 36.198289, lon: 29.618485, yaricapKm: 0.3, il: "Antalya", ilce: "Kaş" },
+  { ad: "Kaş İnceboğaz Plajı 2", adEn: "Kaş İnceboğaz Beach 2", lat: 36.200703, lon: 29.624452, yaricapKm: 0.3, il: "Antalya", ilce: "Kaş" },
+  { ad: "Kaş Acısu Halk Plajı", adEn: "Kaş Acısu Beach", lat: 36.207269, lon: 29.617614, yaricapKm: 0.3, il: "Antalya", ilce: "Kaş" },
+  { ad: "Kalkan Halk Plajı", adEn: "Kalkan Beach", lat: 36.261806, lon: 29.417022, yaricapKm: 0.3, il: "Antalya", ilce: "Kaş" },
+
+  // Muğla'daki (TÜRÇEV 2024 resmi listesi) halka açık Mavi Bayraklı plajlar — otel/tesis özel
+  // plajları hariç tutuldu (5 Temmuz 2026). Bodrum'daki 4 plaj (Yelken, Kumbahçe, Kumbahçe
+  // Giritli, Monakus) için mavibayrak.org.tr'nin kendi verisinde ciddi bir kopyalama hatası
+  // bulundu (dördü de Gölköy Plajı ile birebir aynı koordinatı veriyordu) — bunlar için
+  // Yandex Maps + OpenStreetMap çapraz doğrulamasıyla bağımsız koordinat kullanıldı.
+  { ad: "Belceğiz Plajı", adEn: "Belceğiz Beach", lat: 36.545777, lon: 29.123850, yaricapKm: 0.3, il: "Muğla", ilce: "Fethiye" },
+  { ad: "Kumburnu Plajı", adEn: "Kumburnu Beach", lat: 36.549976, lon: 29.112008, yaricapKm: 0.3, il: "Muğla", ilce: "Fethiye" },
+  { ad: "Macera Parkı Plajı", adEn: "Adventure Park Beach", lat: 36.849270, lon: 28.283160, yaricapKm: 0.3, il: "Muğla", ilce: "Marmaris" },
+  { ad: "Marmaris Halk Plajı", adEn: "Marmaris Public Beach", lat: 36.849242, lon: 28.262948, yaricapKm: 0.3, il: "Muğla", ilce: "Marmaris" },
+  { ad: "Turaş İçmeler Plajı", adEn: "Turaş İçmeler Beach", lat: 36.808629, lon: 28.235898, yaricapKm: 0.3, il: "Muğla", ilce: "Marmaris" },
+  { ad: "İçmeler Halk Plajı", adEn: "İçmeler Public Beach", lat: 36.806176, lon: 28.233316, yaricapKm: 0.3, il: "Muğla", ilce: "Marmaris" },
+  { ad: "Martı Marina Plajı", adEn: "Martı Marina Beach", lat: 36.720900, lon: 28.126108, yaricapKm: 0.3, il: "Muğla", ilce: "Marmaris" },
+  { ad: "Akyaka Halk Plajı", adEn: "Akyaka Public Beach", lat: 37.051197, lon: 28.324341, yaricapKm: 0.3, il: "Muğla", ilce: "Ula" },
+  { ad: "Yalıçiftlik Plajı", adEn: "Yalıçiftlik Beach", lat: 36.992685, lon: 27.528772, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  // Yelken, Kumbahçe Giritli, Kumbahçe, Monakus: mavibayrak.org.tr'de kopyalama hatası vardı, bağımsız kaynaktan (düşük/orta güven).
+  { ad: "Yelken Plajı", adEn: "Yelken Beach", lat: 37.019446, lon: 27.444765, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Kumbahçe Giritli Plajı", adEn: "Kumbahçe Giritli Beach", lat: 37.029900, lon: 27.439500, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Kumbahçe Plajı", adEn: "Kumbahçe Beach", lat: 37.027052, lon: 27.440175, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Gümbet Plajı", adEn: "Gümbet Beach", lat: 37.030042, lon: 27.407702, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Özgür Plajı", adEn: "Özgür Beach", lat: 37.026641, lon: 27.372955, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Ortakent Plajı", adEn: "Ortakent Beach", lat: 37.016590, lon: 27.336118, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Monakus Plajı", adEn: "Monakus Beach", lat: 37.101118, lon: 27.281337, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Gündoğan Plajı", adEn: "Gündoğan Beach", lat: 37.131401, lon: 27.341754, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Göltürkbükü Plajı", adEn: "Göltürkbükü Beach", lat: 37.129511, lon: 27.376486, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+  { ad: "Gölköy Plajı", adEn: "Gölköy Beach", lat: 37.119294, lon: 27.394975, yaricapKm: 0.3, il: "Muğla", ilce: "Bodrum" },
+
+  // İzmir'deki (TÜRÇEV 2024 resmi listesi) halka açık Mavi Bayraklı plajlar — otel/tesis özel
+  // plajları hariç tutuldu (5 Temmuz 2026). Çandarlı Kale Önü Halk Plajı için mavibayrak.org.tr
+  // Dikili Belediye Plajı'yla birebir aynı (kopyalanmış, hatalı) koordinat veriyordu — bağımsız
+  // kaynaktan (Çandarlı Kalesi konumu) düzeltildi. Çamlıçay Halk Plajı'nın mavibayrak'ta refno'su
+  // bulunamadı, bağımsız harita kaynağı kullanıldı.
+  { ad: "Çukuraltı Halk Plajı", adEn: "Çukuraltı Beach", lat: 38.017802, lon: 27.090352, yaricapKm: 0.3, il: "İzmir", ilce: "Menderes" },
+  { ad: "Orta Mahalle Halk Plajı", adEn: "Orta Mahalle Beach", lat: 38.050627, lon: 27.045496, yaricapKm: 0.3, il: "İzmir", ilce: "Menderes" },
+  { ad: "Gümüldür Halk Plajı", adEn: "Gümüldür Beach", lat: 38.062236, lon: 27.004594, yaricapKm: 0.3, il: "İzmir", ilce: "Menderes" },
+  { ad: "Ürkmez Sağlık Ocağı Halk Plajı", adEn: "Ürkmez Health Center Beach", lat: 38.076328, lon: 26.955231, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Bengiler Mahallesi Halk Plajı", adEn: "Bengiler Beach", lat: 38.075231, lon: 26.947090, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Doğanbey Havacılar Sitesi Halk Plajı", adEn: "Doğanbey Havacılar Beach", lat: 38.073087, lon: 26.934307, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Doğanbey Sakız Ağacı Halk Plajı", adEn: "Doğanbey Sakız Ağacı Beach", lat: 38.059619, lon: 26.894512, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Ömür Beldesi Halk Plajı", adEn: "Ömür Beach", lat: 38.062667, lon: 26.853479, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Bahadır Mevkii Halk Plajı", adEn: "Bahadır Beach (Akarca)", lat: 38.138625, lon: 26.830658, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "İztur Sertur Halk Plajı", adEn: "İztur-Sertur Beach (Akarca)", lat: 38.171926, lon: 26.801207, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Akarca Halk Plajı", adEn: "Akarca Beach", lat: 38.1691067, lon: 26.8065134, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Gemisuyu Mevkii Halk Plajı", adEn: "Gemisuyu Beach (Akarca)", lat: 38.149055, lon: 26.823379, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Büyük Akkum Halk Plajı", adEn: "Büyük Akkum Beach (Sığacık)", lat: 38.191355, lon: 26.773892, yaricapKm: 0.3, il: "İzmir", ilce: "Seferihisar" },
+  { ad: "Tekke Halk Plajı", adEn: "Tekke Beach", lat: 38.328352, lon: 26.297090, yaricapKm: 0.3, il: "İzmir", ilce: "Çeşme" },
+  { ad: "Dalyan Kocakarı Halk Plajı", adEn: "Dalyan Kocakarı Beach", lat: 38.360044, lon: 26.315991, yaricapKm: 0.3, il: "İzmir", ilce: "Çeşme" },
+  { ad: "Ilıca Halk Plajı", adEn: "Ilıca Beach", lat: 38.308554, lon: 26.374403, yaricapKm: 0.3, il: "İzmir", ilce: "Çeşme" },
+  { ad: "Kuyucak Halk Plajı", adEn: "Kuyucak Beach", lat: 38.650289, lon: 26.507476, yaricapKm: 0.3, il: "İzmir", ilce: "Karaburun" },
+  { ad: "İncirlikoy Halk Plajı", adEn: "İncirlikoy Beach", lat: 38.649587, lon: 26.520459, yaricapKm: 0.3, il: "İzmir", ilce: "Karaburun" },
+  { ad: "Bodrum Halk Plajı", adEn: "Bodrum Beach (Karaburun)", lat: 38.635694, lon: 26.523495, yaricapKm: 0.3, il: "İzmir", ilce: "Karaburun" },
+  { ad: "Gelinkaya Halk Plajı", adEn: "Gelinkaya Beach", lat: 38.372921, lon: 26.762355, yaricapKm: 0.3, il: "İzmir", ilce: "Urla" },
+  { ad: "Kum Denizi Halk Plajı", adEn: "Kum Denizi Beach", lat: 38.361536, lon: 26.782770, yaricapKm: 0.3, il: "İzmir", ilce: "Urla" },
+  // Çamlıçay: mavibayrak.org.tr'de refno bulunamadı, bağımsız harita kaynağı (orta güven).
+  { ad: "Çamlıçay Halk Plajı", adEn: "Çamlıçay Beach", lat: 38.370953, lon: 26.849657, yaricapKm: 0.3, il: "İzmir", ilce: "Urla" },
+  { ad: "Kalabak Halk Plajı", adEn: "Kalabak Beach", lat: 38.355661, lon: 26.807218, yaricapKm: 0.3, il: "İzmir", ilce: "Urla" },
+  { ad: "Zeytinalanı Halk Plajı", adEn: "Zeytinalanı Beach", lat: 38.370693, lon: 26.839490, yaricapKm: 0.3, il: "İzmir", ilce: "Urla" },
+  { ad: "2. Liman Halk Plajı", adEn: "2nd Harbor Beach", lat: 38.373781, lon: 26.862489, yaricapKm: 0.3, il: "İzmir", ilce: "Güzelbahçe" },
+  { ad: "Karakum Halk Plajı", adEn: "Karakum Beach", lat: 38.663881, lon: 26.742175, yaricapKm: 0.3, il: "İzmir", ilce: "Foça" },
+  { ad: "Sosyal Tesisler Önü Plajı", adEn: "Sosyal Tesisler Beach", lat: 38.665410, lon: 26.752049, yaricapKm: 0.3, il: "İzmir", ilce: "Foça" },
+  { ad: "Kumburnu Halk Plajı", adEn: "Kumburnu Beach", lat: 38.691714, lon: 26.731687, yaricapKm: 0.3, il: "İzmir", ilce: "Foça" },
+  { ad: "Yenifoça Halk Plajı", adEn: "Yenifoça Beach", lat: 38.7425, lon: 26.8356, yaricapKm: 0.3, il: "İzmir", ilce: "Foça" },
+  { ad: "Çandarlı Doğu Halk Plajı", adEn: "Çandarlı East Beach", lat: 38.938873, lon: 26.940629, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
+  // Çandarlı Kale Önü: mavibayrak.org.tr Dikili Belediye Plajı'yla birebir aynı (kopya, hatalı)
+  // koordinat vermişti; Çandarlı Kalesi'nin bağımsız doğrulanan konumu kullanıldı (düşük/orta güven).
+  { ad: "Çandarlı Kale Önü Halk Plajı", adEn: "Çandarlı Castle Beach", lat: 38.939977, lon: 26.937861, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
+  { ad: "Dikili Belediye Plajı", adEn: "Dikili Municipal Beach", lat: 39.077798, lon: 26.887171, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
+  { ad: "Dikili Belediye Plajı 2", adEn: "Dikili Municipal Beach 2", lat: 39.07587, lon: 26.88702, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
+  { ad: "Dikili Plaj Sporları Halk Plajı", adEn: "Dikili Beach Sports Beach", lat: 39.0912, lon: 26.8812, yaricapKm: 0.3, il: "İzmir", ilce: "Dikili" },
 ];
 function maviBayrakBul(lat, lon) {
   let enYakin = null, enYakinMesafe = Infinity;
