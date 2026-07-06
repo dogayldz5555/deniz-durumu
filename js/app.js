@@ -24,7 +24,12 @@ function kayitliDiliGetir() {
     const kayitli = localStorage.getItem(DIL_ANAHTARI);
     if (kayitli === 'tr' || kayitli === 'en') return kayitli;
   } catch (e) {}
-  return (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+  // Kayıtlı tercih yoksa (ör. ilk ziyaret, ya da Googlebot gibi tarayıcı dili İngilizce
+  // gelen bir tarama botu) varsayılan olarak Türkçe'ye düşüyoruz — site zaten Türkçe
+  // içerik ağırlıklı, ve tarayıcı diline göre otomatik İngilizce'ye geçmek Google'ın
+  // sayfayı İngilizce olarak indekslemesine yol açıyordu (bkz. kullanıcı geri bildirimi
+  // 2026-07-06). İngilizce isteyen kullanıcı EN düğmesine basınca tercihi kalıcı olur.
+  return 'tr';
 }
 let AKTIF_DIL = kayitliDiliGetir();
 
