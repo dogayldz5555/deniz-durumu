@@ -54,9 +54,6 @@ const CEVIRI = {
     onceki_gun: "Önceki gün",
     sonraki_gun: "Sonraki gün",
     gun_kaydir_ipucu: "Kaydırarak ertesi günün dalga ve hava tahminlerini görebilirsin.",
-    ana_ekrana_ekle_metin: "Uygulama gibi kullanmak için ana ekrana ekle",
-    kapat: "Kapat",
-    ana_ekrana_ekle_ios_ipucu: "Aşağıdaki <b>Paylaş</b> düğmesine (kare içinden yukarı ok) dokun, açılan listede <b>“Ana Ekrana Ekle”</b>yi seç.",
     sahadan_gelenler: "Sahadan gelenler",
     deniz_nasil_baslik: "Şu an oradaysan deniz nasıl?",
     durum_carsaf: "Mükemmel",
@@ -189,9 +186,6 @@ const CEVIRI = {
     onceki_gun: "Previous day",
     sonraki_gun: "Next day",
     gun_kaydir_ipucu: "Swipe to see tomorrow's wave and weather forecast.",
-    ana_ekrana_ekle_metin: "Add to home screen to use it like an app",
-    kapat: "Close",
-    ana_ekrana_ekle_ios_ipucu: "Tap the <b>Share</b> button (square with an up arrow) below, then choose <b>“Add to Home Screen”</b>.",
     sahadan_gelenler: "From the field",
     deniz_nasil_baslik: "If you're there right now, how's the sea?",
     durum_carsaf: "Flat calm",
@@ -2443,51 +2437,6 @@ gunKartiKabı.addEventListener('touchend', (e) => {
     aktifGunDegistir && aktifGunDegistir(dx < 0 ? 1 : -1);
   }
 }, { passive: true });
-
-// === "Ana ekrana ekle" düğmesi ===
-// Android/Chrome (ve destekleyen masaüstü tarayıcılar) 'beforeinstallprompt' olayını
-// tetikler — bunu yakalayıp SAKLIYORUZ, kullanıcı bizim düğmemize basınca native kurulum
-// istemini (prompt) biz açıyoruz. iOS Safari bu olayı HİÇ desteklemiyor (Apple'ın JS'e
-// açtığı bir "Ana Ekrana Ekle" API'si yok) — o yüzden iOS'ta düğme yerine, Paylaş
-// düğmesinden nasıl ekleneceğini gösteren küçük bir ipucu açıyoruz.
-let ertelenmisKurulumIstemi = null;
-const zatenYuklu = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-const iosMu = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
-const anaEkranaEkleBanner = document.getElementById('ana-ekrana-ekle-banner');
-const anaEkranaEkleIpucu = document.getElementById('ana-ekrana-ekle-ipucu');
-
-if (!zatenYuklu) {
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    ertelenmisKurulumIstemi = e;
-    anaEkranaEkleBanner.style.display = 'flex';
-  });
-  // iOS'ta 'beforeinstallprompt' hiç ateşlenmeyeceği için düğmeyi doğrudan gösteriyoruz.
-  if (iosMu) anaEkranaEkleBanner.style.display = 'flex';
-}
-
-anaEkranaEkleBanner.addEventListener('click', async (e) => {
-  if (e.target.closest('#ana-ekrana-ekle-kapat')) {
-    anaEkranaEkleBanner.style.display = 'none';
-    return;
-  }
-  if (ertelenmisKurulumIstemi) {
-    anaEkranaEkleBanner.style.display = 'none';
-    ertelenmisKurulumIstemi.prompt();
-    try { await ertelenmisKurulumIstemi.userChoice; } catch (err) {}
-    ertelenmisKurulumIstemi = null;
-    return;
-  }
-  // iOS: programatik bir kurulum yolu yok, adım adım nasıl yapılacağını gösteriyoruz.
-  document.getElementById('ana-ekrana-ekle-ipucu-metin').innerHTML = t('ana_ekrana_ekle_ios_ipucu');
-  anaEkranaEkleIpucu.style.display = 'block';
-});
-document.getElementById('ana-ekrana-ekle-ipucu-kapat').addEventListener('click', () => {
-  anaEkranaEkleIpucu.style.display = 'none';
-});
-window.addEventListener('appinstalled', () => {
-  anaEkranaEkleBanner.style.display = 'none';
-});
 
 // Kullanıcı haritayı SÜRÜKLEMEYE (elle kaydırmaya) başlar başlamaz — artık başka bir yere
 // bakıyor olabileceği için — tıkladığımız pini (yorum yapılmış konum noktaları DEĞİL, sadece

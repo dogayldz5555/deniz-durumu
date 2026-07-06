@@ -923,50 +923,6 @@
     font-style: italic;
     line-height: 1.4;
   }
-  .ana-ekrana-ekle-banner {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 10px 14px;
-    margin-bottom: 16px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
-  }
-  .ana-ekrana-ekle-banner svg { flex-shrink: 0; color: #2A7FB8; }
-  .ana-ekrana-ekle-banner span { flex: 1; }
-  .kapat-btn {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 19px;
-    line-height: 1;
-    color: var(--text-sub);
-    padding: 2px 4px;
-  }
-  .ana-ekrana-ekle-ipucu {
-    position: fixed;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    max-width: 420px;
-    margin: 0 auto;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    box-shadow: 0 8px 30px rgba(20,30,25,0.25);
-    z-index: 500;
-    font-size: 13.5px;
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
 
   /* İl/ilçe/SSS sayfaları — nav, tanıtım/plaj/ilçe listesi blokları (tools/generate-pages.js) */
   .site-nav {
