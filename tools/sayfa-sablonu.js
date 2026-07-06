@@ -67,7 +67,7 @@ function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSecti
 <meta id="og-baslik" property="og:title" content="${escapeHtml(title)}" />
 <meta id="og-aciklama" property="og:description" content="${escapeHtml(metaAciklama)}" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="SeaData" />
+<meta property="og:site_name" content="SeaDataWave" />
 <meta property="og:url" content="${canonicalUrl}" />
 <meta property="og:image" content="https://www.seadatawave.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -87,7 +87,7 @@ function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSecti
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="SeaData" />
+<meta name="apple-mobile-web-app-title" content="SeaDataWave" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,8 +113,8 @@ ${NAV_HTML}
 <div id="app-wrap">
 <div id="app">
   <div class="brand">
-    <img class="brand-mark" src="/icon.png" alt="SeaData logosu" />
-    <h1>SeaData</h1>
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <h1>SeaDataWave</h1>
     <div class="dil-secici" id="dil-secici">
       <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
       <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
@@ -329,8 +329,8 @@ function sssSayfasiUret({ sorular }) {
     2
   );
 
-  const title = "Sıkça Sorulan Sorular — SeaData";
-  const metaAciklama = "SeaData nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları.";
+  const title = "Sıkça Sorulan Sorular — SeaDataWave";
+  const metaAciklama = "SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları.";
 
   return `<!DOCTYPE html>
 <html lang="tr">
@@ -342,7 +342,7 @@ function sssSayfasiUret({ sorular }) {
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(metaAciklama)}" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="SeaData" />
+<meta property="og:site_name" content="SeaDataWave" />
 <meta property="og:url" content="https://www.seadatawave.com/sss/" />
 <link rel="canonical" href="https://www.seadatawave.com/sss/" />
 <link rel="manifest" href="/manifest.json" />
@@ -361,8 +361,8 @@ ${NAV_HTML}
 <div id="app-wrap">
 <div id="app">
   <div class="brand">
-    <img class="brand-mark" src="/icon.png" alt="SeaData logosu" />
-    <h1>SeaData</h1>
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <h1>SeaDataWave</h1>
   </div>
   <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
     <h2 style="font-size:20px;">Sıkça Sorulan Sorular</h2>

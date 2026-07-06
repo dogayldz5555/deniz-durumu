@@ -1,6 +1,6 @@
 {
   "appId": "com.seadata.app",
-  "appName": "SeaData",
+  "appName": "SeaDataWave",
   "webDir": "www",
   "server": {
     "url": "https://seadatawave.com",

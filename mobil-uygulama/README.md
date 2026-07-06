@@ -1,4 +1,4 @@
-# SeaData — Android Uygulaması
+# SeaDataWave — Android Uygulaması
 
 Bu klasör, https://seadatawave.com web sitesini [Capacitor](https://capacitorjs.com) ile
 sarıp Google Play Store'a yüklenebilir bir Android uygulamasına dönüştürüyor. Web sitesinin
