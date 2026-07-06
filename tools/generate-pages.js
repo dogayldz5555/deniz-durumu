@@ -65,7 +65,10 @@ function navBlokunuIndexHtmlaYaz() {
 }
 
 function sitemapUret(ilListesi) {
-  const bugun = new Date().toISOString().slice(0, 10);
+  // lastmod KASITLI OLARAK yok — her generate-pages.js çalıştırmasında "bugün" yazan bir
+  // lastmod, Google'a sayfanın sürekli az önce değiştiği sinyalini verip arama sonuçlarında
+  // "X saat önce" etiketi çıkmasına yol açıyordu (bkz. kullanıcı geri bildirimi 2026-07-06).
+  // lastmod sitemap'te zorunlu değil, içerik gerçekten değişmedikçe eklenmemeli.
   const urls = [
     { loc: "https://www.seadatawave.com/", priority: "1.0" },
     { loc: "https://www.seadatawave.com/sss/", priority: "0.5" },
@@ -82,7 +85,6 @@ ${urls
   .map(
     (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${bugun}</lastmod>
     <priority>${u.priority}</priority>
   </url>`
   )
