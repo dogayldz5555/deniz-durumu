@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seadata.vercel.app/sitemap.xml
+Sitemap: https://seadatawave.com/sitemap.xml

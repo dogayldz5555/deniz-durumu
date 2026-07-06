@@ -69,20 +69,20 @@ function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSecti
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SeaData" />
 <meta property="og:url" content="${canonicalUrl}" />
-<meta property="og:image" content="https://seadata.vercel.app/og-image.png" />
+<meta property="og:image" content="https://seadatawave.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${escapeHtml(title)}" />
 <meta name="twitter:description" content="${escapeHtml(metaAciklama)}" />
-<meta name="twitter:image" content="https://seadata.vercel.app/og-image.png" />
+<meta name="twitter:image" content="https://seadatawave.com/og-image.png" />
 <link rel="canonical" href="${canonicalUrl}" />
 <link rel="manifest" href="/manifest.json" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <script type="application/ld+json">
-{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://seadata.vercel.app/#website" }, "publisher": { "@id": "https://seadata.vercel.app/#organization" } }
+{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://seadatawave.com/#website" }, "publisher": { "@id": "https://seadatawave.com/#organization" } }
 </script>
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,7 +261,7 @@ function ilceSayfasiUret({ ilce, il, plajlar, lat, lon, zoom }) {
   ${miniSssHtml((ilce.miniSss || []).map((s) => ({ soru: s.soru, cevap: doldur(s.cevap) })))}
   <p class="yer-donus"><a href="/${il.slug}/">← ${escapeHtml(il.ad)} deniz durumuna dön</a></p>`;
 
-  const canonicalUrl = `https://seadata.vercel.app/${il.slug}/${ilce.slug}/`;
+  const canonicalUrl = `https://seadatawave.com/${il.slug}/${ilce.slug}/`;
 
   return sayfaIskeleti({
     title: ilce.baslik,
@@ -293,7 +293,7 @@ function ilSayfasiUret({ il, ilceler, plajlar, lat, lon, zoom }) {
   ${ilceSectionHtml}
   <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>`;
 
-  const canonicalUrl = `https://seadata.vercel.app/${il.slug}/`;
+  const canonicalUrl = `https://seadatawave.com/${il.slug}/`;
 
   return sayfaIskeleti({
     title: il.baslik,
@@ -343,8 +343,8 @@ function sssSayfasiUret({ sorular }) {
 <meta property="og:description" content="${escapeHtml(metaAciklama)}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SeaData" />
-<meta property="og:url" content="https://seadata.vercel.app/sss/" />
-<link rel="canonical" href="https://seadata.vercel.app/sss/" />
+<meta property="og:url" content="https://seadatawave.com/sss/" />
+<link rel="canonical" href="https://seadatawave.com/sss/" />
 <link rel="manifest" href="/manifest.json" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />

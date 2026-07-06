@@ -67,13 +67,13 @@ function navBlokunuIndexHtmlaYaz() {
 function sitemapUret(ilListesi) {
   const bugun = new Date().toISOString().slice(0, 10);
   const urls = [
-    { loc: "https://seadata.vercel.app/", priority: "1.0" },
-    { loc: "https://seadata.vercel.app/sss/", priority: "0.5" },
+    { loc: "https://seadatawave.com/", priority: "1.0" },
+    { loc: "https://seadatawave.com/sss/", priority: "0.5" },
   ];
   for (const il of ilListesi) {
-    urls.push({ loc: `https://seadata.vercel.app/${il.slug}/`, priority: "0.8" });
+    urls.push({ loc: `https://seadatawave.com/${il.slug}/`, priority: "0.8" });
     for (const icSlug of il.ilceler) {
-      urls.push({ loc: `https://seadata.vercel.app/${il.slug}/${icSlug}/`, priority: "0.7" });
+      urls.push({ loc: `https://seadatawave.com/${il.slug}/${icSlug}/`, priority: "0.7" });
     }
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -3,7 +3,7 @@
   "appName": "SeaData",
   "webDir": "www",
   "server": {
-    "url": "https://seadata.vercel.app",
+    "url": "https://seadatawave.com",
     "cleartext": false
   },
   "android": {

@@ -1,6 +1,6 @@
 # SeaData — Android Uygulaması
 
-Bu klasör, https://seadata.vercel.app web sitesini [Capacitor](https://capacitorjs.com) ile
+Bu klasör, https://seadatawave.com web sitesini [Capacitor](https://capacitorjs.com) ile
 sarıp Google Play Store'a yüklenebilir bir Android uygulamasına dönüştürüyor. Web sitesinin
 kodu (index.html) burada KOPYALANMIYOR — uygulama açılınca doğrudan canlı siteyi yüklüyor,
 yani web sitesine yapılan güncellemeler otomatik olarak uygulamaya da yansıyor.
