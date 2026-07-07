@@ -1475,28 +1475,40 @@ async function veriCekVeGoster(lat, lon) {
       card.style.background = r.bg;
       card.style.borderColor = r.border;
 
+      // metrics-item: ikon kutusu + büyük değer + küçük etiket (öne-çıkan-veri kart tasarımı,
+      // 2026-07-07 kullanıcı referans görseline göre) — içerik/veri aynı, sadece görünüm.
+      const metricsKutu = (iconSvg, deger, etiket) => `<div class="metrics-item"><div class="metrics-icon">${iconSvg}</div><div><div class="metrics-value">${deger}</div><div class="metrics-label">${etiket}</div></div></div>`;
       let metricsHtml = "";
       if (kmh != null) {
-        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 7.5h13c2.2 0 2.2-3.5 0-3.5-1.4 0-2.2 1-2.5 2"/><path d="M2 12.5h16c2.5 0 2.5-4 0-4-1.6 0-2.5 1.2-2.8 2.3"/><path d="M2 17.5h9c1.8 0 1.8-3 0-3-1.1 0-1.7.8-2 1.6"/></svg><b>${Math.round(kmh)} km/sa</b> ${t('ruzgar_birim')}${ruzgarYonu != null ? ` ${t('dan', yonAdi(ruzgarYonu))}${yonOku(ruzgarYonu)}` : ""}</div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7.5h13c2.2 0 2.2-3.5 0-3.5-1.4 0-2.2 1-2.5 2"/><path d="M2 12.5h16c2.5 0 2.5-4 0-4-1.6 0-2.5 1.2-2.8 2.3"/><path d="M2 17.5h9c1.8 0 1.8-3 0-3-1.1 0-1.7.8-2 1.6"/></svg>`;
+        const etiket = `${t('ruzgar_birim')}${ruzgarYonu != null ? ` ${t('dan', yonAdi(ruzgarYonu))}${yonOku(ruzgarYonu)}` : ""}`;
+        metricsHtml += metricsKutu(ikon, `${Math.round(kmh)} km/sa`, etiket);
       }
       if (gust != null) {
-        metricsHtml += `<div>${t('hamle')} <b>${Math.round(gust)} km/sa</b></div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/><polyline points="18 20 12 14 6 20"/></svg>`;
+        metricsHtml += metricsKutu(ikon, `${Math.round(gust)} km/sa`, t('hamle'));
       }
       if (denizdeyiz && dalgaM != null) {
-        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M2 8c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 14c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M4 19c1 1 2 1 3 0" opacity="0.6"/></svg><b>${dalgaM.toFixed(1)} m</b> ${t('dalga_birim')}${dalgaYonu != null ? ` ${t('dan', yonAdi(dalgaYonu))}${yonOku(dalgaYonu)}` : ""}</div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M2 14c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/><path d="M4 19c1 1 2 1 3 0" opacity="0.6"/></svg>`;
+        const etiket = `${t('dalga_birim')}${dalgaYonu != null ? ` ${t('dan', yonAdi(dalgaYonu))}${yonOku(dalgaYonu)}` : ""}`;
+        metricsHtml += metricsKutu(ikon, `${dalgaM.toFixed(1)} m`, etiket);
       }
       if (denizdeyiz && dalgaPeriyodu != null) {
-        metricsHtml += `<div>${t('periyot')} <b>${dalgaPeriyodu.toFixed(1)} sn</b></div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>`;
+        metricsHtml += metricsKutu(ikon, `${dalgaPeriyodu.toFixed(1)} sn`, t('periyot'));
       }
       if (temp != null) {
-        metricsHtml += `<div>${t('hava')} <b>${Math.round(temp)}°C</b></div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>`;
+        metricsHtml += metricsKutu(ikon, `${Math.round(temp)}°C`, t('hava'));
       }
       if (denizdeyiz && deniztSicaklik != null) {
-        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>${t('deniz_sicaklik')} <b>${Math.round(deniztSicaklik)}°C</b></div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>`;
+        metricsHtml += metricsKutu(ikon, `${Math.round(deniztSicaklik)}°C`, t('deniz_sicaklik'));
       }
       if (uvIndex != null && uvIndex > 0) {
         const uvRenk = (v) => v < 3 ? "#1D9E75" : v < 6 ? "#C9A227" : v < 8 ? "#BA7517" : v < 11 ? "#D85A30" : "#8B3FBA";
-        metricsHtml += `<div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>UV <b style="color:${uvRenk(uvIndex)}">${Math.round(uvIndex)}</b></div>`;
+        const ikon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
+        metricsHtml += metricsKutu(ikon, `<span style="color:${uvRenk(uvIndex)}">${Math.round(uvIndex)}</span>`, "UV");
       }
 
       const ruzgarDalgasiBaskin = denizdeyiz && windWaveM != null && windWaveM >= 0.25 && windWavePeriyot != null && windWavePeriyot < 4;

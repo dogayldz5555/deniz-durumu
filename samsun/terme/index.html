@@ -50,8 +50,16 @@
 </script>
 </head>
 <body>
-<!-- NAV:START -->
-<nav class="site-nav" id="site-nav">
+<header class="site-header">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <div class="brand-yazi">
+      <h1>SeaDataWave</h1>
+      <p class="brand-alt">Anlık Deniz Verileri</p>
+    </div>
+  </div>
+  <!-- NAV:START -->
+  <nav class="site-nav" id="site-nav">
   <a href="/">Ana Sayfa</a>
   <a href="/samsun/">Samsun</a>
   <a href="/izmir/">İzmir</a>
@@ -60,24 +68,45 @@
   <a href="/antalya/">Antalya</a>
   <a href="/sss/">Sıkça Sorulan Sorular</a>
 </nav>
-<!-- NAV:END -->
-<div id="app-wrap">
-<div id="app">
-  <div class="brand">
-    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-    <h1>SeaDataWave</h1>
-    <div class="dil-secici" id="dil-secici">
-      <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
-      <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
-    </div>
+  <!-- NAV:END -->
+  <div class="dil-secici" id="dil-secici">
+    <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
+    <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
   </div>
-  <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
+</header>
 
-  <div class="yer-giris">
+<div id="app-wrap">
+<div class="hero-grid">
+  <div class="hero-metin">
+    <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
+
+    <div class="yer-giris">
     <h2>Terme Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
     <p>Terme, Samsun'un doğusunda, Yeşilırmak deltasına yakın konumuyla ilin daha sakin ve yeşil kıyı kesimlerinden biri. İlçenin halka açık Mavi Bayraklı plajları arasında Miliç Çevre Eğitim Plajı, Terme Karavan Kampı Plajı bulunuyor. Deltanın etkisiyle kıyı şeridi Atakum'a göre daha korunaklıdır.</p>
   </div>
 
+    <div class="legend">
+      <span><span class="dot" style="background:#1D7FC2"></span><span data-i18n="durum_carsaf">Mükemmel</span></span>
+      <span><span class="dot" style="background:#1FA35C"></span><span data-i18n="durum_iyi">İyi</span></span>
+      <span><span class="dot" style="background:#DBAE00"></span><span data-i18n="durum_hafif">Orta</span></span>
+      <span><span class="dot" style="background:#E07B1E"></span><span data-i18n="durum_fazla">Kötü</span></span>
+      <span><span class="dot" style="background:#D9362E"></span><span data-i18n="durum_tehlikeli">Tehlikeli</span></span>
+    </div>
+  </div>
+
+  <div class="harita-panel-wrap">
+    <button class="locate-btn locate-btn-overlay" id="locate-btn" type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+      <span id="locate-btn-text" data-i18n="konumum">Konumum</span>
+    </button>
+    <div id="map"></div>
+    <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</div>
+
+<div id="app">
   <div class="isim-kart">
     <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
     <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
@@ -91,56 +120,12 @@
     </div>
   </div>
 
-  <div class="legend-row">
-    <div class="legend">
-      <span><span class="dot" style="background:#1D7FC2"></span><span data-i18n="durum_carsaf">Mükemmel</span></span>
-      <span><span class="dot" style="background:#1FA35C"></span><span data-i18n="durum_iyi">İyi</span></span>
-      <span><span class="dot" style="background:#DBAE00"></span><span data-i18n="durum_hafif">Orta</span></span>
-      <span><span class="dot" style="background:#E07B1E"></span><span data-i18n="durum_fazla">Kötü</span></span>
-      <span><span class="dot" style="background:#D9362E"></span><span data-i18n="durum_tehlikeli">Tehlikeli</span></span>
-    </div>
-    <button class="locate-btn" id="locate-btn" type="button">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-      <span id="locate-btn-text" data-i18n="konumum">Konumum</span>
-    </button>
-  </div>
-
-  <div id="map"></div>
-  <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-
   <p class="section-label" id="our-label" style="display:none;" data-i18n="tahminimiz">Tahminimiz (rüzgar + dalga verisi)</p>
   <div class="card placeholder" id="status-card">
     <span data-i18n="harita_placeholder">Haritada bir noktaya tıkla.</span>
   </div>
 
   <div id="conflict-note" class="conflict-note" style="display:none;"></div>
-
-  <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
-      <ul class="yer-plaj-listesi">
-      <li>Miliç Çevre Eğitim Plajı</li>
-      <li>Terme Karavan Kampı Plajı</li>
-      </ul>
-    </div>
-  <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
-    <div class="sss-madde">
-      <h3>Terme'de hangi plajlar Mavi Bayraklı?</h3>
-      <p>Miliç Çevre Eğitim Plajı, Terme Karavan Kampı Plajı olmak üzere toplam 2 halka açık plaj Mavi Bayrak sertifikalı.</p>
-    </div>
-    <div class="sss-madde">
-      <h3>Terme'nin kıyısı neden daha sakin sayılır?</h3>
-      <p>Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar.</p>
-    </div>
-    <div class="sss-madde">
-      <h3>Terme'ye en yakın diğer Samsun plajları nerede?</h3>
-      <p>Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip.</p>
-    </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
-  </div>
-  <p class="yer-donus"><a href="/samsun/">← Samsun deniz durumuna dön</a></p>
 
   <p class="section-label" id="community-label" style="display:none;" data-i18n="sahadan_gelenler">Sahadan gelenler</p>
   <div id="community-summary-wrap" style="display:none;"></div>
@@ -173,20 +158,36 @@
     <div class="gb-sent" id="gb-sent" style="display:none;" data-i18n="bildirim_kaydedildi">Bildiriminiz kaydedildi, teşekkürler.</div>
   </div>
 
+  <div class="yer-plajlar">
+      <h2>Mavi Bayraklı Plajlar</h2>
+      <ul class="yer-plaj-listesi">
+      <li>Miliç Çevre Eğitim Plajı</li>
+      <li>Terme Karavan Kampı Plajı</li>
+      </ul>
+    </div>
+  <div class="sss-bolum">
+    <h2>Sıkça sorulan sorular</h2>
+    <div class="sss-madde">
+      <h3>Terme'de hangi plajlar Mavi Bayraklı?</h3>
+      <p>Miliç Çevre Eğitim Plajı, Terme Karavan Kampı Plajı olmak üzere toplam 2 halka açık plaj Mavi Bayrak sertifikalı.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Terme'nin kıyısı neden daha sakin sayılır?</h3>
+      <p>Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Terme'ye en yakın diğer Samsun plajları nerede?</h3>
+      <p>Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip.</p>
+    </div>
+    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+  </div>
+  <p class="yer-donus"><a href="/samsun/">← Samsun deniz durumuna dön</a></p>
+
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>
-
-
-<div id="yan-panel">
-  <div class="yan-panel-card">
-    <p class="yan-panel-title" data-i18n="yan_panel_baslik">Denize girilen yerler</p>
-    <p class="yan-panel-sub" data-i18n="yan_panel_alt">Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre</p>
-    <div id="yan-panel-liste"></div>
-  </div>
-</div>
 </div>
 
-<!-- Siteyi değerlendirme formu + kullanıcı yorumları — en altta, tam genişlik, grid'in dışında -->
+<!-- Siteyi değerlendirme formu — en altta, tam genişlik -->
 <div style="max-width:560px;margin:0 auto;padding:36px 20px 0;">
   <div class="site-feedback-card" style="margin-top:0;">
     <p class="site-feedback-title" data-i18n="site_feedback_baslik">Bu uygulamayı nasıl buldun?</p>
@@ -204,7 +205,7 @@
   </div>
 </div>
 
-<!-- Kullanıcı yorumları — tam genişlik, grid'in dışında -->
+<!-- Kullanıcı yorumları -->
 <div id="site-yorumlar-bolum" style="max-width:1100px;margin:0 auto;padding:0 20px 48px;">
   <p class="site-yorumlar-baslik" data-i18n="site_yorumlar_baslik">Kullanıcı yorumları</p>
   <p class="site-yorumlar-alt" data-i18n="site_yorumlar_alt">Uygulamayı kullananların bıraktığı görüşler.</p>
@@ -212,9 +213,30 @@
   <div class="site-yorumlar-grid" id="site-yorumlar-grid" style="display:none;"></div>
 </div>
 
-<div style="max-width:1100px;margin:0 auto;padding:0 20px 32px;text-align:center;">
-  <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link" style="font-size:12px;color:var(--footnote-text);">Gizlilik Politikası</a>
-</div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+      </div>
+    </div>
+    <div>
+      <h4>Keşfet</h4>
+      <a href="/samsun/">Samsun</a>
+      <a href="/izmir/">İzmir</a>
+      <a href="/mugla/">Muğla</a>
+      <a href="/aydin/">Aydın</a>
+      <a href="/antalya/">Antalya</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
+    </div>
+  </div>
+  <div class="footer-alt">© 2026 SeaDataWave</div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>

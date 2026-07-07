@@ -102,7 +102,15 @@ if ('serviceWorker' in navigator) {
 </script>
 </head>
 <body>
-<!-- NAV:START -->
+<header class="site-header">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <div class="brand-yazi">
+      <h1>SeaDataWave</h1>
+      <p class="brand-alt">Anlık Deniz Verileri</p>
+    </div>
+  </div>
+  <!-- NAV:START -->
 <nav class="site-nav" id="site-nav">
   <a href="/">Ana Sayfa</a>
   <a href="/samsun/">Samsun</a>
@@ -113,37 +121,35 @@ if ('serviceWorker' in navigator) {
   <a href="/sss/">Sıkça Sorulan Sorular</a>
 </nav>
 <!-- NAV:END -->
+  <div class="dil-secici" id="dil-secici">
+    <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
+    <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
+  </div>
+</header>
+
 <div id="app-wrap">
-<div id="app">
-  <div class="brand">
-    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-    <h1>SeaDataWave</h1>
-    <div class="dil-secici" id="dil-secici">
-      <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
-      <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
-    </div>
-  </div>
-  <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
+<div class="hero-grid">
+  <div class="hero-metin">
+    <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
-  <div class="yer-arama" id="yer-arama">
-    <input type="text" id="yer-arama-input" autocomplete="off" placeholder="Bir yer ara (örn. Çeşme, Alanya, İzmir)" />
-    <ul id="yer-arama-sonuclar" class="yer-arama-sonuclar" style="display:none;"></ul>
-  </div>
-
-  <div class="isim-kart">
-    <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
-    <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
-    <div class="gb-name-row" id="gb-name-row">
-      <input type="text" id="gb-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
-      <button type="button" id="gb-isim-kaydet-btn" data-i18n="isim_kaydet">Kaydet</button>
+    <div class="yer-arama" id="yer-arama">
+      <input type="text" id="yer-arama-input" autocomplete="off" placeholder="Bir yer ara (örn. Çeşme, Alanya, İzmir)" />
+      <ul id="yer-arama-sonuclar" class="yer-arama-sonuclar" style="display:none;"></ul>
     </div>
-    <div class="gb-name-saved" id="gb-name-saved" style="display:none;">
-      <span id="gb-name-saved-text"></span>
-      <button type="button" id="gb-name-degistir" data-i18n="isim_degistir">değiştir</button>
-    </div>
-  </div>
 
-  <div class="legend-row">
+    <div class="isim-kart">
+      <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
+      <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+      <div class="gb-name-row" id="gb-name-row">
+        <input type="text" id="gb-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
+        <button type="button" id="gb-isim-kaydet-btn" data-i18n="isim_kaydet">Kaydet</button>
+      </div>
+      <div class="gb-name-saved" id="gb-name-saved" style="display:none;">
+        <span id="gb-name-saved-text"></span>
+        <button type="button" id="gb-name-degistir" data-i18n="isim_degistir">değiştir</button>
+      </div>
+    </div>
+
     <div class="legend">
       <span><span class="dot" style="background:#1D7FC2"></span><span data-i18n="durum_carsaf">Mükemmel</span></span>
       <span><span class="dot" style="background:#1FA35C"></span><span data-i18n="durum_iyi">İyi</span></span>
@@ -151,17 +157,21 @@ if ('serviceWorker' in navigator) {
       <span><span class="dot" style="background:#E07B1E"></span><span data-i18n="durum_fazla">Kötü</span></span>
       <span><span class="dot" style="background:#D9362E"></span><span data-i18n="durum_tehlikeli">Tehlikeli</span></span>
     </div>
-    <button class="locate-btn" id="locate-btn" type="button">
+  </div>
+
+  <div class="harita-panel-wrap">
+    <button class="locate-btn locate-btn-overlay" id="locate-btn" type="button">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
       <span id="locate-btn-text" data-i18n="konumum">Konumum</span>
     </button>
+    <div id="map"></div>
+    <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
   </div>
+</div>
 
-  <div id="map"></div>
-  <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-
+<div id="app">
   <p class="section-label" id="our-label" style="display:none;" data-i18n="tahminimiz">Tahminimiz (rüzgar + dalga verisi)</p>
   <div class="card placeholder" id="status-card">
     <span data-i18n="harita_placeholder">Haritada bir noktaya tıkla.</span>
@@ -201,31 +211,52 @@ if ('serviceWorker' in navigator) {
   </div>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
-
-  <div class="seo-text">
-    <h2 data-i18n="seo_baslik">Denize girmeden önce deniz durumunu öğren</h2>
-    <p data-i18n="seo_metin">SeaDataWave, denize girmeden önce o gün havanın ve denizin müsait olup olmadığını evinden görebileceğin ücretsiz bir site — Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada (Samsun, Atakum, Trabzon, Sinop, İstanbul, İzmir, Antalya ve diğer tüm sahil bölgeleri dahil) geçerli. Haritada herhangi bir sahil noktasına tıklayarak denizin bugün keyifli mi, yoksa dalgalı/tehlikeli mi olacağını anlık rüzgar ve dalga verisiyle öğrenebilir, aynı zamanda sahildeki diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
-  </div>
-
-  <div class="sss-bolum">
-    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
-    <p data-i18n="sss_git_metin">SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Tüm cevaplar SSS sayfasında.</p>
-    <a href="/sss/" class="sss-git-btn" data-i18n="sss_git_buton">Sıkça Sorulan Sorular →</a>
-  </div>
-
-</div>
-
-
-<div id="yan-panel">
-  <div class="yan-panel-card">
-    <p class="yan-panel-title" data-i18n="yan_panel_baslik">Denize girilen yerler</p>
-    <p class="yan-panel-sub" data-i18n="yan_panel_alt">Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre</p>
-    <div id="yan-panel-liste"></div>
-  </div>
 </div>
 </div>
 
-<!-- Siteyi değerlendirme formu + kullanıcı yorumları — en altta, tam genişlik, grid'in dışında -->
+<!-- İstatistik şeridi — gerçek sayılar (data/yerler.json + MAVI_BAYRAK_PLAJLAR ile tutarlı, elle güncellenir) -->
+<div class="istatistik-serit">
+  <div class="istatistik-icerik">
+    <div class="madde"><div class="ikon-kutu">📍</div><div><div class="sayi">5 il</div><div class="etiket">Bölgeye özel sayfa</div></div></div>
+    <div class="madde"><div class="ikon-kutu">🏘️</div><div><div class="sayi">26 ilçe</div><div class="etiket">Kıyı ilçesi kapsanıyor</div></div></div>
+    <div class="madde"><div class="ikon-kutu">🏳️</div><div><div class="sayi">150+ plaj</div><div class="etiket">Mavi Bayraklı halk plajı</div></div></div>
+    <div class="madde"><div class="ikon-kutu">⏱️</div><div><div class="sayi">Canlı</div><div class="etiket">Open-Meteo'dan anlık veri</div></div></div>
+  </div>
+</div>
+
+<!-- Alt üç sütun: İllerimiz / Kullanıcı yorumları / Hakkında -->
+<div class="alt-grid">
+  <div class="panel">
+    <h3>İllerimiz</h3>
+    <ul class="il-listesi">
+      <li><a href="/antalya/">📍 Antalya</a><span class="ilce-sayisi">10 ilçe</span></li>
+      <li><a href="/izmir/">📍 İzmir</a><span class="ilce-sayisi">8 ilçe</span></li>
+      <li><a href="/mugla/">📍 Muğla</a><span class="ilce-sayisi">4 ilçe</span></li>
+      <li><a href="/samsun/">📍 Samsun</a><span class="ilce-sayisi">2 ilçe</span></li>
+      <li><a href="/aydin/">📍 Aydın</a><span class="ilce-sayisi">2 ilçe</span></li>
+    </ul>
+  </div>
+
+  <div class="panel" id="site-yorumlar-bolum">
+    <h3 data-i18n="site_yorumlar_baslik">Kullanıcı yorumları</h3>
+    <p class="site-yorumlar-alt" data-i18n="site_yorumlar_alt">Uygulamayı kullananların bıraktığı görüşler.</p>
+    <div id="site-yorumlar-yuklen" data-i18n="yorumlar_yukleniyor">Yorumlar yükleniyor…</div>
+    <div class="site-yorumlar-grid" id="site-yorumlar-grid" style="display:none;"></div>
+  </div>
+
+  <div class="panel">
+    <h3 data-i18n="seo_baslik">Hakkında</h3>
+    <p class="hakkinda-metin" data-i18n="seo_metin">SeaDataWave, denize girmeden önce o gün havanın ve denizin müsait olup olmadığını evinden görebileceğin ücretsiz bir site — Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada (Samsun, Atakum, Trabzon, Sinop, İstanbul, İzmir, Antalya ve diğer tüm sahil bölgeleri dahil) geçerli. Haritada herhangi bir sahil noktasına tıklayarak denizin bugün keyifli mi, yoksa dalgalı/tehlikeli mi olacağını anlık rüzgar ve dalga verisiyle öğrenebilir, aynı zamanda sahildeki diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
+    <div class="altin-kutu">
+      <b data-i18n="sss_git_baslik">Sıkça sorulan sorular</b>
+      <p data-i18n="sss_git_metin">SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Tüm cevaplar SSS sayfasında.</p>
+      <a href="/sss/" class="sss-git-btn" data-i18n="sss_git_buton">Sıkça Sorulan Sorular →</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Siteyi değerlendirme formu — en altta, tam genişlik -->
 <div style="max-width:560px;margin:0 auto;padding:36px 20px 0;">
   <div class="site-feedback-card" style="margin-top:0;">
     <p class="site-feedback-title" data-i18n="site_feedback_baslik">Bu uygulamayı nasıl buldun?</p>
@@ -243,17 +274,30 @@ if ('serviceWorker' in navigator) {
   </div>
 </div>
 
-<!-- Kullanıcı yorumları — tam genişlik, grid'in dışında -->
-<div id="site-yorumlar-bolum" style="max-width:1100px;margin:0 auto;padding:0 20px 48px;">
-  <p class="site-yorumlar-baslik" data-i18n="site_yorumlar_baslik">Kullanıcı yorumları</p>
-  <p class="site-yorumlar-alt" data-i18n="site_yorumlar_alt">Uygulamayı kullananların bıraktığı görüşler.</p>
-  <div id="site-yorumlar-yuklen" data-i18n="yorumlar_yukleniyor">Yorumlar yükleniyor…</div>
-  <div class="site-yorumlar-grid" id="site-yorumlar-grid" style="display:none;"></div>
-</div>
-
-<div style="max-width:1100px;margin:0 auto;padding:0 20px 32px;text-align:center;">
-  <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link" style="font-size:12px;color:var(--footnote-text);">Gizlilik Politikası</a>
-</div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+      </div>
+    </div>
+    <div>
+      <h4>Keşfet</h4>
+      <a href="/samsun/">Samsun</a>
+      <a href="/izmir/">İzmir</a>
+      <a href="/mugla/">Muğla</a>
+      <a href="/aydin/">Aydın</a>
+      <a href="/antalya/">Antalya</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/" data-i18n="sss_git_buton">Sıkça Sorulan Sorular</a>
+      <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
+    </div>
+  </div>
+  <div class="footer-alt">© 2026 SeaDataWave</div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
