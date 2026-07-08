@@ -134,6 +134,7 @@ const CEVIRI = {
     swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
     canli_kamera_link: (ad) => `🔴 Yakında canlı kamera var (${ad}) — belediyenin yayın sayfasını aç`,
     mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Halka Açık Mavi Bayraklı Plaj (TÜRÇEV sertifikalı)`,
+    halk_plaji_rozeti: (ad) => `🏖️ ${ad} — Halka Açık Plaj`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
     kara_uzerinde: "Bu nokta kara üzerinde görünüyor — dalga bilgisi yalnızca kıyı/deniz noktalarında gösterilir.",
     kiyidan_ruzgar_bilgisi: "Kıyıdan rüzgar bilgisi",
@@ -266,6 +267,7 @@ const CEVIRI = {
     swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
     canli_kamera_link: (ad) => `🔴 A live camera is nearby (${ad}) — open the city's live stream page`,
     mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Public Blue Flag Beach (TÜRÇEV certified)`,
+    halk_plaji_rozeti: (ad) => `🏖️ ${ad} — Public Beach`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
     kara_uzerinde: "This point appears to be on land — wave info is only shown for coastal/sea points.",
     kiyidan_ruzgar_bilgisi: "Coastal wind info",
@@ -762,6 +764,30 @@ const MAVI_BAYRAK_PLAJLAR = [
 function maviBayrakBul(lat, lon) {
   let enYakin = null, enYakinMesafe = Infinity;
   for (const p of MAVI_BAYRAK_PLAJLAR) {
+    const mesafe = kmMesafe(lat, lon, p.lat, p.lon);
+    if (mesafe <= p.yaricapKm && mesafe < enYakinMesafe) { enYakin = p; enYakinMesafe = mesafe; }
+  }
+  return enYakin;
+}
+
+// Resmi Mavi Bayrak sertifikası OLMAYAN, ama gerçekten var olan halka açık plajlar/sahiller —
+// TÜRÇEV listesinde yer almadığı için MAVI_BAYRAK_PLAJLAR'dan AYRI tutuluyor: buradaki hiçbir
+// nokta "TÜRÇEV sertifikalı" rozetini tetiklemez, sadece "Halka Açık Plaj" olarak işaretlenir.
+// Koordinatlar OpenStreetMap (natural=beach poligonları, Overpass) ve/veya Nominatim üzerinden
+// gerçek yerleşim/plaj adlarından türetildi, uydurulmadı (2026-07-08).
+const HALK_PLAJLARI = [
+  { ad: "Mert Plajı", adEn: "Mert Beach", lat: 41.2817297, lon: 36.3522963, yaricapKm: 0.3, il: "Samsun", ilce: "İlkadım" },
+  { ad: "Fener Plajı", adEn: "Fener Beach", lat: 41.3156559, lon: 36.3371924, yaricapKm: 0.3, il: "Samsun", ilce: "İlkadım" },
+  { ad: "Kumcağız Plajı", adEn: "Kumcağız Beach", lat: 41.4987586, lon: 36.1191845, yaricapKm: 0.6, il: "Samsun", ilce: "19 Mayıs" }, // OSM natural=coastline'dan Kumcağız Mahallesi'ne en yakın nokta (~1km), köy merkezi karada kaldığı için sahile kaydırıldı
+  { ad: "Dereköy Plajı", adEn: "Dereköy Beach", lat: 41.4771024, lon: 36.1235011, yaricapKm: 0.6, il: "Samsun", ilce: "19 Mayıs" }, // aynı yöntem, Dereköy'e en yakın gerçek sahil noktası (~0.5km)
+  { ad: "Çaltı Plajı", adEn: "Çaltı Beach", lat: 41.303664, lon: 36.5736606, yaricapKm: 0.6, il: "Samsun", ilce: "Çarşamba" }, // aynı yöntem, Çaltı köyüne en yakın gerçek sahil noktası (~4km, bölge OSM'de seyrek haritalanmış)
+  { ad: "Yakakent Sahili", adEn: "Yakakent Beach", lat: 41.634951, lon: 35.5315896, yaricapKm: 1.2, il: "Samsun", ilce: "Yakakent" },
+  { ad: "Göçkün Plajı", adEn: "Göçkün Beach", lat: 41.6369763, lon: 35.6268500, yaricapKm: 0.4, il: "Samsun", ilce: "Alaçam" },
+  { ad: "Etyemez Plajı", adEn: "Etyemez Beach", lat: 41.6328058, lon: 35.5768190, yaricapKm: 0.4, il: "Samsun", ilce: "Alaçam" },
+];
+function halkPlajiBul(lat, lon) {
+  let enYakin = null, enYakinMesafe = Infinity;
+  for (const p of HALK_PLAJLARI) {
     const mesafe = kmMesafe(lat, lon, p.lat, p.lon);
     if (mesafe <= p.yaricapKm && mesafe < enYakinMesafe) { enYakin = p; enYakinMesafe = mesafe; }
   }
@@ -1542,6 +1568,13 @@ async function veriCekVeGoster(lat, lon) {
         ? `<div style="font-size:12px;margin-top:6px;color:${r.text600};">${t('mavi_bayrak_rozeti', bolgeAdi(maviBayrakPlaj))}</div>`
         : "";
 
+      // Mavi Bayrak sertifikası olmayan ama gerçekten var olan halka açık plaj/sahil — ayrı
+      // rozet, "TÜRÇEV sertifikalı" iddiası YOK (bkz. HALK_PLAJLARI tanımı).
+      const halkPlaji = !maviBayrakPlaj ? halkPlajiBul(lat, lon) : null;
+      const halkPlajiHtml = halkPlaji
+        ? `<div style="font-size:12px;margin-top:6px;color:${r.text600};">${t('halk_plaji_rozeti', bolgeAdi(halkPlaji))}</div>`
+        : "";
+
       // Resmi bir meteoroloji uyarı servisine (MGM, OpenWeather Alerts vb.) ücretsiz/anahtar
       // gerektirmeden bağlanan bir kaynak bulunamadı; bu yüzden kendi hamle verimize dayanan
       // basit bir "kuvvetli rüzgar" uyarısı gösteriyoruz — resmi bir uyarı DEĞİL, sadece
@@ -1589,6 +1622,7 @@ async function veriCekVeGoster(lat, lon) {
         ${fetchNotu}
         ${kameraHtml}
         ${maviBayrakHtml}
+        ${halkPlajiHtml}
         ${denizdeyiz ? (durum === 'carsaf' ? svgDuzCizgiPattern(r.border) : svgDalgaPattern(r.border, yogunluk)) : `<div style="font-size:12px;color:${r.text600};margin-top:8px;">${t('kara_uzerinde')}</div>`}
         ${denizdeyiz ? saatlikSeritHtml : ""}
         ${trendHtml}
@@ -1859,6 +1893,34 @@ function maviBayrakIsaretleriniGoster() {
 function maviBayrakGorunurlukGuncelle() {
   const goster = map.getZoom() >= MAVI_BAYRAK_MIN_ZOOM;
   maviBayrakIsaretleri.forEach(m => {
+    const haritada = map.hasLayer(m);
+    if (goster && !haritada) m.addTo(map);
+    else if (!goster && haritada) { m.closeTooltip(); map.removeLayer(m); }
+  });
+}
+
+// Halka açık ama Mavi Bayrak SERTİFİKASI OLMAYAN plajlar — aynı zoom mantığı, ama farklı
+// bir ikon/renk (turuncu şemsiye) ile Mavi Bayrak'la karışmasın diye görsel olarak ayrılıyor.
+const HALK_PLAJI_IKON = L.divIcon({
+  className: 'halk-plaji-isaret-wrap',
+  html: `<span style="display:flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#fff;border:1.5px solid #B9812E;box-shadow:0 1px 2px rgba(20,56,74,0.45);font-size:9px;line-height:1;">🏖️</span>`,
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+});
+let halkPlajiIsaretleri = [];
+function halkPlajiIsaretleriniGoster() {
+  halkPlajiIsaretleri.forEach(m => map.removeLayer(m));
+  halkPlajiIsaretleri = [];
+  HALK_PLAJLARI.forEach(plaj => {
+    const isaret = L.marker([plaj.lat, plaj.lon], { icon: HALK_PLAJI_IKON, zIndexOffset: -100 });
+    isaret.bindTooltip(t('halk_plaji_rozeti', bolgeAdi(plaj)), { direction: 'top', offset: [0, -6] });
+    if (map.getZoom() >= MAVI_BAYRAK_MIN_ZOOM) isaret.addTo(map);
+    halkPlajiIsaretleri.push(isaret);
+  });
+}
+function halkPlajiGorunurlukGuncelle() {
+  const goster = map.getZoom() >= MAVI_BAYRAK_MIN_ZOOM;
+  halkPlajiIsaretleri.forEach(m => {
     const haritada = map.hasLayer(m);
     if (goster && !haritada) m.addTo(map);
     else if (!goster && haritada) { m.closeTooltip(); map.removeLayer(m); }
@@ -2583,6 +2645,7 @@ setTimeout(() => {
   map.invalidateSize();
   tumYorumNoktalariniGoster();
   maviBayrakIsaretleriniGoster();
+  halkPlajiIsaretleriniGoster();
   // İl/ilçe sayfalarında (SAYFA_KONUM tanımlıysa) harita zaten o bölgede açıldı (bkz. yukarıdaki
   // map init) — burada sadece o noktanın deniz durumunu otomatik getiriyoruz, ana sayfanın "son
   // bakılan nokta" hafızasına DOKUNMUYORUZ (4. parametre false) ki ziyaret bunu ezmesin.
@@ -2617,6 +2680,7 @@ function haritaRenkYogunluguGuncelle() {
 function haritaGorunumuDegisti() {
   yorumIsaretGorunurlukGuncelle();
   maviBayrakGorunurlukGuncelle();
+  halkPlajiGorunurlukGuncelle();
   haritaRenkYogunluguGuncelle();
   clearTimeout(yanPanelDebounce);
   yanPanelDebounce = setTimeout(() => yanPaneliGuncelle(sonGruplarOnbellek), 200);
@@ -2781,6 +2845,7 @@ function dilUygula() {
   if (state.lat != null) veriCekVeGoster(state.lat, state.lon);
   tumYorumNoktalariniGoster();
   maviBayrakIsaretleriniGoster();
+  halkPlajiIsaretleriniGoster();
   yanPaneliGuncelle(sonGruplarOnbellek);
   siteYorumlariYukle();
 }

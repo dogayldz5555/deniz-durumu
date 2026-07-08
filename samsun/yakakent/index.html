@@ -1,99 +1,30 @@
-// İl/ilçe/SSS sayfaları için HTML üreten şablon fonksiyonları.
-// generate-pages.js tarafından çağrılır. Üretilen il/ilçe sayfaları, index.html'in
-// #app-wrap iskeletinin (harita, durum kartı, yorumlar vb.) BİREBİR AYNISINI içerir —
-// app.js'in varsaymadığı bir DOM parçası eksik kalırsa script tamamen durur (bkz. plan).
-
-const NAV_HTML = `<nav class="site-nav" id="site-nav">
-  <a href="/">Ana Sayfa</a>
-  <a href="/samsun/">Samsun</a>
-  <a href="/izmir/">İzmir</a>
-  <a href="/mugla/">Muğla</a>
-  <a href="/aydin/">Aydın</a>
-  <a href="/antalya/">Antalya</a>
-  <a href="/sss/">Sıkça Sorulan Sorular</a>
-</nav>`;
-
-function escapeHtml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function plajListesiHtml(plajlar, halkPlajlar) {
-  const maviBayrakBlok = plajlar.length
-    ? `<div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
-      <ul class="yer-plaj-listesi">
-      ${plajlar.map((p) => `<li>${escapeHtml(p.ad)}</li>`).join("\n      ")}
-      </ul>
-    </div>`
-    : "";
-  // Halka açık ama TÜRÇEV sertifikası OLMAYAN plajlar — ayrı, dürüst bir başlık altında;
-  // Mavi Bayraklı Plajlar listesiyle karıştırılmasın diye kesinlikle birleştirilmiyor.
-  const halkPlajBlok = halkPlajlar && halkPlajlar.length
-    ? `<div class="yer-plajlar">
-      <h2>Halka Açık Plajlar</h2>
-      <ul class="yer-plaj-listesi">
-      ${halkPlajlar.map((p) => `<li>${escapeHtml(p.ad)}</li>`).join("\n      ")}
-      </ul>
-    </div>`
-    : "";
-  return maviBayrakBlok + halkPlajBlok;
-}
-
-function miniSssHtml(miniSss) {
-  if (!miniSss || !miniSss.length) return "";
-  const maddeler = miniSss
-    .map(
-      (s) => `<div class="sss-madde">
-      <h3>${escapeHtml(s.soru)}</h3>
-      <p>${s.cevap}</p>
-    </div>`
-    )
-    .join("\n    ");
-  return `<div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
-    ${maddeler}
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
-  </div>`;
-}
-
-// Ortak <head> + #app-wrap iskeletini üreten fonksiyon. `ustSectionHtml` .sub tagline'ından
-// hemen sonra, `altSectionHtml` #conflict-note'tan hemen sonra (plaj listesi + mini SSS +
-// geri dönüş linki gibi bölümler için) enjekte edilir.
-function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml }) {
-  const sayfaKonumJs = sayfaKonum
-    ? `<script>window.SAYFA_KONUM = ${JSON.stringify(sayfaKonum)};</script>\n`
-    : "";
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4137511669971685" crossorigin="anonymous"></script>
-<title id="sayfa-baslik">${escapeHtml(title)}</title>
-<meta id="meta-aciklama" name="description" content="${escapeHtml(metaAciklama)}" />
-<meta id="og-baslik" property="og:title" content="${escapeHtml(title)}" />
-<meta id="og-aciklama" property="og:description" content="${escapeHtml(metaAciklama)}" />
+<title id="sayfa-baslik">Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin</title>
+<meta id="meta-aciklama" name="description" content="Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin." />
+<meta id="og-baslik" property="og:title" content="Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin" />
+<meta id="og-aciklama" property="og:description" content="Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SeaDataWave" />
-<meta property="og:url" content="${canonicalUrl}" />
+<meta property="og:url" content="https://www.seadatawave.com/samsun/yakakent/" />
 <meta property="og:image" content="https://www.seadatawave.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="${escapeHtml(title)}" />
-<meta name="twitter:description" content="${escapeHtml(metaAciklama)}" />
+<meta name="twitter:title" content="Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin" />
+<meta name="twitter:description" content="Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin." />
 <meta name="twitter:image" content="https://www.seadatawave.com/og-image.png" />
-<link rel="canonical" href="${canonicalUrl}" />
+<link rel="canonical" href="https://www.seadatawave.com/samsun/yakakent/" />
 <link rel="manifest" href="/manifest.json" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <script type="application/ld+json">
-{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }
+{ "@context": "https://schema.org", "@type": "WebPage", "name": "Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin", "url": "https://www.seadatawave.com/samsun/yakakent/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }
 </script>
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -104,7 +35,8 @@ function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSecti
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-${sayfaKonumJs}<script>
+<script>window.SAYFA_KONUM = {"lat":41.634951,"lon":35.5315896,"zoom":15,"il":"Samsun","ilce":"Yakakent"};</script>
+<script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
 (function() {
@@ -127,7 +59,15 @@ ${sayfaKonumJs}<script>
     </div>
   </div>
   <!-- NAV:START -->
-  ${NAV_HTML}
+  <nav class="site-nav" id="site-nav">
+  <a href="/">Ana Sayfa</a>
+  <a href="/samsun/">Samsun</a>
+  <a href="/izmir/">İzmir</a>
+  <a href="/mugla/">Muğla</a>
+  <a href="/aydin/">Aydın</a>
+  <a href="/antalya/">Antalya</a>
+  <a href="/sss/">Sıkça Sorulan Sorular</a>
+</nav>
   <!-- NAV:END -->
   <div class="dil-secici" id="dil-secici">
     <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
@@ -140,7 +80,10 @@ ${sayfaKonumJs}<script>
   <div class="hero-metin">
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
-    ${ustSectionHtml}
+    <div class="yer-giris">
+    <h2>Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
+    <p>Yakakent, Samsun'un en batısındaki ilçelerden biri — 14 kilometrelik uzun sahil şeridiyle bilinir. İlçenin halka açık plajı Yakakent Sahili. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.</p>
+  </div>
 
     <div class="legend">
       <span><span class="dot" style="background:#1D7FC2"></span><span data-i18n="durum_carsaf">Mükemmel</span></span>
@@ -215,7 +158,21 @@ ${sayfaKonumJs}<script>
     <div class="gb-sent" id="gb-sent" style="display:none;" data-i18n="bildirim_kaydedildi">Bildiriminiz kaydedildi, teşekkürler.</div>
   </div>
 
-  ${altSectionHtml}
+  <div class="yer-plajlar">
+      <h2>Halka Açık Plajlar</h2>
+      <ul class="yer-plaj-listesi">
+      <li>Yakakent Sahili</li>
+      </ul>
+    </div>
+  <div class="sss-bolum">
+    <h2>Sıkça sorulan sorular</h2>
+    <div class="sss-madde">
+      <h3>Yakakent'te hangi plaj var?</h3>
+      <p>Yakakent Sahili — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor.</p>
+    </div>
+    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+  </div>
+  <p class="yer-donus"><a href="/samsun/">← Samsun deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>
@@ -277,170 +234,3 @@ ${sayfaKonumJs}<script>
 <script src="/js/app.js"></script>
 </body>
 </html>
-`;
-}
-
-function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom }) {
-  // {plajAdlari}/{plajSayisi} token'ları Mavi Bayraklı + halka açık plajları BİRLİKTE
-  // yansıtır (sadece bir sertifika iddiası taşımayan, genel "plajları arasında" cümlesi için) —
-  // aşağıdaki iki ayrı liste bölümü (plajListesiHtml) yine de sertifikalı/sertifikasız
-  // ayrımını korur, burada sadece giriş metninin doğal okunması sağlanıyor.
-  const tumPlajlar = plajlar.concat(halkPlajlar || []);
-  const plajAdlari = tumPlajlar.map((p) => p.ad).join(", ") || "henüz eklenmemiş";
-  const plajSayisi = tumPlajlar.length;
-  const doldur = (s) => s.replace(/\{plajAdlari\}/g, plajAdlari).replace(/\{plajSayisi\}/g, String(plajSayisi));
-
-  const ustSectionHtml = `<div class="yer-giris">
-    <h2>${escapeHtml(ilce.baslik)}</h2>
-    <p>${doldur(ilce.girisMetni)}</p>
-  </div>`;
-
-  const altSectionHtml = `${plajListesiHtml(plajlar, halkPlajlar)}
-  ${miniSssHtml((ilce.miniSss || []).map((s) => ({ soru: s.soru, cevap: doldur(s.cevap) })))}
-  <p class="yer-donus"><a href="/${il.slug}/">← ${escapeHtml(il.ad)} deniz durumuna dön</a></p>`;
-
-  const canonicalUrl = `https://www.seadatawave.com/${il.slug}/${ilce.slug}/`;
-
-  return sayfaIskeleti({
-    title: ilce.baslik,
-    metaAciklama: doldur(ilce.metaAciklama),
-    canonicalUrl,
-    sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: ilce.ad },
-    ustSectionHtml,
-    altSectionHtml,
-  });
-}
-
-function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom }) {
-  const ustSectionHtml = `<div class="yer-giris">
-    <h2>${escapeHtml(il.baslik)}</h2>
-    <p>${il.girisMetni}</p>
-  </div>`;
-
-  const ilceLinkleri = ilceler
-    .map((ic) => `<li><a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}</a></li>`)
-    .join("\n      ");
-  const ilceSectionHtml = `<div class="yer-ilceler">
-    <h2>${escapeHtml(il.ad)}'nin kıyı ilçeleri</h2>
-    <ul class="yer-ilceler-listesi">
-      ${ilceLinkleri}
-    </ul>
-  </div>`;
-
-  const altSectionHtml = `${plajListesiHtml(plajlar, halkPlajlar)}
-  ${ilceSectionHtml}
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>`;
-
-  const canonicalUrl = `https://www.seadatawave.com/${il.slug}/`;
-
-  return sayfaIskeleti({
-    title: il.baslik,
-    metaAciklama: il.metaAciklama,
-    canonicalUrl,
-    sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: null },
-    ustSectionHtml,
-    altSectionHtml,
-  });
-}
-
-function sssSayfasiUret({ sorular }) {
-  const maddeler = sorular
-    .map(
-      (s) => `<div class="sss-madde">
-      <h3>${escapeHtml(s.soru)}</h3>
-      <p>${escapeHtml(s.cevap)}</p>
-    </div>`
-    )
-    .join("\n    ");
-
-  const jsonLd = JSON.stringify(
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: sorular.map((s) => ({
-        "@type": "Question",
-        name: s.soru,
-        acceptedAnswer: { "@type": "Answer", text: s.cevap },
-      })),
-    },
-    null,
-    2
-  );
-
-  const title = "Sıkça Sorulan Sorular — SeaDataWave";
-  const metaAciklama = "SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Sık sorulan sorular ve cevapları.";
-
-  return `<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${escapeHtml(title)}</title>
-<meta name="description" content="${escapeHtml(metaAciklama)}" />
-<meta property="og:title" content="${escapeHtml(title)}" />
-<meta property="og:description" content="${escapeHtml(metaAciklama)}" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="SeaDataWave" />
-<meta property="og:url" content="https://www.seadatawave.com/sss/" />
-<link rel="canonical" href="https://www.seadatawave.com/sss/" />
-<link rel="manifest" href="/manifest.json" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" href="/icon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/app.css" />
-<script type="application/ld+json">
-${jsonLd}
-</script>
-</head>
-<body>
-<header class="site-header">
-  <div class="brand">
-    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-    <div class="brand-yazi">
-      <h1>SeaDataWave</h1>
-      <p class="brand-alt">Anlık Deniz Verileri</p>
-    </div>
-  </div>
-  <!-- NAV:START -->
-  ${NAV_HTML}
-  <!-- NAV:END -->
-</header>
-<div id="app-wrap">
-<div id="app">
-  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
-    <h2 style="font-size:20px;">Sıkça Sorulan Sorular</h2>
-    ${maddeler}
-  </div>
-  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
-</div>
-</div>
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div>
-      <div class="brand">
-        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
-      </div>
-    </div>
-    <div>
-      <h4>Keşfet</h4>
-      <a href="/samsun/">Samsun</a>
-      <a href="/izmir/">İzmir</a>
-      <a href="/mugla/">Muğla</a>
-      <a href="/aydin/">Aydın</a>
-      <a href="/antalya/">Antalya</a>
-    </div>
-    <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
-      <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
-    </div>
-  </div>
-  <div class="footer-alt">© 2026 SeaDataWave</div>
-</footer>
-</body>
-</html>
-`;
-}
-
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, NAV_HTML, escapeHtml };

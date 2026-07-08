@@ -5,8 +5,8 @@
       "ad": "Samsun",
       "baslik": "Samsun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Samsun'da deniz bugün nasıl? Atakum ve Terme başta olmak üzere Samsun kıyısı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Samsun, Türkiye'nin Karadeniz kıyısındaki en büyük şehirlerinden biri — sahil şeridinin büyük kısmı, plajları ve gezinti yoluyla şehrin gündelik yaşamının merkezi olan Atakum ilçesinde toplanır. Doğuya doğru Terme ilçesine gelindiğinde kıyı daha sakin ve yeşile döner, Yeşilırmak deltasının etkisiyle daha korunaklı koylar görülür. Karadeniz'in genel özelliği gereği, burada rüzgarın karadan mı denizden mi estiği dalga yüksekliğini doğrudan etkiler — kuzeyden esen rüzgar açık denizden geldiği için dalgayı hızla yükseltebilirken, güneyden (karadan) esen rüzgarda deniz genelde daha sakin kalır.",
-      "ilceler": ["atakum", "terme"]
+      "girisMetni": "Samsun, Türkiye'nin Karadeniz kıyısındaki en büyük şehirlerinden biri — sahil şeridinin büyük kısmı, plajları ve gezinti yoluyla şehrin gündelik yaşamının merkezi olan Atakum ilçesinde toplanır. Batıya doğru Yakakent ve Alaçam, doğuya doğru ise Terme ve Çarşamba'ya gelindiğinde kıyı daha sakin ve yeşile döner, nehir deltalarının etkisiyle daha korunaklı koylar görülür. Karadeniz'in genel özelliği gereği, burada rüzgarın karadan mı denizden mi estiği dalga yüksekliğini doğrudan etkiler — kuzeyden esen rüzgar açık denizden geldiği için dalgayı hızla yükseltebilirken, güneyden (karadan) esen rüzgarda deniz genelde daha sakin kalır.",
+      "ilceler": ["atakum", "terme", "ilkadim", "19mayis", "carsamba", "yakakent", "alacam"]
     },
     {
       "slug": "antalya",
@@ -66,6 +66,62 @@
         { "soru": "Terme'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
         { "soru": "Terme'nin kıyısı neden daha sakin sayılır?", "cevap": "Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar." },
         { "soru": "Terme'ye en yakın diğer Samsun plajları nerede?", "cevap": "Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip." }
+      ]
+    },
+    {
+      "slug": "ilkadim",
+      "ilSlug": "samsun",
+      "ad": "İlkadım",
+      "baslik": "İlkadım Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "İlkadım'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "İlkadım, Samsun'un şehir merkezini oluşturan ilçesi — kıyı şeridi, komşusu Atakum'a göre daha kentsel ve limana yakın bir yapıya sahip. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
+      "miniSss": [
+        { "soru": "İlkadım'da hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." },
+        { "soru": "İlkadım, Atakum'a göre nasıl farklı?", "cevap": "Atakum, Samsun'un plaj ve gezinti yoluyla bilinen turizm odaklı ilçesiyken, İlkadım şehrin idari ve ticari merkezine daha yakındır." }
+      ]
+    },
+    {
+      "slug": "19mayis",
+      "ilSlug": "samsun",
+      "ad": "19 Mayıs",
+      "baslik": "19 Mayıs Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "19 Mayıs'ta (Samsun) deniz bugün nasıl? Kumcağız ve Dereköy dahil {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "19 Mayıs, Samsun'un Bafra ile Atakum arasında kalan, Kumcağız ve Dereköy sahilleriyle bilinen daha sakin bir kıyı ilçesi. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
+      "miniSss": [
+        { "soru": "19 Mayıs'ta hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." }
+      ]
+    },
+    {
+      "slug": "carsamba",
+      "ilSlug": "samsun",
+      "ad": "Çarşamba",
+      "baslik": "Çarşamba Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Çarşamba'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Çarşamba, Samsun'un doğusunda, Yeşilırmak deltasına yakın konumuyla tarım ve sakin kıyısıyla bilinen bir ilçe. İlçenin halka açık plajı {plajAdlari}. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
+      "miniSss": [
+        { "soru": "Çarşamba'da hangi plaj var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor." }
+      ]
+    },
+    {
+      "slug": "yakakent",
+      "ilSlug": "samsun",
+      "ad": "Yakakent",
+      "baslik": "Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Yakakent, Samsun'un en batısındaki ilçelerden biri — 14 kilometrelik uzun sahil şeridiyle bilinir. İlçenin halka açık plajı {plajAdlari}. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
+      "miniSss": [
+        { "soru": "Yakakent'te hangi plaj var?", "cevap": "{plajAdlari} — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor." }
+      ]
+    },
+    {
+      "slug": "alacam",
+      "ilSlug": "samsun",
+      "ad": "Alaçam",
+      "baslik": "Alaçam Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Alaçam'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Alaçam, Samsun'un Sinop sınırındaki en batı ilçesi. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
+      "miniSss": [
+        { "soru": "Alaçam'da hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." }
       ]
     },
     {
