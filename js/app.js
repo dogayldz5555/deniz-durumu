@@ -37,6 +37,7 @@ const CEVIRI = {
   tr: {
     site_baslik: "SeaDataWave",
     sub_tagline: "Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.",
+    yer_arama_placeholder: "Ara",
     isim_baslik: "İsim / rumuzunu gir",
     isim_alt: "Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.",
     isim_placeholder: "İsim / rumuz",
@@ -96,6 +97,10 @@ const CEVIRI = {
     yan_panel_alt: "Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre",
     yan_panel_yakinlastir: "Yakınlaştırınca haritada görünen noktalardaki yorumlar burada listelenir.",
     yan_panel_bos: "Bu bölgede henüz yorum yok. İlk yorumu sen bırak.",
+    yakin_yorumlar_baslik: "Yakındaki Yorumlar",
+    yakin_yorumlar_alt: "Haritada bir yere yaklaşınca, oradaki kullanıcı yorumlarını burada görebilirsin.",
+    yakin_yorumlar_gor: "Sadece yorumları gör",
+    yakin_yorumlar_gizle: "Yorumları gizle",
     site_yorumlar_baslik: "Kullanıcı yorumları",
     site_yorumlar_alt: "Uygulamayı kullananların bıraktığı görüşler.",
     yorumlar_yukleniyor: "Yorumlar yükleniyor…",
@@ -170,6 +175,7 @@ const CEVIRI = {
   en: {
     site_baslik: "SeaDataWave",
     sub_tagline: "Tap a point on the map to see the wind and wave conditions there.",
+    yer_arama_placeholder: "Search",
     isim_baslik: "Enter your name / nickname",
     isim_alt: "Only needed once — used for both your sea-condition comments and your site review.",
     isim_placeholder: "Name / nickname",
@@ -229,6 +235,10 @@ const CEVIRI = {
     yan_panel_alt: "Points with reports in the last 2 hours, by majority verdict",
     yan_panel_yakinlastir: "Zoom in to see reports at points visible on the map here.",
     yan_panel_bos: "No reports here yet. Be the first to leave one.",
+    yakin_yorumlar_baslik: "Nearby Comments",
+    yakin_yorumlar_alt: "Zoom in on a spot on the map to see user comments from there.",
+    yakin_yorumlar_gor: "View comments only",
+    yakin_yorumlar_gizle: "Hide comments",
     site_yorumlar_baslik: "User reviews",
     site_yorumlar_alt: "What people using the app have said.",
     yorumlar_yukleniyor: "Loading reviews…",
@@ -882,6 +892,7 @@ function durumDenizden(dalgaM, kmh, gustKmh, windWaveM, windWavePeriyot, lat, lo
 
 const state = {
   marker: null,
+  durumCircle: null,
   lat: null,
   lon: null,
   geriBildirimlerYerel: {},
@@ -1500,6 +1511,7 @@ async function veriCekVeGoster(lat, lon) {
 
       card.style.background = r.bg;
       card.style.borderColor = r.border;
+      durumHalkasiniGuncelle(lat, lon, r.marker);
 
       // metrics-item: ikon kutusu + büyük değer + küçük etiket (öne-çıkan-veri kart tasarımı,
       // 2026-07-07 kullanıcı referans görseline göre) — içerik/veri aynı, sadece görünüm.
@@ -1653,7 +1665,7 @@ async function veriCekVeGoster(lat, lon) {
       state.denizdeyiz = denizdeyiz;
       state.yerAdi = baslikYer;
       state.konumMetni = konumMetni;
-      yanPaneliGuncelle(sonGruplarOnbellek);
+      yakinYorumlariDurumGuncelle();
       await gbAlaniniGuncelle();
 
       // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
@@ -1865,6 +1877,28 @@ function pinIkonuOlustur(renkHex) {
   });
 }
 
+// Seçili noktanın deniz durumu rengini (iyi/kötü/tehlikeli vb.) pinin ALTINDA sabit
+// piksel yarıçaplı, yarı saydam bir halka ile gösterir — pin kendisi hep aynı lacivert
+// renkte kaldığı için (bkz. TIKLAMA_PIN_RENGI) durum bilgisi haritadan kaybolmasın diye.
+// L.circleMarker kullanılıyor çünkü yarıçapı METRE değil PİKSEL cinsinden sabit kalır,
+// yani hangi zoom'da olursak olalım halka hep aynı boyutta görünür.
+function durumHalkasiniGuncelle(lat, lon, renkHex) {
+  if (state.durumCircle) {
+    state.durumCircle.setLatLng([lat, lon]);
+    state.durumCircle.setStyle({ fillColor: renkHex, color: renkHex });
+  } else {
+    state.durumCircle = L.circleMarker([lat, lon], {
+      radius: 24,
+      fillColor: renkHex,
+      fillOpacity: 0.28,
+      color: renkHex,
+      weight: 1.5,
+      opacity: 0.5,
+      interactive: false,
+    }).addTo(map);
+  }
+}
+
 // Mavi Bayraklı plajlar haritada SABİT, küçük bir rozetle işaretli — tıklamaya gerek kalmadan
 // nerede olduğu görülsün diye. Üzerine gelince (hover) tooltip ile ad + rozet metni çıkar.
 const MAVI_BAYRAK_IKON = L.divIcon({
@@ -2008,7 +2042,8 @@ async function tumYorumNoktalariniGoster() {
     });
 
     yorumIsaretGorunurlukGuncelle();
-    yanPaneliGuncelle(gruplar);
+    sonGruplarOnbellek = gruplar;
+    yakinYorumlariDurumGuncelle();
   } catch (e) {
     console.error("Yorum noktaları yüklenemedi:", e);
   }
@@ -2022,18 +2057,35 @@ async function tumYorumNoktalariniGoster() {
 // bu liste de canlı güncellenir (bkz. map.on('moveend'/'zoomend') aşağıda).
 let sonGruplarOnbellek = {};
 
-function yanPaneliGuncelle(gruplar) {
-  sonGruplarOnbellek = gruplar;
+// "Yakındaki Yorumlar" paneli — eski her-zaman-açık kenar panelinin yerine geçti (bkz.
+// proje notları: kullanıcı önce o panelin tamamen kaldırılmasını istedi, sonra bunun yerine
+// aç/kapa (toggle) bir sürüm istedi). Harita yeterince yakınlaştırılınca ("Sadece yorumları
+// gör") butonu belirir; tıklanınca o an haritada görünen sınırlar içindeki yorum kümeleri
+// listelenir. Harita her hareket ettiğinde (kaydırma/zoom) liste tekrar kapanır — kullanıcı
+// "başka yere geçince kaybolsun" istedi, yani her yeni konum için yeniden tıklamak gerekir.
+let yakinYorumlarAcik = false;
+function yakinYorumlariDurumGuncelle() {
+  sonGruplarOnbellek = sonGruplarOnbellek || {};
+  const toggleBtn = document.getElementById('yakin-yorumlar-toggle');
+  const durumEl = document.getElementById('yakin-yorumlar-durum');
+  const kapsayici = document.getElementById('yan-panel-liste');
+  if (!toggleBtn || !durumEl || !kapsayici) return;
+
+  const yakinMi = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
+  if (!yakinMi) yakinYorumlarAcik = false;
+  toggleBtn.style.display = yakinMi ? 'inline-flex' : 'none';
+  durumEl.style.display = yakinMi ? 'none' : 'block';
+  kapsayici.style.display = yakinYorumlarAcik ? 'block' : 'none';
+  toggleBtn.textContent = yakinYorumlarAcik ? t('yakin_yorumlar_gizle') : t('yakin_yorumlar_gor');
+  if (yakinYorumlarAcik) yakinYorumlariListeyiDoldur();
+}
+
+function yakinYorumlariListeyiDoldur() {
   const kapsayici = document.getElementById('yan-panel-liste');
   if (!kapsayici) return;
 
-  if (map.getZoom() < YORUM_ISARET_MIN_ZOOM) {
-    kapsayici.innerHTML = `<div class="yan-panel-empty">${t('yan_panel_yakinlastir')}</div>`;
-    return;
-  }
-
   const sinirlar = map.getBounds();
-  const liste = Object.values(gruplar)
+  const liste = Object.values(sonGruplarOnbellek)
     .filter(grup => sinirlar.contains([grup.lat, grup.lon]))
     .map(grup => {
       const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
@@ -2460,14 +2512,18 @@ function haritaBaloncuguGoster(baskinDurum, sayim, liste) {
   }
 }
 
+// Tıklanan noktayı işaretleyen pin HER ZAMAN bu sabit lacivert renkte — "şu an baktığım
+// yer" işareti konuma/duruma göre değişmiyor. Deniz durumunun rengi (iyi/kötü/tehlikeli vb.)
+// ayrıca DURUM_HALKA_RENK ile, pinin altına çizilen bir halkada gösteriliyor (bkz. kartiCiz
+// içindeki durumHalkasiniGuncelle çağrısı) — böylece pin konumu hep aynı renkte tanınabilir
+// kalırken, durum bilgisi de haritadan kaybolmuyor.
+const TIKLAMA_PIN_RENGI = "#14213D";
+
 function noktayaGit(lat, lng, haritayiOdakla, sonNoktaKaydet = true) {
   // Yeni bir nokta seçiliyor — kullanıcı önceki noktada tam ekran panelini elle kapatmış
   // olsa bile, bu YENİ nokta için panel yine normal şekilde açılabilsin.
   tamEkranPanelKapatildiMi = false;
-  // Seçili noktanın rengi de diğer noktalarla aynı mantıkla (konum bazlı) belirlenir —
-  // aynı konuma tekrar tıklanırsa/dönülürse hep aynı renk çıkar.
-  const renk = konumRengi(konumGrupAnahtari(lat, lng));
-  const ikon = pinIkonuOlustur(renk);
+  const ikon = pinIkonuOlustur(TIKLAMA_PIN_RENGI);
   if (state.marker) {
     state.marker.setLatLng([lat, lng]);
     state.marker.setIcon(ikon);
@@ -2528,6 +2584,10 @@ map.on('dragstart', () => {
   if (state.marker) {
     map.removeLayer(state.marker);
     state.marker = null;
+  }
+  if (state.durumCircle) {
+    map.removeLayer(state.durumCircle);
+    state.durumCircle = null;
   }
   document.getElementById('our-label').style.display = "none";
   const card = document.getElementById('status-card');
@@ -2616,6 +2676,13 @@ document.addEventListener('click', async (e) => {
   }
 }, true);
 
+// Yakındaki Yorumlar paneli sadece anasayfada var (il/ilçe sayfalarında yok) — bu yüzden
+// güvenli (?.) erişim kullanılıyor.
+document.getElementById('yakin-yorumlar-toggle')?.addEventListener('click', () => {
+  yakinYorumlarAcik = !yakinYorumlarAcik;
+  yakinYorumlariDurumGuncelle();
+});
+
 document.getElementById('locate-btn').addEventListener('click', () => {
   const btn = document.getElementById('locate-btn');
   if (!navigator.geolocation) {
@@ -2682,8 +2749,12 @@ function haritaGorunumuDegisti() {
   maviBayrakGorunurlukGuncelle();
   halkPlajiGorunurlukGuncelle();
   haritaRenkYogunluguGuncelle();
+  // Harita hareket ettiğinde (kaydırma/zoom) kullanıcı artık başka bir yere bakıyor
+  // olabileceği için, açık olan "Yakındaki Yorumlar" listesi kasıtlı olarak kapatılır —
+  // her yeni konum için tekrar "Sadece yorumları gör" butonuna basmak gerekir.
+  yakinYorumlarAcik = false;
   clearTimeout(yanPanelDebounce);
-  yanPanelDebounce = setTimeout(() => yanPaneliGuncelle(sonGruplarOnbellek), 200);
+  yanPanelDebounce = setTimeout(() => yakinYorumlariDurumGuncelle(), 200);
 }
 map.on('zoomend', haritaGorunumuDegisti);
 map.on('moveend', haritaGorunumuDegisti);
@@ -2846,7 +2917,7 @@ function dilUygula() {
   tumYorumNoktalariniGoster();
   maviBayrakIsaretleriniGoster();
   halkPlajiIsaretleriniGoster();
-  yanPaneliGuncelle(sonGruplarOnbellek);
+  yakinYorumlariDurumGuncelle();
   siteYorumlariYukle();
 }
 document.querySelectorAll('.dil-btn').forEach(btn => {

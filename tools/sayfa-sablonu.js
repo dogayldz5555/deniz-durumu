@@ -3,15 +3,47 @@
 // #app-wrap iskeletinin (harita, durum kartı, yorumlar vb.) BİREBİR AYNISINI içerir —
 // app.js'in varsaymadığı bir DOM parçası eksik kalırsa script tamamen durur (bkz. plan).
 
-const NAV_HTML = `<nav class="site-nav" id="site-nav">
-  <a href="/">Ana Sayfa</a>
-  <a href="/samsun/">Samsun</a>
-  <a href="/izmir/">İzmir</a>
-  <a href="/mugla/">Muğla</a>
-  <a href="/aydin/">Aydın</a>
-  <a href="/antalya/">Antalya</a>
+const NAV_OK_SVG = `<svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+// Üst menüyü (Anasayfa / İller açılır menüsü / Veriler / Yorumlar / Hakkımızda / SSS) tüm
+// il/ilçe/anasayfa/SSS listesinden TEK SEFERDE üretir — bu yüzden sabit bir string DEĞİL,
+// yerler.json verisini alan bir fonksiyon: her yeni il/ilçe eklendiğinde "İller" açılır
+// menüsü otomatik güncellenir, elle senkronize edilmesi gereken ikinci bir liste olmaz.
+// İçindeki tüm linkler GERÇEK <a href> etiketleri (JS'siz de tarayıcı/crawler tarafından
+// görülebilir). Aç/kapa (accordion) davranışı için ÖZEL JS YAZILMADI — native <details>/
+// <summary> kullanılıyor: her tarayıcıda JS'siz çalışır, klavyeyle erişilebilir, ve SSS
+// sayfası gibi app.js'i hiç yüklemeyen (haritasız) sayfalarda bile sorunsuz çalışır.
+function navHtmlUret(yerler) {
+  const ilGruplari = yerler.iller.map((il) => {
+    const ilceLinkleri = il.ilceler
+      .map((slug) => {
+        const ic = yerler.ilceler.find((x) => x.slug === slug && x.ilSlug === il.slug);
+        return ic ? `<a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}</a>` : "";
+      })
+      .join("\n          ");
+    return `<details class="nav-il-grup">
+        <summary class="nav-il-baslik">${escapeHtml(il.ad)} ${NAV_OK_SVG}</summary>
+        <div class="nav-ilce-liste">
+          <a href="/${il.slug}/">${escapeHtml(`Tüm ${il.ad}`)}</a>
+          ${ilceLinkleri}
+        </div>
+      </details>`;
+  }).join("\n      ");
+
+  return `<nav class="site-nav" id="site-nav">
+  <a href="/">Anasayfa</a>
+  <details class="nav-iller" id="nav-iller">
+    <summary class="nav-iller-btn">İller ${NAV_OK_SVG}</summary>
+    <div class="nav-iller-menu">
+      ${ilGruplari}
+    </div>
+  </details>
+  <a href="/#veriler">Veriler</a>
+  <a href="/#site-yorumlar-bolum">Yorumlar</a>
+  <a href="/#hakkimizda">Hakkımızda</a>
   <a href="/sss/">Sıkça Sorulan Sorular</a>
 </nav>`;
+}
 
 function escapeHtml(s) {
   return String(s)
@@ -63,7 +95,7 @@ function miniSssHtml(miniSss) {
 // Ortak <head> + #app-wrap iskeletini üreten fonksiyon. `ustSectionHtml` .sub tagline'ından
 // hemen sonra, `altSectionHtml` #conflict-note'tan hemen sonra (plaj listesi + mini SSS +
 // geri dönüş linki gibi bölümler için) enjekte edilir.
-function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml }) {
+function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml, navHtml }) {
   const sayfaKonumJs = sayfaKonum
     ? `<script>window.SAYFA_KONUM = ${JSON.stringify(sayfaKonum)};</script>\n`
     : "";
@@ -127,8 +159,13 @@ ${sayfaKonumJs}<script>
     </div>
   </div>
   <!-- NAV:START -->
-  ${NAV_HTML}
+  ${navHtml}
   <!-- NAV:END -->
+  <div class="yer-arama" id="yer-arama">
+    <svg class="yer-arama-ikon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="yer-arama-input" autocomplete="off" data-i18n-placeholder="yer_arama_placeholder" placeholder="Ara" />
+    <ul id="yer-arama-sonuclar" class="yer-arama-sonuclar" style="display:none;"></ul>
+  </div>
   <div class="dil-secici" id="dil-secici">
     <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
     <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
@@ -165,8 +202,13 @@ ${sayfaKonumJs}<script>
 
 <div id="app">
   <div class="isim-kart">
-    <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
-    <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+    <div class="isim-kart-ust">
+      <span class="isim-kart-ikon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div>
+        <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
+        <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+      </div>
+    </div>
     <div class="gb-name-row" id="gb-name-row">
       <input type="text" id="gb-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
       <button type="button" id="gb-isim-kaydet-btn" data-i18n="isim_kaydet">Kaydet</button>
@@ -280,7 +322,7 @@ ${sayfaKonumJs}<script>
 `;
 }
 
-function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom }) {
+function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
   // {plajAdlari}/{plajSayisi} token'ları Mavi Bayraklı + halka açık plajları BİRLİKTE
   // yansıtır (sadece bir sertifika iddiası taşımayan, genel "plajları arasında" cümlesi için) —
   // aşağıdaki iki ayrı liste bölümü (plajListesiHtml) yine de sertifikalı/sertifikasız
@@ -308,10 +350,11 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom }) {
     sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: ilce.ad },
     ustSectionHtml,
     altSectionHtml,
+    navHtml,
   });
 }
 
-function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom }) {
+function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
   const ustSectionHtml = `<div class="yer-giris">
     <h2>${escapeHtml(il.baslik)}</h2>
     <p>${il.girisMetni}</p>
@@ -340,10 +383,11 @@ function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom }) {
     sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: null },
     ustSectionHtml,
     altSectionHtml,
+    navHtml,
   });
 }
 
-function sssSayfasiUret({ sorular }) {
+function sssSayfasiUret({ sorular, navHtml }) {
   const maddeler = sorular
     .map(
       (s) => `<div class="sss-madde">
@@ -402,7 +446,7 @@ ${jsonLd}
     </div>
   </div>
   <!-- NAV:START -->
-  ${NAV_HTML}
+  ${navHtml}
   <!-- NAV:END -->
 </header>
 <div id="app-wrap">
@@ -443,4 +487,4 @@ ${jsonLd}
 `;
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, NAV_HTML, escapeHtml };
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, navHtmlUret, escapeHtml };

@@ -5,7 +5,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, NAV_HTML } = require("./sayfa-sablonu");
+const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, navHtmlUret } = require("./sayfa-sablonu");
 
 const KOK = path.join(__dirname, "..");
 
@@ -60,12 +60,12 @@ function yazDosya(relPath, icerik) {
   console.log("yazildi:", relPath);
 }
 
-function navBlokunuIndexHtmlaYaz() {
+function navBlokunuIndexHtmlaYaz(navHtml) {
   const indexPath = path.join(KOK, "index.html");
   const icerik = fs.readFileSync(indexPath, "utf8");
   const yeni = icerik.replace(
     /<!-- NAV:START -->[\s\S]*?<!-- NAV:END -->/,
-    `<!-- NAV:START -->\n${NAV_HTML}\n<!-- NAV:END -->`
+    `<!-- NAV:START -->\n${navHtml}\n<!-- NAV:END -->`
   );
   if (yeni === icerik && !icerik.includes("<!-- NAV:START -->")) {
     throw new Error("index.html içinde NAV:START/NAV:END işaretleri bulunamadı");
@@ -114,6 +114,7 @@ function main() {
   const tumPlajlar = plajlar.concat(halkPlajlar); // sadece harita merkezi/zoom hesabı için
   const yerler = JSON.parse(fs.readFileSync(path.join(KOK, "data/yerler.json"), "utf8"));
   const sss = JSON.parse(fs.readFileSync(path.join(KOK, "data/sss.json"), "utf8"));
+  const navHtml = navHtmlUret(yerler);
 
   const ilceMap = new Map(yerler.ilceler.map((ic) => [ic.slug, ic]));
 
@@ -130,7 +131,7 @@ function main() {
     });
 
     if (!filtre || filtre.has(il.slug)) {
-      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoom(ilSpan) });
+      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoom(ilSpan), navHtml });
       yazDosya(`${il.slug}/index.html`, html);
     }
 
@@ -143,18 +144,18 @@ function main() {
         console.warn(`UYARI: ${il.ad}/${ic.ad} için MAVI_BAYRAK_PLAJLAR/HALK_PLAJLARI'nda eşleşen plaj yok`);
       }
       const { lat, lon, span } = bboxVeMerkez(icTumPlajlar.length ? icTumPlajlar : [{ lat: ilLat, lon: ilLon }]);
-      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: ilceZoom(span) });
+      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: ilceZoom(span), navHtml });
       yazDosya(`${il.slug}/${ic.slug}/index.html`, html);
     }
   }
 
   if (!filtre || filtre.has("sss")) {
-    yazDosya("sss/index.html", sssSayfasiUret({ sorular: sss.sorular }));
+    yazDosya("sss/index.html", sssSayfasiUret({ sorular: sss.sorular, navHtml }));
   }
 
   // Nav ve sitemap her zaman TÜM il/ilçe listesine göre güncellenir (filtreden bağımsız),
   // aksi halde kısmi/pilot üretimde nav eksik ilçeler gösterirdi.
-  navBlokunuIndexHtmlaYaz();
+  navBlokunuIndexHtmlaYaz(navHtml);
   sitemapUret(yerler.iller);
 }
 

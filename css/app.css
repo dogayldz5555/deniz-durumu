@@ -414,12 +414,25 @@
   .gb-section { margin-bottom: 18px; }
   .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
   .isim-kart {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: linear-gradient(135deg, rgba(185,129,46,0.07), rgba(20,33,61,0.025));
+    border: 1px solid rgba(185,129,46,0.28);
     border-radius: 14px;
-    padding: 13px 16px;
+    padding: 14px 16px;
     margin-bottom: 16px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 12px rgba(20,30,25,0.04);
+  }
+  .isim-kart-ust { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
+  .isim-kart-ikon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
   .isim-kart-baslik {
     font-family: "Fraunces", Georgia, serif;
@@ -431,7 +444,7 @@
   .isim-kart-alt {
     font-size: 11px;
     color: var(--text-sub);
-    margin: 0 0 9px;
+    margin: 0;
     line-height: 1.4;
   }
   .gb-name-row { display: flex; gap: 8px; }
@@ -873,6 +886,68 @@
     transition: color 0.15s;
   }
   .site-nav a:hover { color: #fff; text-decoration: none; }
+
+  /* İller açılır menüsü — native <details>/<summary>, JS'siz çalışır (bkz.
+     tools/sayfa-sablonu.js navHtmlUret açıklaması). */
+  .nav-iller { position: relative; display: flex; align-items: center; }
+  .nav-iller-btn {
+    list-style: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.78);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .nav-iller-btn:hover { color: #fff; }
+  .nav-iller-btn::-webkit-details-marker { display: none; }
+  .nav-iller[open] > .nav-iller-btn .nav-il-ok { transform: rotate(180deg); }
+  .nav-il-ok { transition: transform 0.15s; flex-shrink: 0; }
+  .nav-iller-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 700;
+    min-width: 230px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(20,30,25,0.22);
+    padding: 8px;
+  }
+  .nav-il-grup { border-bottom: 1px solid rgba(20,33,61,0.08); }
+  .nav-il-grup:last-child { border-bottom: none; }
+  .nav-il-baslik {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 9px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-radius: 8px;
+  }
+  .nav-il-baslik:hover { background: rgba(20,33,61,0.06); }
+  .nav-il-baslik::-webkit-details-marker { display: none; }
+  .nav-il-grup[open] > .nav-il-baslik .nav-il-ok { transform: rotate(180deg); }
+  .nav-ilce-liste { display: flex; flex-direction: column; padding: 2px 8px 8px 18px; }
+  .nav-ilce-liste a {
+    padding: 6px 8px;
+    font-size: 12.5px;
+    color: var(--text-sub);
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  .nav-ilce-liste a:hover { background: rgba(20,33,61,0.06); color: var(--text-primary); }
+  .nav-ilce-liste a:first-child { font-weight: 600; color: var(--text-primary); }
   .yer-plajlar { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .yer-plajlar h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
   .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; }
@@ -909,18 +984,35 @@
   }
   .sss-git-btn:hover { text-decoration: underline; }
 
-  .yer-arama { position: relative; margin: 14px 0 4px; max-width: 360px; }
+  /* Header'daki arama kutusu — logo/nav ile aynı lacivert satırda, koyu zemine uygun
+     yarı saydam stil; ikon ve placeholder bilerek soluk (header'ın geri kalanıyla
+     yarışmasın diye), odaklanınca (focus) belirginleşir. */
+  .yer-arama { position: relative; width: 168px; flex-shrink: 0; }
+  .yer-arama-ikon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.5);
+    pointer-events: none;
+  }
   .yer-arama input {
     width: 100%;
-    padding: 10px 14px;
-    font-size: 13.5px;
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    background: var(--card-bg);
-    color: var(--text-primary);
+    padding: 8px 12px 8px 32px;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
     font-family: inherit;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .yer-arama input:focus { outline: 2px solid var(--locate-text); outline-offset: 1px; }
+  .yer-arama input::placeholder { color: rgba(255,255,255,0.5); }
+  .yer-arama input:focus {
+    outline: none;
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.34);
+  }
   .yer-arama-sonuclar {
     position: absolute;
     z-index: 600;
@@ -1006,6 +1098,40 @@
   .il-listesi a:hover { text-decoration: underline; }
   .il-listesi .ilce-sayisi { color: var(--text-sub); font-size: 11px; }
   .hakkinda-metin { font-size: 12.5px; color: var(--text-sub); line-height: 1.6; margin: 0; }
+
+  /* === Yakındaki Yorumlar paneli (alt-grid ortası) === */
+  .yakin-yorumlar-alt { font-size: 12px; color: var(--text-sub); margin: 0 0 12px; line-height: 1.5; }
+  #yakin-yorumlar-durum { font-size: 12px; color: var(--text-sub); line-height: 1.5; }
+  .yakin-yorumlar-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .yakin-yorumlar-toggle-btn:hover { background: var(--ink-2); }
+  #yan-panel-liste { margin-top: 14px; }
+  .yan-panel-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(20,33,61,0.08);
+    cursor: pointer;
+  }
+  .yan-panel-item:first-child { border-top: none; }
+  .yan-panel-item:hover .yan-panel-ad { text-decoration: underline; }
+  .yan-panel-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .yan-panel-ad { font-size: 12.5px; font-weight: 600; color: var(--text-primary); }
+  .yan-panel-meta { font-size: 10.5px; color: var(--text-sub); }
+  .yan-panel-empty { font-size: 12px; color: var(--text-sub); padding: 4px 0; }
   .altin-kutu {
     margin-top: 16px;
     background: linear-gradient(135deg, var(--gold-bg), var(--gold));

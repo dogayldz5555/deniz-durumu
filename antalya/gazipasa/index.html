@@ -60,15 +60,84 @@
   </div>
   <!-- NAV:START -->
   <nav class="site-nav" id="site-nav">
-  <a href="/">Ana Sayfa</a>
-  <a href="/samsun/">Samsun</a>
-  <a href="/izmir/">İzmir</a>
-  <a href="/mugla/">Muğla</a>
-  <a href="/aydin/">Aydın</a>
-  <a href="/antalya/">Antalya</a>
+  <a href="/">Anasayfa</a>
+  <details class="nav-iller" id="nav-iller">
+    <summary class="nav-iller-btn">İller <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+    <div class="nav-iller-menu">
+      <details class="nav-il-grup">
+        <summary class="nav-il-baslik">Samsun <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="nav-ilce-liste">
+          <a href="/samsun/">Tüm Samsun</a>
+          <a href="/samsun/atakum/">Atakum</a>
+          <a href="/samsun/terme/">Terme</a>
+          <a href="/samsun/ilkadim/">İlkadım</a>
+          <a href="/samsun/19mayis/">19 Mayıs</a>
+          <a href="/samsun/carsamba/">Çarşamba</a>
+          <a href="/samsun/yakakent/">Yakakent</a>
+          <a href="/samsun/alacam/">Alaçam</a>
+        </div>
+      </details>
+      <details class="nav-il-grup">
+        <summary class="nav-il-baslik">Antalya <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="nav-ilce-liste">
+          <a href="/antalya/">Tüm Antalya</a>
+          <a href="/antalya/gazipasa/">Gazipaşa</a>
+          <a href="/antalya/alanya/">Alanya</a>
+          <a href="/antalya/manavgat/">Manavgat</a>
+          <a href="/antalya/serik/">Serik</a>
+          <a href="/antalya/muratpasa/">Muratpaşa</a>
+          <a href="/antalya/konyaalti/">Konyaaltı</a>
+          <a href="/antalya/kemer/">Kemer</a>
+          <a href="/antalya/kumluca/">Kumluca</a>
+          <a href="/antalya/demre/">Demre</a>
+          <a href="/antalya/kas/">Kaş</a>
+        </div>
+      </details>
+      <details class="nav-il-grup">
+        <summary class="nav-il-baslik">Muğla <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="nav-ilce-liste">
+          <a href="/mugla/">Tüm Muğla</a>
+          <a href="/mugla/fethiye/">Fethiye</a>
+          <a href="/mugla/marmaris/">Marmaris</a>
+          <a href="/mugla/ula/">Ula</a>
+          <a href="/mugla/bodrum/">Bodrum</a>
+        </div>
+      </details>
+      <details class="nav-il-grup">
+        <summary class="nav-il-baslik">İzmir <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="nav-ilce-liste">
+          <a href="/izmir/">Tüm İzmir</a>
+          <a href="/izmir/menderes/">Menderes</a>
+          <a href="/izmir/seferihisar/">Seferihisar</a>
+          <a href="/izmir/cesme/">Çeşme</a>
+          <a href="/izmir/karaburun/">Karaburun</a>
+          <a href="/izmir/urla/">Urla</a>
+          <a href="/izmir/guzelbahce/">Güzelbahçe</a>
+          <a href="/izmir/foca/">Foça</a>
+          <a href="/izmir/dikili/">Dikili</a>
+        </div>
+      </details>
+      <details class="nav-il-grup">
+        <summary class="nav-il-baslik">Aydın <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="nav-ilce-liste">
+          <a href="/aydin/">Tüm Aydın</a>
+          <a href="/aydin/didim/">Didim</a>
+          <a href="/aydin/kusadasi/">Kuşadası</a>
+        </div>
+      </details>
+    </div>
+  </details>
+  <a href="/#veriler">Veriler</a>
+  <a href="/#site-yorumlar-bolum">Yorumlar</a>
+  <a href="/#hakkimizda">Hakkımızda</a>
   <a href="/sss/">Sıkça Sorulan Sorular</a>
 </nav>
   <!-- NAV:END -->
+  <div class="yer-arama" id="yer-arama">
+    <svg class="yer-arama-ikon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="yer-arama-input" autocomplete="off" data-i18n-placeholder="yer_arama_placeholder" placeholder="Ara" />
+    <ul id="yer-arama-sonuclar" class="yer-arama-sonuclar" style="display:none;"></ul>
+  </div>
   <div class="dil-secici" id="dil-secici">
     <button type="button" class="dil-btn" data-dil="tr" id="dil-btn-tr">TR</button>
     <button type="button" class="dil-btn" data-dil="en" id="dil-btn-en">EN</button>
@@ -108,8 +177,13 @@
 
 <div id="app">
   <div class="isim-kart">
-    <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
-    <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+    <div class="isim-kart-ust">
+      <span class="isim-kart-ikon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div>
+        <p class="isim-kart-baslik" data-i18n="isim_baslik">İsim / rumuzunu gir</p>
+        <p class="isim-kart-alt" data-i18n="isim_alt">Bir kere yeter — hem deniz durumu yorumların hem site değerlendirmen bu isimle yapılır.</p>
+      </div>
+    </div>
     <div class="gb-name-row" id="gb-name-row">
       <input type="text" id="gb-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
       <button type="button" id="gb-isim-kaydet-btn" data-i18n="isim_kaydet">Kaydet</button>
