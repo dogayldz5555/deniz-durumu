@@ -197,6 +197,12 @@ ${sayfaKonumJs}<script>
     <button id="tam-ekran-veri-kapat" class="tam-ekran-kapat-btn" type="button" data-i18n-aria="veri_paneli_kapat" aria-label="Veri panelini kapat">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
+    <div id="tam-ekran-yorumlar-wrap" class="tam-ekran-yorumlar-wrap" style="display:none;">
+      <button type="button" id="tam-ekran-yorumlar-tab" class="tam-ekran-yorumlar-tab" data-i18n="yakin_yorumlar_gor">Sadece yorumları gör</button>
+      <div id="tam-ekran-yorumlar-kart" class="tam-ekran-yorumlar-kart" style="display:none;">
+        <div id="tam-ekran-yorumlar-liste"></div>
+      </div>
+    </div>
   </div>
 </div>
 

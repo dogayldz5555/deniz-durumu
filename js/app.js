@@ -952,6 +952,9 @@ function haritaTamEkranAcKapat() {
     document.getElementById('status-card').classList.remove('tam-ekran-gizli');
     document.getElementById('tam-ekran-veri-kapat').classList.remove('tam-ekran-gizli');
   }
+  // Tam ekran kenar sekmesinin görünürlüğü de (bkz. yakinYorumlariDurumGuncelle)
+  // haritaTamEkranAktif'e bağlı olduğu için, büyüt/küçült her tıklamada hemen güncellenir.
+  yakinYorumlariDurumGuncelle();
   // CSS boyut değişimi bir sonraki karede tamamlanır, harita boyutunu ondan sonra tazeliyoruz.
   setTimeout(() => map.invalidateSize(), 150);
 }
@@ -2066,22 +2069,39 @@ let sonGruplarOnbellek = {};
 let yakinYorumlarAcik = false;
 function yakinYorumlariDurumGuncelle() {
   sonGruplarOnbellek = sonGruplarOnbellek || {};
+  const yakinMi = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
+  if (!yakinMi) yakinYorumlarAcik = false;
+
+  // Anasayfadaki 3'lü grid paneli — sadece anasayfada var.
   const toggleBtn = document.getElementById('yakin-yorumlar-toggle');
   const durumEl = document.getElementById('yakin-yorumlar-durum');
   const kapsayici = document.getElementById('yan-panel-liste');
-  if (!toggleBtn || !durumEl || !kapsayici) return;
+  if (toggleBtn && durumEl && kapsayici) {
+    toggleBtn.style.display = yakinMi ? 'inline-flex' : 'none';
+    durumEl.style.display = yakinMi ? 'none' : 'block';
+    kapsayici.style.display = yakinYorumlarAcik ? 'block' : 'none';
+    toggleBtn.textContent = yakinYorumlarAcik ? t('yakin_yorumlar_gizle') : t('yakin_yorumlar_gor');
+    if (yakinYorumlarAcik) yakinYorumlariListeyiDoldur('yan-panel-liste');
+  }
 
-  const yakinMi = map.getZoom() >= YORUM_ISARET_MIN_ZOOM;
-  if (!yakinMi) yakinYorumlarAcik = false;
-  toggleBtn.style.display = yakinMi ? 'inline-flex' : 'none';
-  durumEl.style.display = yakinMi ? 'none' : 'block';
-  kapsayici.style.display = yakinYorumlarAcik ? 'block' : 'none';
-  toggleBtn.textContent = yakinYorumlarAcik ? t('yakin_yorumlar_gizle') : t('yakin_yorumlar_gor');
-  if (yakinYorumlarAcik) yakinYorumlariListeyiDoldur();
+  // Tam ekran haritanın sol kenarındaki sekme + küçük kart — HER sayfada var (harita
+  // olan her yerde), böylece anasayfa dışındaki il/ilçe sayfalarında da tam ekran
+  // haritada yakındaki yorumlara erişilebiliyor. Aynı aç/kapa durumunu (yakinYorumlarAcik)
+  // paylaşır — anasayfadaki panelle senkronize kalır.
+  const tamEkranWrap = document.getElementById('tam-ekran-yorumlar-wrap');
+  const tamEkranTab = document.getElementById('tam-ekran-yorumlar-tab');
+  const tamEkranKart = document.getElementById('tam-ekran-yorumlar-kart');
+  if (tamEkranWrap && tamEkranTab && tamEkranKart) {
+    const tamEkranVeYakin = haritaTamEkranAktif && yakinMi;
+    tamEkranWrap.style.display = tamEkranVeYakin ? 'flex' : 'none';
+    tamEkranTab.textContent = yakinYorumlarAcik ? t('yakin_yorumlar_gizle') : t('yakin_yorumlar_gor');
+    tamEkranKart.style.display = (tamEkranVeYakin && yakinYorumlarAcik) ? 'block' : 'none';
+    if (tamEkranVeYakin && yakinYorumlarAcik) yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
+  }
 }
 
-function yakinYorumlariListeyiDoldur() {
-  const kapsayici = document.getElementById('yan-panel-liste');
+function yakinYorumlariListeyiDoldur(kapsayiciId) {
+  const kapsayici = document.getElementById(kapsayiciId);
   if (!kapsayici) return;
 
   const sinirlar = map.getBounds();
@@ -2679,6 +2699,11 @@ document.addEventListener('click', async (e) => {
 // Yakındaki Yorumlar paneli sadece anasayfada var (il/ilçe sayfalarında yok) — bu yüzden
 // güvenli (?.) erişim kullanılıyor.
 document.getElementById('yakin-yorumlar-toggle')?.addEventListener('click', () => {
+  yakinYorumlarAcik = !yakinYorumlarAcik;
+  yakinYorumlariDurumGuncelle();
+});
+// Tam ekran haritanın kenar sekmesi — her sayfada var.
+document.getElementById('tam-ekran-yorumlar-tab')?.addEventListener('click', () => {
   yakinYorumlarAcik = !yakinYorumlarAcik;
   yakinYorumlariDurumGuncelle();
 });

@@ -268,6 +268,48 @@
     transform: translateY(-8px);
     pointer-events: none;
   }
+  /* Tam ekran haritanın SOL kenarından çıkan küçük "Yakındaki Yorumlar" sekmesi —
+     JS (yakinYorumlariDurumGuncelle) sadece harita tam ekranken VE yeterince
+     yakınlaştırılmışken görünür yapıyor. Anasayfadaki 3'lü gridin altındaki panelle
+     aynı aç/kapa durumunu (yakinYorumlarAcik) ve aynı veriyi paylaşır. */
+  .tam-ekran-yorumlar-wrap {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4600;
+    align-items: flex-start;
+  }
+  .tam-ekran-yorumlar-tab {
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 0 10px 10px 0;
+    font-size: 11.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    max-width: 88px;
+    line-height: 1.3;
+    text-align: left;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
+  }
+  .tam-ekran-yorumlar-kart {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 2px 4px 20px rgba(0,0,0,0.25);
+    padding: 8px 10px;
+    width: 220px;
+    max-height: min(280px, calc(100vh - 40px));
+    overflow-y: auto;
+  }
+  .tam-ekran-yorumlar-kart .yan-panel-item { padding: 7px 2px; }
+  .tam-ekran-yorumlar-kart .yan-panel-ad { font-size: 12px; }
+  .tam-ekran-yorumlar-kart .yan-panel-meta { font-size: 10px; }
+  .tam-ekran-yorumlar-kart .yan-panel-empty { font-size: 11.5px; }
   .map-buyut-kontrol a {
     width: 30px;
     height: 30px;
