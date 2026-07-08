@@ -197,8 +197,22 @@ ${sayfaKonumJs}<script>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div id="tam-ekran-yorumlar-wrap" class="tam-ekran-yorumlar-wrap" style="display:none;">
-      <button type="button" id="tam-ekran-yorumlar-tab" class="tam-ekran-yorumlar-tab" data-i18n="yakin_yorumlar_gor">Sadece yorumları gör</button>
+      <button type="button" id="tam-ekran-yorumlar-tab" class="tam-ekran-yorumlar-tab" data-i18n-aria="tam_ekran_yorumlar_baslik" aria-label="Yorum yap / gör">
+        <span class="tam-ekran-yorumlar-tab-etiket" data-i18n="tam_ekran_yorumlar_etiket">Yorumlar</span>
+        <svg class="tam-ekran-yorumlar-tab-ok" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
       <div id="tam-ekran-yorumlar-kart" class="tam-ekran-yorumlar-kart" style="display:none;">
+        <p class="tam-ekran-yorumlar-baslik" data-i18n="tam_ekran_yorumlar_baslik">Yorum yap / gör</p>
+        <div id="tek-panel-isim-row" class="tek-panel-isim-row" style="display:none;">
+          <input type="text" id="tek-panel-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
+        </div>
+        <div class="tek-panel-durum-satir" id="tek-panel-durum-satir"></div>
+        <div class="tek-panel-not-row">
+          <input type="text" id="tek-panel-not" data-i18n-placeholder="not_placeholder" placeholder="İsteğe bağlı not" />
+        </div>
+        <button type="button" id="tek-panel-gonder" class="tek-panel-gonder-btn" data-i18n="gonder">Gönder</button>
+        <div id="tek-panel-sonuc" class="tek-panel-sonuc" style="display:none;"></div>
+        <div class="tek-panel-ayrac"></div>
         <div id="tam-ekran-yorumlar-liste"></div>
       </div>
     </div>

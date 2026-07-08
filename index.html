@@ -237,8 +237,22 @@ if ('serviceWorker' in navigator) {
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div id="tam-ekran-yorumlar-wrap" class="tam-ekran-yorumlar-wrap" style="display:none;">
-      <button type="button" id="tam-ekran-yorumlar-tab" class="tam-ekran-yorumlar-tab" data-i18n="yakin_yorumlar_gor">Sadece yorumları gör</button>
+      <button type="button" id="tam-ekran-yorumlar-tab" class="tam-ekran-yorumlar-tab" data-i18n-aria="tam_ekran_yorumlar_baslik" aria-label="Yorum yap / gör">
+        <span class="tam-ekran-yorumlar-tab-etiket" data-i18n="tam_ekran_yorumlar_etiket">Yorumlar</span>
+        <svg class="tam-ekran-yorumlar-tab-ok" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
       <div id="tam-ekran-yorumlar-kart" class="tam-ekran-yorumlar-kart" style="display:none;">
+        <p class="tam-ekran-yorumlar-baslik" data-i18n="tam_ekran_yorumlar_baslik">Yorum yap / gör</p>
+        <div id="tek-panel-isim-row" class="tek-panel-isim-row" style="display:none;">
+          <input type="text" id="tek-panel-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
+        </div>
+        <div class="tek-panel-durum-satir" id="tek-panel-durum-satir"></div>
+        <div class="tek-panel-not-row">
+          <input type="text" id="tek-panel-not" data-i18n-placeholder="not_placeholder" placeholder="İsteğe bağlı not" />
+        </div>
+        <button type="button" id="tek-panel-gonder" class="tek-panel-gonder-btn" data-i18n="gonder">Gönder</button>
+        <div id="tek-panel-sonuc" class="tek-panel-sonuc" style="display:none;"></div>
+        <div class="tek-panel-ayrac"></div>
         <div id="tam-ekran-yorumlar-liste"></div>
       </div>
     </div>
@@ -294,6 +308,46 @@ if ('serviceWorker' in navigator) {
     <div class="madde"><div class="ikon-kutu">🏘️</div><div><div class="sayi">31 ilçe</div><div class="etiket">Kıyı ilçesi kapsanıyor</div></div></div>
     <div class="madde"><div class="ikon-kutu">🏳️</div><div><div class="sayi">150+ plaj</div><div class="etiket">Mavi Bayraklı halk plajı</div></div></div>
     <div class="madde"><div class="ikon-kutu">⏱️</div><div><div class="sayi">Canlı</div><div class="etiket">Open-Meteo'dan anlık veri</div></div></div>
+  </div>
+</div>
+
+<!-- Nasıl Kullanılır — sitenin gerçekte yaptığı şeylere dayalı 6 adım, uydurma özellik yok -->
+<div class="nasil-kullanilir">
+  <div class="nasil-kullanilir-ic">
+    <h2 data-i18n="nk_baslik">Nasıl Kullanılır?</h2>
+    <p class="nasil-kullanilir-alt" data-i18n="nk_alt">SeaDataWave'i birkaç adımda öğren.</p>
+    <div class="nasil-kullanilir-grid">
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">1</span><span class="nk-ikon">📍</span></div>
+        <h3 data-i18n="nk_1_baslik">Haritada bir yere tıkla</h3>
+        <p data-i18n="nk_1_metin">O noktanın anlık rüzgar ve dalga durumunu hemen gör.</p>
+      </div>
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">2</span><span class="nk-ikon">🎨</span></div>
+        <h3 data-i18n="nk_2_baslik">Renkleri oku</h3>
+        <p data-i18n="nk_2_metin">Mavi: çok iyi, yeşil: iyi, turuncu: orta, kırmızı: fazla dalga.</p>
+      </div>
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">3</span><span class="nk-ikon">📅</span></div>
+        <h3 data-i18n="nk_3_baslik">7 günlük tahmine bak</h3>
+        <p data-i18n="nk_3_metin">Kartın üstündeki ok işaretleriyle sonraki günlere geç.</p>
+      </div>
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">4</span><span class="nk-ikon">🔍</span></div>
+        <h3 data-i18n="nk_4_baslik">Bir yer ara</h3>
+        <p data-i18n="nk_4_metin">Üstteki arama kutusuna yaz ya da İller menüsünden ilçe seç.</p>
+      </div>
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">5</span><span class="nk-ikon">💬</span></div>
+        <h3 data-i18n="nk_5_baslik">Yorum bırak</h3>
+        <p data-i18n="nk_5_metin">İsmini gir, deniz nasıl olduğunu seç, istersen not ekle.</p>
+      </div>
+      <div class="nk-adim">
+        <div class="nk-ust"><span class="nk-no">6</span><span class="nk-ikon">🔎</span></div>
+        <h3 data-i18n="nk_6_baslik">Haritayı büyüt</h3>
+        <p data-i18n="nk_6_metin">Sağ üstteki simgeyle tam ekran yap, sol kenardaki sekmeden yakındaki yorumları gör ya da yeni yorum at.</p>
+      </div>
+    </div>
   </div>
 </div>
 

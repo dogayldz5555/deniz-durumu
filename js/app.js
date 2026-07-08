@@ -87,6 +87,20 @@ const CEVIRI = {
     sayfa_baslik: "SeaDataWave — Bugün Deniz Nasıl?",
     meta_aciklama: "Denize girmeden önce havanın ve denizin uygun olup olmadığını gör. Türkiye kıyılarında anlık rüzgar ve dalga durumu — haritadan bir nokta seç, denizin bugün keyifli mi yoksa dalgalı mı olduğunu öğren, sahadan gelen gerçek kullanıcı yorumlarını oku.",
     og_aciklama: "Denize girmeden önce o bölgede deniz keyifli mi yoksa dalgalı mı, anlık olarak öğren.",
+    nk_baslik: "Nasıl Kullanılır?",
+    nk_alt: "SeaDataWave'i birkaç adımda öğren.",
+    nk_1_baslik: "Haritada bir yere tıkla",
+    nk_1_metin: "O noktanın anlık rüzgar ve dalga durumunu hemen gör.",
+    nk_2_baslik: "Renkleri oku",
+    nk_2_metin: "Mavi: çok iyi, yeşil: iyi, turuncu: orta, kırmızı: fazla dalga.",
+    nk_3_baslik: "7 günlük tahmine bak",
+    nk_3_metin: "Kartın üstündeki ok işaretleriyle sonraki günlere geç.",
+    nk_4_baslik: "Bir yer ara",
+    nk_4_metin: "Üstteki arama kutusuna yaz ya da İller menüsünden ilçe seç.",
+    nk_5_baslik: "Yorum bırak",
+    nk_5_metin: "İsmini gir, deniz nasıl olduğunu seç, istersen not ekle.",
+    nk_6_baslik: "Haritayı büyüt",
+    nk_6_metin: "Sağ üstteki simgeyle tam ekran yap, sol kenardaki sekmeden yakındaki yorumları gör ya da yeni yorum at.",
     seo_baslik: "Denize girmeden önce deniz durumunu öğren",
     seo_metin: "SeaDataWave, denize girmeden önce o gün havanın ve denizin müsait olup olmadığını evinden görebileceğin ücretsiz bir site — Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada (Samsun, Atakum, Trabzon, Sinop, İstanbul, İzmir, Antalya ve diğer tüm sahil bölgeleri dahil) geçerli. Haritada herhangi bir sahil noktasına tıklayarak denizin bugün keyifli mi, yoksa dalgalı/tehlikeli mi olacağını anlık rüzgar ve dalga verisiyle öğrenebilir, aynı zamanda sahildeki diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.",
     sss_git_baslik: "Sıkça sorulan sorular",
@@ -100,6 +114,9 @@ const CEVIRI = {
     yakin_yorumlar_alt: "Haritada bir yere yaklaşınca, oradaki kullanıcı yorumlarını burada görebilirsin.",
     yakin_yorumlar_gor: "Sadece yorumları gör",
     yakin_yorumlar_gizle: "Yorumları gizle",
+    tam_ekran_yorumlar_etiket: "Yorumlar",
+    tam_ekran_yorumlar_baslik: "Yorum yap / gör",
+    tek_panel_durum_gerekli: "Önce deniz nasıl olduğunu seç.",
     site_yorumlar_baslik: "Kullanıcı yorumları",
     site_yorumlar_alt: "Uygulamayı kullananların bıraktığı görüşler.",
     yorumlar_yukleniyor: "Yorumlar yükleniyor…",
@@ -226,6 +243,20 @@ const CEVIRI = {
     sayfa_baslik: "SeaDataWave — What's the sea like today?",
     meta_aciklama: "Check whether the weather and sea are good for swimming before you even leave home. Live wind and wave conditions on Turkey's coasts — pick a point on the map, find out whether the sea is calm or choppy today, and read real user reports from the field.",
     og_aciklama: "See whether the sea is calm or choppy in that area, live, before you head to the beach.",
+    nk_baslik: "How It Works",
+    nk_alt: "Learn SeaDataWave in a few steps.",
+    nk_1_baslik: "Tap a spot on the map",
+    nk_1_metin: "See that point's live wind and wave conditions right away.",
+    nk_2_baslik: "Read the colors",
+    nk_2_metin: "Blue: very good, green: good, orange: moderate, red: rough waves.",
+    nk_3_baslik: "Check the 7-day forecast",
+    nk_3_metin: "Use the arrows above the card to move through the next days.",
+    nk_4_baslik: "Search for a place",
+    nk_4_metin: "Type in the search box above, or pick a district from the Provinces menu.",
+    nk_5_baslik: "Leave a comment",
+    nk_5_metin: "Enter your name, pick how the sea looks, add a note if you want.",
+    nk_6_baslik: "Go fullscreen",
+    nk_6_metin: "Use the icon in the top-right to expand the map, then use the tab on the left edge to view nearby comments or add one.",
     seo_baslik: "See if the sea is good for swimming before you go",
     seo_metin: "SeaDataWave is a free site where you can check, before heading to the beach, whether the weather and sea are good for swimming that day — covering any point along Turkey's Black Sea, Marmara, Aegean and Mediterranean coasts (including Samsun, Atakum, Trabzon, Sinop, Istanbul, Izmir, Antalya and every other coastal area). Tap any coastal point on the map to see live wind and wave data and find out whether the sea will be pleasant or choppy today, plus real-time reports from other people at that spot.",
     sss_git_baslik: "Frequently asked questions",
@@ -239,6 +270,9 @@ const CEVIRI = {
     yakin_yorumlar_alt: "Zoom in on a spot on the map to see user comments from there.",
     yakin_yorumlar_gor: "View comments only",
     yakin_yorumlar_gizle: "Hide comments",
+    tam_ekran_yorumlar_etiket: "Comments",
+    tam_ekran_yorumlar_baslik: "Add / view comments",
+    tek_panel_durum_gerekli: "Pick how the sea looks first.",
     site_yorumlar_baslik: "User reviews",
     site_yorumlar_alt: "What people using the app have said.",
     yorumlar_yukleniyor: "Loading reviews…",
@@ -2112,10 +2146,14 @@ function yakinYorumlariDurumGuncelle() {
   const tamEkranKart = document.getElementById('tam-ekran-yorumlar-kart');
   if (tamEkranWrap && tamEkranTab && tamEkranKart) {
     const tamEkranVeYakin = haritaTamEkranAktif && yakinMi;
+    const yeniceAcildi = tamEkranVeYakin && yakinYorumlarAcik && tamEkranKart.style.display !== 'block';
     tamEkranWrap.style.display = tamEkranVeYakin ? 'flex' : 'none';
-    tamEkranTab.textContent = yakinYorumlarAcik ? t('yakin_yorumlar_gizle') : t('yakin_yorumlar_gor');
+    tamEkranWrap.classList.toggle('acik', tamEkranVeYakin && yakinYorumlarAcik);
     tamEkranKart.style.display = (tamEkranVeYakin && yakinYorumlarAcik) ? 'block' : 'none';
-    if (tamEkranVeYakin && yakinYorumlarAcik) yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
+    if (tamEkranVeYakin && yakinYorumlarAcik) {
+      if (yeniceAcildi) tekPanelSifirla();
+      yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
+    }
   }
 }
 
@@ -2164,6 +2202,113 @@ function yakinYorumlariListeyiDoldur(kapsayiciId) {
     });
   });
 }
+
+// === Tam ekran haritadaki kompakt "yorum yap" formu ===
+// Anasayfadaki normal isim-kartı/gb-section, harita büyütülünce (fixed konumlu) arkada
+// kalıp erişilemez hale geliyor — bu yüzden aynı işlevi (isim + durum seçimi + not + gönder)
+// bu küçük çekmecede TEKRAR üretiyoruz, ama TEK kimlik ilkesini bozmadan: isim yine
+// GB_ISIM_ANAHTARI'nda saklanıyor (kayitliIsmiGetir/ismiKaydet), aynı bildirimEkle()
+// fonksiyonu çağrılıyor — iki ayrı "kullanıcı" oluşmuyor, sadece iki farklı erişim noktası.
+let tekPanelSecilenDurum = null;
+
+function tekPanelDurumButonlariniOlustur() {
+  const kapsayici = document.getElementById('tek-panel-durum-satir');
+  if (!kapsayici || kapsayici.children.length) return; // zaten oluşturulduysa tekrar üretme
+  kapsayici.innerHTML = SIRA_DURUM.map((durum) => `
+    <button type="button" class="tek-panel-durum-btn" data-val="${durum}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${DURUM_IKON_PATH[durum]}</svg>
+      <span>${t('durum_' + durum)}</span>
+    </button>`).join("");
+  kapsayici.querySelectorAll('.tek-panel-durum-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tekPanelSecilenDurum = btn.dataset.val;
+      kapsayici.querySelectorAll('.tek-panel-durum-btn').forEach((b) => {
+        const secili = b === btn;
+        b.classList.toggle('aktif', secili);
+        const r = aktifRenkler()[b.dataset.val];
+        b.style.borderColor = secili ? r.border : "";
+        b.style.color = secili ? r.text900 : "";
+      });
+    });
+  });
+}
+
+// sonucuGizle=false: başarılı gönderimden hemen sonra çağrıldığında "gönderildi" mesajını
+// SAKLAR (formu temizlerken mesajı da gizlemesin diye) — panel yeni açıldığında ise varsayılan
+// (true) ile önceki mesaj temizlenir.
+function tekPanelSifirla(sonucuGizle = true) {
+  tekPanelDurumButonlariniOlustur();
+  tekPanelSecilenDurum = null;
+  document.querySelectorAll('#tek-panel-durum-satir .tek-panel-durum-btn').forEach((b) => {
+    b.classList.remove('aktif');
+    b.style.borderColor = "";
+    b.style.color = "";
+  });
+  const isimRow = document.getElementById('tek-panel-isim-row');
+  const isimInput = document.getElementById('tek-panel-isim');
+  const kayitliIsim = kayitliIsmiGetir();
+  if (isimRow) isimRow.style.display = kayitliIsim ? 'none' : 'flex';
+  if (isimInput) isimInput.value = "";
+  const notInput = document.getElementById('tek-panel-not');
+  if (notInput) notInput.value = "";
+  if (sonucuGizle) {
+    const sonucEl = document.getElementById('tek-panel-sonuc');
+    if (sonucEl) sonucEl.style.display = 'none';
+  }
+  const gonderBtn = document.getElementById('tek-panel-gonder');
+  if (gonderBtn) { gonderBtn.disabled = false; gonderBtn.style.opacity = "1"; }
+}
+
+document.getElementById('tek-panel-gonder')?.addEventListener('click', async () => {
+  if (state.lat == null) return;
+  const sonucEl = document.getElementById('tek-panel-sonuc');
+
+  if (!tekPanelSecilenDurum) {
+    sonucEl.textContent = t('tek_panel_durum_gerekli');
+    sonucEl.style.color = "#993C1D";
+    sonucEl.style.display = 'block';
+    return;
+  }
+
+  const isimInput = document.getElementById('tek-panel-isim');
+  let isim = kayitliIsmiGetir();
+  if (!isim) {
+    const girilen = isimInput ? isimInput.value.trim() : "";
+    if (!girilen) {
+      if (isimInput) { isimInput.focus(); isimInput.style.borderColor = "#D85A30"; }
+      sonucEl.textContent = t('isim_gerekli_uyari');
+      sonucEl.style.color = "#993C1D";
+      sonucEl.style.display = 'block';
+      return;
+    }
+    ismiKaydet(girilen);
+    isim = girilen;
+  }
+
+  const not = document.getElementById('tek-panel-not').value.trim();
+  const gonderBtn = document.getElementById('tek-panel-gonder');
+  gonderBtn.disabled = true;
+  gonderBtn.style.opacity = "0.5";
+
+  const sonuc = await bildirimEkle(state.lat, state.lon, tekPanelSecilenDurum, not, isim, state.konumMetni, null);
+
+  gonderBtn.disabled = false;
+  gonderBtn.style.opacity = "1";
+
+  if (sonuc.basarili) {
+    await gbAlaniniGuncelle();
+    tumYorumNoktalariniGoster();
+    sonucEl.textContent = t('bildirim_kaydedildi');
+    sonucEl.style.color = "#177A45";
+    sonucEl.style.display = 'block';
+    tekPanelSifirla(false);
+    yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
+  } else {
+    sonucEl.textContent = sonuc.mesaj || t('gonderilemedi');
+    sonucEl.style.color = "#993C1D";
+    sonucEl.style.display = 'block';
+  }
+});
 
 function gbBeklemeKontrolEt() {
   let sonGonderim = null;

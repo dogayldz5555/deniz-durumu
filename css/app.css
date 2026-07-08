@@ -281,36 +281,76 @@
     z-index: 4600;
     align-items: flex-start;
   }
+  /* Sekme, kenardan çıkan yuvarlak bir "çekme kolu" gibi — ucu sivri bir ok (›) içeriyor.
+     Panel açıkken ok sola döner (‹), böylece "çekip açtım, itip kapatırım" hissi veriyor. */
   .tam-ekran-yorumlar-tab {
     background: var(--ink);
     color: #fff;
     border: none;
-    padding: 10px 12px;
-    border-radius: 0 10px 10px 0;
-    font-size: 11.5px;
-    font-weight: 600;
+    padding: 12px 7px;
+    border-radius: 0 14px 14px 0;
     font-family: inherit;
     cursor: pointer;
-    max-width: 88px;
-    line-height: 1.3;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
   }
+  .tam-ekran-yorumlar-tab-etiket {
+    font-size: 10px;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.02em;
+  }
+  .tam-ekran-yorumlar-tab-ok { transition: transform 0.2s; flex-shrink: 0; }
+  .tam-ekran-yorumlar-wrap.acik .tam-ekran-yorumlar-tab-ok { transform: rotate(180deg); }
   .tam-ekran-yorumlar-kart {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-left: none;
     border-radius: 0 12px 12px 0;
     box-shadow: 2px 4px 20px rgba(0,0,0,0.25);
-    padding: 8px 10px;
-    width: 220px;
-    max-height: min(280px, calc(100vh - 40px));
+    padding: 12px 12px 8px;
+    width: 250px;
+    max-height: min(520px, calc(100vh - 40px));
     overflow-y: auto;
   }
+  .tam-ekran-yorumlar-baslik { font-family: "Fraunces", Georgia, serif; font-size: 14.5px; font-weight: 600; color: var(--text-h1); margin: 0 0 8px; }
+  .tek-panel-isim-row { display: flex; gap: 6px; margin-bottom: 8px; }
+  .tek-panel-isim-row input {
+    flex: 1; min-width: 0; height: 32px; border-radius: 8px;
+    border: 1px solid var(--gb-input-border); padding: 0 10px; font-size: 12.5px; font-family: inherit;
+  }
+  .tek-panel-durum-satir { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-bottom: 8px; }
+  .tek-panel-durum-btn {
+    display: flex; align-items: center; gap: 5px; justify-content: center;
+    padding: 7px 4px; border-radius: 8px; border: 1px solid rgba(40,40,30,0.12);
+    background: #fff; color: #6B6A60; cursor: pointer; font-size: 10.5px; font-weight: 500;
+    font-family: inherit; transition: all 0.15s;
+  }
+  .tek-panel-durum-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .tek-panel-durum-btn.aktif { border-width: 1.5px; }
+  .tek-panel-not-row { margin-bottom: 8px; }
+  .tek-panel-not-row input {
+    width: 100%; height: 32px; border-radius: 8px; border: 1px solid var(--gb-input-border);
+    padding: 0 10px; font-size: 12.5px; font-family: inherit; box-sizing: border-box;
+  }
+  .tek-panel-gonder-btn {
+    width: 100%; height: 34px; border-radius: 8px; border: none;
+    background: linear-gradient(155deg, var(--ink-2) 0%, var(--ink) 100%);
+    color: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .tek-panel-gonder-btn:disabled { opacity: 0.5; cursor: default; }
+  .tek-panel-sonuc { font-size: 11.5px; margin-top: 6px; font-weight: 500; }
+  .tek-panel-ayrac { border-top: 1px solid rgba(20,33,61,0.1); margin: 10px 0; }
   .tam-ekran-yorumlar-kart .yan-panel-item { padding: 7px 2px; }
   .tam-ekran-yorumlar-kart .yan-panel-ad { font-size: 12px; }
   .tam-ekran-yorumlar-kart .yan-panel-meta { font-size: 10px; }
   .tam-ekran-yorumlar-kart .yan-panel-empty { font-size: 11.5px; }
+  @media (max-width: 480px) {
+    .tam-ekran-yorumlar-kart { width: min(240px, calc(100vw - 60px)); }
+  }
   .map-buyut-kontrol a {
     width: 30px;
     height: 30px;
@@ -1106,6 +1146,49 @@
   }
   .istatistik-serit .sayi { font-size: 19px; font-weight: 800; line-height: 1.15; margin-bottom: 3px; }
   .istatistik-serit .etiket { font-size: 11px; color: rgba(255,255,255,0.68); }
+
+  /* === Nasıl Kullanılır — sadece anasayfada (il/ilçe sayfalarına kasıtlı olarak
+     kopyalanmadı, tekrarlayan/genel içerik ilçeye özel sayfalarda SEO açısından
+     avantaj sağlamaz, bkz. proje notları) === */
+  .nasil-kullanilir { max-width: 1180px; margin: 44px auto 0; padding: 0 24px; }
+  .nasil-kullanilir h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-h1);
+    margin: 0 0 4px;
+    text-align: center;
+  }
+  .nasil-kullanilir-alt {
+    font-size: 13px;
+    color: var(--text-sub);
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  .nasil-kullanilir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 780px) { .nasil-kullanilir-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .nasil-kullanilir-grid { grid-template-columns: 1fr; } }
+  .nk-adim {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px 17px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
+  }
+  .nk-ust { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .nk-no {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-bg), var(--gold));
+    color: #fff; font-size: 11.5px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nk-ikon { font-size: 19px; }
+  .nk-adim h3 { font-size: 14px; font-weight: 600; color: var(--text-h1); margin: 0 0 5px; }
+  .nk-adim p { font-size: 12.5px; color: var(--text-sub); line-height: 1.55; margin: 0; }
 
   /* === Alt üç sütun (İllerimiz / Yorumlar / Hakkında) === */
   .alt-grid {
