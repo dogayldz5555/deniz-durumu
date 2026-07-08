@@ -181,9 +181,9 @@ ${sayfaKonumJs}<script>
 
     <div class="legend">
       <span><span class="dot" style="background:#1D7FC2"></span><span data-i18n="durum_carsaf">Çok iyi</span></span>
-      <span><span class="dot" style="background:#1FA35C"></span><span data-i18n="durum_hafif">Orta</span></span>
-      <span><span class="dot" style="background:#E07B1E"></span><span data-i18n="durum_fazla">Kötü</span></span>
-      <span><span class="dot" style="background:#D9362E"></span><span data-i18n="durum_tehlikeli">Tehlikeli</span></span>
+      <span><span class="dot" style="background:#1FA35C"></span><span data-i18n="durum_hafif">İyi</span></span>
+      <span><span class="dot" style="background:#E07B1E"></span><span data-i18n="durum_fazla">Orta</span></span>
+      <span><span class="dot" style="background:#D9362E"></span><span data-i18n="durum_tehlikeli">Fazla dalga</span></span>
     </div>
   </div>
 
@@ -238,9 +238,9 @@ ${sayfaKonumJs}<script>
     <div class="gb-title" data-i18n="deniz_nasil_baslik">Şu an oradaysan deniz nasıl?</div>
     <div class="gb-buttons">
       <button class="gb-btn" data-val="carsaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg><span data-i18n="durum_carsaf">Çok iyi</span></button>
-      <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><span data-i18n="durum_hafif">Orta</span></button>
-      <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="durum_fazla">Kötü</span></button>
-      <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="durum_tehlikeli">Tehlikeli</span></button>
+      <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><span data-i18n="durum_hafif">İyi</span></button>
+      <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="durum_fazla">Orta</span></button>
+      <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="durum_tehlikeli">Fazla dalga</span></button>
     </div>
     <div class="gb-foto-row" id="gb-foto-row" style="display:none;">
       <label for="gb-foto-input" class="gb-foto-btn" id="gb-foto-btn">
