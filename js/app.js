@@ -62,8 +62,7 @@ const CEVIRI = {
     gun_kaydir_ipucu: "Kaydırarak ertesi günün dalga ve hava tahminlerini görebilirsin.",
     sahadan_gelenler: "Sahadan gelenler",
     deniz_nasil_baslik: "Şu an oradaysan deniz nasıl?",
-    durum_carsaf: "Mükemmel",
-    durum_iyi: "İyi",
+    durum_carsaf: "Çok iyi",
     durum_hafif: "Orta",
     durum_fazla: "Kötü",
     durum_tehlikeli: "Tehlikeli",
@@ -161,16 +160,18 @@ const CEVIRI = {
     foto_gizlendi: "Fotoğraf, birden fazla bildirim nedeniyle gizlendi.",
     kullanici_fotografi: "Kullanıcı fotoğrafı",
     anonim: "Anonim",
-    etiket_carsaf: "Çarşaf gibi",
-    etiket_iyi: "Deniz iyi görünüyor",
+    etiket_carsaf: "Deniz çok iyi görünüyor",
     etiket_hafif: "Hafif dalgalı",
     etiket_fazla: "Fazla dalga var",
     etiket_tehlikeli: "Tehlikeli, denize girmeyin",
-    etiket_kisa_carsaf: "mükemmel",
-    etiket_kisa_iyi: "iyi",
+    etiket_kisa_carsaf: "çok iyi",
     etiket_kisa_hafif: "orta",
     etiket_kisa_fazla: "kötü",
     etiket_kisa_tehlikeli: "tehlikeli",
+    etiket_alt_carsaf: "Dalgasız, çarşaf gibi dümdüz bir deniz",
+    etiket_alt_hafif: "Hâlâ rahatça girilir, sadece hafif bir dalga var",
+    etiket_alt_fazla: "Girmek riskli olabilir, dikkatli ol",
+    etiket_alt_tehlikeli: "Denize girmeyin",
   },
   en: {
     site_baslik: "SeaDataWave",
@@ -200,8 +201,7 @@ const CEVIRI = {
     gun_kaydir_ipucu: "Swipe to see tomorrow's wave and weather forecast.",
     sahadan_gelenler: "From the field",
     deniz_nasil_baslik: "If you're there right now, how's the sea?",
-    durum_carsaf: "Flat calm",
-    durum_iyi: "Good",
+    durum_carsaf: "Very good",
     durum_hafif: "Light",
     durum_fazla: "Rough",
     durum_tehlikeli: "Dangerous",
@@ -299,16 +299,18 @@ const CEVIRI = {
     foto_gizlendi: "Photo hidden due to multiple reports.",
     kullanici_fotografi: "User photo",
     anonim: "Anonymous",
-    etiket_carsaf: "Flat calm",
-    etiket_iyi: "Sea looks good",
+    etiket_carsaf: "Sea looks great",
     etiket_hafif: "Slightly choppy",
     etiket_fazla: "Quite rough",
     etiket_tehlikeli: "Dangerous, don't swim",
-    etiket_kisa_carsaf: "flat calm",
-    etiket_kisa_iyi: "good",
+    etiket_kisa_carsaf: "very good",
     etiket_kisa_hafif: "slightly choppy",
     etiket_kisa_fazla: "quite rough",
     etiket_kisa_tehlikeli: "dangerous",
+    etiket_alt_carsaf: "Flat, calm water with no waves",
+    etiket_alt_hafif: "Still fine to swim, just a light wave",
+    etiket_alt_fazla: "Getting in may be risky, be careful",
+    etiket_alt_tehlikeli: "Don't go in the water",
   },
 };
 function t(key, ...args) {
@@ -316,21 +318,21 @@ function t(key, ...args) {
   return typeof val === "function" ? val(...args) : val;
 }
 
-// Beş kademe artık net bir mavi/yeşil/sarı/turuncu/kırmızı sırası izliyor (bir trafik
-// ışığı/ısı skalası gibi) — önceki paletteki çarşaf/iyi ikilisi ikisi de yeşil/turkuaz
-// olduğu için birbirine çok yakın görünüyordu, bu karışıklığı gideriyoruz.
+// Dört kademe net bir yeşil/sarı/turuncu/kırmızı trafik-ışığı sırası izliyor. Eskiden
+// "carsaf" (mavi, dalgasız/dümdüz deniz) ve "hafif" (yeşil, az bir dalga ama hâlâ rahatça
+// girilir) ayrı, net bir mavi/yeşil/turuncu/kırmızı ilerleme izliyor — sarı kasıtlı olarak
+// kullanılmıyor, çünkü "hafif dalgalı" gibi aslında hâlâ iyi bir durumun sarı (uyarı rengi)
+// görünmesi kullanıcıyı yanlışlıkla tedirgin ediyordu (bkz. proje notları, 2026-07-08).
 const RENK_GUNDUZ = {
   carsaf:    { bg: "#DCEEFB", border: "#1D7FC2", text900: "#0A2E42", text600: "#155D82", marker: "#1D7FC2" },
-  iyi:       { bg: "#DFF5E4", border: "#1FA35C", text900: "#0B3D22", text600: "#177A45", marker: "#1FA35C" },
-  hafif:     { bg: "#FBF1CB", border: "#DBAE00", text900: "#453600", text600: "#8A6D00", marker: "#DBAE00" },
+  hafif:     { bg: "#DFF5E4", border: "#1FA35C", text900: "#0B3D22", text600: "#177A45", marker: "#1FA35C" },
   fazla:     { bg: "#FCE6CE", border: "#E07B1E", text900: "#472000", text600: "#95500D", marker: "#E07B1E" },
   tehlikeli: { bg: "#FADAD6", border: "#D9362E", text900: "#4A0F0B", text600: "#A3271F", marker: "#D9362E" },
   notr:      { bg: "#F1EFE8", border: "#888780", text900: "#2C2C2A", text600: "#5F5E5A", marker: "#888780" },
 };
 const RENK_GECE = {
   carsaf:    { bg: "#122A3D", border: "#4FB3E8", text900: "#BEE6FB", text600: "#7FCBEF", marker: "#4FB3E8" },
-  iyi:       { bg: "#123321", border: "#3ECB7A", text900: "#AEECC7", text600: "#66DC9B", marker: "#3ECB7A" },
-  hafif:     { bg: "#362D10", border: "#E8CB3D", text900: "#F7ECA8", text600: "#E9D06E", marker: "#E8CB3D" },
+  hafif:     { bg: "#123321", border: "#3ECB7A", text900: "#AEECC7", text600: "#66DC9B", marker: "#3ECB7A" },
   fazla:     { bg: "#3A2A12", border: "#E8963D", text900: "#FCDFB4", text600: "#F2BC79", marker: "#E8963D" },
   tehlikeli: { bg: "#3A1712", border: "#E85A4A", text900: "#FCC9C0", text600: "#F4917F", marker: "#E85A4A" },
   notr:      { bg: "#22293A", border: "#6E7FA0", text900: "#D5DCEC", text600: "#9FAEC8", marker: "#6E7FA0" },
@@ -345,6 +347,10 @@ function aktifRenkler() {
 // ETIKET_KISA(durum) şeklinde kullanır, dil değişince otomatik doğru dile döner.
 function ETIKET(durum) { return t('etiket_' + durum); }
 function ETIKET_KISA(durum) { return t('etiket_kisa_' + durum); }
+// Ana başlığın (ör. "Deniz çok iyi görünüyor") hemen altında, parantez içinde gösterilen
+// kısa açıklama — her kademenin ne anlama geldiğini (girilebilir mi, dikkat mi gerekir)
+// tek bakışta netleştirir (kullanıcı isteği, 2026-07-08).
+function ETIKET_ALT(durum) { return t('etiket_alt_' + durum); }
 
 // Yorum balonlarında isim rengi, o kişinin seçtiği duruma göre DEĞİL sabit koyu bir
 // renkle gösterilir — böylece "kim yazmış" her zaman aynı, tutarlı, okunaklı renkte
@@ -355,7 +361,6 @@ const YORUM_ISIM_RENGI = "#181818";
 // gerçekten "oy vermişim gibi" görünsün diye aynı ikonografiyi tekrar kullanıyoruz.
 const DURUM_IKON_PATH = {
   carsaf: '<line x1="3" y1="12" x2="21" y2="12"/>',
-  iyi: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
   hafif: '<path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/>',
   fazla: '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
   tehlikeli: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
@@ -441,8 +446,11 @@ function begeniButonlariHtml(gb) {
 
 // Türkiye kıyılarını saran denizler için kabaca bölgesel sınırlar (basit dikdörtgen yaklaşımı).
 // Karadeniz fetch mesafesi çok uzun olduğundan aynı rüzgarda daha büyük dalga oluşur;
-// bu yüzden eşikler denize göre değişir. Her bölge için BEŞ kademe tanımlı:
-// çarşaf / iyi / hafif_dalgali / fazla_dalgali / tehlikeli — yani 4 sınır değeri.
+// bu yüzden eşikler denize göre değişir. Her bölge için DÖRT kademe tanımlı:
+// carsaf(çok iyi) / hafif_dalgali / fazla_dalgali / tehlikeli — yani 3 sınır değeri.
+// (Eskiden "iyi" diye ayrı bir beşinci kademe vardı; 2026-07-08'de "carsaf" ile birleştirildi
+// çünkü sarı renkli "hafif dalgalı" ile çok yakın durup gerçek kullanıcı deneyiminde kafa
+// karıştırıyordu — bkz. durumNormallestir().)
 // Referans: Beaufort/Douglas Sea State skalasındaki resmi dalga yüksekliği kademeleri
 // (0.1m calm/sakin, 0.2m hafif esinti, 0.5-0.6m nazik esinti, 1-1.25m orta esinti) — ama bu
 // gemi güvenliği için tasarlanmış bir skala; biz "yüzücü konforu" için daha hassas (daha düşük)
@@ -456,23 +464,23 @@ function begeniButonlariHtml(gb) {
 // kalan kısım (lon >= 27.0) "açık Ege" sayılıyor.
 const DENIZ_BOLGELERI = [
   { id: "karadeniz", ad: "Karadeniz", adEn: "Black Sea", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42,
-    esikDalga:  { carsaf: 0.15, iyi: 0.35, hafif: 0.6, fazla: 1.0 },
-    esikRuzgar: { carsaf: 4,    iyi: 7,    hafif: 14,  fazla: 22  } },
+    esikDalga:  { carsaf: 0.35, hafif: 0.6, fazla: 1.0 },
+    esikRuzgar: { carsaf: 7,    hafif: 14,  fazla: 22  } },
   { id: "marmara",   ad: "Marmara",   adEn: "Sea of Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0,
-    esikDalga:  { carsaf: 0.15, iyi: 0.4,  hafif: 0.7, fazla: 1.2 },
-    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,  fazla: 28  } },
+    esikDalga:  { carsaf: 0.4,  hafif: 0.7, fazla: 1.2 },
+    esikRuzgar: { carsaf: 10,   hafif: 18,  fazla: 28  } },
   { id: "ege_koy",   ad: "Ege (adalar/koy)", adEn: "Aegean (islands/coves)", latMin: 36.0, latMax: 40.5, lonMin: 23.0, lonMax: 27.0,
-    esikDalga:  { carsaf: 0.2,  iyi: 0.5,  hafif: 0.9, fazla: 1.5 },
-    esikRuzgar: { carsaf: 6,    iyi: 13,   hafif: 22,  fazla: 32  } },
+    esikDalga:  { carsaf: 0.5,  hafif: 0.9, fazla: 1.5 },
+    esikRuzgar: { carsaf: 13,   hafif: 22,  fazla: 32  } },
   { id: "ege_acik",  ad: "Açık Ege", adEn: "Open Aegean", latMin: 36.0, latMax: 40.5, lonMin: 27.0, lonMax: 28.0,
-    esikDalga:  { carsaf: 0.15, iyi: 0.4,  hafif: 0.75, fazla: 1.3 },
-    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,   fazla: 28  } },
+    esikDalga:  { carsaf: 0.4,  hafif: 0.75, fazla: 1.3 },
+    esikRuzgar: { carsaf: 10,   hafif: 18,   fazla: 28  } },
   { id: "akdeniz",   ad: "Akdeniz",   adEn: "Mediterranean",   latMin: 34.0, latMax: 37.5, lonMin: 27.5, lonMax: 36.7,
-    esikDalga:  { carsaf: 0.15, iyi: 0.35, hafif: 0.7, fazla: 1.2 },
-    esikRuzgar: { carsaf: 5,    iyi: 10,   hafif: 18,  fazla: 28  } },
+    esikDalga:  { carsaf: 0.35, hafif: 0.7, fazla: 1.2 },
+    esikRuzgar: { carsaf: 10,   hafif: 18,  fazla: 28  } },
 ];
-const VARSAYILAN_ESIK_DALGA  = { carsaf: 0.15, iyi: 0.45, hafif: 0.8, fazla: 1.3 };
-const VARSAYILAN_ESIK_RUZGAR = { carsaf: 5,    iyi: 10,   hafif: 18, fazla: 26  };
+const VARSAYILAN_ESIK_DALGA  = { carsaf: 0.45, hafif: 0.8, fazla: 1.3 };
+const VARSAYILAN_ESIK_RUZGAR = { carsaf: 10,   hafif: 18, fazla: 26  };
 
 // Limanlar/marinalar mendirek ve dalgakıranlarla korunduğu için açık denizden çok daha sakin
 // kalır — bu insan yapımı yapılar hiçbir koordinat veri setinde otomatik tespit edilemediği
@@ -481,8 +489,8 @@ const VARSAYILAN_ESIK_RUZGAR = { carsaf: 5,    iyi: 10,   hafif: 18, fazla: 26  
 // Kaynak: Samsun Limanı koordinatı (41°18'00"K, 36°22'00"D) akademik kaynaktan alındı.
 const LIMANLAR = [
   { ad: "Samsun Limanı", adEn: "Port of Samsun", lat: 41.30, lon: 36.367, yaricapKm: 1.2,
-    esikDalga:  { carsaf: 0.3, iyi: 0.6, hafif: 1.0, fazla: 1.6 },
-    esikRuzgar: { carsaf: 8,   iyi: 16,  hafif: 26,  fazla: 38  } },
+    esikDalga:  { carsaf: 0.6, hafif: 1.0, fazla: 1.6 },
+    esikRuzgar: { carsaf: 16,  hafif: 26,  fazla: 38  } },
 ];
 // Kurupelit/Atakum'daki Körfez Marina'yı BURAYA sabit/gevşek eşikli bir liman olarak
 // eklemedik — test ettiğimizde (bkz. proje notları) o havza güney/batıdan tam korunaklı
@@ -804,12 +812,11 @@ function halkPlajiBul(lat, lon) {
   return enYakin;
 }
 
-const SIRA_DURUM = ["carsaf", "iyi", "hafif", "fazla", "tehlikeli"];
+const SIRA_DURUM = ["carsaf", "hafif", "fazla", "tehlikeli"];
 
 function tekOlcutDurumu(deger, esik) {
   if (deger == null) return null;
   if (deger < esik.carsaf) return "carsaf";
-  if (deger < esik.iyi) return "iyi";
   if (deger < esik.hafif) return "hafif";
   if (deger < esik.fazla) return "fazla";
   return "tehlikeli";
@@ -857,7 +864,7 @@ function durumDenizden(dalgaM, kmh, gustKmh, windWaveM, windWavePeriyot, lat, lo
   // Hamle eşiği, ortalama rüzgar eşiğinden biraz daha gevşek tutuluyor — kısa süreli ani
   // esintiler ortalama rüzgar kadar belirleyici olmasın, ama tamamen göz ardı edilmesin.
   const esikHamle = {
-    carsaf: esikRuzgar.carsaf * 1.6, iyi: esikRuzgar.iyi * 1.6,
+    carsaf: esikRuzgar.carsaf * 1.6,
     hafif: esikRuzgar.hafif * 1.4, fazla: esikRuzgar.fazla * 1.3,
   };
 
@@ -1314,7 +1321,6 @@ function fetchTabanliEsik(fetchKm, esikDalgaAcik, esikRuzgarAcik) {
   const carpan = 1 + (1 - oran) * 1.4; // korunaklıysa eşikler ~2.4 kata kadar gevşer
   const carpVer = (esik) => ({
     carsaf: +(esik.carsaf * carpan).toFixed(2),
-    iyi: +(esik.iyi * carpan).toFixed(2),
     hafif: +(esik.hafif * carpan).toFixed(2),
     fazla: +(esik.fazla * carpan).toFixed(2),
   });
@@ -1602,6 +1608,7 @@ async function veriCekVeGoster(lat, lon) {
       const bolge = denizBolgesi(lat, lon);
       const baslikYer = yerAdi || bolgeAdi(bolge);
       const durumBasligi = denizdeyiz ? ETIKET(durum) : t('kiyidan_ruzgar_bilgisi');
+      const durumAltyazi = denizdeyiz ? ETIKET_ALT(durum) : "";
 
       const saatlikSeritHtml = gunGercekMi
         ? saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, r, hava ? hava.time : null)
@@ -1622,6 +1629,7 @@ async function veriCekVeGoster(lat, lon) {
           <div>
             <div class="loc-label" style="color:${r.text600}">${baslikYer ? escapeHtml(baslikYer) + " · " : ""}${lat.toFixed(3)}, ${lon.toFixed(3)}</div>
             <div class="status-label" style="color:${r.text900}">${durumBasligi}</div>
+            ${durumAltyazi ? `<div class="status-alt" style="color:${r.text600}">(${escapeHtml(durumAltyazi)})</div>` : ""}
           </div>
           <div style="display:flex;gap:4px;">
             <button class="refresh-btn" id="share-btn" aria-label="${t('paylas')}" style="color:${r.text600}">
@@ -1768,7 +1776,16 @@ async function veriCekVeGoster(lat, lon) {
   }
 }
 
-const SIRA = ["carsaf", "iyi", "hafif", "fazla", "tehlikeli"];
+const SIRA = ["carsaf", "hafif", "fazla", "tehlikeli"];
+
+// "iyi" kademesi kaldırılıp "carsaf" ile birleştirildi (2026-07-08, kullanıcı isteği —
+// "çarşaf gibi" sarı renkli "hafif dalgalı"ya çok yakın durup kafa karıştırıyordu, ayrıca
+// beşli skala gereksiz ince bulundu). Supabase'te bu değişiklikten ÖNCE gönderilmiş
+// yorumlar hâlâ durum='iyi' olarak saklı olabilir — bunları okurken 'carsaf'a eşitliyoruz,
+// böylece eski veriler için ayrı bir DB migration'a gerek kalmıyor.
+function durumNormallestir(durum) {
+  return durum === 'iyi' ? 'carsaf' : durum;
+}
 
 const GB_PENCERE_SAAT = 2; // deniz durumu birkaç saatte değişebileceği için bildirimler bu süre sonra "eski" sayılır — 2 saat 1 dk'lık bir yorum artık hiçbir yerde (harita/panel) gösterilmez
 
@@ -1789,7 +1806,7 @@ async function bildirimleriGetir(lat, lon) {
       console.error("Supabase okuma hatası:", error);
       return { liste: [], hata: true };
     }
-    return { liste: data.map(d => ({ id: d.id, durum: d.durum, not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, begenmedi: d.begenmedi_sayisi || 0, isim: d.kullanici_adi || t('anonim'), konum: d.konum_metni || null, foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0 })), hata: false };
+    return { liste: data.map(d => ({ id: d.id, durum: durumNormallestir(d.durum), not: d.not_metni || "", zaman: new Date(d.created_at).getTime(), faydali: d.faydali_sayisi || 0, begenmedi: d.begenmedi_sayisi || 0, isim: d.kullanici_adi || t('anonim'), konum: d.konum_metni || null, foto: d.foto_url || null, sikayet: d.sikayet_sayisi || 0 })), hata: false };
   }
   // Supabase bağlı değilse: bu oturumdaki yerel hafızaya düş, ama yine de pencere dışı kalanları süzelim
   const key = konumAnahtari(lat, lon);
@@ -1984,11 +2001,13 @@ async function tumYorumNoktalariniGoster() {
     data.forEach(d => {
       const key = konumGrupAnahtari(d.lat, d.lon);
       if (!gruplar[key]) gruplar[key] = { lat: d.lat, lon: d.lon, kayitlar: [] };
-      gruplar[key].kayitlar.push(d);
+      // durum burada normalize edilir (bkz. durumNormallestir) ki bu grubu okuyan HER
+      // yer (sayım, rozet rengi, liste) eski 'iyi' kayıtlarını ayrıca ele almak zorunda kalmasın.
+      gruplar[key].kayitlar.push({ ...d, durum: durumNormallestir(d.durum) });
     });
 
     Object.entries(gruplar).forEach(([key, grup]) => {
-      const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+      const sayim = { carsaf: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
       grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
       const baskin = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
       const r = aktifRenkler()[baskin];
@@ -2108,7 +2127,7 @@ function yakinYorumlariListeyiDoldur(kapsayiciId) {
   const liste = Object.values(sonGruplarOnbellek)
     .filter(grup => sinirlar.contains([grup.lat, grup.lon]))
     .map(grup => {
-      const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+      const sayim = { carsaf: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
       grup.kayitlar.forEach(d => { sayim[d.durum] = (sayim[d.durum] || 0) + 1; });
       const baskin = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
       const sonZaman = Math.max(...grup.kayitlar.map(d => new Date(d.created_at).getTime()));
@@ -2322,7 +2341,7 @@ async function gbAlaniniGuncelle() {
     return;
   }
 
-  const sayim = { carsaf: 0, iyi: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
+  const sayim = { carsaf: 0, hafif: 0, fazla: 0, tehlikeli: 0 };
   liste.forEach(gb => { sayim[gb.durum]++; });
 
   const baskinDurum = SIRA.reduce((a, b) => sayim[b] >= sayim[a] ? b : a, "carsaf");
