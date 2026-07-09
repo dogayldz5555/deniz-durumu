@@ -6,7 +6,15 @@
       "baslik": "Samsun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Samsun'da deniz bugün nasıl? Atakum ve Terme başta olmak üzere Samsun kıyısı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Samsun, Türkiye'nin Karadeniz kıyısındaki en büyük şehirlerinden biri — sahil şeridinin büyük kısmı, plajları ve gezinti yoluyla şehrin gündelik yaşamının merkezi olan Atakum ilçesinde toplanır. Batıya doğru Yakakent ve Alaçam, doğuya doğru ise Terme ve Çarşamba'ya gelindiğinde kıyı daha sakin ve yeşile döner, nehir deltalarının etkisiyle daha korunaklı koylar görülür. Karadeniz'in genel özelliği gereği, burada rüzgarın karadan mı denizden mi estiği dalga yüksekliğini doğrudan etkiler — kuzeyden esen rüzgar açık denizden geldiği için dalgayı hızla yükseltebilirken, güneyden (karadan) esen rüzgarda deniz genelde daha sakin kalır.",
-      "ilceler": ["atakum", "terme", "ilkadim", "19mayis", "carsamba", "yakakent", "alacam"]
+      "ilceler": [
+        "atakum",
+        "terme",
+        "ilkadim",
+        "19mayis",
+        "carsamba",
+        "yakakent",
+        "alacam"
+      ]
     },
     {
       "slug": "antalya",
@@ -14,7 +22,18 @@
       "baslik": "Antalya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Antalya'da deniz bugün nasıl? Alanya, Kemer, Kaş, Side ve tüm Antalya kıyısındaki halka açık Mavi Bayraklı plajlar için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Antalya, Türkiye'nin Akdeniz kıyısındaki en uzun ve en yoğun turizm şeridine sahip ili — doğuda Gazipaşa'dan başlayıp Alanya, Manavgat, Serik, Antalya merkez (Muratpaşa/Konyaaltı), Kemer, Kumluca, Demre ve batıda Kaş'a kadar uzanır. Bu genişlik, kıyının karakterini de çeşitlendirir: doğu kesiminde (Alanya-Side) uzun kumsallar ve sığ girişler öne çıkarken, batıya gidildikçe (Kemer'den itibaren) Toros Dağları denize iner ve kıyı daha kayalık, koylu bir yapıya bürünür. Akdeniz'in genel olarak Karadeniz'e göre daha uzun periyotlu ve yumuşak dalga ürettiği bilinir, ama yaz öğleden sonraları batı kesiminde de rüzgar belirginleşebilir.",
-      "ilceler": ["gazipasa", "alanya", "manavgat", "serik", "muratpasa", "konyaalti", "kemer", "kumluca", "demre", "kas"]
+      "ilceler": [
+        "gazipasa",
+        "alanya",
+        "manavgat",
+        "serik",
+        "muratpasa",
+        "konyaalti",
+        "kemer",
+        "kumluca",
+        "demre",
+        "kas"
+      ]
     },
     {
       "slug": "mugla",
@@ -22,7 +41,17 @@
       "baslik": "Muğla Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Muğla'da deniz bugün nasıl? Bodrum, Marmaris, Fethiye ve Akyaka için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Muğla, Ege ile Akdeniz'in kesiştiği noktada, Türkiye'nin en girintili çıkıntılı kıyı şeridine sahip illerinden biri — bu yüzden aynı ilde bile kıyı karakteri kısa mesafelerde çok değişir. Bodrum yarımadasının kuzey ve güney kıyıları farklı rüzgar rejimlerine sahiptir (kuzeydeki Gündoğan/Göltürkbükü ile güneydeki Bitez/Ortakent aynı gün çok farklı görünebilir), Marmaris ve çevresindeki körfezler (İçmeler, Orhaniye) rüzgardan büyük ölçüde korunur, Ula'daki Akyaka ise Gökova Körfezi'nin ucunda güçlü öğleden sonra rüzgarıyla (İmbat) tanınır, Fethiye ise Ölüdeniz'in kapalı lagünü sayesinde genelde en sakin kesimlerden biridir.",
-      "ilceler": ["fethiye", "marmaris", "ula", "bodrum"]
+      "ilceler": [
+        "fethiye",
+        "marmaris",
+        "ula",
+        "bodrum",
+        "datca",
+        "milas",
+        "koycegiz",
+        "ortaca",
+        "dalaman"
+      ]
     },
     {
       "slug": "izmir",
@@ -30,7 +59,16 @@
       "baslik": "İzmir Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "İzmir'de deniz bugün nasıl? Çeşme, Foça, Urla, Seferihisar ve tüm İzmir kıyısı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "İzmir'in kıyı şeridi, kuzeyde Dikili ve Foça'nın nispeten sakin koylarından başlayıp Karaburun yarımadasının rüzgara açık kayalık burunlarından geçerek Urla, Güzelbahçe ve Seferihisar'ın Ege koylarına, güneyde ise Menderes ve Çeşme'ye kadar uzanır. Bu kıyının en belirgin özelliği rüzgardır: özellikle yaz aylarında öğleden sonra hızlanan meltem (imbat), Çeşme'nin Alaçatı kesiminde ve Karaburun'da dalgayı hızla yükseltebilir — bu yüzden buradaki eşikler bazı sakin Ege koylarına göre biraz daha temkinlidir. Sabah saatleri genelde bütün bu kıyı boyunca daha sakin geçer.",
-      "ilceler": ["menderes", "seferihisar", "cesme", "karaburun", "urla", "guzelbahce", "foca", "dikili"]
+      "ilceler": [
+        "menderes",
+        "seferihisar",
+        "cesme",
+        "karaburun",
+        "urla",
+        "guzelbahce",
+        "foca",
+        "dikili"
+      ]
     },
     {
       "slug": "aydin",
@@ -38,7 +76,385 @@
       "baslik": "Aydın Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Aydın'da deniz bugün nasıl? Kuşadası ve Didim için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Aydın'ın kıyı şeridi ilin güneybatısında, Kuşadası ve Didim ilçelerinde toplanır — ikisi de Ege'nin popüler tatil merkezlerinden. Kuşadası, kuzeyde İzmir Körfezi'ne yakın konumu ve kruvaziyer limanıyla; Didim ise güneyde, Apollon Tapınağı'nın hemen yanı başındaki Altınkum sahiliyle bilinir. Bölge, Ege'nin tipik yaz rüzgar düzenine (sabah sakin, öğleden sonra belirginleşen meltem) tabidir.",
-      "ilceler": ["didim", "kusadasi"]
+      "ilceler": [
+        "didim",
+        "kusadasi"
+      ]
+    },
+    {
+      "slug": "istanbul",
+      "ad": "İstanbul",
+      "baslik": "İstanbul Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "İstanbul'da deniz bugün nasıl? Şile, Silivri ve Büyükçekmece için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "İstanbul, hem Karadeniz hem Marmara Denizi'ne kıyısı olan tek Türkiye ili — Boğaz'ın kuzeyinde Şile'nin Karadeniz'e açık plajları, batıda ise Silivri ve Büyükçekmece'nin Marmara kıyısındaki daha sakin sahilleri bulunur. İki deniz de farklı karakterdedir: Karadeniz tarafı (Şile) daha açık ve dalgalı olabilirken, Marmara tarafı genelde daha korunaklıdır.",
+      "merkez": {
+        "lat": 41.02,
+        "lon": 28.95,
+        "zoom": 9
+      },
+      "ilceler": [
+        "sile",
+        "silivri",
+        "buyukcekmece"
+      ]
+    },
+    {
+      "slug": "kocaeli",
+      "ad": "Kocaeli",
+      "baslik": "Kocaeli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kocaeli'de deniz bugün nasıl? Kandıra (Kefken), Karamürsel ve Gölcük için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kocaeli'nin kıyısı iki farklı denize bakar — kuzeyde Kandıra ilçesinin Kefken sahili Karadeniz'e açılırken, güneyde İzmit Körfezi boyunca sıralanan Karamürsel ve Gölcük ise Marmara Denizi'nin sakin, körfez içi sularına kıyıdır.",
+      "merkez": {
+        "lat": 40.85,
+        "lon": 29.9,
+        "zoom": 9
+      },
+      "ilceler": [
+        "kandira",
+        "karamursel",
+        "golcuk"
+      ]
+    },
+    {
+      "slug": "sakarya",
+      "ad": "Sakarya",
+      "baslik": "Sakarya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Sakarya'da deniz bugün nasıl? Karasu ve Kaynarca için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Sakarya'nın Karadeniz kıyısı, Karasu ve Kaynarca ilçelerinde toplanır — Sakarya Nehri'nin denize döküldüğü bölgeye yakın, uzun kumsallarıyla bilinen bir kesim. Karadeniz'in açık yapısı nedeniyle kuzeyden esen rüzgarda dalga hızla yükselebilir.",
+      "merkez": {
+        "lat": 41.15,
+        "lon": 30.75,
+        "zoom": 10
+      },
+      "ilceler": [
+        "karasu",
+        "kaynarca"
+      ]
+    },
+    {
+      "slug": "duzce",
+      "ad": "Düzce",
+      "baslik": "Düzce Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Düzce Akçakoca'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Düzce'nin tek kıyı ilçesi Akçakoca — Karadeniz'e açık, ormanlık tepelerin denize indiği bir sahil şeridine sahip, sakin bir tatil beldesi.",
+      "merkez": {
+        "lat": 41.085,
+        "lon": 31.1181,
+        "zoom": 11
+      },
+      "ilceler": [
+        "akcakoca"
+      ]
+    },
+    {
+      "slug": "zonguldak",
+      "ad": "Zonguldak",
+      "baslik": "Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Zonguldak'ta deniz bugün nasıl? Zonguldak merkez ve Karadeniz Ereğli için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Zonguldak, Türkiye'nin kömür havzasıyla bilinen Batı Karadeniz ili — kıyısı hem Zonguldak merkezde hem de daha doğudaki Karadeniz Ereğli'de kayalık koylar ve limanlarla şekillenir. Karadeniz'in genel özelliği gereği kuzeyden esen rüzgar dalgayı hızla büyütebilir.",
+      "merkez": {
+        "lat": 41.4,
+        "lon": 31.6,
+        "zoom": 9
+      },
+      "ilceler": [
+        "zonguldak-merkez",
+        "karadeniz-eregli"
+      ]
+    },
+    {
+      "slug": "bartin",
+      "ad": "Bartın",
+      "baslik": "Bartın Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bartın Amasra'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bartın'ın en bilinen kıyı beldesi Amasra — tarihi kalesi ve iki küçük koyuyla (Büyük Liman/Küçük Liman) bilinen, Karadeniz'e açık şirin bir liman kasabası.",
+      "merkez": {
+        "lat": 41.7502,
+        "lon": 32.3919,
+        "zoom": 12
+      },
+      "ilceler": [
+        "amasra"
+      ]
+    },
+    {
+      "slug": "kastamonu",
+      "ad": "Kastamonu",
+      "baslik": "Kastamonu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kastamonu'da deniz bugün nasıl? Cide ve İnebolu için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kastamonu'nun Karadeniz kıyısı, dağların denize dik indiği Cide ve İnebolu ilçelerinde toplanır — ikisi de el değmemiş plajları ve sakin kıyı kasabası havasıyla bilinir.",
+      "merkez": {
+        "lat": 41.93,
+        "lon": 33.5,
+        "zoom": 9
+      },
+      "ilceler": [
+        "cide",
+        "inebolu"
+      ]
+    },
+    {
+      "slug": "sinop",
+      "ad": "Sinop",
+      "baslik": "Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Sinop'ta deniz bugün nasıl? Sinop merkez, Gerze ve Ayancık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Sinop, Karadeniz'in en kuzeye çıkıntı yapan yarımadasında yer alır — bu coğrafi konum, ilin hem doğu hem batı yönlerine açık koylara sahip olmasını sağlar. Sinop merkez, Gerze ve Ayancık ilinin başlıca kıyı ilçeleridir.",
+      "merkez": {
+        "lat": 42,
+        "lon": 34.9,
+        "zoom": 9
+      },
+      "ilceler": [
+        "sinop-merkez",
+        "gerze",
+        "ayancik"
+      ]
+    },
+    {
+      "slug": "ordu",
+      "ad": "Ordu",
+      "baslik": "Ordu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ordu'da deniz bugün nasıl? Altınordu, Fatsa, Ünye ve Perşembe için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ordu, fındık bahçeleriyle çevrili yeşil tepelerin Karadeniz'e indiği bir sahil ili — kıyı şeridi merkez ilçe Altınordu'dan başlayıp batıda Ünye ve Fatsa'ya, doğuda Perşembe'ye kadar uzanır.",
+      "merkez": {
+        "lat": 41,
+        "lon": 37.5,
+        "zoom": 9
+      },
+      "ilceler": [
+        "altinordu",
+        "fatsa",
+        "unye",
+        "persembe"
+      ]
+    },
+    {
+      "slug": "giresun",
+      "ad": "Giresun",
+      "baslik": "Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Giresun'da deniz bugün nasıl? Giresun merkez, Bulancak, Tirebolu ve Görele için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Giresun, adasıyla (Giresun Adası) bilinen bir Orta Karadeniz ili — kıyı şeridi merkez ilçeden batıda Bulancak'a, doğuda Tirebolu ve Görele'ye kadar uzanır, fındık bahçeleriyle kaplı yamaçlar denize iner.",
+      "merkez": {
+        "lat": 40.95,
+        "lon": 38.6,
+        "zoom": 9
+      },
+      "ilceler": [
+        "giresun-merkez",
+        "bulancak",
+        "tirebolu",
+        "gorele"
+      ]
+    },
+    {
+      "slug": "trabzon",
+      "ad": "Trabzon",
+      "baslik": "Trabzon Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Trabzon'da deniz bugün nasıl? Ortahisar, Akçaabat, Of, Yomra, Araklı ve Vakfıkebir için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Trabzon, Doğu Karadeniz'in en bilinen ili — merkez ilçe Ortahisar'dan batıya Akçaabat ve Vakfıkebir'e, doğuya Yomra, Araklı ve Of'a uzanan kıyı şeridi, yeşil dağların denize dik indiği tipik bir Karadeniz manzarası sunar.",
+      "merkez": {
+        "lat": 41,
+        "lon": 39.7,
+        "zoom": 9
+      },
+      "ilceler": [
+        "ortahisar",
+        "akcaabat",
+        "of",
+        "yomra",
+        "arakli",
+        "vakfikebir"
+      ]
+    },
+    {
+      "slug": "rize",
+      "ad": "Rize",
+      "baslik": "Rize Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Rize'de deniz bugün nasıl? Rize merkez, Çayeli, Pazar, Ardeşen ve Fındıklı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Rize, çay bahçeleriyle kaplı sisli yamaçlarıyla bilinen bir Doğu Karadeniz ili — dağların denize neredeyse dik indiği dar bir kıyı şeridi, merkez ilçeden doğuya Çayeli, Pazar, Ardeşen ve Fındıklı'ya kadar uzanır.",
+      "merkez": {
+        "lat": 41.05,
+        "lon": 40.7,
+        "zoom": 10
+      },
+      "ilceler": [
+        "rize-merkez",
+        "cayeli",
+        "pazar-rize",
+        "ardesen",
+        "findikli"
+      ]
+    },
+    {
+      "slug": "artvin",
+      "ad": "Artvin",
+      "baslik": "Artvin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Artvin Hopa ve Arhavi'de deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Artvin'in kıyı şeridi, Türkiye'nin Gürcistan sınırına en yakın ilçeleri Hopa ve Arhavi'de toplanır — Karadeniz'in doğu ucunda, yeşil dağların denize dik indiği bir kesim.",
+      "merkez": {
+        "lat": 41.4,
+        "lon": 41.4,
+        "zoom": 10
+      },
+      "ilceler": [
+        "hopa",
+        "arhavi"
+      ]
+    },
+    {
+      "slug": "yalova",
+      "ad": "Yalova",
+      "baslik": "Yalova Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Yalova'da deniz bugün nasıl? Yalova merkez ve Çınarcık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Yalova, Marmara Denizi'nin güney kıyısında, İstanbul'a yakınlığı ve termal kaynaklarıyla bilinen küçük bir il — kıyısı merkez ilçe ve batısındaki Çınarcık'ta toplanır, Marmara'nın genelde sakin sularına açılır.",
+      "merkez": {
+        "lat": 40.65,
+        "lon": 29.2,
+        "zoom": 11
+      },
+      "ilceler": [
+        "yalova-merkez",
+        "cinarcik"
+      ]
+    },
+    {
+      "slug": "bursa",
+      "ad": "Bursa",
+      "baslik": "Bursa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bursa'da deniz bugün nasıl? Mudanya ve Gemlik için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bursa'nın Marmara Denizi'ne kıyısı, Mudanya ve Gemlik ilçelerinde toplanır — ikisi de körfez içi, genelde sakin sulara sahip liman kasabaları.",
+      "merkez": {
+        "lat": 40.4,
+        "lon": 29,
+        "zoom": 10
+      },
+      "ilceler": [
+        "mudanya",
+        "gemlik"
+      ]
+    },
+    {
+      "slug": "balikesir",
+      "ad": "Balıkesir",
+      "baslik": "Balıkesir Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Balıkesir'de deniz bugün nasıl? Ayvalık, Edremit, Burhaniye, Erdek ve Bandırma için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Balıkesir, hem Marmara Denizi'ne (Erdek, Bandırma) hem Ege Denizi'ne (Ayvalık, Burhaniye, Edremit, Gömeç) kıyısı olan geniş bir il — Ayvalık'ın adalarla dolu kıyısı ile Erdek'in Marmara'daki daha sakin sahilleri çok farklı karakterdedir.",
+      "merkez": {
+        "lat": 39.65,
+        "lon": 27.9,
+        "zoom": 8
+      },
+      "ilceler": [
+        "ayvalik",
+        "edremit",
+        "burhaniye",
+        "gomec",
+        "erdek",
+        "bandirma"
+      ]
+    },
+    {
+      "slug": "canakkale",
+      "ad": "Çanakkale",
+      "baslik": "Çanakkale Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Çanakkale'de deniz bugün nasıl? Ayvacık (Assos), Bozcaada, Gökçeada, Gelibolu ve Lapseki için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Çanakkale, Çanakkale Boğazı'nın iki yakasında hem Ege hem Marmara'ya kıyısı olan bir il — Ege tarafında antik Assos'un bulunduğu Ayvacık ile adalar Bozcaada ve Gökçeada rüzgara açık ve dalgalı olabilirken, Boğaz içindeki Lapseki ve Gelibolu daha korunaklıdır.",
+      "merkez": {
+        "lat": 40,
+        "lon": 26.3,
+        "zoom": 8
+      },
+      "ilceler": [
+        "ayvacik",
+        "bozcaada",
+        "gokceada",
+        "lapseki",
+        "gelibolu"
+      ]
+    },
+    {
+      "slug": "tekirdag",
+      "ad": "Tekirdağ",
+      "baslik": "Tekirdağ Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Tekirdağ'da deniz bugün nasıl? Tekirdağ merkez, Şarköy ve Marmara Ereğlisi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Tekirdağ, Marmara Denizi'nin kuzey kıyısında bağlarıyla ve şarap üretimiyle bilinen bir il — kıyı şeridi merkez ilçeden batıya Şarköy'e, doğuya Marmara Ereğlisi'ne kadar uzanır.",
+      "merkez": {
+        "lat": 40.85,
+        "lon": 27.5,
+        "zoom": 9
+      },
+      "ilceler": [
+        "tekirdag-merkez",
+        "sarkoy",
+        "marmara-ereglisi"
+      ]
+    },
+    {
+      "slug": "mersin",
+      "ad": "Mersin",
+      "baslik": "Mersin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Mersin'de deniz bugün nasıl? Mersin merkez, Erdemli, Silifke (Kızkalesi), Tarsus ve Anamur için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Mersin, Doğu Akdeniz'in uzun ve güneşli kıyı şeridine sahip bir ili — Kızkalesi'nin deniz ortasındaki kalesiyle bilinen Silifke'den, batıdaki Anamur'un muz bahçelerine kadar çeşitlilik gösterir. Akdeniz'in genel özelliği gereği dalga genelde yumuşak ve uzun periyotludur.",
+      "merkez": {
+        "lat": 36.4,
+        "lon": 33.8,
+        "zoom": 8
+      },
+      "ilceler": [
+        "mersin-akdeniz",
+        "erdemli",
+        "silifke",
+        "tarsus",
+        "anamur"
+      ]
+    },
+    {
+      "slug": "adana",
+      "ad": "Adana",
+      "baslik": "Adana Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Adana'da deniz bugün nasıl? Karataş ve Yumurtalık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Adana'nın Akdeniz kıyısı, Seyhan ve Ceyhan nehirlerinin deltalarına yakın Karataş ve Yumurtalık ilçelerinde toplanır — düz, kumlu ve uzun plajlarıyla bilinen bir kesim.",
+      "merkez": {
+        "lat": 36.65,
+        "lon": 35.55,
+        "zoom": 9
+      },
+      "ilceler": [
+        "karatas",
+        "yumurtalik"
+      ]
+    },
+    {
+      "slug": "hatay",
+      "ad": "Hatay",
+      "baslik": "Hatay Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Hatay'da deniz bugün nasıl? Samandağ, Arsuz ve İskenderun için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Hatay, Türkiye'nin en güneyindeki Akdeniz kıyısına sahip ili — Samandağ'ın Asi Nehri deltasına yakın plajları, Arsuz'un zeytinlik yamaçları ve İskenderun Körfezi'nin liman kenti farklı bir kıyı çeşitliliği sunar.",
+      "merkez": {
+        "lat": 36.3,
+        "lon": 35.95,
+        "zoom": 9
+      },
+      "ilceler": [
+        "samandag",
+        "arsuz",
+        "iskenderun"
+      ]
+    },
+    {
+      "slug": "kirklareli",
+      "ad": "Kırklareli",
+      "baslik": "Kırklareli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kırklareli Kıyıköy'de deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kırklareli'nin tek kıyı noktası, Vize ilçesine bağlı Kıyıköy — Karadeniz'e açık, iki nehir ağzı arasında kalan, ormanlarla çevrili sakin bir balıkçı kasabası.",
+      "merkez": {
+        "lat": 41.6383,
+        "lon": 28.0997,
+        "zoom": 12
+      },
+      "ilceler": [
+        "vize"
+      ]
     }
   ],
   "ilceler": [
@@ -50,9 +466,18 @@
       "metaAciklama": "Atakum'da (Samsun) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Atakum, Samsun'un en kalabalık ve şehrin sahil hayatının merkezi olan ilçesi — plaj şeridi, gezinti yolu ve marina burada toplanır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Karadeniz'in bu kesiminde kuzeyden esen rüzgar açık sudan geldiği için dalgayı hızla büyütebilir; karadan (güneyden) estiğinde ise deniz genelde daha sakin kalır.",
       "miniSss": [
-        { "soru": "Atakum'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Atakum'da deniz ne zaman daha sakin olur?", "cevap": "Rüzgar karadan (güneyden) estiğinde deniz genelde daha sakin olur; kuzeyden esen rüzgarda açık sudan gelen dalga hızla büyüyebilir." },
-        { "soru": "Atakum'a en yakın diğer Samsun plajları nerede?", "cevap": "Terme ilçesindeki plajlar, Atakum'a göre daha doğuda ve Yeşilırmak deltasına yakın, genelde daha sakin bir kıyı sunar." }
+        {
+          "soru": "Atakum'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Atakum'da deniz ne zaman daha sakin olur?",
+          "cevap": "Rüzgar karadan (güneyden) estiğinde deniz genelde daha sakin olur; kuzeyden esen rüzgarda açık sudan gelen dalga hızla büyüyebilir."
+        },
+        {
+          "soru": "Atakum'a en yakın diğer Samsun plajları nerede?",
+          "cevap": "Terme ilçesindeki plajlar, Atakum'a göre daha doğuda ve Yeşilırmak deltasına yakın, genelde daha sakin bir kıyı sunar."
+        }
       ]
     },
     {
@@ -63,9 +488,18 @@
       "metaAciklama": "Terme'de (Samsun) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Terme, Samsun'un doğusunda, Yeşilırmak deltasına yakın konumuyla ilin daha sakin ve yeşil kıyı kesimlerinden biri. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Deltanın etkisiyle kıyı şeridi Atakum'a göre daha korunaklıdır.",
       "miniSss": [
-        { "soru": "Terme'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Terme'nin kıyısı neden daha sakin sayılır?", "cevap": "Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar." },
-        { "soru": "Terme'ye en yakın diğer Samsun plajları nerede?", "cevap": "Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip." }
+        {
+          "soru": "Terme'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Terme'nin kıyısı neden daha sakin sayılır?",
+          "cevap": "Yeşilırmak deltasına yakınlığı ve kıyı şeklinin daha korunaklı olması, Terme'yi Samsun'un genelde daha sakin kıyı kesimlerinden biri yapar."
+        },
+        {
+          "soru": "Terme'ye en yakın diğer Samsun plajları nerede?",
+          "cevap": "Atakum ilçesi, şehir merkezine yakın ve Samsun'un en yoğun plaj şeridine sahip."
+        }
       ]
     },
     {
@@ -76,8 +510,14 @@
       "metaAciklama": "İlkadım'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "İlkadım, Samsun'un şehir merkezini oluşturan ilçesi — kıyı şeridi, komşusu Atakum'a göre daha kentsel ve limana yakın bir yapıya sahip. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
       "miniSss": [
-        { "soru": "İlkadım'da hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." },
-        { "soru": "İlkadım, Atakum'a göre nasıl farklı?", "cevap": "Atakum, Samsun'un plaj ve gezinti yoluyla bilinen turizm odaklı ilçesiyken, İlkadım şehrin idari ve ticari merkezine daha yakındır." }
+        {
+          "soru": "İlkadım'da hangi plajlar var?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor."
+        },
+        {
+          "soru": "İlkadım, Atakum'a göre nasıl farklı?",
+          "cevap": "Atakum, Samsun'un plaj ve gezinti yoluyla bilinen turizm odaklı ilçesiyken, İlkadım şehrin idari ve ticari merkezine daha yakındır."
+        }
       ]
     },
     {
@@ -88,7 +528,10 @@
       "metaAciklama": "19 Mayıs'ta (Samsun) deniz bugün nasıl? Kumcağız ve Dereköy dahil {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "19 Mayıs, Samsun'un Bafra ile Atakum arasında kalan, Kumcağız ve Dereköy sahilleriyle bilinen daha sakin bir kıyı ilçesi. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
       "miniSss": [
-        { "soru": "19 Mayıs'ta hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." }
+        {
+          "soru": "19 Mayıs'ta hangi plajlar var?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor."
+        }
       ]
     },
     {
@@ -99,7 +542,10 @@
       "metaAciklama": "Çarşamba'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Çarşamba, Samsun'un doğusunda, Yeşilırmak deltasına yakın konumuyla tarım ve sakin kıyısıyla bilinen bir ilçe. İlçenin halka açık plajı {plajAdlari}. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
       "miniSss": [
-        { "soru": "Çarşamba'da hangi plaj var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor." }
+        {
+          "soru": "Çarşamba'da hangi plaj var?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor."
+        }
       ]
     },
     {
@@ -110,7 +556,10 @@
       "metaAciklama": "Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Yakakent, Samsun'un en batısındaki ilçelerden biri — 14 kilometrelik uzun sahil şeridiyle bilinir. İlçenin halka açık plajı {plajAdlari}. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
       "miniSss": [
-        { "soru": "Yakakent'te hangi plaj var?", "cevap": "{plajAdlari} — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor." }
+        {
+          "soru": "Yakakent'te hangi plaj var?",
+          "cevap": "{plajAdlari} — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor."
+        }
       ]
     },
     {
@@ -121,7 +570,10 @@
       "metaAciklama": "Alaçam'da (Samsun) deniz bugün nasıl? {plajSayisi} halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Alaçam, Samsun'un Sinop sınırındaki en batı ilçesi. İlçenin halka açık plajları arasında {plajAdlari} bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.",
       "miniSss": [
-        { "soru": "Alaçam'da hangi plajlar var?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor." }
+        {
+          "soru": "Alaçam'da hangi plajlar var?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor."
+        }
       ]
     },
     {
@@ -132,8 +584,14 @@
       "metaAciklama": "Gazipaşa'da (Antalya) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Gazipaşa, Antalya'nın en doğusundaki ilçesi — Alanya'nın ötesinde, kendi havalimanına sahip, daha az kalabalık ve sakin plajlarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Gazipaşa'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Gazipaşa Alanya'ya göre daha mı sakindir?", "cevap": "Evet, Gazipaşa turizm yoğunluğu bakımından Alanya'nın gerisinde kalır, bu da plajlarının genelde daha az kalabalık olmasını sağlar." }
+        {
+          "soru": "Gazipaşa'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Gazipaşa Alanya'ya göre daha mı sakindir?",
+          "cevap": "Evet, Gazipaşa turizm yoğunluğu bakımından Alanya'nın gerisinde kalır, bu da plajlarının genelde daha az kalabalık olmasını sağlar."
+        }
       ]
     },
     {
@@ -144,9 +602,18 @@
       "metaAciklama": "Alanya'da deniz bugün nasıl? Kleopatra ve Damlataş dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Alanya, Türkiye'nin en bilinen turizm merkezlerinden biri — dünyaca ünlü Kleopatra Plajı ve tarihi Alanya Kalesi ile tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Yaz aylarında yoğun turizm trafiğine sahne olsa da, deniz durumu değerlendirmesi tamamen o anki rüzgar/dalga verisine dayanır.",
       "miniSss": [
-        { "soru": "Alanya'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Kleopatra Plajı'nda deniz durumu nasıl kontrol edilir?", "cevap": "Yukarıdaki haritadan Kleopatra Doğu/Batı Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayarak anlık rüzgar ve dalga durumunu görebilirsin." },
-        { "soru": "Alanya Gazipaşa'ya göre nasıl farklı?", "cevap": "Alanya çok daha yoğun bir turizm merkezi ve daha uzun/gelişmiş bir plaj şeridine sahipken, komşusu Gazipaşa daha sakin ve az kalabalıktır." }
+        {
+          "soru": "Alanya'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Kleopatra Plajı'nda deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Kleopatra Doğu/Batı Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayarak anlık rüzgar ve dalga durumunu görebilirsin."
+        },
+        {
+          "soru": "Alanya Gazipaşa'ya göre nasıl farklı?",
+          "cevap": "Alanya çok daha yoğun bir turizm merkezi ve daha uzun/gelişmiş bir plaj şeridine sahipken, komşusu Gazipaşa daha sakin ve az kalabalıktır."
+        }
       ]
     },
     {
@@ -157,8 +624,14 @@
       "metaAciklama": "Manavgat ve Side'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Manavgat ilçesi, antik Side kentinin ve ünlü Manavgat Şelalesi'nin bulunduğu bölge — uzun, geniş kumsallarıyla Antalya'nın en bilinen turizm bölgelerinden biri. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Manavgat'ta hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Side'de deniz durumu nasıl kontrol edilir?", "cevap": "Side, idari olarak Manavgat ilçesine bağlıdır — yukarıdaki haritadan Side kıyısındaki Nar Beach plajlarına ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+        {
+          "soru": "Manavgat'ta hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Side'de deniz durumu nasıl kontrol edilir?",
+          "cevap": "Side, idari olarak Manavgat ilçesine bağlıdır — yukarıdaki haritadan Side kıyısındaki Nar Beach plajlarına ya da kıyının herhangi bir noktasına tıklayabilirsin."
+        }
       ]
     },
     {
@@ -169,8 +642,14 @@
       "metaAciklama": "Serik ve Belek'te deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Serik ilçesi, golf tatilleriyle ünlü Belek bölgesini kapsar — çamlık arka planı ve geniş kumsallarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Serik'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Belek'te deniz durumu nasıl kontrol edilir?", "cevap": "Belek, idari olarak Serik ilçesine bağlıdır — yukarıdaki haritadan Belek Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+        {
+          "soru": "Serik'te hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Belek'te deniz durumu nasıl kontrol edilir?",
+          "cevap": "Belek, idari olarak Serik ilçesine bağlıdır — yukarıdaki haritadan Belek Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin."
+        }
       ]
     },
     {
@@ -181,8 +660,14 @@
       "metaAciklama": "Antalya Muratpaşa ve Lara'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Muratpaşa, Antalya şehir merkezinin en kalabalık ilçesi — ünlü Lara plajları burada yer alır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Muratpaşa/Lara'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Muratpaşa, Konyaaltı'ndan nasıl farklı?", "cevap": "Muratpaşa/Lara tarafı kumsal plajlarla bilinirken, komşu Konyaaltı ilçesi daha çok çakıllı bir kıyı şeridine sahiptir." }
+        {
+          "soru": "Muratpaşa/Lara'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Muratpaşa, Konyaaltı'ndan nasıl farklı?",
+          "cevap": "Muratpaşa/Lara tarafı kumsal plajlarla bilinirken, komşu Konyaaltı ilçesi daha çok çakıllı bir kıyı şeridine sahiptir."
+        }
       ]
     },
     {
@@ -193,8 +678,14 @@
       "metaAciklama": "Antalya Konyaaltı'nda deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Konyaaltı, Antalya şehir merkezinin batı yakası — Beydağları'nın manzarasıyla, uzun çakıllı plaj şeridiyle bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Konyaaltı'nda hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Konyaaltı'nda plaj çakıllı mı kumlu mu?", "cevap": "Konyaaltı sahili genel olarak çakıllıdır, komşu Lara/Muratpaşa tarafı ise daha kumludur." }
+        {
+          "soru": "Konyaaltı'nda hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Konyaaltı'nda plaj çakıllı mı kumlu mu?",
+          "cevap": "Konyaaltı sahili genel olarak çakıllıdır, komşu Lara/Muratpaşa tarafı ise daha kumludur."
+        }
       ]
     },
     {
@@ -205,8 +696,14 @@
       "metaAciklama": "Kemer'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Kemer, Toros Dağları'nın denize indiği noktada yer alan, çakıllı koylarıyla bilinen bir Akdeniz ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Kemer'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Kemer'de deniz neden genelde berrak görünür?", "cevap": "Dağların denize dik indiği kayalık/çakıllı kıyı yapısı, Kemer kıyısında suyun genelde daha berrak görünmesini sağlar." }
+        {
+          "soru": "Kemer'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Kemer'de deniz neden genelde berrak görünür?",
+          "cevap": "Dağların denize dik indiği kayalık/çakıllı kıyı yapısı, Kemer kıyısında suyun genelde daha berrak görünmesini sağlar."
+        }
       ]
     },
     {
@@ -217,7 +714,10 @@
       "metaAciklama": "Kumluca'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Kumluca, seracılığıyla bilinen, Kemer ile Demre arasında kalan daha sakin ve az turistik bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Kumluca'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Kumluca'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -228,7 +728,10 @@
       "metaAciklama": "Demre'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Demre, antik Myra kenti ve Aziz Nikolaos (Noel Baba) Kilisesi'yle bilinen tarihi bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}.",
       "miniSss": [
-        { "soru": "Demre'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Demre'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -239,8 +742,14 @@
       "metaAciklama": "Kaş'ta deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Kaş, dalış turizmiyle ünlü, kayalık koylarıyla bilinen ve Yunanistan'a ait Meis (Kastellorizo) adasına çok yakın bir Antalya ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Kaş'ta hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Kaş neden dalış için tercih ediliyor?", "cevap": "Kayalık, derin ve berrak koyları Kaş'ı Türkiye'nin bilinen dalış merkezlerinden biri yapar." }
+        {
+          "soru": "Kaş'ta hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Kaş neden dalış için tercih ediliyor?",
+          "cevap": "Kayalık, derin ve berrak koyları Kaş'ı Türkiye'nin bilinen dalış merkezlerinden biri yapar."
+        }
       ]
     },
     {
@@ -251,8 +760,14 @@
       "metaAciklama": "Fethiye'de deniz bugün nasıl? Ölüdeniz dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Fethiye, yamaç paraşütüyle ünlü Babadağ'ın eteğindeki kapalı lagünü Ölüdeniz ve Kelebekler Vadisi'ne yakınlığıyla bilinen bir Muğla ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Ölüdeniz'in kapalı lagün yapısı, burayı genelde bölgenin en sakin kesimlerinden biri yapar.",
       "miniSss": [
-        { "soru": "Fethiye'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Ölüdeniz neden genelde sakin görünür?", "cevap": "Ölüdeniz kapalı bir lagün olduğu için açık denizden gelen dalgadan büyük ölçüde korunur, bu da onu genelde sakin bir kesim yapar." }
+        {
+          "soru": "Fethiye'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Ölüdeniz neden genelde sakin görünür?",
+          "cevap": "Ölüdeniz kapalı bir lagün olduğu için açık denizden gelen dalgadan büyük ölçüde korunur, bu da onu genelde sakin bir kesim yapar."
+        }
       ]
     },
     {
@@ -263,8 +778,14 @@
       "metaAciklama": "Marmaris'te deniz bugün nasıl? İçmeler ve Orhaniye dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Marmaris, marinası ve gece hayatıyla bilinen büyük bir turizm merkezi — İçmeler ve güneyindeki Orhaniye/Hisarönü körfezi de idari olarak bu ilçeye bağlı. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor. Körfez içi konumu, Marmaris'i açık Ege'ye göre genelde daha korunaklı yapar.",
       "miniSss": [
-        { "soru": "Marmaris'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Marmaris neden genelde korunaklı sayılır?", "cevap": "Marmaris Körfezi, açık Ege'ye göre daha kapalı bir yapıya sahip olduğu için dalga genelde daha düşük kalır." }
+        {
+          "soru": "Marmaris'te hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Marmaris neden genelde korunaklı sayılır?",
+          "cevap": "Marmaris Körfezi, açık Ege'ye göre daha kapalı bir yapıya sahip olduğu için dalga genelde daha düşük kalır."
+        }
       ]
     },
     {
@@ -275,8 +796,14 @@
       "metaAciklama": "Ula ve Akyaka'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Ula ilçesi, Gökova Körfezi'nin ucundaki Akyaka beldesini kapsar — rüzgar sörfüyle ve Azmak Nehri'nin denize kavuştuğu doğal güzelliğiyle bilinir. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}. Akyaka, öğleden sonra güçlenen İmbat rüzgarıyla tanınır.",
       "miniSss": [
-        { "soru": "Akyaka'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Akyaka'da rüzgar günün hangi saatinde güçlenir?", "cevap": "Akyaka, öğleden sonra belirginleşen İmbat rüzgarıyla bilinir — bu yüzden rüzgar sörfü genelde öğleden sonra tercih edilir." }
+        {
+          "soru": "Akyaka'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Akyaka'da rüzgar günün hangi saatinde güçlenir?",
+          "cevap": "Akyaka, öğleden sonra belirginleşen İmbat rüzgarıyla bilinir — bu yüzden rüzgar sörfü genelde öğleden sonra tercih edilir."
+        }
       ]
     },
     {
@@ -287,8 +814,14 @@
       "metaAciklama": "Bodrum'da deniz bugün nasıl? Gümbet, Bitez, Gündoğan, Göltürkbükü dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Bodrum yarımadası, beyaz mimarisi ve Bodrum Kalesi'yle bilinen Ege'nin en tanınan turizm merkezlerinden biri — kuzey kıyısı (Gündoğan, Göltürkbükü, Gölköy) ile güney kıyısı (Bitez, Ortakent, Gümbet) farklı rüzgar rejimlerine sahiptir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Bodrum'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Bodrum'un kuzeyi mi güneyi mi daha sakin?", "cevap": "Bu günden güne değişir — kuzey (Gündoğan/Göltürkbükü) ve güney (Bitez/Gümbet) kıyıları farklı rüzgar yönlerinden etkilenir, bu yüzden aynı gün biri sakinken diğeri dalgalı olabilir. Haritadan ikisini de ayrı ayrı kontrol edebilirsin." }
+        {
+          "soru": "Bodrum'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Bodrum'un kuzeyi mi güneyi mi daha sakin?",
+          "cevap": "Bu günden güne değişir — kuzey (Gündoğan/Göltürkbükü) ve güney (Bitez/Gümbet) kıyıları farklı rüzgar yönlerinden etkilenir, bu yüzden aynı gün biri sakinken diğeri dalgalı olabilir. Haritadan ikisini de ayrı ayrı kontrol edebilirsin."
+        }
       ]
     },
     {
@@ -299,7 +832,10 @@
       "metaAciklama": "Menderes ve Özdere'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Menderes ilçesi, İzmir'in güneyinde Özdere ve Gümüldür sahilleriyle bilinen sakin bir tatil bölgesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Menderes'te hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Menderes'te hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -310,8 +846,14 @@
       "metaAciklama": "Seferihisar'da deniz bugün nasıl? Sığacık ve Akkum dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Seferihisar, Türkiye'nin ilk \"Cittaslow\" (sakin şehir) unvanı alan ilçesi — Sığacık'taki Büyük Akkum plajı ve Ürkmez, Doğanbey gibi sakin koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Seferihisar'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Seferihisar'ın \"Cittaslow\" unvanı ne anlama gelir?", "cevap": "Cittaslow, İtalya kaynaklı bir \"sakin şehir\" hareketi — Seferihisar bu unvanı Türkiye'de ilk alan ilçe olmuştur." }
+        {
+          "soru": "Seferihisar'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Seferihisar'ın \"Cittaslow\" unvanı ne anlama gelir?",
+          "cevap": "Cittaslow, İtalya kaynaklı bir \"sakin şehir\" hareketi — Seferihisar bu unvanı Türkiye'de ilk alan ilçe olmuştur."
+        }
       ]
     },
     {
@@ -322,9 +864,18 @@
       "metaAciklama": "Çeşme'de deniz bugün nasıl? Ilıca ve Altınkum başta olmak üzere Çeşme'nin {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Çeşme, Ege'nin rüzgarıyla özdeşleşmiş bir ilçe — Alaçatı tarafındaki rüzgar sörfü/kitesurf rüzgarı yaz öğleden sonraları belirginleşir, bu yüzden sabah saatleri genelde daha sakin geçer. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Çeşme'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Çeşme'de deniz ne zaman daha sakin olur?", "cevap": "Öğleden sonra belirginleşen İmbat rüzgarı dalgayı yükseltebilir, bu yüzden sabah saatleri genelde daha sakin geçer." },
-        { "soru": "Alaçatı'da deniz durumu nasıl kontrol edilir?", "cevap": "Alaçatı, idari olarak Çeşme ilçesine bağlıdır — yukarıdaki haritadan Alaçatı kıyısına ya da Çeşme'nin herhangi bir noktasına tıklayabilirsin." }
+        {
+          "soru": "Çeşme'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Çeşme'de deniz ne zaman daha sakin olur?",
+          "cevap": "Öğleden sonra belirginleşen İmbat rüzgarı dalgayı yükseltebilir, bu yüzden sabah saatleri genelde daha sakin geçer."
+        },
+        {
+          "soru": "Alaçatı'da deniz durumu nasıl kontrol edilir?",
+          "cevap": "Alaçatı, idari olarak Çeşme ilçesine bağlıdır — yukarıdaki haritadan Alaçatı kıyısına ya da Çeşme'nin herhangi bir noktasına tıklayabilirsin."
+        }
       ]
     },
     {
@@ -335,7 +886,10 @@
       "metaAciklama": "Karaburun'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Karaburun, İzmir'in en batısındaki dağlık yarımada — daha az kalabalık ve el değmemiş kıyı şeridiyle bilinir, açık Ege'ye bakan konumu nedeniyle rüzgara daha açıktır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Karaburun'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Karaburun'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -346,7 +900,10 @@
       "metaAciklama": "Urla'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Urla, zeytinlikleri ve şarap bağlarıyla bilinen bir İzmir yarımada ilçesi — sakin koylarıyla da tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Urla'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Urla'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -357,7 +914,10 @@
       "metaAciklama": "Güzelbahçe'de deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Güzelbahçe, İzmir Körfezi'nin güneyinde, şehir merkezine yakın sakin bir kıyı ilçesi. İlçenin halka açık Mavi Bayraklı plajı {plajAdlari}.",
       "miniSss": [
-        { "soru": "Güzelbahçe'de hangi plaj Mavi Bayraklı?", "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Güzelbahçe'de hangi plaj Mavi Bayraklı?",
+          "cevap": "{plajAdlari} — toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -368,7 +928,10 @@
       "metaAciklama": "Foça'da deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Foça, antik Phokaia kentinin üzerine kurulu tarihi bir liman kasabası — sakin sokakları ve korunaklı koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Foça'da hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Foça'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -379,7 +942,10 @@
       "metaAciklama": "Dikili'de deniz bugün nasıl? Çandarlı dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Dikili, İzmir'in kuzeyinde, Yunanistan'a ait Midilli adasına feribot bağlantısıyla ve Çandarlı beldesindeki tarihi kaleyle bilinen sakin bir kıyı ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Dikili'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." }
+        {
+          "soru": "Dikili'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        }
       ]
     },
     {
@@ -390,8 +956,14 @@
       "metaAciklama": "Didim'de deniz bugün nasıl? Altınkum dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Didim, antik Apollon Tapınağı'nın hemen yanı başındaki Altınkum sahiliyle bilinen, Ege'nin güneyindeki popüler bir tatil beldesi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Didim'de hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Altınkum'da deniz durumu nasıl kontrol edilir?", "cevap": "Altınkum, Didim'in en bilinen sahili — yukarıdaki haritadan Didim Altınkum Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin." }
+        {
+          "soru": "Didim'de hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Altınkum'da deniz durumu nasıl kontrol edilir?",
+          "cevap": "Altınkum, Didim'in en bilinen sahili — yukarıdaki haritadan Didim Altınkum Plajı işaretine ya da kıyının herhangi bir noktasına tıklayabilirsin."
+        }
       ]
     },
     {
@@ -402,9 +974,951 @@
       "metaAciklama": "Kuşadası'nda deniz bugün nasıl? Kadınlar Denizi ve Güvercinada dahil {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "girisMetni": "Kuşadası, Efes antik kentine yakınlığı, kruvaziyer limanı ve Güvercinada'sıyla bilinen büyük bir Ege turizm merkezi. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
       "miniSss": [
-        { "soru": "Kuşadası'nda hangi plajlar Mavi Bayraklı?", "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı." },
-        { "soru": "Güvercinada'da deniz durumu nasıl kontrol edilir?", "cevap": "Yukarıdaki haritadan Güvercinada Plajı işaretine ya da Kuşadası kıyısının herhangi bir noktasına tıklayarak anlık durumu görebilirsin." }
+        {
+          "soru": "Kuşadası'nda hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Güvercinada'da deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Güvercinada Plajı işaretine ya da Kuşadası kıyısının herhangi bir noktasına tıklayarak anlık durumu görebilirsin."
+        }
       ]
+    },
+    {
+      "slug": "sile",
+      "ilSlug": "istanbul",
+      "ad": "Şile",
+      "baslik": "Şile Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Şile'de (İstanbul) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Şile, İstanbul'un Karadeniz'e açılan ilçesi — şehir merkezinin yoğunluğundan uzak, kumsallarıyla ve tarihi feneriyle bilinen bir kaçış noktası. Karadeniz'in açık yapısı gereği kuzeyden esen rüzgarda dalga hızla yükselebilir.",
+      "merkez": {
+        "lat": 41.1753,
+        "lon": 29.6134,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "silivri",
+      "ilSlug": "istanbul",
+      "ad": "Silivri",
+      "baslik": "Silivri Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Silivri'de (İstanbul) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Silivri, İstanbul'un batısında Marmara Denizi'ne kıyısı olan bir ilçe — sahil şeridi, şehir merkezine görece yakınlığıyla hafta sonu tatili için tercih edilir. Marmara'nın genel özelliği gereği deniz genelde açık Karadeniz kıyılarına göre daha sakindir.",
+      "merkez": {
+        "lat": 41.0733,
+        "lon": 28.2467,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "buyukcekmece",
+      "ilSlug": "istanbul",
+      "ad": "Büyükçekmece",
+      "baslik": "Büyükçekmece Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Büyükçekmece'de (İstanbul) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Büyükçekmece, İstanbul'un batı yakasında, aynı adı taşıyan gölün Marmara Denizi'ne kavuştuğu noktada yer alan bir ilçe — şehir merkezine yakın, Marmara'nın sakin sularına kıyı bir kesim.",
+      "merkez": {
+        "lat": 40.9694,
+        "lon": 28.5772,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "kandira",
+      "ilSlug": "kocaeli",
+      "ad": "Kandıra",
+      "baslik": "Kandıra (Kefken) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kandıra ve Kefken'de (Kocaeli) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kandıra, Kocaeli'nin Karadeniz'e açılan ilçesi — Kefken sahili ve adasıyla bilinen, İstanbul'a yakınlığı sayesinde yoğun ilgi gören bir kıyı kesimi.",
+      "merkez": {
+        "lat": 41.3765,
+        "lon": 30.1544,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "karamursel",
+      "ilSlug": "kocaeli",
+      "ad": "Karamürsel",
+      "baslik": "Karamürsel Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Karamürsel'de (Kocaeli) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Karamürsel, İzmit Körfezi'nin güney kıyısında yer alan bir Kocaeli ilçesi — körfez içi konumu nedeniyle deniz genelde sakin kalır.",
+      "merkez": {
+        "lat": 40.6919,
+        "lon": 29.6167,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "golcuk",
+      "ilSlug": "kocaeli",
+      "ad": "Gölcük",
+      "baslik": "Gölcük Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gölcük'te (Kocaeli) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gölcük, İzmit Körfezi kıyısında, deniz üssüyle bilinen bir Kocaeli ilçesi — körfezin korunaklı yapısı nedeniyle deniz genelde sakindir.",
+      "merkez": {
+        "lat": 40.7186,
+        "lon": 29.8256,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "karasu",
+      "ilSlug": "sakarya",
+      "ad": "Karasu",
+      "baslik": "Karasu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Karasu'da (Sakarya) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Karasu, Sakarya Nehri'nin Karadeniz'e döküldüğü noktaya yakın, uzun kumsallarıyla bilinen bir Sakarya ilçesi.",
+      "merkez": {
+        "lat": 41.1044,
+        "lon": 30.6864,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "kaynarca",
+      "ilSlug": "sakarya",
+      "ad": "Kaynarca",
+      "baslik": "Kaynarca Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kaynarca'da (Sakarya) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kaynarca, Sakarya'nın Karadeniz kıyısındaki daha sakin ve az kalabalık ilçelerinden biri.",
+      "merkez": {
+        "lat": 41.2236,
+        "lon": 30.8161,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "akcakoca",
+      "ilSlug": "duzce",
+      "ad": "Akçakoca",
+      "baslik": "Akçakoca Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Akçakoca'da (Düzce) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Akçakoca, Düzce'nin tek kıyı ilçesi — ormanlık tepelerin denize indiği, fındık bahçeleriyle çevrili sakin bir Karadeniz kasabası.",
+      "merkez": {
+        "lat": 41.085,
+        "lon": 31.1181,
+        "zoom": 13
+      }
+    },
+    {
+      "slug": "zonguldak-merkez",
+      "ilSlug": "zonguldak",
+      "ad": "Zonguldak Merkez",
+      "baslik": "Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Zonguldak merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Zonguldak merkez, kömür madenciliği tarihiyle bilinen, kayalık ve limanlı bir Karadeniz kıyı kenti.",
+      "merkez": {
+        "lat": 41.4564,
+        "lon": 31.7987,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "karadeniz-eregli",
+      "ilSlug": "zonguldak",
+      "ad": "Karadeniz Ereğli",
+      "baslik": "Karadeniz Ereğli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Karadeniz Ereğli'de (Zonguldak) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Karadeniz Ereğli, demir-çelik sanayisiyle bilinen, aynı zamanda kumsallara sahip bir Zonguldak ilçesi.",
+      "merkez": {
+        "lat": 41.2847,
+        "lon": 31.4131,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "cide",
+      "ilSlug": "kastamonu",
+      "ad": "Cide",
+      "baslik": "Cide Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Cide'de (Kastamonu) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Cide, Kastamonu'nun Karadeniz kıyısındaki en batı ilçesi — dağların denize dik indiği, el değmemiş plajlarıyla bilinir.",
+      "merkez": {
+        "lat": 41.8908,
+        "lon": 30.1839,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "inebolu",
+      "ilSlug": "kastamonu",
+      "ad": "İnebolu",
+      "baslik": "İnebolu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "İnebolu'da (Kastamonu) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "İnebolu, Kurtuluş Savaşı'nda cephane taşımacılığıyla bilinen tarihi bir Kastamonu liman kasabası.",
+      "merkez": {
+        "lat": 41.9769,
+        "lon": 33.7669,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "sinop-merkez",
+      "ilSlug": "sinop",
+      "ad": "Sinop Merkez",
+      "baslik": "Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Sinop merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Sinop merkez, Karadeniz'in en kuzeydeki yarımadasında, tarihi kalesi ve doğal limanıyla bilinen bir kıyı kenti.",
+      "merkez": {
+        "lat": 42.0231,
+        "lon": 35.1531,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gerze",
+      "ilSlug": "sinop",
+      "ad": "Gerze",
+      "baslik": "Gerze Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gerze'de (Sinop) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gerze, Sinop'un doğusunda, sakin plajları ve balıkçılığıyla bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.7967,
+        "lon": 35.1975,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ayancik",
+      "ilSlug": "sinop",
+      "ad": "Ayancık",
+      "baslik": "Ayancık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ayancık'ta (Sinop) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ayancık, Sinop'un batısında, ormanlarla çevrili sakin bir Karadeniz kıyı kasabası.",
+      "merkez": {
+        "lat": 41.9469,
+        "lon": 34.5875,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "altinordu",
+      "ilSlug": "ordu",
+      "ad": "Altınordu",
+      "baslik": "Ordu (Altınordu) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ordu Altınordu'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Altınordu, Ordu'nun merkez ilçesi — teleferikle çıkılan Boztepe manzarası ve fındık bahçeleriyle çevrili kıyısıyla bilinir.",
+      "merkez": {
+        "lat": 40.9839,
+        "lon": 37.8764,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "fatsa",
+      "ilSlug": "ordu",
+      "ad": "Fatsa",
+      "baslik": "Fatsa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Fatsa'da (Ordu) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Fatsa, Ordu'nun batısında, düz kumsallarıyla bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.0325,
+        "lon": 37.4986,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "unye",
+      "ilSlug": "ordu",
+      "ad": "Ünye",
+      "baslik": "Ünye Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ünye'de (Ordu) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ünye, tarihi kayalık mağaraları ve uzun kumsallarıyla bilinen, Ordu'nun en tanınmış turizm ilçelerinden biri.",
+      "merkez": {
+        "lat": 41.1264,
+        "lon": 37.2886,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "persembe",
+      "ilSlug": "ordu",
+      "ad": "Perşembe",
+      "baslik": "Perşembe Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Perşembe'de (Ordu) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Perşembe, Ordu'nun doğusunda, Yason Burnu'ndaki tarihi manastırıyla bilinen bir kıyı ilçesi.",
+      "merkez": {
+        "lat": 41.1225,
+        "lon": 37.0864,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "giresun-merkez",
+      "ilSlug": "giresun",
+      "ad": "Giresun Merkez",
+      "baslik": "Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Giresun merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Giresun merkez, açıklarındaki Giresun Adası ve fındık üretimiyle bilinen bir Orta Karadeniz kıyı kenti.",
+      "merkez": {
+        "lat": 40.9128,
+        "lon": 38.3895,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "bulancak",
+      "ilSlug": "giresun",
+      "ad": "Bulancak",
+      "baslik": "Bulancak Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bulancak'ta (Giresun) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bulancak, Giresun'un batısında, sakin plajlarıyla bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 40.9436,
+        "lon": 38.2278,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "tirebolu",
+      "ilSlug": "giresun",
+      "ad": "Tirebolu",
+      "baslik": "Tirebolu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Tirebolu'da (Giresun) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Tirebolu, tarihi Cenevizli kalesiyle bilinen, Giresun'un doğusundaki bir kıyı ilçesi.",
+      "merkez": {
+        "lat": 41.0089,
+        "lon": 38.8117,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gorele",
+      "ilSlug": "giresun",
+      "ad": "Görele",
+      "baslik": "Görele Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Görele'de (Giresun) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Görele, Giresun'un en doğusundaki, fındık ve kemençesiyle bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.0439,
+        "lon": 39.0075,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ortahisar",
+      "ilSlug": "trabzon",
+      "ad": "Ortahisar",
+      "baslik": "Trabzon (Ortahisar) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Trabzon Ortahisar'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ortahisar, Trabzon'un merkez ilçesi — tarihi Boztepe manzarası ve liman kıyısıyla Doğu Karadeniz'in en bilinen şehir merkezlerinden biri.",
+      "merkez": {
+        "lat": 41.0027,
+        "lon": 39.7168,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "akcaabat",
+      "ilSlug": "trabzon",
+      "ad": "Akçaabat",
+      "baslik": "Akçaabat Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Akçaabat'ta (Trabzon) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Akçaabat, Trabzon'un batısında, köftesiyle ve sahil şeridiyle bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.0219,
+        "lon": 39.5661,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "of",
+      "ilSlug": "trabzon",
+      "ad": "Of",
+      "baslik": "Of Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Of'ta (Trabzon) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Of, Trabzon'un doğusunda, dağların denize dik indiği dar bir kıyı şeridine sahip bir ilçe.",
+      "merkez": {
+        "lat": 40.9439,
+        "lon": 40.2517,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "yomra",
+      "ilSlug": "trabzon",
+      "ad": "Yomra",
+      "baslik": "Yomra Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Yomra'da (Trabzon) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Yomra, Trabzon havalimanına yakınlığıyla bilinen, şehir merkezinin hemen doğusundaki bir kıyı ilçesi.",
+      "merkez": {
+        "lat": 40.9928,
+        "lon": 39.8461,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "arakli",
+      "ilSlug": "trabzon",
+      "ad": "Araklı",
+      "baslik": "Araklı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Araklı'da (Trabzon) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Araklı, Trabzon'un doğusunda, çay ve fındık bahçeleriyle çevrili bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 40.9083,
+        "lon": 40.0808,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "vakfikebir",
+      "ilSlug": "trabzon",
+      "ad": "Vakfıkebir",
+      "baslik": "Vakfıkebir Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Vakfıkebir'de (Trabzon) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Vakfıkebir, Trabzon'un batısında, ekmeğiyle ve sahil şeridiyle bilinen bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.0561,
+        "lon": 39.2694,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "rize-merkez",
+      "ilSlug": "rize",
+      "ad": "Rize Merkez",
+      "baslik": "Rize Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Rize merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Rize merkez, çay bahçeleriyle kaplı sisli yamaçların neredeyse denize dik indiği bir Doğu Karadeniz kıyı kenti.",
+      "merkez": {
+        "lat": 41.0201,
+        "lon": 40.5234,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "cayeli",
+      "ilSlug": "rize",
+      "ad": "Çayeli",
+      "baslik": "Çayeli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Çayeli'de (Rize) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Çayeli, adından da anlaşılacağı gibi çay üretimiyle bilinen, Rize'nin doğusundaki bir kıyı ilçesi.",
+      "merkez": {
+        "lat": 41.0864,
+        "lon": 40.7161,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "pazar-rize",
+      "ilSlug": "rize",
+      "ad": "Pazar",
+      "baslik": "Pazar (Rize) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Pazar'da (Rize) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Pazar, Rize'nin doğusunda, dar bir sahil şeridine sahip bir Karadeniz ilçesi.",
+      "merkez": {
+        "lat": 41.1794,
+        "lon": 40.8797,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ardesen",
+      "ilSlug": "rize",
+      "ad": "Ardeşen",
+      "baslik": "Ardeşen Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ardeşen'de (Rize) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ardeşen, Rize'nin Artvin sınırına yakın, yeşil vadileri ve kıyısıyla bilinen bir ilçesi.",
+      "merkez": {
+        "lat": 41.1919,
+        "lon": 40.9886,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "findikli",
+      "ilSlug": "rize",
+      "ad": "Fındıklı",
+      "baslik": "Fındıklı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Fındıklı'da (Rize) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Fındıklı, Rize'nin en doğusundaki, Artvin sınırına yakın küçük bir kıyı ilçesi.",
+      "merkez": {
+        "lat": 41.2711,
+        "lon": 41.1594,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "hopa",
+      "ilSlug": "artvin",
+      "ad": "Hopa",
+      "baslik": "Hopa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Hopa'da (Artvin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Hopa, Türkiye'nin Gürcistan sınırına en yakın liman kenti — Karadeniz'in doğu ucunda yer alır.",
+      "merkez": {
+        "lat": 41.3961,
+        "lon": 41.4297,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "arhavi",
+      "ilSlug": "artvin",
+      "ad": "Arhavi",
+      "baslik": "Arhavi Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Arhavi'de (Artvin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Arhavi, Artvin'in Karadeniz'e açılan küçük ve yeşil ilçesi.",
+      "merkez": {
+        "lat": 41.3567,
+        "lon": 41.3153,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "yalova-merkez",
+      "ilSlug": "yalova",
+      "ad": "Yalova Merkez",
+      "baslik": "Yalova Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Yalova merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Yalova merkez, termal kaynakları ve İstanbul'a feribot bağlantısıyla bilinen bir Marmara kıyı kenti.",
+      "merkez": {
+        "lat": 40.65,
+        "lon": 29.2667,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "cinarcik",
+      "ilSlug": "yalova",
+      "ad": "Çınarcık",
+      "baslik": "Çınarcık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Çınarcık'ta (Yalova) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Çınarcık, Yalova'nın batısında, Marmara Denizi'ne kıyı küçük bir tatil beldesi.",
+      "merkez": {
+        "lat": 40.6386,
+        "lon": 29.1225,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "mudanya",
+      "ilSlug": "bursa",
+      "ad": "Mudanya",
+      "baslik": "Mudanya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Mudanya'da (Bursa) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Mudanya, Mudanya Mütarekesi'nin imzalandığı tarihi bir Bursa liman ilçesi — Marmara Denizi'nin sakin sularına kıyıdır.",
+      "merkez": {
+        "lat": 40.3739,
+        "lon": 28.8836,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gemlik",
+      "ilSlug": "bursa",
+      "ad": "Gemlik",
+      "baslik": "Gemlik Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gemlik'te (Bursa) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gemlik, zeytinleriyle bilinen, Gemlik Körfezi'nin ucundaki bir Bursa liman ilçesi.",
+      "merkez": {
+        "lat": 40.4306,
+        "lon": 29.1544,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ayvalik",
+      "ilSlug": "balikesir",
+      "ad": "Ayvalık",
+      "baslik": "Ayvalık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ayvalık'ta (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ayvalık, adalarla dolu kıyısı, zeytinyağı üretimi ve tarihi taş evleriyle bilinen bir Ege ilçesi — açık Ege'ye bakan konumu nedeniyle rüzgara diğer korunaklı koylara göre daha açıktır.",
+      "merkez": {
+        "lat": 39.3178,
+        "lon": 26.6956,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "edremit",
+      "ilSlug": "balikesir",
+      "ad": "Edremit",
+      "baslik": "Edremit (Akçay) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Edremit ve Akçay'da (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Edremit ilçesi, Kaz Dağları'nın eteğindeki Akçay sahiliyle bilinir — zeytinlikleriyle çevrili bir Ege koyu.",
+      "merkez": {
+        "lat": 39.5978,
+        "lon": 26.9083,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "burhaniye",
+      "ilSlug": "balikesir",
+      "ad": "Burhaniye",
+      "baslik": "Burhaniye Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Burhaniye'de (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Burhaniye, zeytinyağı üretimiyle bilinen, Ayvalık ile Edremit arasındaki bir Balıkesir kıyı ilçesi.",
+      "merkez": {
+        "lat": 39.5031,
+        "lon": 26.9761,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gomec",
+      "ilSlug": "balikesir",
+      "ad": "Gömeç",
+      "baslik": "Gömeç Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gömeç'te (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gömeç, Ayvalık ile Burhaniye arasında kalan, sakin ve az kalabalık bir Balıkesir kıyı ilçesi.",
+      "merkez": {
+        "lat": 39.49,
+        "lon": 26.8511,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "erdek",
+      "ilSlug": "balikesir",
+      "ad": "Erdek",
+      "baslik": "Erdek Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Erdek'te (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Erdek, Marmara Denizi'ndeki Kapıdağ Yarımadası'nın üzerinde yer alan, Marmara Adası'na feribot bağlantısıyla bilinen bir Balıkesir ilçesi.",
+      "merkez": {
+        "lat": 40.3986,
+        "lon": 27.7961,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "bandirma",
+      "ilSlug": "balikesir",
+      "ad": "Bandırma",
+      "baslik": "Bandırma Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bandırma'da (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bandırma, Marmara Denizi kıyısında önemli bir liman ve sanayi kenti — İstanbul'a feribot bağlantısıyla bilinir.",
+      "merkez": {
+        "lat": 40.3531,
+        "lon": 27.9744,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ayvacik",
+      "ilSlug": "canakkale",
+      "ad": "Ayvacık",
+      "baslik": "Ayvacık (Assos) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ayvacık ve Assos'ta (Çanakkale) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ayvacık, antik Assos kentinin ve tarihi limanının bulunduğu bir Çanakkale ilçesi — açık Ege'ye bakan konumu nedeniyle rüzgara oldukça açıktır.",
+      "merkez": {
+        "lat": 39.5964,
+        "lon": 26.1794,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "bozcaada",
+      "ilSlug": "canakkale",
+      "ad": "Bozcaada",
+      "baslik": "Bozcaada Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Bozcaada'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Bozcaada, bağları ve rüzgarıyla bilinen bir Ege adası — açık denize bakan plajları rüzgar sörfü için de tercih edilir.",
+      "merkez": {
+        "lat": 39.8306,
+        "lon": 26.04,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gokceada",
+      "ilSlug": "canakkale",
+      "ad": "Gökçeada",
+      "baslik": "Gökçeada Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gökçeada'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gökçeada, Türkiye'nin en büyük adası — berrak koyları ve dalış noktalarıyla, aynı zamanda güçlü rüzgarıyla bilinir.",
+      "merkez": {
+        "lat": 40.1889,
+        "lon": 25.8994,
+        "zoom": 11
+      }
+    },
+    {
+      "slug": "lapseki",
+      "ilSlug": "canakkale",
+      "ad": "Lapseki",
+      "baslik": "Lapseki Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Lapseki'de (Çanakkale) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Lapseki, Çanakkale Boğazı'nın kuzey kıyısında, şeftali üretimiyle bilinen bir ilçe.",
+      "merkez": {
+        "lat": 40.3439,
+        "lon": 26.6853,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "gelibolu",
+      "ilSlug": "canakkale",
+      "ad": "Gelibolu",
+      "baslik": "Gelibolu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Gelibolu'da (Çanakkale) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Gelibolu, tarihi yarımadası ve Birinci Dünya Savaşı anıtlarıyla bilinen bir Çanakkale ilçesi, Marmara ve Ege'nin buluştuğu Boğaz kıyısında yer alır.",
+      "merkez": {
+        "lat": 40.4106,
+        "lon": 26.6714,
+        "zoom": 11
+      }
+    },
+    {
+      "slug": "mersin-akdeniz",
+      "ilSlug": "mersin",
+      "ad": "Mersin Merkez",
+      "baslik": "Mersin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Mersin merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Mersin merkez, Doğu Akdeniz'in önemli liman kenti — uzun sahil şeridi ve palmiyeli gezinti yoluyla bilinir.",
+      "merkez": {
+        "lat": 36.8,
+        "lon": 34.6333,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "erdemli",
+      "ilSlug": "mersin",
+      "ad": "Erdemli",
+      "baslik": "Erdemli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Erdemli'de (Mersin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Erdemli, muz seralarıyla bilinen, Mersin'in batısındaki bir Akdeniz kıyı ilçesi.",
+      "merkez": {
+        "lat": 36.6067,
+        "lon": 34.3103,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "silifke",
+      "ilSlug": "mersin",
+      "ad": "Silifke",
+      "baslik": "Silifke (Kızkalesi) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Silifke ve Kızkalesi'nde (Mersin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Silifke, denizin ortasındaki tarihi Kızkalesi'yle bilinen bir Mersin ilçesi — Akdeniz'in uzun periyotlu, genelde yumuşak dalgasına sahiptir.",
+      "merkez": {
+        "lat": 36.4489,
+        "lon": 34.1522,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "tarsus",
+      "ilSlug": "mersin",
+      "ad": "Tarsus",
+      "baslik": "Tarsus Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Tarsus'ta (Mersin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Tarsus, Aziz Pavlus'un doğduğu tarihi kent — kendi adını taşıyan sahil şeridi Akdeniz'e açılır.",
+      "merkez": {
+        "lat": 36.85,
+        "lon": 34.85,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "anamur",
+      "ilSlug": "mersin",
+      "ad": "Anamur",
+      "baslik": "Anamur Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Anamur'da (Mersin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Anamur, muz bahçeleri ve Anamurium antik kentiyle bilinen, Mersin'in en batısındaki Akdeniz ilçesi.",
+      "merkez": {
+        "lat": 36.0781,
+        "lon": 32.8378,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "karatas",
+      "ilSlug": "adana",
+      "ad": "Karataş",
+      "baslik": "Karataş Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Karataş'ta (Adana) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Karataş, Seyhan Nehri deltasına yakın, düz ve uzun kumsallarıyla bilinen bir Adana kıyı ilçesi.",
+      "merkez": {
+        "lat": 36.5686,
+        "lon": 35.3722,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "yumurtalik",
+      "ilSlug": "adana",
+      "ad": "Yumurtalık",
+      "baslik": "Yumurtalık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Yumurtalık'ta (Adana) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Yumurtalık, Ceyhan Nehri'nin deltasına yakın, lagünleri ve doğal koruma alanlarıyla bilinen bir Adana kıyı ilçesi.",
+      "merkez": {
+        "lat": 36.7614,
+        "lon": 35.7908,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "samandag",
+      "ilSlug": "hatay",
+      "ad": "Samandağ",
+      "baslik": "Samandağ Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Samandağ'da (Hatay) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Samandağ, Asi Nehri'nin Akdeniz'e döküldüğü noktaya yakın, siyah kumlu plajıyla bilinen bir Hatay ilçesi.",
+      "merkez": {
+        "lat": 36.0872,
+        "lon": 35.995,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "arsuz",
+      "ilSlug": "hatay",
+      "ad": "Arsuz",
+      "baslik": "Arsuz Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Arsuz'da (Hatay) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Arsuz, zeytinlik yamaçları ve sakin plajlarıyla bilinen bir Hatay Akdeniz ilçesi.",
+      "merkez": {
+        "lat": 36.4131,
+        "lon": 35.8908,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "iskenderun",
+      "ilSlug": "hatay",
+      "ad": "İskenderun",
+      "baslik": "İskenderun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "İskenderun'da (Hatay) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "İskenderun, aynı adı taşıyan körfezin kıyısındaki önemli bir liman ve sanayi kenti.",
+      "merkez": {
+        "lat": 36.5875,
+        "lon": 36.1739,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "vize",
+      "ilSlug": "kirklareli",
+      "ad": "Vize (Kıyıköy)",
+      "baslik": "Kıyıköy (Vize) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Kıyıköy'de (Kırklareli) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Kıyıköy, Vize ilçesine bağlı, iki nehir ağzı arasında kalan, ormanlarla çevrili sakin bir Karadeniz balıkçı kasabası.",
+      "merkez": {
+        "lat": 41.6383,
+        "lon": 28.0997,
+        "zoom": 13
+      }
+    },
+    {
+      "slug": "datca",
+      "ilSlug": "mugla",
+      "ad": "Datça",
+      "baslik": "Datça Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Datça'da (Muğla) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Datça, Ege ile Akdeniz'in birleştiği uzun ve ince bir yarımada üzerinde yer alır — badem ve zeytin bahçeleriyle, berrak koylarıyla bilinir. Yarımadanın iki kıyısı da farklı rüzgar rejimlerine sahiptir.",
+      "merkez": {
+        "lat": 36.7297,
+        "lon": 27.6847,
+        "zoom": 11
+      }
+    },
+    {
+      "slug": "milas",
+      "ilSlug": "mugla",
+      "ad": "Milas (Güllük)",
+      "baslik": "Milas (Güllük) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Milas ve Güllük'te (Muğla) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Milas ilçesinin denize kıyısı, körfez içindeki Güllük beldesinde toplanır — zeytinlikleriyle çevrili, korunaklı bir Ege koyu.",
+      "merkez": {
+        "lat": 37.246,
+        "lon": 27.649,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "koycegiz",
+      "ilSlug": "mugla",
+      "ad": "Köyceğiz (Ekincik)",
+      "baslik": "Köyceğiz (Ekincik) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Köyceğiz ve Ekincik'te (Muğla) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Köyceğiz ilçe merkezi gölün kıyısındadır, ama ilçeye bağlı Ekincik köyü Gökova Körfezi'nin doğusunda gerçek bir Akdeniz koyuna kıyıdır — yat limanı ve uzun plajıyla bilinir.",
+      "merkez": {
+        "lat": 36.77,
+        "lon": 28.46,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "ortaca",
+      "ilSlug": "mugla",
+      "ad": "Ortaca (Dalyan)",
+      "baslik": "Ortaca (Dalyan / İztuzu) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Ortaca, Dalyan ve İztuzu'da (Muğla) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Ortaca ilçesine bağlı Dalyan beldesi, caretta carettaların yumurtladığı ünlü İztuzu Plajı ve Sarıgerme sahiliyle bilinir — kanallarla denize bağlanan özel bir kıyı yapısına sahiptir.",
+      "merkez": {
+        "lat": 36.82,
+        "lon": 28.62,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "dalaman",
+      "ilSlug": "mugla",
+      "ad": "Dalaman",
+      "baslik": "Dalaman Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Dalaman'da (Muğla) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Dalaman, havalimanıyla bilinen bir Muğla ilçesi — Sarsala ve Kayacık gibi koylarıyla, Gökova Körfezi'nin doğu ucundaki kıyı şeridine sahiptir.",
+      "merkez": {
+        "lat": 36.7719,
+        "lon": 28.7975,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "amasra",
+      "ilSlug": "bartin",
+      "ad": "Amasra",
+      "baslik": "Amasra Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Amasra'da (Bartın) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Amasra, tarihi kalesi ve iki küçük koyuyla (Büyük Liman/Küçük Liman) bilinen, Karadeniz'e açık şirin bir Bartın liman kasabası.",
+      "merkez": {
+        "lat": 41.7502,
+        "lon": 32.3919,
+        "zoom": 13
+      }
+    },
+    {
+      "slug": "tekirdag-merkez",
+      "ilSlug": "tekirdag",
+      "ad": "Tekirdağ Merkez",
+      "baslik": "Tekirdağ Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Tekirdağ merkezde deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Tekirdağ merkez, bağlarıyla ve şarap üretimiyle bilinen bir Marmara Denizi liman kenti.",
+      "merkez": {
+        "lat": 40.9833,
+        "lon": 27.5167,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "sarkoy",
+      "ilSlug": "tekirdag",
+      "ad": "Şarköy",
+      "baslik": "Şarköy Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Şarköy'de (Tekirdağ) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Şarköy, Tekirdağ'ın batısında, bağcılığıyla ve Marmara'nın açık sularına bakan kıyısıyla bilinen bir ilçe.",
+      "merkez": {
+        "lat": 40.6167,
+        "lon": 27.1136,
+        "zoom": 12
+      }
+    },
+    {
+      "slug": "marmara-ereglisi",
+      "ilSlug": "tekirdag",
+      "ad": "Marmara Ereğlisi",
+      "baslik": "Marmara Ereğlisi Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Marmara Ereğlisi'nde (Tekirdağ) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Marmara Ereğlisi, İstanbul'a yakınlığıyla bilinen, Tekirdağ'ın doğusundaki bir Marmara kıyı ilçesi.",
+      "merkez": {
+        "lat": 40.975,
+        "lon": 27.9556,
+        "zoom": 12
+      }
     }
   ]
 }

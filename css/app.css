@@ -1215,7 +1215,10 @@
     color: var(--text-h1);
     margin: 0 0 12px;
   }
-  .il-listesi { list-style: none; margin: 0; padding: 0; }
+  /* 27 il tek panelde sığmayacağı için kaydırılabilir yapıldı — hepsini listelemek
+     (sadece ilk birkaçını göstermek yerine) kullanıcının herhangi bir kıyı ilini
+     doğrudan bulabilmesi için tercih edildi. */
+  .il-listesi { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow-y: auto; }
   .il-listesi li {
     display: flex; justify-content: space-between; align-items: center;
     padding: 9px 0; border-top: 1px solid rgba(20,33,61,0.08); font-size: 13px;

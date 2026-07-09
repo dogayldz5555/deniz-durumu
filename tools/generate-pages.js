@@ -122,7 +122,20 @@ function main() {
     const ilPlajlar = plajlar.filter((p) => p.il === il.ad);
     const ilHalkPlajlar = halkPlajlar.filter((p) => p.il === il.ad);
     const ilTumPlajlar = tumPlajlar.filter((p) => p.il === il.ad);
-    const { lat: ilLat, lon: ilLon, span: ilSpan } = bboxVeMerkez(ilTumPlajlar.length ? ilTumPlajlar : [{ lat: 39, lon: 35 }]);
+    // Plaj verisi henüz eklenmemiş iller/ilçeler için yerler.json'da elle tanımlı
+    // "merkez" (lat/lon/zoom) kullanılır — bu, plaj listeleri sonradan eklenene kadar
+    // (bkz. proje notları) sayfanın doğru bölgeye odaklanmış açılmasını sağlar.
+    let ilLat, ilLon, ilSpan, ilZoomDeger;
+    if (ilTumPlajlar.length) {
+      ({ lat: ilLat, lon: ilLon, span: ilSpan } = bboxVeMerkez(ilTumPlajlar));
+      ilZoomDeger = ilZoom(ilSpan);
+    } else if (il.merkez) {
+      ilLat = il.merkez.lat; ilLon = il.merkez.lon; ilZoomDeger = il.merkez.zoom || 8;
+    } else {
+      console.warn(`UYARI: ${il.ad} için ne plaj verisi ne de merkez tanımlı`);
+      ({ lat: ilLat, lon: ilLon, span: ilSpan } = bboxVeMerkez([{ lat: 39, lon: 35 }]));
+      ilZoomDeger = ilZoom(ilSpan);
+    }
 
     const ilceListe = il.ilceler.map((slug) => {
       const ic = ilceMap.get(slug);
@@ -131,7 +144,7 @@ function main() {
     });
 
     if (!filtre || filtre.has(il.slug)) {
-      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoom(ilSpan), navHtml });
+      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoomDeger, navHtml });
       yazDosya(`${il.slug}/index.html`, html);
     }
 
@@ -140,11 +153,17 @@ function main() {
       const icPlajlar = plajlar.filter((p) => p.il === il.ad && p.ilce === ic.ad);
       const icHalkPlajlar = halkPlajlar.filter((p) => p.il === il.ad && p.ilce === ic.ad);
       const icTumPlajlar = tumPlajlar.filter((p) => p.il === il.ad && p.ilce === ic.ad);
-      if (!icTumPlajlar.length) {
-        console.warn(`UYARI: ${il.ad}/${ic.ad} için MAVI_BAYRAK_PLAJLAR/HALK_PLAJLARI'nda eşleşen plaj yok`);
+      let lat, lon, span, zoomDeger;
+      if (icTumPlajlar.length) {
+        ({ lat, lon, span } = bboxVeMerkez(icTumPlajlar));
+        zoomDeger = ilceZoom(span);
+      } else if (ic.merkez) {
+        lat = ic.merkez.lat; lon = ic.merkez.lon; zoomDeger = ic.merkez.zoom || 13;
+      } else {
+        console.warn(`UYARI: ${il.ad}/${ic.ad} için ne plaj verisi ne de merkez tanımlı`);
+        lat = ilLat; lon = ilLon; zoomDeger = 11;
       }
-      const { lat, lon, span } = bboxVeMerkez(icTumPlajlar.length ? icTumPlajlar : [{ lat: ilLat, lon: ilLon }]);
-      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: ilceZoom(span), navHtml });
+      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: zoomDeger, navHtml });
       yazDosya(`${il.slug}/${ic.slug}/index.html`, html);
     }
   }
