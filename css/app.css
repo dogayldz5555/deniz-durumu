@@ -1,4 +1,10 @@
 * { box-sizing: border-box; }
+  /* İl/ilçe sayfalarındaki özgün içerik (başlık/giriş metni/mini-SSS — her yer için farklı,
+     bu yüzden js/app.js'teki paylaşılan CEVIRI sözlüğüne taşınamaz) HER İKİ dilde de statik
+     HTML'e gömülüyor; hangisinin görüneceği <html lang="..."> özniteliğine göre CSS ile
+     seçiliyor. dilUygula() zaten bu özniteliği güncelliyor, ek JS gerekmiyor. */
+  html[lang="en"] .tr-metin { display: none; }
+  html:not([lang="en"]) .en-metin { display: none; }
   /* Sabit tek tema (lacivert/altın) — önceki gün-içi 4 kademeli (sabah/öğlen/akşam/gece)
      sistemin yerine, kullanıcının onayladığı yeni tasarımla geldi (2026-07-07). Gece/gündüz
      geçişi istenirse ileride buraya tekrar eklenebilir; şimdilik tek, sabit palet. */

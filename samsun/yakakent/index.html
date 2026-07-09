@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":41.634951,"lon":35.5315896,"zoom":15,"il":"Samsun","ilce":"Yakakent"};</script>
+<script>window.SAYFA_KONUM = {"lat":41.634951,"lon":35.5315896,"zoom":15,"il":"Samsun","ilce":"Yakakent","baslik":"Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Yakakent Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Yakakent'te (Samsun) deniz bugün nasıl? 14 km'lik sahil şeridi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Yakakent (Samsun) today? Live wind, wave conditions and 7-day forecast for its 14km coastline."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Yakakent, Samsun'un en batısındaki ilçelerden biri — 14 kilometrelik uzun sahil şeridiyle bilinir. İlçenin halka açık plajı Yakakent Sahili. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.</p>
+    <h2><span class="tr-metin">Yakakent Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Yakakent Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Yakakent, Samsun'un en batısındaki ilçelerden biri — 14 kilometrelik uzun sahil şeridiyle bilinir. İlçenin halka açık plajı Yakakent Sahili. Bu plaj Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.</span><span class="en-metin">Yakakent is one of Samsun's westernmost districts, known for its long, 14-kilometer coastline. The district's public beach is Yakakent Beach. It is not Blue Flag certified, but it is real and open to the public.</span></p>
   </div>
 
     <div class="legend">
@@ -456,20 +456,20 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Halka Açık Plajlar</h2>
+      <h2 data-i18n="yer_halka_acik_baslik">Halka Açık Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Yakakent Sahili</li>
+      <li><span class="tr-metin">Yakakent Sahili</span><span class="en-metin">Yakakent Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>Yakakent'te hangi plaj var?</h3>
-      <p>Yakakent Sahili — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor.</p>
+      <h3><span class="tr-metin">Yakakent'te hangi plaj var?</span><span class="en-metin">Which beach is there in Yakakent?</span></h3>
+      <p><span class="tr-metin">Yakakent Sahili — 14 km uzunluğundaki Yakakent sahili. Bu plaj TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plaj olarak listeleniyor.</span><span class="en-metin">Yakakent Beach — the 14km-long Yakakent shore. It is not TÜRÇEV Blue Flag certified, just listed as a public beach.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/samsun/">← Samsun deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/samsun/"><span><span class="tr-metin">← Samsun deniz durumuna dön</span><span class="en-metin">← Back to Samsun sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

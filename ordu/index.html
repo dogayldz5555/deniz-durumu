@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":41,"lon":37.5,"zoom":9,"il":"Ordu","ilce":null};</script>
+<script>window.SAYFA_KONUM = {"lat":41,"lon":37.5,"zoom":9,"il":"Ordu","ilce":null,"baslik":"Ordu Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Ordu Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Ordu'da deniz bugün nasıl? Altınordu, Fatsa, Ünye ve Perşembe için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Ordu today? Live wind, wave conditions and 7-day forecast for Altınordu, Fatsa, Ünye and Perşembe."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Ordu Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Ordu, fındık bahçeleriyle çevrili yeşil tepelerin Karadeniz'e indiği bir sahil ili — kıyı şeridi merkez ilçe Altınordu'dan başlayıp batıda Ünye ve Fatsa'ya, doğuda Perşembe'ye kadar uzanır.</p>
+    <h2><span class="tr-metin">Ordu Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Ordu Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Ordu, fındık bahçeleriyle çevrili yeşil tepelerin Karadeniz'e indiği bir sahil ili — kıyı şeridi merkez ilçe Altınordu'dan başlayıp batıda Ünye ve Fatsa'ya, doğuda Perşembe'ye kadar uzanır.</span><span class="en-metin">Ordu is a Black Sea province where green, hazelnut-covered hills meet the sea — the coastline runs from the center district Altınordu west to Ünye and Fatsa, and east to Perşembe.</span></p>
   </div>
 
     <div class="legend">
@@ -457,7 +457,7 @@
 
   
   <div class="yer-ilceler">
-    <h2>Ordu'nin kıyı ilçeleri</h2>
+    <h2><span class="tr-metin">Ordu'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of Ordu</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/ordu/altinordu/">Altınordu</a></li>
       <li><a href="/ordu/fatsa/">Fatsa</a></li>
@@ -465,7 +465,7 @@
       <li><a href="/ordu/persembe/">Perşembe</a></li>
     </ul>
   </div>
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

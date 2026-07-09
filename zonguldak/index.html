@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":41.4,"lon":31.6,"zoom":9,"il":"Zonguldak","ilce":null};</script>
+<script>window.SAYFA_KONUM = {"lat":41.4,"lon":31.6,"zoom":9,"il":"Zonguldak","ilce":null,"baslik":"Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Zonguldak Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Zonguldak'ta deniz bugün nasıl? Zonguldak merkez ve Karadeniz Ereğli için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Zonguldak today? Live wind, wave conditions and 7-day forecast for Zonguldak center and Karadeniz Ereğli."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Zonguldak, Türkiye'nin kömür havzasıyla bilinen Batı Karadeniz ili — kıyısı hem Zonguldak merkezde hem de daha doğudaki Karadeniz Ereğli'de kayalık koylar ve limanlarla şekillenir. Karadeniz'in genel özelliği gereği kuzeyden esen rüzgar dalgayı hızla büyütebilir.</p>
+    <h2><span class="tr-metin">Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Zonguldak Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Zonguldak, Türkiye'nin kömür havzasıyla bilinen Batı Karadeniz ili — kıyısı hem Zonguldak merkezde hem de daha doğudaki Karadeniz Ereğli'de kayalık koylar ve limanlarla şekillenir. Karadeniz'in genel özelliği gereği kuzeyden esen rüzgar dalgayı hızla büyütebilir.</span><span class="en-metin">Zonguldak is a Western Black Sea province known for its coal-mining history — its coastline is shaped by rocky coves and harbors both in the city center and further east in Karadeniz Ereğli. Wind from the north on this open sea can raise waves quickly, as is typical of the Black Sea.</span></p>
   </div>
 
     <div class="legend">
@@ -457,13 +457,13 @@
 
   
   <div class="yer-ilceler">
-    <h2>Zonguldak'nin kıyı ilçeleri</h2>
+    <h2><span class="tr-metin">Zonguldak'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of Zonguldak</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/zonguldak/zonguldak-merkez/">Zonguldak Merkez</a></li>
       <li><a href="/zonguldak/karadeniz-eregli/">Karadeniz Ereğli</a></li>
     </ul>
   </div>
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":36.65,"lon":35.55,"zoom":9,"il":"Adana","ilce":null};</script>
+<script>window.SAYFA_KONUM = {"lat":36.65,"lon":35.55,"zoom":9,"il":"Adana","ilce":null,"baslik":"Adana Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Adana Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Adana'da deniz bugün nasıl? Karataş ve Yumurtalık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Adana today? Live wind, wave conditions and 7-day forecast for Karataş and Yumurtalık."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Adana Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Adana'nın Akdeniz kıyısı, Seyhan ve Ceyhan nehirlerinin deltalarına yakın Karataş ve Yumurtalık ilçelerinde toplanır — düz, kumlu ve uzun plajlarıyla bilinen bir kesim.</p>
+    <h2><span class="tr-metin">Adana Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Adana Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Adana'nın Akdeniz kıyısı, Seyhan ve Ceyhan nehirlerinin deltalarına yakın Karataş ve Yumurtalık ilçelerinde toplanır — düz, kumlu ve uzun plajlarıyla bilinen bir kesim.</span><span class="en-metin">Adana's Mediterranean coastline is concentrated in Karataş and Yumurtalık districts, close to the deltas of the Seyhan and Ceyhan rivers.</span></p>
   </div>
 
     <div class="legend">
@@ -457,13 +457,13 @@
 
   
   <div class="yer-ilceler">
-    <h2>Adana'nin kıyı ilçeleri</h2>
+    <h2><span class="tr-metin">Adana'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of Adana</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/adana/karatas/">Karataş</a></li>
       <li><a href="/adana/yumurtalik/">Yumurtalık</a></li>
     </ul>
   </div>
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

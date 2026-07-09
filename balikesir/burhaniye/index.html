@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":39.4716215,"lon":26.894644,"zoom":14,"il":"Balıkesir","ilce":"Burhaniye"};</script>
+<script>window.SAYFA_KONUM = {"lat":39.4716215,"lon":26.894644,"zoom":14,"il":"Balıkesir","ilce":"Burhaniye","baslik":"Burhaniye Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Burhaniye Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Burhaniye'de (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Burhaniye (Balıkesir) today? Live wind, wave conditions and 7-day forecast for 6 Blue Flag public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Burhaniye Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Burhaniye, zeytinyağı üretimiyle bilinen, Ayvalık ile Edremit arasındaki bir Balıkesir kıyı ilçesi.</p>
+    <h2><span class="tr-metin">Burhaniye Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Burhaniye Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Burhaniye, zeytinyağı üretimiyle bilinen, Ayvalık ile Edremit arasındaki bir Balıkesir kıyı ilçesi.</span><span class="en-metin">Burhaniye is known for olive-oil production, a Balıkesir coastal district between Ayvalık and Edremit. The district's public Blue Flag beaches include Gadana Public Beach, Bağlar Burnu Public Beach, Yalı Beach, Burhaniye Marina Beach, Öğretmenler District Public Beach, Ören District Public Beach.</span></p>
   </div>
 
     <div class="legend">
@@ -456,18 +456,18 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Gadana Halk Plajı</li>
-      <li>Bağlar Burnu Halk Plajı</li>
-      <li>Yalı Plajı</li>
-      <li>Burhaniye Marina Plajı</li>
-      <li>Öğretmenler Mahallesi Halk Plajı</li>
-      <li>Ören Mahallesi Halk Plajı</li>
+      <li><span class="tr-metin">Gadana Halk Plajı</span><span class="en-metin">Gadana Public Beach</span></li>
+      <li><span class="tr-metin">Bağlar Burnu Halk Plajı</span><span class="en-metin">Bağlar Burnu Public Beach</span></li>
+      <li><span class="tr-metin">Yalı Plajı</span><span class="en-metin">Yalı Beach</span></li>
+      <li><span class="tr-metin">Burhaniye Marina Plajı</span><span class="en-metin">Burhaniye Marina Beach</span></li>
+      <li><span class="tr-metin">Öğretmenler Mahallesi Halk Plajı</span><span class="en-metin">Öğretmenler District Public Beach</span></li>
+      <li><span class="tr-metin">Ören Mahallesi Halk Plajı</span><span class="en-metin">Ören District Public Beach</span></li>
       </ul>
     </div>
   
-  <p class="yer-donus"><a href="/balikesir/">← Balıkesir deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/balikesir/"><span><span class="tr-metin">← Balıkesir deniz durumuna dön</span><span class="en-metin">← Back to Balıkesir sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":38.703190500000005,"lon":26.7836435,"zoom":13,"il":"İzmir","ilce":"Foça"};</script>
+<script>window.SAYFA_KONUM = {"lat":38.703190500000005,"lon":26.7836435,"zoom":13,"il":"İzmir","ilce":"Foça","baslik":"Foça Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Foça Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Foça'da deniz bugün nasıl? 4 Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Foça today? Live wind, wave conditions and 7-day forecast for 4 Blue Flag public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Foça Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Foça, antik Phokaia kentinin üzerine kurulu tarihi bir liman kasabası — sakin sokakları ve korunaklı koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında Karakum Halk Plajı, Sosyal Tesisler Önü Plajı, Kumburnu Halk Plajı, Yenifoça Halk Plajı bulunuyor.</p>
+    <h2><span class="tr-metin">Foça Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Foça Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Foça, antik Phokaia kentinin üzerine kurulu tarihi bir liman kasabası — sakin sokakları ve korunaklı koylarıyla bilinir. İlçenin halka açık Mavi Bayraklı plajları arasında Karakum Halk Plajı, Sosyal Tesisler Önü Plajı, Kumburnu Halk Plajı, Yenifoça Halk Plajı bulunuyor.</span><span class="en-metin">Foça is a historic harbor town built over the ancient city of Phokaia — known for its quiet streets and sheltered coves. The district's public Blue Flag beaches include Karakum Beach, Sosyal Tesisler Beach, Kumburnu Beach, Yenifoça Beach.</span></p>
   </div>
 
     <div class="legend">
@@ -456,23 +456,23 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Karakum Halk Plajı</li>
-      <li>Sosyal Tesisler Önü Plajı</li>
-      <li>Kumburnu Halk Plajı</li>
-      <li>Yenifoça Halk Plajı</li>
+      <li><span class="tr-metin">Karakum Halk Plajı</span><span class="en-metin">Karakum Beach</span></li>
+      <li><span class="tr-metin">Sosyal Tesisler Önü Plajı</span><span class="en-metin">Sosyal Tesisler Beach</span></li>
+      <li><span class="tr-metin">Kumburnu Halk Plajı</span><span class="en-metin">Kumburnu Beach</span></li>
+      <li><span class="tr-metin">Yenifoça Halk Plajı</span><span class="en-metin">Yenifoça Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>Foça'da hangi plajlar Mavi Bayraklı?</h3>
-      <p>Karakum Halk Plajı, Sosyal Tesisler Önü Plajı, Kumburnu Halk Plajı, Yenifoça Halk Plajı olmak üzere toplam 4 halka açık plaj Mavi Bayrak sertifikalı.</p>
+      <h3><span class="tr-metin">Foça'da hangi plajlar Mavi Bayraklı?</span><span class="en-metin">Which beaches in Foça are Blue Flag certified?</span></h3>
+      <p><span class="tr-metin">Karakum Halk Plajı, Sosyal Tesisler Önü Plajı, Kumburnu Halk Plajı, Yenifoça Halk Plajı olmak üzere toplam 4 halka açık plaj Mavi Bayrak sertifikalı.</span><span class="en-metin">Karakum Beach, Sosyal Tesisler Beach, Kumburnu Beach, Yenifoça Beach — 4 public beaches in total are Blue Flag certified.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/izmir/">← İzmir deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/izmir/"><span><span class="tr-metin">← İzmir deniz durumuna dön</span><span class="en-metin">← Back to İzmir sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

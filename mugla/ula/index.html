@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":37.051197,"lon":28.324341,"zoom":15,"il":"Muğla","ilce":"Ula"};</script>
+<script>window.SAYFA_KONUM = {"lat":37.051197,"lon":28.324341,"zoom":15,"il":"Muğla","ilce":"Ula","baslik":"Ula (Akyaka) Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Ula (Akyaka) Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Ula ve Akyaka'da deniz bugün nasıl? 1 Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Ula and Akyaka today? Live wind, wave conditions and 7-day forecast for 1 Blue Flag public beach."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Ula (Akyaka) Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Ula ilçesi, Gökova Körfezi'nin ucundaki Akyaka beldesini kapsar — rüzgar sörfüyle ve Azmak Nehri'nin denize kavuştuğu doğal güzelliğiyle bilinir. İlçenin halka açık Mavi Bayraklı plajı Akyaka Halk Plajı. Akyaka, öğleden sonra güçlenen İmbat rüzgarıyla tanınır.</p>
+    <h2><span class="tr-metin">Ula (Akyaka) Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Ula (Akyaka) Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Ula ilçesi, Gökova Körfezi'nin ucundaki Akyaka beldesini kapsar — rüzgar sörfüyle ve Azmak Nehri'nin denize kavuştuğu doğal güzelliğiyle bilinir. İlçenin halka açık Mavi Bayraklı plajı Akyaka Halk Plajı. Akyaka, öğleden sonra güçlenen İmbat rüzgarıyla tanınır.</span><span class="en-metin">Ula district covers the town of Akyaka at the tip of the Gulf of Gökova — known for windsurfing and the natural beauty of where the Azmak River meets the sea. The district's public Blue Flag beach is Akyaka Public Beach. Akyaka is known for its afternoon İmbat wind.</span></p>
   </div>
 
     <div class="legend">
@@ -456,24 +456,24 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Akyaka Halk Plajı</li>
+      <li><span class="tr-metin">Akyaka Halk Plajı</span><span class="en-metin">Akyaka Public Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>Akyaka'da hangi plajlar Mavi Bayraklı?</h3>
-      <p>Akyaka Halk Plajı — toplam 1 halka açık plaj Mavi Bayrak sertifikalı.</p>
+      <h3><span class="tr-metin">Akyaka'da hangi plajlar Mavi Bayraklı?</span><span class="en-metin">Which beaches in Akyaka are Blue Flag certified?</span></h3>
+      <p><span class="tr-metin">Akyaka Halk Plajı — toplam 1 halka açık plaj Mavi Bayrak sertifikalı.</span><span class="en-metin">Akyaka Public Beach — 1 public beach, Blue Flag certified.</span></p>
     </div>
     <div class="sss-madde">
-      <h3>Akyaka'da rüzgar günün hangi saatinde güçlenir?</h3>
-      <p>Akyaka, öğleden sonra belirginleşen İmbat rüzgarıyla bilinir — bu yüzden rüzgar sörfü genelde öğleden sonra tercih edilir.</p>
+      <h3><span class="tr-metin">Akyaka'da rüzgar günün hangi saatinde güçlenir?</span><span class="en-metin">What time of day does the wind pick up in Akyaka?</span></h3>
+      <p><span class="tr-metin">Akyaka, öğleden sonra belirginleşen İmbat rüzgarıyla bilinir — bu yüzden rüzgar sörfü genelde öğleden sonra tercih edilir.</span><span class="en-metin">Akyaka is known for its İmbat wind, which usually picks up in the afternoon — that's generally the preferred time for windsurfing.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/mugla/">← Muğla deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/mugla/"><span><span class="tr-metin">← Muğla deniz durumuna dön</span><span class="en-metin">← Back to Muğla sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

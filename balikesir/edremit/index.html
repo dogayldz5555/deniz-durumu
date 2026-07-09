@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":39.573782,"lon":26.849648000000002,"zoom":13,"il":"Balıkesir","ilce":"Edremit"};</script>
+<script>window.SAYFA_KONUM = {"lat":39.573782,"lon":26.849648000000002,"zoom":13,"il":"Balıkesir","ilce":"Edremit","baslik":"Edremit (Akçay) Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Edremit (Akçay) Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Edremit ve Akçay'da (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Edremit and Akçay (Balıkesir) today? Live wind, wave conditions and 7-day forecast for 7 Blue Flag public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Edremit (Akçay) Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Edremit ilçesi, Kaz Dağları'nın eteğindeki Akçay sahiliyle bilinir — zeytinlikleriyle çevrili bir Ege koyu.</p>
+    <h2><span class="tr-metin">Edremit (Akçay) Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Edremit (Akçay) Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Edremit ilçesi, Kaz Dağları'nın eteğindeki Akçay sahiliyle bilinir — zeytinlikleriyle çevrili bir Ege koyu.</span><span class="en-metin">Edremit district is known for the Akçay shore at the foot of the Kaz (Ida) Mountains — an Aegean bay surrounded by olive groves. The district's public Blue Flag beaches include Edremit Altınkum Public Beach, Akçay Sarıkız Public Beach, Melek Hanım Sitesi Beach, İğdeli Beach, Özdemir Sitesi Önü Beach, Antandros Public Beach, Vali Konağı Beach.</span></p>
   </div>
 
     <div class="legend">
@@ -456,19 +456,19 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Edremit Altınkum Halk Plajı</li>
-      <li>Akçay Sarıkız Halk Plajı</li>
-      <li>Melek Hanım Sitesi Plajı</li>
-      <li>İğdeli Plajı</li>
-      <li>Özdemir Sitesi Önü Plajı</li>
-      <li>Antandros Halk Plajı</li>
-      <li>Vali Konağı Plajı</li>
+      <li><span class="tr-metin">Edremit Altınkum Halk Plajı</span><span class="en-metin">Edremit Altınkum Public Beach</span></li>
+      <li><span class="tr-metin">Akçay Sarıkız Halk Plajı</span><span class="en-metin">Akçay Sarıkız Public Beach</span></li>
+      <li><span class="tr-metin">Melek Hanım Sitesi Plajı</span><span class="en-metin">Melek Hanım Sitesi Beach</span></li>
+      <li><span class="tr-metin">İğdeli Plajı</span><span class="en-metin">İğdeli Beach</span></li>
+      <li><span class="tr-metin">Özdemir Sitesi Önü Plajı</span><span class="en-metin">Özdemir Sitesi Önü Beach</span></li>
+      <li><span class="tr-metin">Antandros Halk Plajı</span><span class="en-metin">Antandros Public Beach</span></li>
+      <li><span class="tr-metin">Vali Konağı Plajı</span><span class="en-metin">Vali Konağı Beach</span></li>
       </ul>
     </div>
   
-  <p class="yer-donus"><a href="/balikesir/">← Balıkesir deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/balikesir/"><span><span class="tr-metin">← Balıkesir deniz durumuna dön</span><span class="en-metin">← Back to Balıkesir sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

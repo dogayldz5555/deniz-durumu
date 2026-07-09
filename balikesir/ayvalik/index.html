@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":39.2709535,"lon":26.693291000000002,"zoom":13,"il":"Balıkesir","ilce":"Ayvalık"};</script>
+<script>window.SAYFA_KONUM = {"lat":39.2709535,"lon":26.693291000000002,"zoom":13,"il":"Balıkesir","ilce":"Ayvalık","baslik":"Ayvalık Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Ayvalık Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Ayvalık'ta (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Ayvalık (Balıkesir) today? Live wind, wave conditions and 7-day forecast for 9 Blue Flag public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Ayvalık Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Ayvalık, adalarla dolu kıyısı, zeytinyağı üretimi ve tarihi taş evleriyle bilinen bir Ege ilçesi — açık Ege'ye bakan konumu nedeniyle rüzgara diğer korunaklı koylara göre daha açıktır.</p>
+    <h2><span class="tr-metin">Ayvalık Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Ayvalık Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Ayvalık, adalarla dolu kıyısı, zeytinyağı üretimi ve tarihi taş evleriyle bilinen bir Ege ilçesi — açık Ege'ye bakan konumu nedeniyle rüzgara diğer korunaklı koylara göre daha açıktır.</span><span class="en-metin">Ayvalık is an Aegean district known for its island-dotted coastline, olive-oil production and historic stone houses — its position facing the open Aegean makes it more exposed to wind than some sheltered coves. The district's public Blue Flag beaches include Uzungöl Beach, Siteler Beach, Kumadası Beach, Sarımsaklı 3 Public Beach, Oteller Önü Sarımsaklı Public Beach, Sarımsaklı 2 Public Beach, Paşalimanı Facility Beach, Kapri Beach, Ayvalık Public Beach (Duba).</span></p>
   </div>
 
     <div class="legend">
@@ -456,21 +456,21 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Uzungöl Plajı</li>
-      <li>Siteler Plajı</li>
-      <li>Kumadası Plajı</li>
-      <li>Sarımsaklı 3 Halk Plajı</li>
-      <li>Oteller Önü Sarımsaklı Halk Plajı</li>
-      <li>Sarımsaklı 2 Halk Plajı</li>
-      <li>Paşalimanı Tesisleri</li>
-      <li>Kapri Plajı</li>
-      <li>Ayvalık Halk Plajı (Duba)</li>
+      <li><span class="tr-metin">Uzungöl Plajı</span><span class="en-metin">Uzungöl Beach</span></li>
+      <li><span class="tr-metin">Siteler Plajı</span><span class="en-metin">Siteler Beach</span></li>
+      <li><span class="tr-metin">Kumadası Plajı</span><span class="en-metin">Kumadası Beach</span></li>
+      <li><span class="tr-metin">Sarımsaklı 3 Halk Plajı</span><span class="en-metin">Sarımsaklı 3 Public Beach</span></li>
+      <li><span class="tr-metin">Oteller Önü Sarımsaklı Halk Plajı</span><span class="en-metin">Oteller Önü Sarımsaklı Public Beach</span></li>
+      <li><span class="tr-metin">Sarımsaklı 2 Halk Plajı</span><span class="en-metin">Sarımsaklı 2 Public Beach</span></li>
+      <li><span class="tr-metin">Paşalimanı Tesisleri</span><span class="en-metin">Paşalimanı Facility Beach</span></li>
+      <li><span class="tr-metin">Kapri Plajı</span><span class="en-metin">Kapri Beach</span></li>
+      <li><span class="tr-metin">Ayvalık Halk Plajı (Duba)</span><span class="en-metin">Ayvalık Public Beach (Duba)</span></li>
       </ul>
     </div>
   
-  <p class="yer-donus"><a href="/balikesir/">← Balıkesir deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/balikesir/"><span><span class="tr-metin">← Balıkesir deniz durumuna dön</span><span class="en-metin">← Back to Balıkesir sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

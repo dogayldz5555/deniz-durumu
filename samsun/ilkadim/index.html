@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":41.2986928,"lon":36.34474435,"zoom":14,"il":"Samsun","ilce":"İlkadım"};</script>
+<script>window.SAYFA_KONUM = {"lat":41.2986928,"lon":36.34474435,"zoom":14,"il":"Samsun","ilce":"İlkadım","baslik":"İlkadım Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"İlkadım Sea Conditions — Today and 7-Day Forecast","metaAciklama":"İlkadım'da (Samsun) deniz bugün nasıl? 2 halka açık plaj için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in İlkadım (Samsun) today? Live wind, wave conditions and 7-day forecast for 2 public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>İlkadım Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>İlkadım, Samsun'un şehir merkezini oluşturan ilçesi — kıyı şeridi, komşusu Atakum'a göre daha kentsel ve limana yakın bir yapıya sahip. İlçenin halka açık plajları arasında Mert Plajı, Fener Plajı bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.</p>
+    <h2><span class="tr-metin">İlkadım Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">İlkadım Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">İlkadım, Samsun'un şehir merkezini oluşturan ilçesi — kıyı şeridi, komşusu Atakum'a göre daha kentsel ve limana yakın bir yapıya sahip. İlçenin halka açık plajları arasında Mert Plajı, Fener Plajı bulunuyor. Bu plajlar Mavi Bayrak sertifikalı değil, ama gerçek ve halka açık.</span><span class="en-metin">İlkadım is Samsun's city-center district — its coastline is more urban and closer to the harbor than neighboring Atakum. The district's public beaches include Mert Beach, Fener Beach. These are not Blue Flag certified, but they are real and open to the public.</span></p>
   </div>
 
     <div class="legend">
@@ -456,25 +456,25 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Halka Açık Plajlar</h2>
+      <h2 data-i18n="yer_halka_acik_baslik">Halka Açık Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Mert Plajı</li>
-      <li>Fener Plajı</li>
+      <li><span class="tr-metin">Mert Plajı</span><span class="en-metin">Mert Beach</span></li>
+      <li><span class="tr-metin">Fener Plajı</span><span class="en-metin">Fener Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>İlkadım'da hangi plajlar var?</h3>
-      <p>Mert Plajı, Fener Plajı — toplam 2 halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor.</p>
+      <h3><span class="tr-metin">İlkadım'da hangi plajlar var?</span><span class="en-metin">Which beaches are there in İlkadım?</span></h3>
+      <p><span class="tr-metin">Mert Plajı, Fener Plajı — toplam 2 halka açık plaj. Bunlar TÜRÇEV'in Mavi Bayrak sertifikasına sahip değil, sadece halka açık plajlar olarak listeleniyor.</span><span class="en-metin">Mert Beach, Fener Beach — 2 public beaches in total. These are not TÜRÇEV Blue Flag certified, just listed as public beaches.</span></p>
     </div>
     <div class="sss-madde">
-      <h3>İlkadım, Atakum'a göre nasıl farklı?</h3>
-      <p>Atakum, Samsun'un plaj ve gezinti yoluyla bilinen turizm odaklı ilçesiyken, İlkadım şehrin idari ve ticari merkezine daha yakındır.</p>
+      <h3><span class="tr-metin">İlkadım, Atakum'a göre nasıl farklı?</span><span class="en-metin">How does İlkadım differ from Atakum?</span></h3>
+      <p><span class="tr-metin">Atakum, Samsun'un plaj ve gezinti yoluyla bilinen turizm odaklı ilçesiyken, İlkadım şehrin idari ve ticari merkezine daha yakındır.</span><span class="en-metin">Atakum is Samsun's tourism-focused district known for its beaches and promenade, while İlkadım is closer to the city's administrative and commercial center.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/samsun/">← Samsun deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/samsun/"><span><span class="tr-metin">← Samsun deniz durumuna dön</span><span class="en-metin">← Back to Samsun sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

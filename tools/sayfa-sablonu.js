@@ -53,12 +53,22 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+// Plaj adı(nda) (p.adEn) doluysa iki dilde de gösterilir (bkz. css/app.css'teki
+// tr-metin/en-metin CSS-toggle mekanizması); doldurulmamışsa (eski kayıtlarda olabilir)
+// güvenli şekilde sadece Türkçe adı gösterilir.
+function plajAdiHtml(p) {
+  if (p.adEn && p.adEn !== p.ad) {
+    return `<span class="tr-metin">${escapeHtml(p.ad)}</span><span class="en-metin">${escapeHtml(p.adEn)}</span>`;
+  }
+  return escapeHtml(p.ad);
+}
+
 function plajListesiHtml(plajlar, halkPlajlar) {
   const maviBayrakBlok = plajlar.length
     ? `<div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      ${plajlar.map((p) => `<li>${escapeHtml(p.ad)}</li>`).join("\n      ")}
+      ${plajlar.map((p) => `<li>${plajAdiHtml(p)}</li>`).join("\n      ")}
       </ul>
     </div>`
     : "";
@@ -66,38 +76,52 @@ function plajListesiHtml(plajlar, halkPlajlar) {
   // Mavi Bayraklı Plajlar listesiyle karıştırılmasın diye kesinlikle birleştirilmiyor.
   const halkPlajBlok = halkPlajlar && halkPlajlar.length
     ? `<div class="yer-plajlar">
-      <h2>Halka Açık Plajlar</h2>
+      <h2 data-i18n="yer_halka_acik_baslik">Halka Açık Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      ${halkPlajlar.map((p) => `<li>${escapeHtml(p.ad)}</li>`).join("\n      ")}
+      ${halkPlajlar.map((p) => `<li>${plajAdiHtml(p)}</li>`).join("\n      ")}
       </ul>
     </div>`
     : "";
   return maviBayrakBlok + halkPlajBlok;
 }
 
+// Her mini-SSS maddesinin soru/cevabı yer başına özgü olduğu için (js/app.js'teki paylaşılan
+// CEVIRI sözlüğüne taşınamaz) TR+EN ikisi de gömülüyor, CSS ile seçiliyor. EN metni henüz
+// yazılmamışsa (soruEn yoksa) sadece TR gösterilir — sayfa hiç kırılmaz, sadece o madde
+// İngilizce modda da Türkçe kalır.
 function miniSssHtml(miniSss) {
   if (!miniSss || !miniSss.length) return "";
   const maddeler = miniSss
-    .map(
-      (s) => `<div class="sss-madde">
+    .map((s) => {
+      if (s.soruEn && s.cevapEn) {
+        return `<div class="sss-madde">
+      <h3><span class="tr-metin">${escapeHtml(s.soru)}</span><span class="en-metin">${escapeHtml(s.soruEn)}</span></h3>
+      <p><span class="tr-metin">${s.cevap}</span><span class="en-metin">${s.cevapEn}</span></p>
+    </div>`;
+      }
+      return `<div class="sss-madde">
       <h3>${escapeHtml(s.soru)}</h3>
       <p>${s.cevap}</p>
-    </div>`
-    )
+    </div>`;
+    })
     .join("\n    ");
   return `<div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     ${maddeler}
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>`;
 }
 
 // Ortak <head> + #app-wrap iskeletini üreten fonksiyon. `ustSectionHtml` .sub tagline'ından
 // hemen sonra, `altSectionHtml` #conflict-note'tan hemen sonra (plaj listesi + mini SSS +
 // geri dönüş linki gibi bölümler için) enjekte edilir.
-function sayfaIskeleti({ title, metaAciklama, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml, navHtml }) {
+function sayfaIskeleti({ title, titleEn, metaAciklama, metaAciklamaEn, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml, navHtml }) {
+  // SAYFA_KONUM'a başlık/açıklamanın İngilizce halini de gömüyoruz ki dilUygula() dil
+  // değişince <title>/meta description'ı da (sadece homepage'de değil, bu sayfalarda da)
+  // güncelleyebilsin — EN metni henüz yazılmamışsa (baslikEn/metaAciklamaEn null) JS zaten
+  // TR'de kalır, sayfa kırılmaz.
   const sayfaKonumJs = sayfaKonum
-    ? `<script>window.SAYFA_KONUM = ${JSON.stringify(sayfaKonum)};</script>\n`
+    ? `<script>window.SAYFA_KONUM = ${JSON.stringify({ ...sayfaKonum, baslik: title, baslikEn: titleEn || null, metaAciklama, metaAciklamaEn: metaAciklamaEn || null })};</script>\n`
     : "";
   return `<!DOCTYPE html>
 <html lang="tr">
@@ -340,6 +364,17 @@ ${sayfaKonumJs}<script>
 `;
 }
 
+// İki dilli paragraf/cümle üretir: EN metni varsa tr-metin/en-metin span'leriyle ikisini de
+// gömer (CSS ile seçiliyor, bkz. css/app.css), yoksa (henüz çevrilmemiş eski kayıt) sadece
+// TR gösterip sayfayı kırmaz.
+function ikiDilliHtml(tag, trMetin, enMetin, klas) {
+  const klasAttr = klas ? ` class="${klas}"` : "";
+  if (enMetin) {
+    return `<${tag}${klasAttr}><span class="tr-metin">${trMetin}</span><span class="en-metin">${enMetin}</span></${tag}>`;
+  }
+  return `<${tag}${klasAttr}>${trMetin}</${tag}>`;
+}
+
 function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
   // {plajAdlari}/{plajSayisi} token'ları Mavi Bayraklı + halka açık plajları BİRLİKTE
   // yansıtır (sadece bir sertifika iddiası taşımayan, genel "plajları arasında" cümlesi için) —
@@ -347,23 +382,27 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
   // ayrımını korur, burada sadece giriş metninin doğal okunması sağlanıyor.
   const tumPlajlar = plajlar.concat(halkPlajlar || []);
   const plajAdlari = tumPlajlar.map((p) => p.ad).join(", ") || "henüz eklenmemiş";
+  const plajAdlariEn = tumPlajlar.map((p) => p.adEn || p.ad).join(", ") || "not added yet";
   const plajSayisi = tumPlajlar.length;
   const doldur = (s) => s.replace(/\{plajAdlari\}/g, plajAdlari).replace(/\{plajSayisi\}/g, String(plajSayisi));
+  const doldurEn = (s) => s.replace(/\{plajAdlari\}/g, plajAdlariEn).replace(/\{plajSayisi\}/g, String(plajSayisi));
 
   const ustSectionHtml = `<div class="yer-giris">
-    <h2>${escapeHtml(ilce.baslik)}</h2>
-    <p>${doldur(ilce.girisMetni)}</p>
+    ${ikiDilliHtml("h2", escapeHtml(ilce.baslik), ilce.baslikEn ? escapeHtml(ilce.baslikEn) : null)}
+    ${ikiDilliHtml("p", doldur(ilce.girisMetni), ilce.girisMetniEn ? doldurEn(ilce.girisMetniEn) : null)}
   </div>`;
 
   const altSectionHtml = `${plajListesiHtml(plajlar, halkPlajlar)}
-  ${miniSssHtml((ilce.miniSss || []).map((s) => ({ soru: s.soru, cevap: doldur(s.cevap) })))}
-  <p class="yer-donus"><a href="/${il.slug}/">← ${escapeHtml(il.ad)} deniz durumuna dön</a></p>`;
+  ${miniSssHtml((ilce.miniSss || []).map((s) => ({ soru: s.soru, cevap: doldur(s.cevap), soruEn: s.soruEn, cevapEn: s.cevapEn ? doldurEn(s.cevapEn) : null })))}
+  <p class="yer-donus"><a href="/${il.slug}/">${ikiDilliHtml("span", `← ${escapeHtml(il.ad)} deniz durumuna dön`, `← Back to ${escapeHtml(il.ad)} sea conditions`)}</a></p>`;
 
   const canonicalUrl = `https://www.seadatawave.com/${il.slug}/${ilce.slug}/`;
 
   return sayfaIskeleti({
     title: ilce.baslik,
+    titleEn: ilce.baslikEn,
     metaAciklama: doldur(ilce.metaAciklama),
+    metaAciklamaEn: ilce.metaAciklamaEn ? doldurEn(ilce.metaAciklamaEn) : null,
     canonicalUrl,
     sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: ilce.ad },
     ustSectionHtml,
@@ -374,15 +413,15 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
 
 function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
   const ustSectionHtml = `<div class="yer-giris">
-    <h2>${escapeHtml(il.baslik)}</h2>
-    <p>${il.girisMetni}</p>
+    ${ikiDilliHtml("h2", escapeHtml(il.baslik), il.baslikEn ? escapeHtml(il.baslikEn) : null)}
+    ${ikiDilliHtml("p", il.girisMetni, il.girisMetniEn || null)}
   </div>`;
 
   const ilceLinkleri = ilceler
     .map((ic) => `<li><a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}</a></li>`)
     .join("\n      ");
   const ilceSectionHtml = `<div class="yer-ilceler">
-    <h2>${escapeHtml(il.ad)}'nin kıyı ilçeleri</h2>
+    ${ikiDilliHtml("h2", `${escapeHtml(il.ad)}'nin kıyı ilçeleri`, `Coastal districts of ${escapeHtml(il.ad)}`)}
     <ul class="yer-ilceler-listesi">
       ${ilceLinkleri}
     </ul>
@@ -390,13 +429,15 @@ function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navH
 
   const altSectionHtml = `${plajListesiHtml(plajlar, halkPlajlar)}
   ${ilceSectionHtml}
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>`;
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>`;
 
   const canonicalUrl = `https://www.seadatawave.com/${il.slug}/`;
 
   return sayfaIskeleti({
     title: il.baslik,
+    titleEn: il.baslikEn,
     metaAciklama: il.metaAciklama,
+    metaAciklamaEn: il.metaAciklamaEn || null,
     canonicalUrl,
     sayfaKonum: { lat, lon, zoom, il: il.ad, ilce: null },
     ustSectionHtml,

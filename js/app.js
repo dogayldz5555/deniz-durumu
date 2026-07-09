@@ -106,6 +106,10 @@ const CEVIRI = {
     sss_git_baslik: "Sıkça sorulan sorular",
     sss_git_metin: "SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Tüm cevaplar SSS sayfasında.",
     sss_git_buton: "Sıkça Sorulan Sorular →",
+    yer_mavi_bayrakli_baslik: "Mavi Bayraklı Plajlar",
+    yer_halka_acik_baslik: "Halka Açık Plajlar",
+    yer_daha_fazla_soru: "Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →",
+    yer_donus_il: "← Türkiye geneli deniz durumuna dön",
     yan_panel_baslik: "Denize girilen yerler",
     yan_panel_alt: "Son 2 saatte yorum alan noktalar, çoğunluk görüşüne göre",
     yan_panel_yakinlastir: "Yakınlaştırınca haritada görünen noktalardaki yorumlar burada listelenir.",
@@ -262,6 +266,10 @@ const CEVIRI = {
     sss_git_baslik: "Frequently asked questions",
     sss_git_metin: "How does SeaDataWave work, what does Blue Flag mean, how often is data updated? All the answers are on the FAQ page.",
     sss_git_buton: "Frequently Asked Questions →",
+    yer_mavi_bayrakli_baslik: "Blue Flag Beaches",
+    yer_halka_acik_baslik: "Public Beaches",
+    yer_daha_fazla_soru: "See the FAQ page for more questions →",
+    yer_donus_il: "← Back to Turkey-wide sea conditions",
     yan_panel_baslik: "Places people are swimming",
     yan_panel_alt: "Points with reports in the last 2 hours, by majority verdict",
     yan_panel_yakinlastir: "Zoom in to see reports at points visible on the map here.",
@@ -3115,12 +3123,22 @@ function dilUygula() {
   document.getElementById('dil-btn-tr').classList.toggle('aktif', AKTIF_DIL === 'tr');
   document.getElementById('dil-btn-en').classList.toggle('aktif', AKTIF_DIL === 'en');
   // İl/ilçe sayfalarının kendi özgün <title>/meta description'ı (SEO'nun asıl amacı) var —
-  // SAYFA_KONUM tanımlıysa bunların jenerik ana sayfa metniyle ezilmesini engelliyoruz.
+  // SAYFA_KONUM tanımlıysa bunların jenerik ana sayfa metniyle ezilmesini engelliyoruz, ama
+  // yine de dil değişince kendi TR/EN başlığı arasında geçiş yapabilsinler diye SAYFA_KONUM'a
+  // gömülü baslik/baslikEn/metaAciklama/metaAciklamaEn kullanılıyor (bkz. tools/sayfa-sablonu.js).
   if (!window.SAYFA_KONUM) {
     document.title = t('sayfa_baslik');
     document.getElementById('meta-aciklama').setAttribute('content', t('meta_aciklama'));
     document.getElementById('og-baslik').setAttribute('content', t('sayfa_baslik'));
     document.getElementById('og-aciklama').setAttribute('content', t('og_aciklama'));
+  } else if (window.SAYFA_KONUM.baslik) {
+    const sk = window.SAYFA_KONUM;
+    const baslik = (AKTIF_DIL === 'en' && sk.baslikEn) ? sk.baslikEn : sk.baslik;
+    const meta = (AKTIF_DIL === 'en' && sk.metaAciklamaEn) ? sk.metaAciklamaEn : sk.metaAciklama;
+    document.title = baslik;
+    document.getElementById('meta-aciklama').setAttribute('content', meta);
+    document.getElementById('og-baslik').setAttribute('content', baslik);
+    document.getElementById('og-aciklama').setAttribute('content', meta);
   }
   isimAlaniniGuncelle();
   if (state.lat != null) veriCekVeGoster(state.lat, state.lon);

@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":42,"lon":34.9,"zoom":9,"il":"Sinop","ilce":null};</script>
+<script>window.SAYFA_KONUM = {"lat":42,"lon":34.9,"zoom":9,"il":"Sinop","ilce":null,"baslik":"Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Sinop Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Sinop'ta deniz bugün nasıl? Sinop merkez, Gerze ve Ayancık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Sinop today? Live wind, wave conditions and 7-day forecast for Sinop center, Gerze and Ayancık."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Sinop, Karadeniz'in en kuzeye çıkıntı yapan yarımadasında yer alır — bu coğrafi konum, ilin hem doğu hem batı yönlerine açık koylara sahip olmasını sağlar. Sinop merkez, Gerze ve Ayancık ilinin başlıca kıyı ilçeleridir.</p>
+    <h2><span class="tr-metin">Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Sinop Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Sinop, Karadeniz'in en kuzeye çıkıntı yapan yarımadasında yer alır — bu coğrafi konum, ilin hem doğu hem batı yönlerine açık koylara sahip olmasını sağlar. Sinop merkez, Gerze ve Ayancık ilinin başlıca kıyı ilçeleridir.</span><span class="en-metin">Sinop sits on the Black Sea's northernmost peninsula — this geography gives the province coves facing both east and west.  Sinop center, Gerze and Ayancık are the province's main coastal districts.</span></p>
   </div>
 
     <div class="legend">
@@ -457,14 +457,14 @@
 
   
   <div class="yer-ilceler">
-    <h2>Sinop'nin kıyı ilçeleri</h2>
+    <h2><span class="tr-metin">Sinop'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of Sinop</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/sinop/sinop-merkez/">Sinop Merkez</a></li>
       <li><a href="/sinop/gerze/">Gerze</a></li>
       <li><a href="/sinop/ayancik/">Ayancık</a></li>
     </ul>
   </div>
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

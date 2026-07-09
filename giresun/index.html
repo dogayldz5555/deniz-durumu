@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":40.95,"lon":38.6,"zoom":9,"il":"Giresun","ilce":null};</script>
+<script>window.SAYFA_KONUM = {"lat":40.95,"lon":38.6,"zoom":9,"il":"Giresun","ilce":null,"baslik":"Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Giresun Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Giresun'da deniz bugün nasıl? Giresun merkez, Bulancak, Tirebolu ve Görele için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Giresun today? Live wind, wave conditions and 7-day forecast for Giresun center, Bulancak, Tirebolu and Görele."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Giresun, adasıyla (Giresun Adası) bilinen bir Orta Karadeniz ili — kıyı şeridi merkez ilçeden batıda Bulancak'a, doğuda Tirebolu ve Görele'ye kadar uzanır, fındık bahçeleriyle kaplı yamaçlar denize iner.</p>
+    <h2><span class="tr-metin">Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Giresun Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Giresun, adasıyla (Giresun Adası) bilinen bir Orta Karadeniz ili — kıyı şeridi merkez ilçeden batıda Bulancak'a, doğuda Tirebolu ve Görele'ye kadar uzanır, fındık bahçeleriyle kaplı yamaçlar denize iner.</span><span class="en-metin">Giresun is a Central Black Sea province known for its island (Giresun Island) — the coastline runs from the center district west to Bulancak, and east to Tirebolu and Görele, with hazelnut-covered slopes above.</span></p>
   </div>
 
     <div class="legend">
@@ -457,7 +457,7 @@
 
   
   <div class="yer-ilceler">
-    <h2>Giresun'nin kıyı ilçeleri</h2>
+    <h2><span class="tr-metin">Giresun'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of Giresun</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/giresun/giresun-merkez/">Giresun Merkez</a></li>
       <li><a href="/giresun/bulancak/">Bulancak</a></li>
@@ -465,7 +465,7 @@
       <li><a href="/giresun/gorele/">Görele</a></li>
     </ul>
   </div>
-  <p class="yer-donus"><a href="/">← Türkiye geneli deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

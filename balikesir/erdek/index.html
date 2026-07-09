@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":40.4159455,"lon":27.840904000000002,"zoom":13,"il":"Balıkesir","ilce":"Erdek"};</script>
+<script>window.SAYFA_KONUM = {"lat":40.4159455,"lon":27.840904000000002,"zoom":13,"il":"Balıkesir","ilce":"Erdek","baslik":"Erdek Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Erdek Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Erdek'te (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Erdek (Balıkesir) today? Live wind, wave conditions and 7-day forecast for 5 Blue Flag public beaches."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Erdek Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Erdek, Marmara Denizi'ndeki Kapıdağ Yarımadası'nın üzerinde yer alan, Marmara Adası'na feribot bağlantısıyla bilinen bir Balıkesir ilçesi.</p>
+    <h2><span class="tr-metin">Erdek Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Erdek Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Erdek, Marmara Denizi'ndeki Kapıdağ Yarımadası'nın üzerinde yer alan, Marmara Adası'na feribot bağlantısıyla bilinen bir Balıkesir ilçesi.</span><span class="en-metin">Erdek sits on the Kapıdağ Peninsula in the Sea of Marmara, known for its ferry connection to Marmara Island. The district's public Blue Flag beaches include Kurbağalı Dere Public Beach, Ocaklar Public Beach, Moda Beach, Bakraç Beach, Dalyan Beach.</span></p>
   </div>
 
     <div class="legend">
@@ -456,17 +456,17 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Kurbağalı Dere Halk Plajı</li>
-      <li>Ocaklar Halk Plajı</li>
-      <li>Moda Plajı</li>
-      <li>Bakraç Plajı</li>
-      <li>Dalyan Plajı</li>
+      <li><span class="tr-metin">Kurbağalı Dere Halk Plajı</span><span class="en-metin">Kurbağalı Dere Public Beach</span></li>
+      <li><span class="tr-metin">Ocaklar Halk Plajı</span><span class="en-metin">Ocaklar Public Beach</span></li>
+      <li><span class="tr-metin">Moda Plajı</span><span class="en-metin">Moda Beach</span></li>
+      <li><span class="tr-metin">Bakraç Plajı</span><span class="en-metin">Bakraç Beach</span></li>
+      <li><span class="tr-metin">Dalyan Plajı</span><span class="en-metin">Dalyan Beach</span></li>
       </ul>
     </div>
   
-  <p class="yer-donus"><a href="/balikesir/">← Balıkesir deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/balikesir/"><span><span class="tr-metin">← Balıkesir deniz durumuna dön</span><span class="en-metin">← Back to Balıkesir sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

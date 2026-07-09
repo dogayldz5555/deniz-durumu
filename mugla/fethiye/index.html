@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":36.5478765,"lon":29.117929,"zoom":15,"il":"Muğla","ilce":"Fethiye"};</script>
+<script>window.SAYFA_KONUM = {"lat":36.5478765,"lon":29.117929,"zoom":15,"il":"Muğla","ilce":"Fethiye","baslik":"Fethiye Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Fethiye Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Fethiye'de deniz bugün nasıl? Ölüdeniz dahil 2 Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Fethiye today? Live wind, wave conditions and 7-day forecast for 2 Blue Flag public beaches, including Ölüdeniz."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Fethiye Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Fethiye, yamaç paraşütüyle ünlü Babadağ'ın eteğindeki kapalı lagünü Ölüdeniz ve Kelebekler Vadisi'ne yakınlığıyla bilinen bir Muğla ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında Belceğiz Plajı, Kumburnu Plajı bulunuyor. Ölüdeniz'in kapalı lagün yapısı, burayı genelde bölgenin en sakin kesimlerinden biri yapar.</p>
+    <h2><span class="tr-metin">Fethiye Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Fethiye Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Fethiye, yamaç paraşütüyle ünlü Babadağ'ın eteğindeki kapalı lagünü Ölüdeniz ve Kelebekler Vadisi'ne yakınlığıyla bilinen bir Muğla ilçesi. İlçenin halka açık Mavi Bayraklı plajları arasında Belceğiz Plajı, Kumburnu Plajı bulunuyor. Ölüdeniz'in kapalı lagün yapısı, burayı genelde bölgenin en sakin kesimlerinden biri yapar.</span><span class="en-metin">Fethiye is a Muğla district known for the enclosed Ölüdeniz lagoon at the foot of Babadağ (famous for paragliding) and the Valley of Butterflies. The district's public Blue Flag beaches include Belceğiz Beach, Kumburnu Beach. Ölüdeniz's enclosed lagoon shape usually makes it one of the calmest stretches in the region.</span></p>
   </div>
 
     <div class="legend">
@@ -456,25 +456,25 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Belceğiz Plajı</li>
-      <li>Kumburnu Plajı</li>
+      <li><span class="tr-metin">Belceğiz Plajı</span><span class="en-metin">Belceğiz Beach</span></li>
+      <li><span class="tr-metin">Kumburnu Plajı</span><span class="en-metin">Kumburnu Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>Fethiye'de hangi plajlar Mavi Bayraklı?</h3>
-      <p>Belceğiz Plajı, Kumburnu Plajı olmak üzere toplam 2 halka açık plaj Mavi Bayrak sertifikalı.</p>
+      <h3><span class="tr-metin">Fethiye'de hangi plajlar Mavi Bayraklı?</span><span class="en-metin">Which beaches in Fethiye are Blue Flag certified?</span></h3>
+      <p><span class="tr-metin">Belceğiz Plajı, Kumburnu Plajı olmak üzere toplam 2 halka açık plaj Mavi Bayrak sertifikalı.</span><span class="en-metin">Belceğiz Beach, Kumburnu Beach — 2 public beaches in total are Blue Flag certified.</span></p>
     </div>
     <div class="sss-madde">
-      <h3>Ölüdeniz neden genelde sakin görünür?</h3>
-      <p>Ölüdeniz kapalı bir lagün olduğu için açık denizden gelen dalgadan büyük ölçüde korunur, bu da onu genelde sakin bir kesim yapar.</p>
+      <h3><span class="tr-metin">Ölüdeniz neden genelde sakin görünür?</span><span class="en-metin">Why does Ölüdeniz usually look calm?</span></h3>
+      <p><span class="tr-metin">Ölüdeniz kapalı bir lagün olduğu için açık denizden gelen dalgadan büyük ölçüde korunur, bu da onu genelde sakin bir kesim yapar.</span><span class="en-metin">Because Ölüdeniz is an enclosed lagoon, it's largely sheltered from open-sea waves, which usually keeps it calm.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/mugla/">← Muğla deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/mugla/"><span><span class="tr-metin">← Muğla deniz durumuna dön</span><span class="en-metin">← Back to Muğla sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>

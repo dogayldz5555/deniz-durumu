@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":36.5459835,"lon":32.000304,"zoom":14,"il":"Antalya","ilce":"Alanya"};</script>
+<script>window.SAYFA_KONUM = {"lat":36.5459835,"lon":32.000304,"zoom":14,"il":"Antalya","ilce":"Alanya","baslik":"Alanya Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"Alanya Sea Conditions — Today and 7-Day Forecast","metaAciklama":"Alanya'da deniz bugün nasıl? Kleopatra ve Damlataş dahil 7 Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in Alanya today? Live wind, wave conditions and 7-day forecast for 7 Blue Flag public beaches, including Kleopatra and Damlataş."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -355,8 +355,8 @@
     <p class="sub" data-i18n="sub_tagline">Haritada bir noktaya tıkla, o bölgenin rüzgar ve dalga durumunu gör.</p>
 
     <div class="yer-giris">
-    <h2>Alanya Deniz Durumu — Bugün ve 7 Günlük Tahmin</h2>
-    <p>Alanya, Türkiye'nin en bilinen turizm merkezlerinden biri — dünyaca ünlü Kleopatra Plajı ve tarihi Alanya Kalesi ile tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında Gençlik Merkezi Önü Halk Plajı, Keykubat Doğu Halk Plajı, Keykubat Batı Halk Plajı, Damlataş Halk Plajı, Alanya Engelsiz Halk Plajı, Kleopatra Doğu Halk Plajı, Kleopatra Batı Halk Plajı bulunuyor. Yaz aylarında yoğun turizm trafiğine sahne olsa da, deniz durumu değerlendirmesi tamamen o anki rüzgar/dalga verisine dayanır.</p>
+    <h2><span class="tr-metin">Alanya Deniz Durumu — Bugün ve 7 Günlük Tahmin</span><span class="en-metin">Alanya Sea Conditions — Today and 7-Day Forecast</span></h2>
+    <p><span class="tr-metin">Alanya, Türkiye'nin en bilinen turizm merkezlerinden biri — dünyaca ünlü Kleopatra Plajı ve tarihi Alanya Kalesi ile tanınır. İlçenin halka açık Mavi Bayraklı plajları arasında Gençlik Merkezi Önü Halk Plajı, Keykubat Doğu Halk Plajı, Keykubat Batı Halk Plajı, Damlataş Halk Plajı, Alanya Engelsiz Halk Plajı, Kleopatra Doğu Halk Plajı, Kleopatra Batı Halk Plajı bulunuyor. Yaz aylarında yoğun turizm trafiğine sahne olsa da, deniz durumu değerlendirmesi tamamen o anki rüzgar/dalga verisine dayanır.</span><span class="en-metin">Alanya is one of Turkey's best-known tourist destinations — famous for the world-renowned Cleopatra Beach and the historic Alanya Castle. The district's public Blue Flag beaches include Youth Center Beach, Keykubat East Beach, Keykubat West Beach, Damlataş Beach, Alanya Accessible Beach, Cleopatra East Beach, Cleopatra West Beach. Even with heavy summer tourist traffic, the sea-condition assessment here is based purely on real-time wind/wave data.</span></p>
   </div>
 
     <div class="legend">
@@ -456,34 +456,34 @@
   </div>
 
   <div class="yer-plajlar">
-      <h2>Mavi Bayraklı Plajlar</h2>
+      <h2 data-i18n="yer_mavi_bayrakli_baslik">Mavi Bayraklı Plajlar</h2>
       <ul class="yer-plaj-listesi">
-      <li>Gençlik Merkezi Önü Halk Plajı</li>
-      <li>Keykubat Doğu Halk Plajı</li>
-      <li>Keykubat Batı Halk Plajı</li>
-      <li>Damlataş Halk Plajı</li>
-      <li>Alanya Engelsiz Halk Plajı</li>
-      <li>Kleopatra Doğu Halk Plajı</li>
-      <li>Kleopatra Batı Halk Plajı</li>
+      <li><span class="tr-metin">Gençlik Merkezi Önü Halk Plajı</span><span class="en-metin">Youth Center Beach</span></li>
+      <li><span class="tr-metin">Keykubat Doğu Halk Plajı</span><span class="en-metin">Keykubat East Beach</span></li>
+      <li><span class="tr-metin">Keykubat Batı Halk Plajı</span><span class="en-metin">Keykubat West Beach</span></li>
+      <li><span class="tr-metin">Damlataş Halk Plajı</span><span class="en-metin">Damlataş Beach</span></li>
+      <li><span class="tr-metin">Alanya Engelsiz Halk Plajı</span><span class="en-metin">Alanya Accessible Beach</span></li>
+      <li><span class="tr-metin">Kleopatra Doğu Halk Plajı</span><span class="en-metin">Cleopatra East Beach</span></li>
+      <li><span class="tr-metin">Kleopatra Batı Halk Plajı</span><span class="en-metin">Cleopatra West Beach</span></li>
       </ul>
     </div>
   <div class="sss-bolum">
-    <h2>Sıkça sorulan sorular</h2>
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
     <div class="sss-madde">
-      <h3>Alanya'da hangi plajlar Mavi Bayraklı?</h3>
-      <p>Gençlik Merkezi Önü Halk Plajı, Keykubat Doğu Halk Plajı, Keykubat Batı Halk Plajı, Damlataş Halk Plajı, Alanya Engelsiz Halk Plajı, Kleopatra Doğu Halk Plajı, Kleopatra Batı Halk Plajı olmak üzere toplam 7 halka açık plaj Mavi Bayrak sertifikalı.</p>
+      <h3><span class="tr-metin">Alanya'da hangi plajlar Mavi Bayraklı?</span><span class="en-metin">Which beaches in Alanya are Blue Flag certified?</span></h3>
+      <p><span class="tr-metin">Gençlik Merkezi Önü Halk Plajı, Keykubat Doğu Halk Plajı, Keykubat Batı Halk Plajı, Damlataş Halk Plajı, Alanya Engelsiz Halk Plajı, Kleopatra Doğu Halk Plajı, Kleopatra Batı Halk Plajı olmak üzere toplam 7 halka açık plaj Mavi Bayrak sertifikalı.</span><span class="en-metin">Youth Center Beach, Keykubat East Beach, Keykubat West Beach, Damlataş Beach, Alanya Accessible Beach, Cleopatra East Beach, Cleopatra West Beach — 7 public beaches in total are Blue Flag certified.</span></p>
     </div>
     <div class="sss-madde">
-      <h3>Kleopatra Plajı'nda deniz durumu nasıl kontrol edilir?</h3>
-      <p>Yukarıdaki haritadan Kleopatra Doğu/Batı Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayarak anlık rüzgar ve dalga durumunu görebilirsin.</p>
+      <h3><span class="tr-metin">Kleopatra Plajı'nda deniz durumu nasıl kontrol edilir?</span><span class="en-metin">How can I check sea conditions at Cleopatra Beach?</span></h3>
+      <p><span class="tr-metin">Yukarıdaki haritadan Kleopatra Doğu/Batı Halk Plajı işaretine ya da kıyının herhangi bir noktasına tıklayarak anlık rüzgar ve dalga durumunu görebilirsin.</span><span class="en-metin">Tap the Cleopatra East/West Public Beach marker on the map above, or any point along the coast, to see live wind and wave conditions.</span></p>
     </div>
     <div class="sss-madde">
-      <h3>Alanya Gazipaşa'ya göre nasıl farklı?</h3>
-      <p>Alanya çok daha yoğun bir turizm merkezi ve daha uzun/gelişmiş bir plaj şeridine sahipken, komşusu Gazipaşa daha sakin ve az kalabalıktır.</p>
+      <h3><span class="tr-metin">Alanya Gazipaşa'ya göre nasıl farklı?</span><span class="en-metin">How does Alanya differ from Gazipaşa?</span></h3>
+      <p><span class="tr-metin">Alanya çok daha yoğun bir turizm merkezi ve daha uzun/gelişmiş bir plaj şeridine sahipken, komşusu Gazipaşa daha sakin ve az kalabalıktır.</span><span class="en-metin">Alanya is a much busier tourist hub with a longer, more developed beach strip, while neighboring Gazipaşa is quieter and less crowded.</span></p>
     </div>
-    <p class="sss-daha-fazla"><a href="/sss/">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
   </div>
-  <p class="yer-donus"><a href="/antalya/">← Antalya deniz durumuna dön</a></p>
+  <p class="yer-donus"><a href="/antalya/"><span><span class="tr-metin">← Antalya deniz durumuna dön</span><span class="en-metin">← Back to Antalya sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>
 </div>
