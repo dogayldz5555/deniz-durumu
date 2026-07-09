@@ -972,6 +972,15 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
 const IKON_BUYUT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
 const IKON_KUCULT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v3a2 2 0 0 1-2 2H4M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M16 21v-3a2 2 0 0 1 2-2h3"/></svg>';
 let haritaTamEkranAktif = false;
+// Tam ekran açılıp/kapanırken map.invalidateSize() haritanın konteyner boyutu aniden
+// değiştiği için Leaflet'in kendi içinde bir "moveend" tetiklemesine yol açabiliyor —
+// bu SAHTE bir hareket (kullanıcı haritayı hiç dokunmadı), ama haritaGorunumuDegisti bunu
+// gerçek bir kaydırma sanıp "Yakındaki Yorumlar" panelini anında kapatıyordu (bildirilen
+// hata: "harita açınca yorumlar kısmı bug'a giriyor, kayboluyor gidiyor geliyor").
+// Bu bayrak, geçiş sırasında gelen İLK moveend'i "gerçek kullanıcı hareketi" saymamak için var.
+let haritaBoyutGecisi = false;
+let haritaBoyutGecisiTimeout = null;
+
 function haritaTamEkranAcKapat() {
   haritaTamEkranAktif = !haritaTamEkranAktif;
   document.getElementById('map').classList.toggle('map-tam-ekran', haritaTamEkranAktif);
@@ -996,6 +1005,12 @@ function haritaTamEkranAcKapat() {
   // Tam ekran kenar sekmesinin görünürlüğü de (bkz. yakinYorumlariDurumGuncelle)
   // haritaTamEkranAktif'e bağlı olduğu için, büyüt/küçült her tıklamada hemen güncellenir.
   yakinYorumlariDurumGuncelle();
+  // invalidateSize'ın tetikleyebileceği sahte moveend'i işaretle (bkz. yukarıdaki not) —
+  // 800ms içinde hiç moveend gelmezse (bazı boyut değişimlerinde hiç gelmeyebilir) bayrak
+  // kendiliğinden geri düşer, sonraki GERÇEK bir hareketi yanlışlıkla yok saymasın diye.
+  haritaBoyutGecisi = true;
+  clearTimeout(haritaBoyutGecisiTimeout);
+  haritaBoyutGecisiTimeout = setTimeout(() => { haritaBoyutGecisi = false; }, 800);
   // CSS boyut değişimi bir sonraki karede tamamlanır, harita boyutunu ondan sonra tazeliyoruz.
   setTimeout(() => map.invalidateSize(), 150);
 }
@@ -2940,8 +2955,14 @@ function haritaGorunumuDegisti() {
   haritaRenkYogunluguGuncelle();
   // Harita hareket ettiğinde (kaydırma/zoom) kullanıcı artık başka bir yere bakıyor
   // olabileceği için, açık olan "Yakındaki Yorumlar" listesi kasıtlı olarak kapatılır —
-  // her yeni konum için tekrar "Sadece yorumları gör" butonuna basmak gerekir.
-  yakinYorumlarAcik = false;
+  // her yeni konum için tekrar "Sadece yorumları gör" butonuna basmak gerekir. AMA tam
+  // ekran geçişinin tetiklediği sahte moveend bu kurala dahil değil (bkz. haritaBoyutGecisi).
+  if (haritaBoyutGecisi) {
+    haritaBoyutGecisi = false;
+    clearTimeout(haritaBoyutGecisiTimeout);
+  } else {
+    yakinYorumlarAcik = false;
+  }
   clearTimeout(yanPanelDebounce);
   yanPanelDebounce = setTimeout(() => yakinYorumlariDurumGuncelle(), 200);
 }
