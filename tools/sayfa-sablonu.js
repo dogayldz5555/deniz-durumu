@@ -24,24 +24,24 @@ function navHtmlUret(yerler) {
     return `<details class="nav-il-grup">
         <summary class="nav-il-baslik">${escapeHtml(il.ad)} ${NAV_OK_SVG}</summary>
         <div class="nav-ilce-liste">
-          <a href="/${il.slug}/">${escapeHtml(`Tüm ${il.ad}`)}</a>
+          <a href="/${il.slug}/"><span class="tr-metin">Tüm ${escapeHtml(il.ad)}</span><span class="en-metin">All ${escapeHtml(il.ad)}</span></a>
           ${ilceLinkleri}
         </div>
       </details>`;
   }).join("\n      ");
 
   return `<nav class="site-nav" id="site-nav">
-  <a href="/">Anasayfa</a>
+  <a href="/" data-i18n="nav_anasayfa">Anasayfa</a>
   <details class="nav-iller" id="nav-iller">
-    <summary class="nav-iller-btn">İller ${NAV_OK_SVG}</summary>
+    <summary class="nav-iller-btn"><span data-i18n="nav_iller">İller</span> ${NAV_OK_SVG}</summary>
     <div class="nav-iller-menu">
       ${ilGruplari}
     </div>
   </details>
-  <a href="/#veriler">Veriler</a>
-  <a href="/#site-yorumlar-bolum">Yorumlar</a>
-  <a href="/#hakkimizda">Hakkımızda</a>
-  <a href="/sss/">Sıkça Sorulan Sorular</a>
+  <a href="/#veriler" data-i18n="nav_veriler">Veriler</a>
+  <a href="/#site-yorumlar-bolum" data-i18n="nav_yorumlar">Yorumlar</a>
+  <a href="/#hakkimizda" data-i18n="nav_hakkimizda">Hakkımızda</a>
+  <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>`;
 }
 
@@ -179,7 +179,7 @@ ${sayfaKonumJs}<script>
     <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
     <div class="brand-yazi">
       <h1>SeaDataWave</h1>
-      <p class="brand-alt">Anlık Deniz Verileri</p>
+      <p class="brand-alt" data-i18n="brand_alt">Anlık Deniz Verileri</p>
     </div>
   </div>
   <!-- NAV:START -->
@@ -336,11 +336,11 @@ ${sayfaKonumJs}<script>
     <div>
       <div class="brand">
         <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt" data-i18n="brand_alt">Anlık Deniz Verileri</p></div>
       </div>
     </div>
     <div>
-      <h4>Keşfet</h4>
+      <h4 data-i18n="footer_kesfet">Keşfet</h4>
       <a href="/samsun/">Samsun</a>
       <a href="/izmir/">İzmir</a>
       <a href="/mugla/">Muğla</a>
@@ -348,8 +348,8 @@ ${sayfaKonumJs}<script>
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <h4 data-i18n="footer_destek">Destek</h4>
+      <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
   </div>
@@ -501,7 +501,7 @@ ${jsonLd}
     <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
     <div class="brand-yazi">
       <h1>SeaDataWave</h1>
-      <p class="brand-alt">Anlık Deniz Verileri</p>
+      <p class="brand-alt" data-i18n="brand_alt">Anlık Deniz Verileri</p>
     </div>
   </div>
   <!-- NAV:START -->

@@ -107,19 +107,19 @@ if ('serviceWorker' in navigator) {
     <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
     <div class="brand-yazi">
       <h1>SeaDataWave</h1>
-      <p class="brand-alt">Anlık Deniz Verileri</p>
+      <p class="brand-alt" data-i18n="brand_alt">Anlık Deniz Verileri</p>
     </div>
   </div>
   <!-- NAV:START -->
 <nav class="site-nav" id="site-nav">
-  <a href="/">Anasayfa</a>
+  <a href="/" data-i18n="nav_anasayfa">Anasayfa</a>
   <details class="nav-iller" id="nav-iller">
-    <summary class="nav-iller-btn">İller <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+    <summary class="nav-iller-btn"><span data-i18n="nav_iller">İller</span> <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
     <div class="nav-iller-menu">
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Samsun <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/samsun/">Tüm Samsun</a>
+          <a href="/samsun/"><span class="tr-metin">Tüm Samsun</span><span class="en-metin">All Samsun</span></a>
           <a href="/samsun/atakum/">Atakum</a>
           <a href="/samsun/terme/">Terme</a>
           <a href="/samsun/ilkadim/">İlkadım</a>
@@ -132,7 +132,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Antalya <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/antalya/">Tüm Antalya</a>
+          <a href="/antalya/"><span class="tr-metin">Tüm Antalya</span><span class="en-metin">All Antalya</span></a>
           <a href="/antalya/gazipasa/">Gazipaşa</a>
           <a href="/antalya/alanya/">Alanya</a>
           <a href="/antalya/manavgat/">Manavgat</a>
@@ -148,7 +148,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Muğla <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/mugla/">Tüm Muğla</a>
+          <a href="/mugla/"><span class="tr-metin">Tüm Muğla</span><span class="en-metin">All Muğla</span></a>
           <a href="/mugla/fethiye/">Fethiye</a>
           <a href="/mugla/marmaris/">Marmaris</a>
           <a href="/mugla/ula/">Ula</a>
@@ -163,7 +163,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">İzmir <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/izmir/">Tüm İzmir</a>
+          <a href="/izmir/"><span class="tr-metin">Tüm İzmir</span><span class="en-metin">All İzmir</span></a>
           <a href="/izmir/menderes/">Menderes</a>
           <a href="/izmir/seferihisar/">Seferihisar</a>
           <a href="/izmir/cesme/">Çeşme</a>
@@ -177,7 +177,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Aydın <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/aydin/">Tüm Aydın</a>
+          <a href="/aydin/"><span class="tr-metin">Tüm Aydın</span><span class="en-metin">All Aydın</span></a>
           <a href="/aydin/didim/">Didim</a>
           <a href="/aydin/kusadasi/">Kuşadası</a>
         </div>
@@ -185,7 +185,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">İstanbul <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/istanbul/">Tüm İstanbul</a>
+          <a href="/istanbul/"><span class="tr-metin">Tüm İstanbul</span><span class="en-metin">All İstanbul</span></a>
           <a href="/istanbul/sile/">Şile</a>
           <a href="/istanbul/silivri/">Silivri</a>
           <a href="/istanbul/buyukcekmece/">Büyükçekmece</a>
@@ -194,7 +194,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Kocaeli <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/kocaeli/">Tüm Kocaeli</a>
+          <a href="/kocaeli/"><span class="tr-metin">Tüm Kocaeli</span><span class="en-metin">All Kocaeli</span></a>
           <a href="/kocaeli/kandira/">Kandıra</a>
           <a href="/kocaeli/karamursel/">Karamürsel</a>
           <a href="/kocaeli/golcuk/">Gölcük</a>
@@ -203,7 +203,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Sakarya <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/sakarya/">Tüm Sakarya</a>
+          <a href="/sakarya/"><span class="tr-metin">Tüm Sakarya</span><span class="en-metin">All Sakarya</span></a>
           <a href="/sakarya/karasu/">Karasu</a>
           <a href="/sakarya/kaynarca/">Kaynarca</a>
         </div>
@@ -211,14 +211,14 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Düzce <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/duzce/">Tüm Düzce</a>
+          <a href="/duzce/"><span class="tr-metin">Tüm Düzce</span><span class="en-metin">All Düzce</span></a>
           <a href="/duzce/akcakoca/">Akçakoca</a>
         </div>
       </details>
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Zonguldak <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/zonguldak/">Tüm Zonguldak</a>
+          <a href="/zonguldak/"><span class="tr-metin">Tüm Zonguldak</span><span class="en-metin">All Zonguldak</span></a>
           <a href="/zonguldak/zonguldak-merkez/">Zonguldak Merkez</a>
           <a href="/zonguldak/karadeniz-eregli/">Karadeniz Ereğli</a>
         </div>
@@ -226,14 +226,14 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Bartın <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/bartin/">Tüm Bartın</a>
+          <a href="/bartin/"><span class="tr-metin">Tüm Bartın</span><span class="en-metin">All Bartın</span></a>
           <a href="/bartin/amasra/">Amasra</a>
         </div>
       </details>
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Kastamonu <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/kastamonu/">Tüm Kastamonu</a>
+          <a href="/kastamonu/"><span class="tr-metin">Tüm Kastamonu</span><span class="en-metin">All Kastamonu</span></a>
           <a href="/kastamonu/cide/">Cide</a>
           <a href="/kastamonu/inebolu/">İnebolu</a>
         </div>
@@ -241,7 +241,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Sinop <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/sinop/">Tüm Sinop</a>
+          <a href="/sinop/"><span class="tr-metin">Tüm Sinop</span><span class="en-metin">All Sinop</span></a>
           <a href="/sinop/sinop-merkez/">Sinop Merkez</a>
           <a href="/sinop/gerze/">Gerze</a>
           <a href="/sinop/ayancik/">Ayancık</a>
@@ -250,7 +250,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Ordu <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/ordu/">Tüm Ordu</a>
+          <a href="/ordu/"><span class="tr-metin">Tüm Ordu</span><span class="en-metin">All Ordu</span></a>
           <a href="/ordu/altinordu/">Altınordu</a>
           <a href="/ordu/fatsa/">Fatsa</a>
           <a href="/ordu/unye/">Ünye</a>
@@ -260,7 +260,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Giresun <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/giresun/">Tüm Giresun</a>
+          <a href="/giresun/"><span class="tr-metin">Tüm Giresun</span><span class="en-metin">All Giresun</span></a>
           <a href="/giresun/giresun-merkez/">Giresun Merkez</a>
           <a href="/giresun/bulancak/">Bulancak</a>
           <a href="/giresun/tirebolu/">Tirebolu</a>
@@ -270,7 +270,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Trabzon <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/trabzon/">Tüm Trabzon</a>
+          <a href="/trabzon/"><span class="tr-metin">Tüm Trabzon</span><span class="en-metin">All Trabzon</span></a>
           <a href="/trabzon/ortahisar/">Ortahisar</a>
           <a href="/trabzon/akcaabat/">Akçaabat</a>
           <a href="/trabzon/of/">Of</a>
@@ -282,7 +282,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Rize <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/rize/">Tüm Rize</a>
+          <a href="/rize/"><span class="tr-metin">Tüm Rize</span><span class="en-metin">All Rize</span></a>
           <a href="/rize/rize-merkez/">Rize Merkez</a>
           <a href="/rize/cayeli/">Çayeli</a>
           <a href="/rize/pazar-rize/">Pazar</a>
@@ -293,7 +293,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Artvin <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/artvin/">Tüm Artvin</a>
+          <a href="/artvin/"><span class="tr-metin">Tüm Artvin</span><span class="en-metin">All Artvin</span></a>
           <a href="/artvin/hopa/">Hopa</a>
           <a href="/artvin/arhavi/">Arhavi</a>
         </div>
@@ -301,7 +301,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Yalova <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/yalova/">Tüm Yalova</a>
+          <a href="/yalova/"><span class="tr-metin">Tüm Yalova</span><span class="en-metin">All Yalova</span></a>
           <a href="/yalova/yalova-merkez/">Yalova Merkez</a>
           <a href="/yalova/cinarcik/">Çınarcık</a>
         </div>
@@ -309,7 +309,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Bursa <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/bursa/">Tüm Bursa</a>
+          <a href="/bursa/"><span class="tr-metin">Tüm Bursa</span><span class="en-metin">All Bursa</span></a>
           <a href="/bursa/mudanya/">Mudanya</a>
           <a href="/bursa/gemlik/">Gemlik</a>
         </div>
@@ -317,7 +317,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Balıkesir <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/balikesir/">Tüm Balıkesir</a>
+          <a href="/balikesir/"><span class="tr-metin">Tüm Balıkesir</span><span class="en-metin">All Balıkesir</span></a>
           <a href="/balikesir/ayvalik/">Ayvalık</a>
           <a href="/balikesir/edremit/">Edremit</a>
           <a href="/balikesir/burhaniye/">Burhaniye</a>
@@ -330,7 +330,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Çanakkale <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/canakkale/">Tüm Çanakkale</a>
+          <a href="/canakkale/"><span class="tr-metin">Tüm Çanakkale</span><span class="en-metin">All Çanakkale</span></a>
           <a href="/canakkale/ayvacik/">Ayvacık</a>
           <a href="/canakkale/bozcaada/">Bozcaada</a>
           <a href="/canakkale/gokceada/">Gökçeada</a>
@@ -341,7 +341,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Tekirdağ <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/tekirdag/">Tüm Tekirdağ</a>
+          <a href="/tekirdag/"><span class="tr-metin">Tüm Tekirdağ</span><span class="en-metin">All Tekirdağ</span></a>
           <a href="/tekirdag/tekirdag-merkez/">Tekirdağ Merkez</a>
           <a href="/tekirdag/sarkoy/">Şarköy</a>
           <a href="/tekirdag/marmara-ereglisi/">Marmara Ereğlisi</a>
@@ -350,7 +350,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Mersin <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/mersin/">Tüm Mersin</a>
+          <a href="/mersin/"><span class="tr-metin">Tüm Mersin</span><span class="en-metin">All Mersin</span></a>
           <a href="/mersin/mersin-akdeniz/">Mersin Merkez</a>
           <a href="/mersin/erdemli/">Erdemli</a>
           <a href="/mersin/silifke/">Silifke</a>
@@ -361,7 +361,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Adana <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/adana/">Tüm Adana</a>
+          <a href="/adana/"><span class="tr-metin">Tüm Adana</span><span class="en-metin">All Adana</span></a>
           <a href="/adana/karatas/">Karataş</a>
           <a href="/adana/yumurtalik/">Yumurtalık</a>
         </div>
@@ -369,7 +369,7 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Hatay <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/hatay/">Tüm Hatay</a>
+          <a href="/hatay/"><span class="tr-metin">Tüm Hatay</span><span class="en-metin">All Hatay</span></a>
           <a href="/hatay/samandag/">Samandağ</a>
           <a href="/hatay/arsuz/">Arsuz</a>
           <a href="/hatay/iskenderun/">İskenderun</a>
@@ -378,16 +378,16 @@ if ('serviceWorker' in navigator) {
       <details class="nav-il-grup">
         <summary class="nav-il-baslik">Kırklareli <svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
         <div class="nav-ilce-liste">
-          <a href="/kirklareli/">Tüm Kırklareli</a>
+          <a href="/kirklareli/"><span class="tr-metin">Tüm Kırklareli</span><span class="en-metin">All Kırklareli</span></a>
           <a href="/kirklareli/vize/">Vize (Kıyıköy)</a>
         </div>
       </details>
     </div>
   </details>
-  <a href="/#veriler">Veriler</a>
-  <a href="/#site-yorumlar-bolum">Yorumlar</a>
-  <a href="/#hakkimizda">Hakkımızda</a>
-  <a href="/sss/">Sıkça Sorulan Sorular</a>
+  <a href="/#veriler" data-i18n="nav_veriler">Veriler</a>
+  <a href="/#site-yorumlar-bolum" data-i18n="nav_yorumlar">Yorumlar</a>
+  <a href="/#hakkimizda" data-i18n="nav_hakkimizda">Hakkımızda</a>
+  <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>
 <!-- NAV:END -->
   <div class="yer-arama" id="yer-arama">
@@ -509,45 +509,45 @@ if ('serviceWorker' in navigator) {
 <!-- İstatistik şeridi — gerçek sayılar (data/yerler.json + MAVI_BAYRAK_PLAJLAR ile tutarlı, elle güncellenir) -->
 <div class="istatistik-serit" id="veriler">
   <div class="istatistik-icerik">
-    <div class="madde"><div class="ikon-kutu">📍</div><div><div class="sayi">27 il</div><div class="etiket">Bölgeye özel sayfa</div></div></div>
-    <div class="madde"><div class="ikon-kutu">🏘️</div><div><div class="sayi">104 ilçe</div><div class="etiket">Kıyı ilçesi kapsanıyor</div></div></div>
-    <div class="madde"><div class="ikon-kutu">🏳️</div><div><div class="sayi">150+ plaj</div><div class="etiket">Mavi Bayraklı halk plajı</div></div></div>
-    <div class="madde"><div class="ikon-kutu">⏱️</div><div><div class="sayi">Canlı</div><div class="etiket">Open-Meteo'dan anlık veri</div></div></div>
+    <div class="madde"><div class="ikon-kutu">📍</div><div><div class="sayi">27 <span data-i18n="birim_il">il</span></div><div class="etiket" data-i18n="istatistik_bolgeye_ozel_sayfa">Bölgeye özel sayfa</div></div></div>
+    <div class="madde"><div class="ikon-kutu">🏘️</div><div><div class="sayi">104 <span data-i18n="birim_ilce">ilçe</span></div><div class="etiket" data-i18n="istatistik_kiyi_ilcesi_kapsaniyor">Kıyı ilçesi kapsanıyor</div></div></div>
+    <div class="madde"><div class="ikon-kutu">🏳️</div><div><div class="sayi">150+ <span data-i18n="birim_plaj">plaj</span></div><div class="etiket" data-i18n="istatistik_mavi_bayrakli_halk_plaji">Mavi Bayraklı halk plajı</div></div></div>
+    <div class="madde"><div class="ikon-kutu">⏱️</div><div><div class="sayi" data-i18n="istatistik_canli">Canlı</div><div class="etiket" data-i18n="istatistik_acik_meteo_veri">Open-Meteo'dan anlık veri</div></div></div>
   </div>
 </div>
 
 <!-- Alt üç sütun: İllerimiz / Kullanıcı yorumları / Hakkında -->
 <div class="alt-grid">
   <div class="panel">
-    <h3>İllerimiz</h3>
+    <h3 data-i18n="illerimiz_baslik">İllerimiz</h3>
     <ul class="il-listesi">
-      <li><a href="/adana/">📍 Adana</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/antalya/">📍 Antalya</a><span class="ilce-sayisi">10 ilçe</span></li>
-      <li><a href="/artvin/">📍 Artvin</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/aydin/">📍 Aydın</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/balikesir/">📍 Balıkesir</a><span class="ilce-sayisi">7 ilçe</span></li>
-      <li><a href="/bartin/">📍 Bartın</a><span class="ilce-sayisi">1 ilçe</span></li>
-      <li><a href="/bursa/">📍 Bursa</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/canakkale/">📍 Çanakkale</a><span class="ilce-sayisi">5 ilçe</span></li>
-      <li><a href="/duzce/">📍 Düzce</a><span class="ilce-sayisi">1 ilçe</span></li>
-      <li><a href="/giresun/">📍 Giresun</a><span class="ilce-sayisi">4 ilçe</span></li>
-      <li><a href="/hatay/">📍 Hatay</a><span class="ilce-sayisi">3 ilçe</span></li>
-      <li><a href="/istanbul/">📍 İstanbul</a><span class="ilce-sayisi">3 ilçe</span></li>
-      <li><a href="/izmir/">📍 İzmir</a><span class="ilce-sayisi">8 ilçe</span></li>
-      <li><a href="/kastamonu/">📍 Kastamonu</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/kirklareli/">📍 Kırklareli</a><span class="ilce-sayisi">1 ilçe</span></li>
-      <li><a href="/kocaeli/">📍 Kocaeli</a><span class="ilce-sayisi">3 ilçe</span></li>
-      <li><a href="/mersin/">📍 Mersin</a><span class="ilce-sayisi">5 ilçe</span></li>
-      <li><a href="/mugla/">📍 Muğla</a><span class="ilce-sayisi">9 ilçe</span></li>
-      <li><a href="/ordu/">📍 Ordu</a><span class="ilce-sayisi">4 ilçe</span></li>
-      <li><a href="/rize/">📍 Rize</a><span class="ilce-sayisi">5 ilçe</span></li>
-      <li><a href="/sakarya/">📍 Sakarya</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/samsun/">📍 Samsun</a><span class="ilce-sayisi">7 ilçe</span></li>
-      <li><a href="/sinop/">📍 Sinop</a><span class="ilce-sayisi">3 ilçe</span></li>
-      <li><a href="/tekirdag/">📍 Tekirdağ</a><span class="ilce-sayisi">3 ilçe</span></li>
-      <li><a href="/trabzon/">📍 Trabzon</a><span class="ilce-sayisi">6 ilçe</span></li>
-      <li><a href="/yalova/">📍 Yalova</a><span class="ilce-sayisi">2 ilçe</span></li>
-      <li><a href="/zonguldak/">📍 Zonguldak</a><span class="ilce-sayisi">2 ilçe</span></li>
+      <li><a href="/adana/">📍 Adana</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/antalya/">📍 Antalya</a><span class="ilce-sayisi">10 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/artvin/">📍 Artvin</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/aydin/">📍 Aydın</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/balikesir/">📍 Balıkesir</a><span class="ilce-sayisi">7 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/bartin/">📍 Bartın</a><span class="ilce-sayisi">1 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/bursa/">📍 Bursa</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/canakkale/">📍 Çanakkale</a><span class="ilce-sayisi">5 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/duzce/">📍 Düzce</a><span class="ilce-sayisi">1 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/giresun/">📍 Giresun</a><span class="ilce-sayisi">4 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/hatay/">📍 Hatay</a><span class="ilce-sayisi">3 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/istanbul/">📍 İstanbul</a><span class="ilce-sayisi">3 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/izmir/">📍 İzmir</a><span class="ilce-sayisi">8 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/kastamonu/">📍 Kastamonu</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/kirklareli/">📍 Kırklareli</a><span class="ilce-sayisi">1 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/kocaeli/">📍 Kocaeli</a><span class="ilce-sayisi">3 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/mersin/">📍 Mersin</a><span class="ilce-sayisi">5 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/mugla/">📍 Muğla</a><span class="ilce-sayisi">9 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/ordu/">📍 Ordu</a><span class="ilce-sayisi">4 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/rize/">📍 Rize</a><span class="ilce-sayisi">5 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/sakarya/">📍 Sakarya</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/samsun/">📍 Samsun</a><span class="ilce-sayisi">7 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/sinop/">📍 Sinop</a><span class="ilce-sayisi">3 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/tekirdag/">📍 Tekirdağ</a><span class="ilce-sayisi">3 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/trabzon/">📍 Trabzon</a><span class="ilce-sayisi">6 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/yalova/">📍 Yalova</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
+      <li><a href="/zonguldak/">📍 Zonguldak</a><span class="ilce-sayisi">2 <span data-i18n="birim_ilce">ilçe</span></span></li>
     </ul>
   </div>
 
@@ -643,11 +643,11 @@ if ('serviceWorker' in navigator) {
     <div>
       <div class="brand">
         <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
-        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt" data-i18n="brand_alt">Anlık Deniz Verileri</p></div>
       </div>
     </div>
     <div>
-      <h4>Keşfet</h4>
+      <h4 data-i18n="footer_kesfet">Keşfet</h4>
       <a href="/samsun/">Samsun</a>
       <a href="/izmir/">İzmir</a>
       <a href="/mugla/">Muğla</a>
@@ -655,8 +655,8 @@ if ('serviceWorker' in navigator) {
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/" data-i18n="sss_git_buton">Sıkça Sorulan Sorular</a>
+      <h4 data-i18n="footer_destek">Destek</h4>
+      <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
   </div>
