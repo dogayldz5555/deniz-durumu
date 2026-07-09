@@ -429,6 +429,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.seadatawave.com/balikesir/marmara-adasi/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.seadatawave.com/canakkale/</loc>
     <priority>0.8</priority>
   </url>

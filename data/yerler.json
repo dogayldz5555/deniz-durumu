@@ -350,7 +350,8 @@
         "burhaniye",
         "gomec",
         "erdek",
-        "bandirma"
+        "bandirma",
+        "marmara-adasi"
       ]
     },
     {
@@ -1919,6 +1920,24 @@
         "lon": 27.9556,
         "zoom": 12
       }
+    },
+    {
+      "slug": "marmara-adasi",
+      "ilSlug": "balikesir",
+      "ad": "Marmara (Adası)",
+      "baslik": "Marmara Adası Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "metaAciklama": "Marmara Adası ve Avşa'da (Balıkesir) deniz bugün nasıl? {plajSayisi} Mavi Bayraklı halk plajı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "girisMetni": "Marmara Adası ilçesi, mermer ocaklarıyla bilinen Marmara Adası ile komşu Avşa Adası'nı kapsar — ikisi de Marmara Denizi'nin ortasında, İstanbul ve Bursa'dan feribotla ulaşılan tatil adaları. İlçenin halka açık Mavi Bayraklı plajları arasında {plajAdlari} bulunuyor.",
+      "miniSss": [
+        {
+          "soru": "Marmara Adası'nda hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} halka açık plaj Mavi Bayrak sertifikalı."
+        },
+        {
+          "soru": "Avşa Adası'na nasıl ulaşılır?",
+          "cevap": "Avşa, idari olarak Marmara Adası ilçesine bağlıdır ve İstanbul/Bursa'dan feribotla ulaşılır."
+        }
+      ]
     }
   ]
 }
