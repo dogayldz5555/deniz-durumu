@@ -55,8 +55,9 @@ const CEVIRI = {
     veri_aliniyor: "Rüzgar ve dalga verisi alınıyor…",
     simdi_gercek_veri: (saat) => `Şimdi · ${saat} — gerçek zamanlı veri`,
     tahmin_etiketi: "Tahmin",
+    tahmin_saat_etiketi: (saat) => `Tahmin · ${saat} için`,
     tahmin_aciklama: "Bu bir tahmindir, gerçekleşen bir ölçüm değil. Sahadan gelen yorumlar sadece \"Şimdi\" görünümünde gösterilir.",
-    saatlik_tahmin_basligi: "Saatlik tahmin",
+    saatlik_tahmin_basligi: "Saatlik rüzgar hızı (km/sa)",
     onceki_gun: "Önceki gün",
     sonraki_gun: "Sonraki gün",
     gun_kaydir_ipucu: "Kaydırarak ertesi günün dalga ve hava tahminlerini görebilirsin.",
@@ -235,8 +236,9 @@ const CEVIRI = {
     veri_aliniyor: "Fetching wind and wave data…",
     simdi_gercek_veri: (saat) => `Now · ${saat} — live data`,
     tahmin_etiketi: "Forecast",
+    tahmin_saat_etiketi: (saat) => `Forecast · for ${saat}`,
     tahmin_aciklama: "This is a forecast, not a live measurement. Field reports are only shown in the \"Now\" view.",
-    saatlik_tahmin_basligi: "Hourly forecast",
+    saatlik_tahmin_basligi: "Hourly wind speed (km/h)",
     onceki_gun: "Previous day",
     sonraki_gun: "Next day",
     gun_kaydir_ipucu: "Swipe to see tomorrow's wave and weather forecast.",
@@ -1302,7 +1304,9 @@ function saatlikSeritOlustur(havaSaatlik, denizSaatlik, lat, lon, renkVarsayilan
   }
 
   if (!hucreler) return "";
-  return `<div class="hourly-strip">${hucreler}</div>`;
+  return `
+    <div class="saatlik-tahmin-baslik" style="color:${renkVarsayilan.text600}">${t('saatlik_tahmin_basligi')}</div>
+    <div class="hourly-strip">${hucreler}</div>`;
 }
 
 // Tahmin günleri için: o günün TÜM saatlerini (00:00-23:00) yan yana, kaydırılabilir bir
@@ -1701,7 +1705,7 @@ async function veriCekVeGoster(lat, lon) {
       const tarihMetni = `${gun} ${AY_ADLARI()[ay - 1]}, ${GUN_ADLARI()[haftaGunu]}`;
       const etiketHtml = gercekMi
         ? `<span class="gun-etiket gun-etiket-simdi">${t('simdi_gercek_veri', saatKismi ? saatKismi.slice(0, 5) : '')}</span>`
-        : `<span class="gun-etiket gun-etiket-tahmin">${t('tahmin_etiketi')}</span>`;
+        : `<span class="gun-etiket gun-etiket-tahmin">${t('tahmin_saat_etiketi', saatKismi ? saatKismi.slice(0, 5) : TEMSILI_SAAT)}</span>`;
       return `<div class="gun-tarih">${tarihMetni}</div>${etiketHtml}`;
     }
 
