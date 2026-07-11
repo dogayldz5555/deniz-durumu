@@ -13,7 +13,9 @@
         "19mayis",
         "carsamba",
         "yakakent",
-        "alacam"
+        "alacam",
+        "canik",
+        "tekkekoy"
       ],
       "baslikEn": "Samsun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Samsun today? Live wind, wave conditions and 7-day forecast for the Samsun coast, especially Atakum and Terme.",
@@ -35,7 +37,9 @@
         "kemer",
         "kumluca",
         "demre",
-        "kas"
+        "kas",
+        "finike",
+        "aksu"
       ],
       "baslikEn": "Antalya Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Antalya today? Live wind, wave conditions and 7-day forecast for the public Blue Flag beaches along Alanya, Kemer, Kaş, Side and the whole Antalya coast.",
@@ -56,7 +60,8 @@
         "milas",
         "koycegiz",
         "ortaca",
-        "dalaman"
+        "dalaman",
+        "seydikemer"
       ],
       "baslikEn": "Muğla Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Muğla today? Live wind, wave conditions and 7-day forecast for Bodrum, Marmaris, Fethiye and Akyaka.",
@@ -76,7 +81,9 @@
         "urla",
         "guzelbahce",
         "foca",
-        "dikili"
+        "dikili",
+        "selcuk",
+        "aliaga"
       ],
       "baslikEn": "İzmir Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İzmir today? Live wind, wave conditions and 7-day forecast for Çeşme, Foça, Urla, Seferihisar and the whole İzmir coast.",
@@ -111,7 +118,13 @@
         "sile",
         "silivri",
         "buyukcekmece",
-        "adalar"
+        "adalar",
+        "sariyer",
+        "arnavutkoy",
+        "beykoz",
+        "catalca",
+        "bakirkoy",
+        "avcilar"
       ],
       "baslikEn": "İstanbul Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İstanbul today? Live wind, wave conditions and 7-day forecast for Şile, Silivri and Büyükçekmece.",
@@ -131,7 +144,10 @@
       "ilceler": [
         "kandira",
         "karamursel",
-        "golcuk"
+        "golcuk",
+        "basiskele",
+        "gebze",
+        "dilovasi"
       ],
       "baslikEn": "Kocaeli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kocaeli today? Live wind, wave conditions and 7-day forecast for Kandıra (Kefken), Karamürsel and Gölcük.",
@@ -188,7 +204,9 @@
       },
       "ilceler": [
         "zonguldak-merkez",
-        "karadeniz-eregli"
+        "karadeniz-eregli",
+        "kozlu",
+        "caycuma"
       ],
       "baslikEn": "Zonguldak Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Zonguldak today? Live wind, wave conditions and 7-day forecast for Zonguldak center and Karadeniz Ereğli.",
@@ -206,7 +224,8 @@
         "zoom": 12
       },
       "ilceler": [
-        "amasra"
+        "amasra",
+        "bartin-merkez"
       ],
       "baslikEn": "Bartın Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bartın's Amasra today? Live wind, wave conditions and 7-day forecast.",
@@ -225,7 +244,11 @@
       },
       "ilceler": [
         "cide",
-        "inebolu"
+        "inebolu",
+        "abana",
+        "bozkurt",
+        "doganyurt",
+        "catalzeytin"
       ],
       "baslikEn": "Kastamonu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kastamonu today? Live wind, wave conditions and 7-day forecast for Cide and İnebolu.",
@@ -245,7 +268,8 @@
       "ilceler": [
         "sinop-merkez",
         "gerze",
-        "ayancik"
+        "ayancik",
+        "turkeli"
       ],
       "baslikEn": "Sinop Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Sinop today? Live wind, wave conditions and 7-day forecast for Sinop center, Gerze and Ayancık.",
@@ -266,7 +290,8 @@
         "altinordu",
         "fatsa",
         "unye",
-        "persembe"
+        "persembe",
+        "gulyali"
       ],
       "baslikEn": "Ordu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ordu today? Live wind, wave conditions and 7-day forecast for Altınordu, Fatsa, Ünye and Perşembe.",
@@ -287,7 +312,10 @@
         "giresun-merkez",
         "bulancak",
         "tirebolu",
-        "gorele"
+        "gorele",
+        "kesap",
+        "piraziz",
+        "eynesil"
       ],
       "baslikEn": "Giresun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Giresun today? Live wind, wave conditions and 7-day forecast for Giresun center, Bulancak, Tirebolu and Görele.",
@@ -310,7 +338,11 @@
         "of",
         "yomra",
         "arakli",
-        "vakfikebir"
+        "vakfikebir",
+        "besikduzu",
+        "carsibasi",
+        "surmene",
+        "arsin"
       ],
       "baslikEn": "Trabzon Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Trabzon today? Live wind, wave conditions and 7-day forecast for Ortahisar, Akçaabat, Of, Yomra, Araklı and Vakfıkebir.",
@@ -332,7 +364,8 @@
         "cayeli",
         "pazar-rize",
         "ardesen",
-        "findikli"
+        "findikli",
+        "iyidere"
       ],
       "baslikEn": "Rize Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Rize today? Live wind, wave conditions and 7-day forecast for Rize center, Çayeli, Pazar, Ardeşen and Fındıklı.",
@@ -351,7 +384,8 @@
       },
       "ilceler": [
         "hopa",
-        "arhavi"
+        "arhavi",
+        "kemalpasa"
       ],
       "baslikEn": "Artvin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Artvin's Hopa and Arhavi today? Live wind, wave conditions and 7-day forecast.",
@@ -370,7 +404,10 @@
       },
       "ilceler": [
         "yalova-merkez",
-        "cinarcik"
+        "cinarcik",
+        "altinova",
+        "armutlu",
+        "ciftlikkoy"
       ],
       "baslikEn": "Yalova Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Yalova today? Live wind, wave conditions and 7-day forecast for Yalova center and Çınarcık.",
@@ -389,7 +426,8 @@
       },
       "ilceler": [
         "mudanya",
-        "gemlik"
+        "gemlik",
+        "karacabey"
       ],
       "baslikEn": "Bursa Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bursa today? Live wind, wave conditions and 7-day forecast for Mudanya and Gemlik.",
@@ -413,7 +451,8 @@
         "gomec",
         "erdek",
         "bandirma",
-        "marmara-adasi"
+        "marmara-adasi",
+        "gonen"
       ],
       "baslikEn": "Balıkesir Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Balıkesir today? Live wind, wave conditions and 7-day forecast for Ayvalık, Edremit, Burhaniye, Erdek and Bandırma.",
@@ -435,7 +474,10 @@
         "bozcaada",
         "gokceada",
         "lapseki",
-        "gelibolu"
+        "gelibolu",
+        "canakkale-merkez",
+        "biga",
+        "eceabat"
       ],
       "baslikEn": "Çanakkale Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Çanakkale today? Live wind, wave conditions and 7-day forecast for Ayvacık (Assos), Bozcaada, Gökçeada, Gelibolu and Lapseki.",
@@ -477,7 +519,10 @@
         "erdemli",
         "silifke",
         "tarsus",
-        "anamur"
+        "anamur",
+        "mezitli",
+        "aydincik",
+        "bozyazi"
       ],
       "baslikEn": "Mersin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Mersin today? Live wind, wave conditions and 7-day forecast for Mersin center, Erdemli, Silifke (Kızkalesi), Tarsus and Anamur.",
@@ -496,7 +541,8 @@
       },
       "ilceler": [
         "karatas",
-        "yumurtalik"
+        "yumurtalik",
+        "ceyhan"
       ],
       "baslikEn": "Adana Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Adana today? Live wind, wave conditions and 7-day forecast for Karataş and Yumurtalık.",
@@ -516,7 +562,10 @@
       "ilceler": [
         "samandag",
         "arsuz",
-        "iskenderun"
+        "iskenderun",
+        "payas",
+        "dortyol",
+        "erzin"
       ],
       "baslikEn": "Hatay Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Hatay today? Live wind, wave conditions and 7-day forecast for Samandağ, Arsuz and İskenderun.",
@@ -2481,6 +2530,594 @@
       "metaAciklamaEn": "How is the sea in Kocaali today? Live wind, wave conditions and 7-day forecast for Kocaali, Sakarya.",
       "girisMetni": "Kocaali, Sakarya'nın Karadeniz kıyısındaki sakin ilçelerinden biri — kumlu plajları ve orman alanlarıyla bilinir.",
       "girisMetniEn": "Kocaali is one of Sakarya's quiet Black Sea coastal districts, known for its sandy beaches and forested surroundings.",
+      "miniSss": []
+    },
+    {
+      "slug": "sariyer",
+      "ilSlug": "istanbul",
+      "ad": "Sarıyer",
+      "baslik": "Sarıyer (Kilyos) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Sarıyer (Kilyos) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Kilyos'ta bugün deniz nasıl? İstanbul'un Sarıyer ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Kilyos today? Live wind, wave conditions and 7-day forecast for Sarıyer, Istanbul.",
+      "girisMetni": "Sarıyer, İstanbul'un Karadeniz'e açılan en bilinen plaj bölgesi Kilyos'u içeren, Boğaz'ın kuzey ucundaki ilçesi.",
+      "girisMetniEn": "Sarıyer is Istanbul's district at the northern mouth of the Bosphorus, home to Kilyos — one of the city's best-known Black Sea beach areas.",
+      "miniSss": []
+    },
+    {
+      "slug": "arnavutkoy",
+      "ilSlug": "istanbul",
+      "ad": "Arnavutköy",
+      "baslik": "Arnavutköy Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Arnavutköy Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Arnavutköy'de bugün deniz nasıl? İstanbul'un Karadeniz kıyısındaki Arnavutköy ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Arnavutköy today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Black Sea.",
+      "girisMetni": "Arnavutköy, İstanbul'un Karadeniz kıyısında yer alan, Karaburun plajıyla bilinen ilçesi.",
+      "girisMetniEn": "Arnavutköy is an Istanbul district on the Black Sea coast, known for its Karaburun beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "beykoz",
+      "ilSlug": "istanbul",
+      "ad": "Beykoz",
+      "baslik": "Beykoz (Riva) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Beykoz (Riva) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Riva'da bugün deniz nasıl? İstanbul'un Beykoz ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Riva today? Live wind, wave conditions and 7-day forecast for Beykoz, Istanbul.",
+      "girisMetni": "Beykoz, Boğaz'ın Anadolu yakasında, Karadeniz'e açılan Riva koyu ve plajıyla bilinen İstanbul ilçesi.",
+      "girisMetniEn": "Beykoz is an Istanbul district on the Asian side of the Bosphorus, known for the Riva cove and beach where it meets the Black Sea.",
+      "miniSss": []
+    },
+    {
+      "slug": "catalca",
+      "ilSlug": "istanbul",
+      "ad": "Çatalca",
+      "baslik": "Çatalca Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çatalca Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Çatalca'da bugün deniz nasıl? İstanbul'un Karadeniz kıyısındaki Çatalca ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Çatalca today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Black Sea.",
+      "girisMetni": "Çatalca, İstanbul'un Karadeniz kıyısındaki Karacaköy mahallesi ve uzun kumsalıyla bilinen ilçesi.",
+      "girisMetniEn": "Çatalca is an Istanbul district known for its Black Sea coastal neighborhood Karacaköy and its long sandy beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "bakirkoy",
+      "ilSlug": "istanbul",
+      "ad": "Bakırköy",
+      "baslik": "Bakırköy (Florya) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Bakırköy (Florya) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Florya'da bugün deniz nasıl? İstanbul'un Bakırköy ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Florya today? Live wind, wave conditions and 7-day forecast for Bakırköy, Istanbul.",
+      "girisMetni": "Bakırköy, İstanbul'un Marmara kıyısındaki tarihi Florya plajıyla bilinen ilçesi.",
+      "girisMetniEn": "Bakırköy is an Istanbul district on the Sea of Marmara, known for its historic Florya beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "avcilar",
+      "ilSlug": "istanbul",
+      "ad": "Avcılar",
+      "baslik": "Avcılar Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Avcılar Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Avcılar'da bugün deniz nasıl? İstanbul'un Marmara kıyısındaki Avcılar ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Avcılar today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Sea of Marmara.",
+      "girisMetni": "Avcılar, İstanbul'un Marmara Denizi kıyısındaki, sahil şeridiyle bilinen ilçesi.",
+      "girisMetniEn": "Avcılar is an Istanbul district along the Sea of Marmara, known for its coastal promenade.",
+      "miniSss": []
+    },
+    {
+      "slug": "basiskele",
+      "ilSlug": "kocaeli",
+      "ad": "Başiskele",
+      "baslik": "Başiskele Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Başiskele Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Başiskele'de bugün deniz nasıl? Kocaeli'nin İzmit Körfezi kıyısındaki Başiskele ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Başiskele today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
+      "girisMetni": "Başiskele, Kocaeli'nin İzmit Körfezi'nin güney kıyısındaki ilçesi.",
+      "girisMetniEn": "Başiskele is a Kocaeli district on the southern shore of the Gulf of İzmit.",
+      "miniSss": []
+    },
+    {
+      "slug": "gebze",
+      "ilSlug": "kocaeli",
+      "ad": "Gebze",
+      "baslik": "Gebze Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Gebze Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Gebze'de bugün deniz nasıl? Kocaeli'nin İzmit Körfezi kıyısındaki Gebze ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Gebze today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
+      "girisMetni": "Gebze, Kocaeli'nin İzmit Körfezi kıyısındaki, Eskihisar mahallesiyle bilinen ilçesi.",
+      "girisMetniEn": "Gebze is a Kocaeli district on the Gulf of İzmit, known for its Eskihisar neighborhood.",
+      "miniSss": []
+    },
+    {
+      "slug": "dilovasi",
+      "ilSlug": "kocaeli",
+      "ad": "Dilovası",
+      "baslik": "Dilovası Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Dilovası Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Dilovası'nda bugün deniz nasıl? Kocaeli'nin İzmit Körfezi kıyısındaki Dilovası ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Dilovası today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
+      "girisMetni": "Dilovası, Kocaeli'nin İzmit Körfezi kıyısındaki Tavşancıl mahallesiyle bilinen ilçesi.",
+      "girisMetniEn": "Dilovası is a Kocaeli district on the Gulf of İzmit, known for its Tavşancıl neighborhood.",
+      "miniSss": []
+    },
+    {
+      "slug": "altinova",
+      "ilSlug": "yalova",
+      "ad": "Altınova",
+      "baslik": "Altınova Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Altınova Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Altınova'da bugün deniz nasıl? Yalova'nın Marmara kıyısındaki Altınova ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Altınova today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
+      "girisMetni": "Altınova, Yalova'nın Marmara Denizi kıyısındaki, hem Mavi Bayraklı hem halka açık plajlarıyla bilinen ilçesi.",
+      "girisMetniEn": "Altınova is a Yalova district on the Sea of Marmara, known for both Blue Flag and public beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "armutlu",
+      "ilSlug": "yalova",
+      "ad": "Armutlu",
+      "baslik": "Armutlu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Armutlu Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Armutlu'da bugün deniz nasıl? Yalova'nın Marmara kıyısındaki Armutlu ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Armutlu today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
+      "girisMetni": "Armutlu, Yalova'nın en çok plajı ve en temiz kıyı şeridine sahip ilçelerinden biri.",
+      "girisMetniEn": "Armutlu is one of Yalova's districts with the most beaches and cleanest coastline.",
+      "miniSss": []
+    },
+    {
+      "slug": "ciftlikkoy",
+      "ilSlug": "yalova",
+      "ad": "Çiftlikköy",
+      "baslik": "Çiftlikköy Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çiftlikköy Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Çiftlikköy'de bugün deniz nasıl? Yalova'nın Marmara kıyısındaki Çiftlikköy ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Çiftlikköy today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
+      "girisMetni": "Çiftlikköy, Yalova'nın Marmara Denizi kıyısındaki halk plajıyla bilinen ilçesi.",
+      "girisMetniEn": "Çiftlikköy is a Yalova district on the Sea of Marmara, known for its public beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "kozlu",
+      "ilSlug": "zonguldak",
+      "ad": "Kozlu",
+      "baslik": "Kozlu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Kozlu Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Kozlu'da bugün deniz nasıl? Zonguldak'ın kıyı ilçesi Kozlu için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Kozlu today? Live wind, wave conditions and 7-day forecast for this Zonguldak coastal district.",
+      "girisMetni": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri.",
+      "girisMetniEn": "Kozlu is one of Zonguldak's central districts stretching along its Black Sea coastline.",
+      "miniSss": []
+    },
+    {
+      "slug": "caycuma",
+      "ilSlug": "zonguldak",
+      "ad": "Çaycuma",
+      "baslik": "Çaycuma (Filyos) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çaycuma (Filyos) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Filyos'ta bugün deniz nasıl? Zonguldak'ın Çaycuma ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Filyos today? Live wind, wave conditions and 7-day forecast for Çaycuma, Zonguldak.",
+      "girisMetni": "Çaycuma, Zonguldak'ın Karadeniz kıyısındaki Filyos beldesi ve antik Tios kenti kalıntılarıyla bilinen ilçesi.",
+      "girisMetniEn": "Çaycuma is a Zonguldak district known for its Black Sea coastal town Filyos and the ruins of the ancient city of Tios.",
+      "miniSss": []
+    },
+    {
+      "slug": "bartin-merkez",
+      "ilSlug": "bartin",
+      "ad": "Bartın Merkez",
+      "baslik": "Bartın (İnkumu) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Bartın (İnkumu) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "İnkumu'da bugün deniz nasıl? Bartın merkez ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in İnkumu today? Live wind, wave conditions and 7-day forecast for Bartın's central district.",
+      "girisMetni": "Bartın merkez ilçesi, ilin Mavi Bayraklı plajlarının bulunduğu İnkumu sahilini içeriyor.",
+      "girisMetniEn": "Bartın's central district includes İnkumu beach, home to the province's Blue Flag beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "abana",
+      "ilSlug": "kastamonu",
+      "ad": "Abana",
+      "baslik": "Abana Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Abana Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Abana'da bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Abana ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Abana today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
+      "girisMetni": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Abana is a small Kastamonu district on the Black Sea, known for its sandy beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "bozkurt",
+      "ilSlug": "kastamonu",
+      "ad": "Bozkurt",
+      "baslik": "Bozkurt Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Bozkurt Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Bozkurt'ta bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Bozkurt ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Bozkurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
+      "girisMetni": "Bozkurt, Kastamonu'nun Karadeniz kıyısındaki, doğal koylarıyla bilinen ilçesi.",
+      "girisMetniEn": "Bozkurt is a Kastamonu district on the Black Sea, known for its natural coves.",
+      "miniSss": []
+    },
+    {
+      "slug": "doganyurt",
+      "ilSlug": "kastamonu",
+      "ad": "Doğanyurt",
+      "baslik": "Doğanyurt Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Doğanyurt Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Doğanyurt'ta bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Doğanyurt ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Doğanyurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
+      "girisMetni": "Doğanyurt, Kastamonu'nun sakin Karadeniz kıyısındaki küçük ilçelerinden biri.",
+      "girisMetniEn": "Doğanyurt is one of Kastamonu's small, quiet districts on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "catalzeytin",
+      "ilSlug": "kastamonu",
+      "ad": "Çatalzeytin",
+      "baslik": "Çatalzeytin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çatalzeytin Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Çatalzeytin'de bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Çatalzeytin ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Çatalzeytin today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
+      "girisMetni": "Çatalzeytin, Kastamonu'nun Ginolu koyuyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Çatalzeytin is a Kastamonu district on the Black Sea, known for Ginolu bay.",
+      "miniSss": []
+    },
+    {
+      "slug": "turkeli",
+      "ilSlug": "sinop",
+      "ad": "Türkeli",
+      "baslik": "Türkeli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Türkeli Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Türkeli'de bugün deniz nasıl? Sinop'un Karadeniz kıyısındaki Türkeli ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Türkeli today? Live wind, wave conditions and 7-day forecast for this Sinop district on the Black Sea.",
+      "girisMetni": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Türkeli is a Sinop district on the Black Sea, known for its long sandy beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "canik",
+      "ilSlug": "samsun",
+      "ad": "Canik",
+      "baslik": "Canik Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Canik Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Canik'te bugün deniz nasıl? Samsun'un merkez ilçelerinden Canik için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Canik today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
+      "girisMetni": "Canik, Samsun'un dört merkez ilçesinden biri, kendi kıyı şeridi ve plajlarına sahip.",
+      "girisMetniEn": "Canik is one of Samsun's four central districts, with its own coastline and beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "tekkekoy",
+      "ilSlug": "samsun",
+      "ad": "Tekkeköy",
+      "baslik": "Tekkeköy Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Tekkeköy Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Tekkeköy'de bugün deniz nasıl? Samsun'un merkez ilçelerinden Tekkeköy için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Tekkeköy today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
+      "girisMetni": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor.",
+      "girisMetniEn": "Tekkeköy is one of Samsun's four central districts, located on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "selcuk",
+      "ilSlug": "izmir",
+      "ad": "Selçuk",
+      "baslik": "Selçuk (Pamucak) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Selçuk (Pamucak) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Pamucak'ta bugün deniz nasıl? İzmir'in Selçuk ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Pamucak today? Live wind, wave conditions and 7-day forecast for Selçuk, İzmir.",
+      "girisMetni": "Selçuk, Efes antik kentine komşu, uzun Pamucak plajıyla bilinen İzmir ilçesi.",
+      "girisMetniEn": "Selçuk is an İzmir district next to the ancient city of Ephesus, known for its long Pamucak beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "aliaga",
+      "ilSlug": "izmir",
+      "ad": "Aliağa",
+      "baslik": "Aliağa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Aliağa Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Aliağa'da bugün deniz nasıl? İzmir'in Aliağa ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Aliağa today? Live wind, wave conditions and 7-day forecast for Aliağa, İzmir.",
+      "girisMetni": "Aliağa, İzmir'in kuzeyinde, sanayi bölgesine rağmen kendi plajlarına sahip Ege kıyısındaki ilçesi.",
+      "girisMetniEn": "Aliağa is an İzmir district on the Aegean coast north of the city — despite its industrial zone, it has its own beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "seydikemer",
+      "ilSlug": "mugla",
+      "ad": "Seydikemer",
+      "baslik": "Seydikemer Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Seydikemer Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Seydikemer'de bugün deniz nasıl? Muğla'nın Seydikemer ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Seydikemer today? Live wind, wave conditions and 7-day forecast for Seydikemer, Muğla.",
+      "girisMetni": "Seydikemer, Muğla'nın Patara'ya kadar uzanan Karadere ve Kumluova sahilleriyle bilinen ilçesi.",
+      "girisMetniEn": "Seydikemer is a Muğla district known for its Karadere and Kumluova beaches, stretching toward Patara.",
+      "miniSss": []
+    },
+    {
+      "slug": "canakkale-merkez",
+      "ilSlug": "canakkale",
+      "ad": "Çanakkale Merkez",
+      "baslik": "Çanakkale Merkez Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çanakkale Central Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Çanakkale merkezde bugün deniz nasıl? Çanakkale Boğazı kıyısındaki merkez ilçe için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in central Çanakkale today? Live wind, wave conditions and 7-day forecast for the city's central district on the Dardanelles.",
+      "girisMetni": "Çanakkale merkez ilçesi, Çanakkale Boğazı kıyısında, Dardanos plajıyla bilinir.",
+      "girisMetniEn": "Çanakkale's central district sits on the Dardanelles strait, known for Dardanos beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "biga",
+      "ilSlug": "canakkale",
+      "ad": "Biga",
+      "baslik": "Biga (Karabiga) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Biga (Karabiga) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Karabiga'da bugün deniz nasıl? Çanakkale'nin Biga ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Karabiga today? Live wind, wave conditions and 7-day forecast for Biga, Çanakkale.",
+      "girisMetni": "Biga, Çanakkale'nin Marmara Denizi'ne kıyısı olan Karabiga beldesiyle bilinen ilçesi.",
+      "girisMetniEn": "Biga is a Çanakkale district on the Sea of Marmara, known for its coastal town Karabiga.",
+      "miniSss": []
+    },
+    {
+      "slug": "eceabat",
+      "ilSlug": "canakkale",
+      "ad": "Eceabat",
+      "baslik": "Eceabat Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Eceabat Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Eceabat'ta bugün deniz nasıl? Çanakkale Boğazı kıyısındaki Eceabat ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Eceabat today? Live wind, wave conditions and 7-day forecast for Eceabat, Çanakkale.",
+      "girisMetni": "Eceabat, Gelibolu yarımadasında, Çanakkale Boğazı'nın karşı yakasındaki ilçe.",
+      "girisMetniEn": "Eceabat is a district on the Gallipoli peninsula, across the Dardanelles strait from the city of Çanakkale.",
+      "miniSss": []
+    },
+    {
+      "slug": "gonen",
+      "ilSlug": "balikesir",
+      "ad": "Gönen",
+      "baslik": "Gönen (Denizkent) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Gönen (Denizkent) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Denizkent'te bugün deniz nasıl? Balıkesir'in Gönen ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Denizkent today? Live wind, wave conditions and 7-day forecast for Gönen, Balıkesir.",
+      "girisMetni": "Gönen, Balıkesir'in Marmara Denizi'ne kıyısı olan Denizkent mahallesiyle bilinen ilçesi.",
+      "girisMetniEn": "Gönen is a Balıkesir district on the Sea of Marmara, known for its coastal neighborhood Denizkent.",
+      "miniSss": []
+    },
+    {
+      "slug": "karacabey",
+      "ilSlug": "bursa",
+      "ad": "Karacabey",
+      "baslik": "Karacabey Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Karacabey Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Karacabey'de bugün deniz nasıl? Bursa'nın Marmara kıyısındaki Karacabey ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Karacabey today? Live wind, wave conditions and 7-day forecast for this Bursa district on the Sea of Marmara.",
+      "girisMetni": "Karacabey, Bursa'nın Marmara Denizi'ne yaklaşık 22 km kıyısı olan, Kurşunlu plajıyla bilinen ilçesi.",
+      "girisMetniEn": "Karacabey is a Bursa district with about 22 km of Marmara coastline, known for Kurşunlu beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "gulyali",
+      "ilSlug": "ordu",
+      "ad": "Gülyalı",
+      "baslik": "Gülyalı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Gülyalı Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Gülyalı'da bugün deniz nasıl? Ordu'nun Karadeniz kıyısındaki Gülyalı ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Gülyalı today? Live wind, wave conditions and 7-day forecast for this Ordu district on the Black Sea.",
+      "girisMetni": "Gülyalı, Ordu'nun Karadeniz kıyısındaki, temiz plajlarıyla bilinen ilçesi.",
+      "girisMetniEn": "Gülyalı is an Ordu district on the Black Sea, known for its clean beaches.",
+      "miniSss": []
+    },
+    {
+      "slug": "kesap",
+      "ilSlug": "giresun",
+      "ad": "Keşap",
+      "baslik": "Keşap Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Keşap Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Keşap'ta bugün deniz nasıl? Giresun'un Karadeniz kıyısındaki Keşap ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Keşap today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
+      "girisMetni": "Keşap, Giresun'un Karadeniz kıyısındaki ilçelerinden biri.",
+      "girisMetniEn": "Keşap is one of Giresun's districts on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "piraziz",
+      "ilSlug": "giresun",
+      "ad": "Piraziz",
+      "baslik": "Piraziz Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Piraziz Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Piraziz'de bugün deniz nasıl? Giresun'un Karadeniz kıyısındaki Piraziz ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Piraziz today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
+      "girisMetni": "Piraziz, Giresun'un Eğrice plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Piraziz is a Giresun district on the Black Sea, known for Eğrice beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "eynesil",
+      "ilSlug": "giresun",
+      "ad": "Eynesil",
+      "baslik": "Eynesil Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Eynesil Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Eynesil'de bugün deniz nasıl? Giresun'un Trabzon sınırındaki Eynesil ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Eynesil today? Live wind, wave conditions and 7-day forecast for this Giresun district near the Trabzon border.",
+      "girisMetni": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Eynesil is a Giresun district at the province's eastern edge, on the Black Sea near the Trabzon border.",
+      "miniSss": []
+    },
+    {
+      "slug": "besikduzu",
+      "ilSlug": "trabzon",
+      "ad": "Beşikdüzü",
+      "baslik": "Beşikdüzü Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Beşikdüzü Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Beşikdüzü'nde bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Beşikdüzü ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Beşikdüzü today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
+      "girisMetni": "Beşikdüzü, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
+      "girisMetniEn": "Beşikdüzü is one of Trabzon's districts on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "carsibasi",
+      "ilSlug": "trabzon",
+      "ad": "Çarşıbaşı",
+      "baslik": "Çarşıbaşı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Çarşıbaşı Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Çarşıbaşı'nda bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Çarşıbaşı ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Çarşıbaşı today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
+      "girisMetni": "Çarşıbaşı, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
+      "girisMetniEn": "Çarşıbaşı is one of Trabzon's districts on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "surmene",
+      "ilSlug": "trabzon",
+      "ad": "Sürmene",
+      "baslik": "Sürmene Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Sürmene Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Sürmene'de bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Sürmene ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Sürmene today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
+      "girisMetni": "Sürmene, Trabzon'un Voha plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Sürmene is a Trabzon district on the Black Sea, known for Voha beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "arsin",
+      "ilSlug": "trabzon",
+      "ad": "Arsin",
+      "baslik": "Arsin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Arsin Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Arsin'de bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Arsin ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Arsin today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
+      "girisMetni": "Arsin, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
+      "girisMetniEn": "Arsin is one of Trabzon's districts on the Black Sea coast.",
+      "miniSss": []
+    },
+    {
+      "slug": "iyidere",
+      "ilSlug": "rize",
+      "ad": "İyidere",
+      "baslik": "İyidere Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "İyidere Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "İyidere'de bugün deniz nasıl? Rize'nin Karadeniz kıyısındaki İyidere ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in İyidere today? Live wind, wave conditions and 7-day forecast for this Rize district on the Black Sea.",
+      "girisMetni": "İyidere, Rize'nin Sarayköy plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "İyidere is a Rize district on the Black Sea, known for Sarayköy beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "kemalpasa",
+      "ilSlug": "artvin",
+      "ad": "Kemalpaşa",
+      "baslik": "Kemalpaşa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Kemalpaşa Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Kemalpaşa'da bugün deniz nasıl? Artvin'in Karadeniz kıyısındaki, Gürcistan sınırına yakın Kemalpaşa ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Kemalpaşa today? Live wind, wave conditions and 7-day forecast for this Artvin district on the Black Sea, near the Georgian border.",
+      "girisMetni": "Kemalpaşa, 2017'de Hopa'dan ayrılan, Artvin'in Gürcistan sınırına yakın Karadeniz kıyısındaki en yeni ilçesi.",
+      "girisMetniEn": "Kemalpaşa, separated from Hopa in 2017, is Artvin's newest district on the Black Sea coast near the Georgian border.",
+      "miniSss": []
+    },
+    {
+      "slug": "finike",
+      "ilSlug": "antalya",
+      "ad": "Finike",
+      "baslik": "Finike Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Finike Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Finike'de bugün deniz nasıl? Antalya'nın Akdeniz kıyısındaki Finike ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Finike today? Live wind, wave conditions and 7-day forecast for this Antalya district on the Mediterranean.",
+      "girisMetni": "Finike, Antalya'nın Kumluca ile Demre arasındaki, 4 km'lik kumsalıyla bilinen Akdeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Finike is an Antalya district on the Mediterranean between Kumluca and Demre, known for its 4 km beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "aksu",
+      "ilSlug": "antalya",
+      "ad": "Aksu",
+      "baslik": "Aksu (Kundu) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Aksu (Kundu) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Kundu'da bugün deniz nasıl? Antalya'nın Aksu ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Kundu today? Live wind, wave conditions and 7-day forecast for Aksu, Antalya.",
+      "girisMetni": "Aksu, Antalya'nın turizm bölgesi Kundu'yu içeren, Muratpaşa'nın doğusundaki ilçesi.",
+      "girisMetniEn": "Aksu is an Antalya district east of Muratpaşa, home to the Kundu tourism zone.",
+      "miniSss": []
+    },
+    {
+      "slug": "mezitli",
+      "ilSlug": "mersin",
+      "ad": "Mezitli",
+      "baslik": "Mezitli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Mezitli Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Mezitli'de bugün deniz nasıl? Mersin'in Akdeniz kıyısındaki Mezitli ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Mezitli today? Live wind, wave conditions and 7-day forecast for this Mersin district on the Mediterranean.",
+      "girisMetni": "Mezitli, Mersin merkezinin batısında, Gümüşkum plajı ve 100. Yıl Tabiat Parkı'yla bilinen ilçesi.",
+      "girisMetniEn": "Mezitli is a Mersin district west of the city center, known for Gümüşkum beach and its 100th Year Nature Park.",
+      "miniSss": []
+    },
+    {
+      "slug": "aydincik",
+      "ilSlug": "mersin",
+      "ad": "Aydıncık",
+      "baslik": "Aydıncık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Aydıncık Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Aydıncık'ta bugün deniz nasıl? Mersin'in Akdeniz kıyısındaki Aydıncık ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Aydıncık today? Live wind, wave conditions and 7-day forecast for this Mersin district on the Mediterranean.",
+      "girisMetni": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Aydıncık is a Mersin district on the Mediterranean, between Silifke and Anamur.",
+      "miniSss": []
+    },
+    {
+      "slug": "bozyazi",
+      "ilSlug": "mersin",
+      "ad": "Bozyazı",
+      "baslik": "Bozyazı Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Bozyazı Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Bozyazı'da bugün deniz nasıl? Mersin'in Anamur komşusu Bozyazı ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Bozyazı today? Live wind, wave conditions and 7-day forecast for this Mersin district neighboring Anamur.",
+      "girisMetni": "Bozyazı, Mersin'in en batı ilçelerinden biri, Anamur'a komşu Akdeniz kıyısında yer alır.",
+      "girisMetniEn": "Bozyazı is one of Mersin's westernmost districts, on the Mediterranean next to Anamur.",
+      "miniSss": []
+    },
+    {
+      "slug": "ceyhan",
+      "ilSlug": "adana",
+      "ad": "Ceyhan",
+      "baslik": "Ceyhan Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Ceyhan Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Ceyhan'da bugün deniz nasıl? Adana'nın Akdeniz kıyısındaki Ceyhan ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Ceyhan today? Live wind, wave conditions and 7-day forecast for this Adana district on the Mediterranean.",
+      "girisMetni": "Ceyhan, Adana'nın Karataş ile Yumurtalık arasındaki, İncirli plajıyla bilinen Akdeniz kıyısındaki ilçesi.",
+      "girisMetniEn": "Ceyhan is an Adana district on the Mediterranean between Karataş and Yumurtalık, known for İncirli beach.",
+      "miniSss": []
+    },
+    {
+      "slug": "payas",
+      "ilSlug": "hatay",
+      "ad": "Payas",
+      "baslik": "Payas Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Payas Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Payas'ta bugün deniz nasıl? Hatay'ın İskenderun Körfezi kıyısındaki Payas ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Payas today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
+      "girisMetni": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısındaki ilçesi.",
+      "girisMetniEn": "Payas is a Hatay district on the Gulf of İskenderun, between İskenderun and Dörtyol.",
+      "miniSss": []
+    },
+    {
+      "slug": "dortyol",
+      "ilSlug": "hatay",
+      "ad": "Dörtyol",
+      "baslik": "Dörtyol Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Dörtyol Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Dörtyol'da bugün deniz nasıl? Hatay'ın İskenderun Körfezi kıyısındaki Dörtyol ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Dörtyol today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
+      "girisMetni": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısındaki ilçesi.",
+      "girisMetniEn": "Dörtyol is a Hatay district on the northern shore of the Gulf of İskenderun.",
+      "miniSss": []
+    },
+    {
+      "slug": "erzin",
+      "ilSlug": "hatay",
+      "ad": "Erzin",
+      "baslik": "Erzin (Burnaz) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Erzin (Burnaz) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Burnaz'da bugün deniz nasıl? Hatay'ın Erzin ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Burnaz today? Live wind, wave conditions and 7-day forecast for Erzin, Hatay.",
+      "girisMetni": "Erzin, Hatay'ın İskenderun Körfezi'nin kuzey ucundaki, 6 km uzunluğundaki Burnaz plajıyla bilinen ilçesi.",
+      "girisMetniEn": "Erzin is a Hatay district at the northern tip of the Gulf of İskenderun, known for its 6 km Burnaz beach.",
       "miniSss": []
     }
   ]
