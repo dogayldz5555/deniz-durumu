@@ -106,6 +106,7 @@ const CEVIRI = {
     sss_git_baslik: "Sıkça sorulan sorular",
     sss_git_metin: "SeaDataWave nasıl çalışır, Mavi Bayrak ne demek, veriler ne sıklıkla güncelleniyor? Tüm cevaplar SSS sayfasında.",
     sss_git_buton: "Sıkça Sorulan Sorular →",
+    hakkimizda_devami: "Devamını oku →",
     yer_mavi_bayrakli_baslik: "Mavi Bayraklı Plajlar",
     yer_halka_acik_baslik: "Halka Açık Plajlar",
     yer_daha_fazla_soru: "Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →",
@@ -285,6 +286,7 @@ const CEVIRI = {
     sss_git_baslik: "Frequently asked questions",
     sss_git_metin: "How does SeaDataWave work, what does Blue Flag mean, how often is data updated? All the answers are on the FAQ page.",
     sss_git_buton: "Frequently Asked Questions →",
+    hakkimizda_devami: "Read more →",
     yer_mavi_bayrakli_baslik: "Blue Flag Beaches",
     yer_halka_acik_baslik: "Public Beaches",
     yer_daha_fazla_soru: "See the FAQ page for more questions →",
@@ -882,6 +884,18 @@ const HALK_PLAJLARI = [
   { ad: "Yakakent Sahili", adEn: "Yakakent Beach", lat: 41.634951, lon: 35.5315896, yaricapKm: 1.2, il: "Samsun", ilce: "Yakakent" },
   { ad: "Göçkün Plajı", adEn: "Göçkün Beach", lat: 41.6369763, lon: 35.6268500, yaricapKm: 0.4, il: "Samsun", ilce: "Alaçam" },
   { ad: "Etyemez Plajı", adEn: "Etyemez Beach", lat: 41.6328058, lon: 35.5768190, yaricapKm: 0.4, il: "Samsun", ilce: "Alaçam" },
+  // Şile'nin bazı plajları (Uzunkum, Ağlayan Kaya) geçmişte Mavi Bayrak taşımış ama güncel
+  // (2026) TÜRÇEV listesinde İstanbul'un mavi bayraklı plajları Arnavutköy/Silivri'de
+  // görünüyor — sertifika durumu net doğrulanamadığı için ihtiyatlı davranılıp buraya,
+  // "halka açık" olarak eklendi (2026-07-11).
+  { ad: "Ayazma Plajı", adEn: "Ayazma Beach", lat: 41.1720309, lon: 29.6003442, yaricapKm: 0.3, il: "İstanbul", ilce: "Şile" },
+  { ad: "Kumbaba Plajı", adEn: "Kumbaba Beach", lat: 41.1710733, lon: 29.5765848, yaricapKm: 0.3, il: "İstanbul", ilce: "Şile" },
+  // Adalar (Büyükada/Heybeliada/Kaşıkadası) — OSM natural=beach/leisure=beach_resort
+  // poligonlarından, gerçek isimli noktalar (2026-07-11).
+  { ad: "Aya Nikola Halk Plajı", adEn: "Aya Nikola Public Beach", lat: 40.8549316, lon: 29.1254434, yaricapKm: 0.3, il: "İstanbul", ilce: "Adalar" },
+  { ad: "Yörükali Plajı", adEn: "Yörükali Beach", lat: 40.8595685, lon: 29.1133137, yaricapKm: 0.3, il: "İstanbul", ilce: "Adalar" },
+  { ad: "Kaşık Adası Sahili", adEn: "Kaşık Island Shore", lat: 40.8846087, lon: 29.0785206, yaricapKm: 0.3, il: "İstanbul", ilce: "Adalar" },
+  { ad: "Kalpazankaya", adEn: "Kalpazankaya Beach", lat: 40.8781779, lon: 29.0528134, yaricapKm: 0.3, il: "İstanbul", ilce: "Adalar" },
 ];
 function halkPlajiBul(lat, lon) {
   let enYakin = null, enYakinMesafe = Infinity;

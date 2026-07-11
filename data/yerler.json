@@ -110,7 +110,8 @@
       "ilceler": [
         "sile",
         "silivri",
-        "buyukcekmece"
+        "buyukcekmece",
+        "adalar"
       ],
       "baslikEn": "İstanbul Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İstanbul today? Live wind, wave conditions and 7-day forecast for Şile, Silivri and Büyükçekmece.",
@@ -2443,6 +2444,18 @@
       "baslikEn": "Marmara Island Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Marmara Island and Avşa (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
       "girisMetniEn": "Marmara Island district covers Marmara Island, known for its marble quarries, and neighboring Avşa Island — both holiday islands in the middle of the Sea of Marmara, reached by ferry from İstanbul and Bursa. The district's public Blue Flag beaches include {plajAdlari}."
+    },
+    {
+      "slug": "adalar",
+      "ilSlug": "istanbul",
+      "ad": "Adalar",
+      "baslik": "Adalar Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Adalar (Prince Islands) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Büyükada, Heybeliada ve çevresinde bugün deniz nasıl? Adalar için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea around Büyükada and Heybeliada today? Live wind, wave conditions and 7-day forecast for the Prince Islands.",
+      "girisMetni": "Adalar, İstanbul'un Marmara Denizi'ndeki Büyükada, Heybeliada, Burgazada ve Kınalıada başta olmak üzere dokuz adadan oluşan ilçesi — arabaların yasak olduğu, faytonlar/bisikletlerle dolaşılan sakin bir kıyı bölgesi.",
+      "girisMetniEn": "Adalar is Istanbul's island district in the Sea of Marmara, made up of nine islands including Büyükada, Heybeliada, Burgazada and Kınalıada — a quiet coastal area where cars are banned and people get around by horse carriage or bicycle.",
+      "miniSss": []
     }
   ]
 }

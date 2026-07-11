@@ -9,6 +9,10 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.seadatawave.com/hakkimizda/</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.seadatawave.com/samsun/</loc>
     <priority>0.8</priority>
   </url>
@@ -186,6 +190,10 @@
   </url>
   <url>
     <loc>https://www.seadatawave.com/istanbul/buyukcekmece/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.seadatawave.com/istanbul/adalar/</loc>
     <priority>0.7</priority>
   </url>
   <url>

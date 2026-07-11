@@ -38,9 +38,9 @@ function navHtmlUret(yerler) {
       ${ilGruplari}
     </div>
   </details>
-  <a href="/#veriler" data-i18n="nav_veriler">Veriler</a>
+  <a href="/#status-card" data-i18n="nav_veriler">Veriler</a>
   <a href="/#site-yorumlar-bolum" data-i18n="nav_yorumlar">Yorumlar</a>
-  <a href="/#hakkimizda" data-i18n="nav_hakkimizda">Hakkımızda</a>
+  <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
   <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>`;
 }
@@ -546,4 +546,96 @@ ${jsonLd}
 `;
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, navHtmlUret, escapeHtml };
+// Hakkımızda — anasayfadaki kısa panelin genişletilmiş hâli, ayrı bir sayfa olarak. SSS
+// sayfasıyla aynı şekilde js/app.js YÜKLENMİYOR (harita/dil değiştirici yok) — bu yüzden
+// TR-only, tıpkı sss/ ve gizlilik-politikasi.html gibi.
+function hakkimizdaSayfasiUret({ navHtml }) {
+  const title = "Hakkımızda — SeaDataWave";
+  const metaAciklama = "SeaDataWave nedir, verileri nereden alıyor, kapsamı ne kadar geniş? Sitenin amacı ve çalışma şekli hakkında bilgi.";
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeaDataWave" />
+<meta property="og:url" content="https://www.seadatawave.com/hakkimizda/" />
+<link rel="canonical" href="https://www.seadatawave.com/hakkimizda/" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <div class="brand-yazi">
+      <h1>SeaDataWave</h1>
+      <p class="brand-alt">Anlık Deniz Verileri</p>
+    </div>
+  </div>
+  <!-- NAV:START -->
+  ${navHtml}
+  <!-- NAV:END -->
+</header>
+<div id="app-wrap">
+<div id="app">
+  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
+    <h2 style="font-size:20px;">Hakkımızda</h2>
+    <div class="sss-madde">
+      <h3>SeaDataWave Nedir?</h3>
+      <p>SeaDataWave, denize girmeden önce o gün havanın ve denizin müsait olup olmadığını evinden görebileceğin ücretsiz bir site — Karadeniz, Marmara, Ege ve Akdeniz kıyılarındaki her noktada geçerli. Haritada herhangi bir sahil noktasına tıklayarak denizin bugün keyifli mi, yoksa dalgalı/tehlikeli mi olacağını anlık rüzgar ve dalga verisiyle öğrenebilir, aynı zamanda sahildeki diğer kullanıcıların gerçek zamanlı yorumlarını okuyabilirsin.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Veri Kaynağımız</h3>
+      <p>Rüzgar ve dalga verisi Open-Meteo'dan alınır — bu bir tahmindir, resmi bir ölçüm değil. Bunun yanında haritada gördüğün "sahadan gelenler" bölümü, o an sahilde olan kullanıcıların kendi gözlemlerine dayanan gerçek zamanlı bildirimlerdir; tahminle sahadan gelen bilgi bazen uyuşmayabilir, deniz hızlı değişebileceği için gitmeden hemen önce kontrol etmeni öneririz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Kapsamımız</h3>
+      <p>Şu an 27 il ve 104 kıyı ilçesi için ayrı, bölgeye özel sayfalarımız var; bunların içinde 150'den fazla Mavi Bayraklı ve halka açık plaj yer alıyor. Yeni il/ilçeler ve plajlar zamanla eklenmeye devam ediyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha Fazla Bilgi</h3>
+      <p>SeaDataWave'in nasıl çalıştığı, Mavi Bayrak'ın ne anlama geldiği ve veri sıklığı gibi konularda daha fazla soru için <a href="/sss/">Sıkça Sorulan Sorular</a> sayfamıza, gizlilik uygulamalarımız için <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a> sayfamıza bakabilirsin. Görüş ve önerilerini anasayfadaki değerlendirme formundan bize iletebilirsin.</p>
+    </div>
+  </div>
+  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
+</div>
+</div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+      </div>
+    </div>
+    <div>
+      <h4>Keşfet</h4>
+      <a href="/samsun/">Samsun</a>
+      <a href="/izmir/">İzmir</a>
+      <a href="/mugla/">Muğla</a>
+      <a href="/aydin/">Aydın</a>
+      <a href="/antalya/">Antalya</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
+    </div>
+  </div>
+  <div class="footer-alt">© 2026 SeaDataWave</div>
+</footer>
+</body>
+</html>
+`;
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, navHtmlUret, escapeHtml };

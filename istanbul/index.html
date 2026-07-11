@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/app.css" />
-<script>window.SAYFA_KONUM = {"lat":41.02,"lon":28.95,"zoom":9,"il":"İstanbul","ilce":null,"baslik":"İstanbul Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"İstanbul Sea Conditions — Today and 7-Day Forecast","metaAciklama":"İstanbul'da deniz bugün nasıl? Şile, Silivri ve Büyükçekmece için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in İstanbul today? Live wind, wave conditions and 7-day forecast for Şile, Silivri and Büyükçekmece."};</script>
+<script>window.SAYFA_KONUM = {"lat":41.01348125,"lon":29.3265788,"zoom":9,"il":"İstanbul","ilce":null,"baslik":"İstanbul Deniz Durumu — Bugün ve 7 Günlük Tahmin","baslikEn":"İstanbul Sea Conditions — Today and 7-Day Forecast","metaAciklama":"İstanbul'da deniz bugün nasıl? Şile, Silivri ve Büyükçekmece için anlık rüzgar, dalga durumu ve 7 günlük tahmin.","metaAciklamaEn":"How is the sea in İstanbul today? Live wind, wave conditions and 7-day forecast for Şile, Silivri and Büyükçekmece."};</script>
 <script>
 // Sayfa hiç boyanmadan (render olmadan) önce çalışır, böylece gündüz/gece geçişinde
 // kısa bir "yanlış renkte açılıp sonra değişme" flaşı olmaz.
@@ -137,6 +137,7 @@
           <a href="/istanbul/sile/">Şile</a>
           <a href="/istanbul/silivri/">Silivri</a>
           <a href="/istanbul/buyukcekmece/">Büyükçekmece</a>
+          <a href="/istanbul/adalar/">Adalar</a>
         </div>
       </details>
       <details class="nav-il-grup">
@@ -332,9 +333,9 @@
       </details>
     </div>
   </details>
-  <a href="/#veriler" data-i18n="nav_veriler">Veriler</a>
+  <a href="/#status-card" data-i18n="nav_veriler">Veriler</a>
   <a href="/#site-yorumlar-bolum" data-i18n="nav_yorumlar">Yorumlar</a>
-  <a href="/#hakkimizda" data-i18n="nav_hakkimizda">Hakkımızda</a>
+  <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
   <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>
   <!-- NAV:END -->
@@ -455,13 +456,24 @@
     <div class="gb-sent" id="gb-sent" style="display:none;" data-i18n="bildirim_kaydedildi">Bildiriminiz kaydedildi, teşekkürler.</div>
   </div>
 
-  
+  <div class="yer-plajlar">
+      <h2 data-i18n="yer_halka_acik_baslik">Halka Açık Plajlar</h2>
+      <ul class="yer-plaj-listesi">
+      <li><span class="tr-metin">Ayazma Plajı</span><span class="en-metin">Ayazma Beach</span></li>
+      <li><span class="tr-metin">Kumbaba Plajı</span><span class="en-metin">Kumbaba Beach</span></li>
+      <li><span class="tr-metin">Aya Nikola Halk Plajı</span><span class="en-metin">Aya Nikola Public Beach</span></li>
+      <li><span class="tr-metin">Yörükali Plajı</span><span class="en-metin">Yörükali Beach</span></li>
+      <li><span class="tr-metin">Kaşık Adası Sahili</span><span class="en-metin">Kaşık Island Shore</span></li>
+      <li><span class="tr-metin">Kalpazankaya</span><span class="en-metin">Kalpazankaya Beach</span></li>
+      </ul>
+    </div>
   <div class="yer-ilceler">
     <h2><span class="tr-metin">İstanbul'nin kıyı ilçeleri</span><span class="en-metin">Coastal districts of İstanbul</span></h2>
     <ul class="yer-ilceler-listesi">
       <li><a href="/istanbul/sile/">Şile</a></li>
       <li><a href="/istanbul/silivri/">Silivri</a></li>
       <li><a href="/istanbul/buyukcekmece/">Büyükçekmece</a></li>
+      <li><a href="/istanbul/adalar/">Adalar</a></li>
     </ul>
   </div>
   <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>
