@@ -225,6 +225,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.seadatawave.com/sakarya/kocaali/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.seadatawave.com/duzce/</loc>
     <priority>0.8</priority>
   </url>
@@ -538,6 +542,10 @@
   </url>
   <url>
     <loc>https://www.seadatawave.com/kirklareli/vize/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.seadatawave.com/kirklareli/demirkoy/</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

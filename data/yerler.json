@@ -150,7 +150,8 @@
       },
       "ilceler": [
         "karasu",
-        "kaynarca"
+        "kaynarca",
+        "kocaali"
       ],
       "baslikEn": "Sakarya Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Sakarya today? Live wind, wave conditions and 7-day forecast for Karasu and Kaynarca.",
@@ -533,7 +534,8 @@
         "zoom": 12
       },
       "ilceler": [
-        "vize"
+        "vize",
+        "demirkoy"
       ],
       "baslikEn": "Kırklareli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kırklareli's Kıyıköy today? Live wind, wave conditions and 7-day forecast.",
@@ -2455,6 +2457,30 @@
       "metaAciklamaEn": "How is the sea around Büyükada and Heybeliada today? Live wind, wave conditions and 7-day forecast for the Prince Islands.",
       "girisMetni": "Adalar, İstanbul'un Marmara Denizi'ndeki Büyükada, Heybeliada, Burgazada ve Kınalıada başta olmak üzere dokuz adadan oluşan ilçesi — arabaların yasak olduğu, faytonlar/bisikletlerle dolaşılan sakin bir kıyı bölgesi.",
       "girisMetniEn": "Adalar is Istanbul's island district in the Sea of Marmara, made up of nine islands including Büyükada, Heybeliada, Burgazada and Kınalıada — a quiet coastal area where cars are banned and people get around by horse carriage or bicycle.",
+      "miniSss": []
+    },
+    {
+      "slug": "demirkoy",
+      "ilSlug": "kirklareli",
+      "ad": "Demirköy (İğneada)",
+      "baslik": "İğneada (Demirköy) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "İğneada (Demirköy) Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "İğneada'da bugün deniz nasıl? Kırklareli'nin Demirköy ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in İğneada today? Live wind, wave conditions and 7-day forecast for Demirköy, Kırklareli.",
+      "girisMetni": "Demirköy, Kırklareli'nin Longoz ormanlarıyla ve İğneada'daki uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi — Bulgaristan sınırına yakın, sakin bir tatil bölgesi.",
+      "girisMetniEn": "Demirköy is Kırklareli's Black Sea coastal district, known for its Longoz floodplain forests and the long sandy beach at İğneada — a quiet holiday area close to the Bulgarian border.",
+      "miniSss": []
+    },
+    {
+      "slug": "kocaali",
+      "ilSlug": "sakarya",
+      "ad": "Kocaali",
+      "baslik": "Kocaali Deniz Durumu — Bugün ve 7 Günlük Tahmin",
+      "baslikEn": "Kocaali Sea Conditions — Today and 7-Day Forecast",
+      "metaAciklama": "Kocaali'de bugün deniz nasıl? Sakarya'nın Kocaali ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
+      "metaAciklamaEn": "How is the sea in Kocaali today? Live wind, wave conditions and 7-day forecast for Kocaali, Sakarya.",
+      "girisMetni": "Kocaali, Sakarya'nın Karadeniz kıyısındaki sakin ilçelerinden biri — kumlu plajları ve orman alanlarıyla bilinir.",
+      "girisMetniEn": "Kocaali is one of Sakarya's quiet Black Sea coastal districts, known for its sandy beaches and forested surroundings.",
       "miniSss": []
     }
   ]
