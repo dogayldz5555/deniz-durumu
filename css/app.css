@@ -1204,7 +1204,7 @@
     display: grid;
     grid-template-columns: 1fr 1.3fr 1fr;
     gap: 20px;
-    align-items: start;
+    align-items: stretch;
   }
   @media (max-width: 900px) { .alt-grid { grid-template-columns: 1fr; } }
   .panel {
