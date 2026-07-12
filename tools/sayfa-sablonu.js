@@ -123,6 +123,19 @@ function sayfaIskeleti({ title, titleEn, metaAciklama, metaAciklamaEn, canonical
   const sayfaKonumJs = sayfaKonum
     ? `<script>window.SAYFA_KONUM = ${JSON.stringify({ ...sayfaKonum, baslik: title, baslikEn: titleEn || null, metaAciklama, metaAciklamaEn: metaAciklamaEn || null })};</script>\n`
     : "";
+  // Konum meta etiketleri + JSON-LD "about: Place" — arama motorlarının bu sayfayı belirli
+  // bir il/ilçeye ait olarak anlaması için (kullanıcı "deniz durumu" diye aratınca bulunduğu
+  // bölgeye en yakın/ilgili sayfanın öne çıkma ihtimalini artırır). Sadece il/ilçe sayfalarında
+  // (sayfaKonum doluysa) eklenir — SSS/Hakkımızda gibi konuma bağlı olmayan sayfalarda yok.
+  const geoHtml = sayfaKonum
+    ? `<meta name="geo.placename" content="${escapeHtml(sayfaKonum.ilce ? `${sayfaKonum.ilce}, ${sayfaKonum.il}` : sayfaKonum.il)}" />
+<meta name="geo.position" content="${sayfaKonum.lat};${sayfaKonum.lon}" />
+<meta name="ICBM" content="${sayfaKonum.lat}, ${sayfaKonum.lon}" />
+`
+    : "";
+  const jsonLdAbout = sayfaKonum
+    ? `, "about": { "@type": "Place", "name": ${JSON.stringify(sayfaKonum.ilce ? `${sayfaKonum.ilce}, ${sayfaKonum.il}` : sayfaKonum.il)}, "geo": { "@type": "GeoCoordinates", "latitude": ${sayfaKonum.lat}, "longitude": ${sayfaKonum.lon} } }`
+    : "";
   return `<!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -144,12 +157,12 @@ function sayfaIskeleti({ title, titleEn, metaAciklama, metaAciklamaEn, canonical
 <meta name="twitter:description" content="${escapeHtml(metaAciklama)}" />
 <meta name="twitter:image" content="https://www.seadatawave.com/og-image.png" />
 <link rel="canonical" href="${canonicalUrl}" />
-<link rel="manifest" href="/manifest.json" />
+${geoHtml}<link rel="manifest" href="/manifest.json" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <script type="application/ld+json">
-{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }
+{ "@context": "https://schema.org", "@type": "WebPage", "name": ${JSON.stringify(title)}, "url": ${JSON.stringify(canonicalUrl)}, "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" }${jsonLdAbout} }
 </script>
 <meta name="theme-color" content="#2A7FB8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
