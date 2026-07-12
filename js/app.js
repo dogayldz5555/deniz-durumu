@@ -1792,7 +1792,7 @@ async function veriCekVeGoster(lat, lon) {
     // kullanıcı rüzgar/dalga rakamlarını görmek için o yavaş, çok istekli hesabın
     // bitmesini beklemek zorunda kalmaz — dalga verisi hemen gelir, fetch mesafesi notu
     // (varsa) birkaç saniye sonra ayrıca belirir.
-    async function kartiCiz(ozelEsik, fetchKm) {
+    async function kartiCiz(ozelEsik, fetchKm, gbAlaniniYenidenKur = true) {
       if (!tokenGecerli()) return;
       const { zamanStr: gunZamanStr, gercekMi: gunGercekMi } = gunVerisiUygula(state.gunOfset);
       const durum = denizdeyiz ? durumDenizden(dalgaM, kmh, gust, windWaveM, windWavePeriyot, lat, lon, ozelEsik, swellM, swellPeriyot) : null;
@@ -1958,7 +1958,12 @@ async function veriCekVeGoster(lat, lon) {
       state.yerAdi = baslikYer;
       state.konumMetni = konumMetni;
       yakinYorumlariDurumGuncelle();
-      await gbAlaniniGuncelle();
+      // gbAlaniniGuncelle() butonları sıfırlayıp (state.secilenGB = null) sahadan gelen
+      // yorumları yeniden çeker — aynı nokta için fetch (kıyı şekli) ince ayarı geldiğinde
+      // TEKRAR çağrılırsa, kullanıcı arada "iyi/orta" gibi bir seçim yapmışsa o seçimi
+      // sessizce siler. Bu yüzden sadece GERÇEK ilk gösterimde (yeni tıklama) çağrılıyor,
+      // aynı noktanın fetch ince ayarında (gbAlaniniYenidenKur=false) atlanıyor.
+      if (gbAlaniniYenidenKur) await gbAlaniniGuncelle();
 
       // Offline/bağlantı koptuğunda gösterebilmek için son başarılı sonucu sakla.
       try {
@@ -2010,7 +2015,7 @@ async function veriCekVeGoster(lat, lon) {
         const yeniPuan = durumPuani(yeniDurum);
         const fark = (eskiPuan != null && yeniPuan != null) ? Math.abs(yeniPuan - eskiPuan) : 0;
         if (fark <= 1) {
-          kartiCiz(ozelEsik, fetchSonuc.km);
+          kartiCiz(ozelEsik, fetchSonuc.km, false);
           return;
         }
         const notuAlani = document.getElementById('fetch-notu-alani');
@@ -3379,6 +3384,18 @@ document.querySelectorAll('.dil-btn').forEach(btn => {
     AKTIF_DIL = yeniDil;
     try { localStorage.setItem(DIL_ANAHTARI, AKTIF_DIL); } catch (e) {}
     dilUygula();
+  });
+});
+// Nav'daki "Veriler"/"Yorumlar" linkleri (#status-card, #site-yorumlar-bolum) — normal
+// <a href="#..."> davranışı adres çubuğuna "#status-card" ekler, hem gereksiz görünür hem
+// de sayfayı yeniden ziyaret edince tarayıcı otomatik oraya kaydırır. Bunun yerine tıklamayı
+// yakalayıp kendimiz kaydırıyoruz, URL hiç değişmiyor.
+document.querySelectorAll('.nav-kart-link').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const hedef = document.getElementById(a.getAttribute('href').slice(1));
+    if (!hedef) return;
+    e.preventDefault();
+    hedef.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 dilUygula();
