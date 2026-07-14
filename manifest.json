@@ -1,7 +1,7 @@
 {
-  "name": "SeaDataWave — Bugün Deniz Nasıl?",
+  "name": "SeaDataWave — Deniz Durumu ve Dalga Durumu",
   "short_name": "SeaDataWave",
-  "description": "Türkiye kıyılarında anlık rüzgar ve dalga durumu, 1 haftalık tahmin ve sahadan gelen gerçek kullanıcı yorumları.",
+  "description": "Türkiye kıyılarında deniz durumu ve dalga durumu: anlık rüzgar, dalga yüksekliği, 1 haftalık tahmin ve sahadan gelen gerçek kullanıcı yorumları.",
   "start_url": "/",
   "id": "/",
   "scope": "/",

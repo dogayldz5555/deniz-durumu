@@ -584,6 +584,9 @@ function hakkimizdaSayfasiUret({ navHtml }) {
 <link rel="icon" type="image/png" href="/icon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="stylesheet" href="/css/app.css" />
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "AboutPage", "name": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/hakkimizda/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }
+</script>
 </head>
 <body>
 <header class="site-header">
