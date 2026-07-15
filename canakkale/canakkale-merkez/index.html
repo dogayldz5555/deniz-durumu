@@ -441,11 +441,10 @@
         <div id="tek-panel-isim-row" class="tek-panel-isim-row" style="display:none;">
           <input type="text" id="tek-panel-isim" data-i18n-placeholder="isim_placeholder" placeholder="İsim / rumuz" maxlength="24" />
         </div>
-        <div class="tek-panel-durum-satir" id="tek-panel-durum-satir"></div>
         <div class="tek-panel-not-row">
           <input type="text" id="tek-panel-not" data-i18n-placeholder="not_placeholder" placeholder="İsteğe bağlı not" />
         </div>
-        <button type="button" id="tek-panel-gonder" class="tek-panel-gonder-btn" data-i18n="gonder">Gönder</button>
+        <div class="tek-panel-durum-satir" id="tek-panel-durum-satir"></div>
         <div id="tek-panel-sonuc" class="tek-panel-sonuc" style="display:none;"></div>
         <div class="tek-panel-ayrac"></div>
         <div id="tam-ekran-yorumlar-liste"></div>
@@ -485,13 +484,11 @@
 
   <div class="gb-section" id="gb-section" style="display:none;">
     <div class="gb-title" data-i18n="deniz_nasil_baslik">Şu an oradaysan deniz nasıl?</div>
-    <div class="gb-buttons">
-      <button class="gb-btn" data-val="carsaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg><span data-i18n="durum_carsaf">Çok iyi</span></button>
-      <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><span data-i18n="durum_hafif">İyi</span></button>
-      <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="durum_fazla">Orta</span></button>
-      <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="durum_tehlikeli">Fazla dalga</span></button>
+    <p class="gb-alt" data-i18n="gb_alt">İstersen önce not veya fotoğraf ekle, sonra aşağıdan seç — seçince hemen gönderilir.</p>
+    <div class="gb-input-row" id="gb-input-row">
+      <input type="text" id="gb-note" data-i18n-placeholder="not_placeholder" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
     </div>
-    <div class="gb-foto-row" id="gb-foto-row" style="display:none;">
+    <div class="gb-foto-row" id="gb-foto-row">
       <label for="gb-foto-input" class="gb-foto-btn" id="gb-foto-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         <span data-i18n="foto_ekle">Fotoğraf ekle (opsiyonel)</span>
@@ -501,11 +498,11 @@
       <button type="button" id="gb-foto-kaldir" class="gb-foto-kaldir" style="display:none;" data-i18n-aria="foto_kaldir" aria-label="Fotoğrafı kaldır">×</button>
       <span id="gb-foto-hata" style="display:none;font-size:11px;color:#993C1D;"></span>
     </div>
-    <div class="gb-input-row" id="gb-input-row" style="display:none;">
-      <input type="text" id="gb-note" data-i18n-placeholder="not_placeholder" placeholder="İsteğe bağlı not (örn. dip akıntısı var)" />
-      <button class="gb-send" id="gb-send" data-i18n-aria="gonder" aria-label="Gönder">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+    <div class="gb-buttons">
+      <button class="gb-btn" data-val="carsaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg><span data-i18n="durum_carsaf">Çok iyi</span></button>
+      <button class="gb-btn" data-val="hafif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0"/></svg><span data-i18n="durum_hafif">İyi</span></button>
+      <button class="gb-btn" data-val="fazla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="durum_fazla">Orta</span></button>
+      <button class="gb-btn" data-val="tehlikeli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="durum_tehlikeli">Fazla dalga</span></button>
     </div>
     <div class="gb-sent" id="gb-sent" style="display:none;" data-i18n="bildirim_kaydedildi">Bildiriminiz kaydedildi, teşekkürler.</div>
   </div>
@@ -516,7 +513,18 @@
       <li><span class="tr-metin">Dardanos Halk Plajı</span><span class="en-metin">Dardanos Public Beach</span></li>
       </ul>
     </div>
-  
+  <div class="sss-bolum">
+    <h2 data-i18n="sss_git_baslik">Sıkça sorulan sorular</h2>
+    <div class="sss-madde">
+      <h3><span class="tr-metin">Çanakkale Merkez'te hangi plajlar var?</span><span class="en-metin">Which beaches are in Çanakkale Merkez?</span></h3>
+      <p><span class="tr-metin">Dardanos Halk Plajı olmak üzere toplam 1 plaj bulunuyor.</span><span class="en-metin">Dardanos Public Beach — 1 beaches in total.</span></p>
+    </div>
+    <div class="sss-madde">
+      <h3><span class="tr-metin">Çanakkale merkezde hangi plaj Mavi Bayraklı?</span><span class="en-metin">Which beach in central Çanakkale is Blue Flag certified?</span></h3>
+      <p><span class="tr-metin">Dardanos Halk Plajı olmak üzere Çanakkale Boğazı kıyısındaki Dardanos, Mavi Bayrak sertifikalı.</span><span class="en-metin">Dardanos, on the Dardanelles strait, is Blue Flag certified — Dardanos Public Beach.</span></p>
+    </div>
+    <p class="sss-daha-fazla"><a href="/sss/" data-i18n="yer_daha_fazla_soru">Daha fazla soru için Sıkça Sorulan Sorular sayfasına bakın →</a></p>
+  </div>
   <p class="yer-donus"><a href="/canakkale/"><span><span class="tr-metin">← Çanakkale deniz durumuna dön</span><span class="en-metin">← Back to Çanakkale sea conditions</span></span></a></p>
 
   <p class="footnote" data-i18n="footnote">Rüzgar ve dalga verisi Open-Meteo'dan alınır, anlık ve tahminidir. Geri bildirimler herkese açık şekilde paylaşılır ve aynı çevredeki herkes birbirinin yorumunu görebilir.</p>

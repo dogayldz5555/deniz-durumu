@@ -63,6 +63,7 @@ const CEVIRI = {
     gun_kaydir_ipucu: "Kaydırarak ertesi günün dalga ve hava tahminlerini görebilirsin.",
     sahadan_gelenler: "Sahadan gelenler",
     deniz_nasil_baslik: "Şu an oradaysan deniz nasıl?",
+    gb_alt: "İstersen önce not veya fotoğraf ekle, sonra aşağıdan seç — seçince hemen gönderilir.",
     durum_carsaf: "Çok iyi",
     durum_hafif: "İyi",
     durum_fazla: "Orta",
@@ -99,7 +100,7 @@ const CEVIRI = {
     nk_4_baslik: "Bir yer ara",
     nk_4_metin: "Üstteki arama kutusuna yaz ya da İller menüsünden ilçe seç.",
     nk_5_baslik: "Yorum bırak",
-    nk_5_metin: "İsmini gir, deniz nasıl olduğunu seç, istersen not ekle.",
+    nk_5_metin: "İsmini gir, istersen bir not/fotoğraf ekle, sonra deniz nasıl olduğunu seç — seçince hemen gönderilir.",
     nk_6_baslik: "Haritayı büyüt",
     nk_6_metin: "Sağ üstteki simgeyle tam ekran yap, sol kenardaki sekmeden yakındaki yorumları gör ya da yeni yorum at.",
     seo_baslik: "SeaDataWave Nedir?",
@@ -122,7 +123,6 @@ const CEVIRI = {
     yakin_yorumlar_gizle: "Yorumları gizle",
     tam_ekran_yorumlar_etiket: "Yorumlar",
     tam_ekran_yorumlar_baslik: "Yorum yap / gör",
-    tek_panel_durum_gerekli: "Önce deniz nasıl olduğunu seç.",
     site_yorumlar_baslik: "Kullanıcı yorumları",
     site_yorumlar_alt: "Uygulamayı kullananların bıraktığı görüşler.",
     yorumlar_yukleniyor: "Yorumlar yükleniyor…",
@@ -159,7 +159,7 @@ const CEVIRI = {
     fetch_notu_bekleniyor: "Kıyı şekli inceleniyor, birkaç saniye içinde eşik ince ayarı gelebilir…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Kıyı şekli analizi tamamlandı: gerçek koşullar yukarıdakinden belirgin şekilde farklı, "${durum}" kademesine daha yakın olabilir.`,
     swell_notu: (m, sn) => `Ayrıca <b>${m} m</b>, ${sn} sn periyotlu bir swell (uzaktaki başka bir fırtınadan gelen, yerel rüzgardan bağımsız dalga) tespit edildi — bu yerel kıyı şeklinden etkilenmediği için dalga eşiği buna göre gevşetilmedi.`,
-    canli_kamera_link: (ad) => `🔴 Yakında canlı kamera var (${ad}) — belediyenin yayın sayfasını aç`,
+    canli_kamera_link: (ad) => `Canlı kamera: ${ad} — belediyenin yayın sayfasını aç`,
     mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Halka Açık Mavi Bayraklı Plaj (TÜRÇEV sertifikalı)`,
     halk_plaji_rozeti: (ad) => `🏖️ ${ad} — Halka Açık Plaj`,
     kuvvetli_ruzgar_uyarisi: "Kuvvetli rüzgar — bu kendi verimize dayanan bir gözlem, resmi uyarı değil",
@@ -244,6 +244,7 @@ const CEVIRI = {
     gun_kaydir_ipucu: "Swipe to see tomorrow's wave and weather forecast.",
     sahadan_gelenler: "From the field",
     deniz_nasil_baslik: "If you're there right now, how's the sea?",
+    gb_alt: "Add a note or photo first if you want, then tap below — it sends right away.",
     durum_carsaf: "Very good",
     durum_hafif: "Good",
     durum_fazla: "Moderate",
@@ -280,7 +281,7 @@ const CEVIRI = {
     nk_4_baslik: "Search for a place",
     nk_4_metin: "Type in the search box above, or pick a district from the Provinces menu.",
     nk_5_baslik: "Leave a comment",
-    nk_5_metin: "Enter your name, pick how the sea looks, add a note if you want.",
+    nk_5_metin: "Enter your name, add a note/photo if you want, then tap how the sea looks — it sends right away.",
     nk_6_baslik: "Go fullscreen",
     nk_6_metin: "Use the icon in the top-right to expand the map, then use the tab on the left edge to view nearby comments or add one.",
     seo_baslik: "What is SeaDataWave?",
@@ -303,7 +304,6 @@ const CEVIRI = {
     yakin_yorumlar_gizle: "Hide comments",
     tam_ekran_yorumlar_etiket: "Comments",
     tam_ekran_yorumlar_baslik: "Add / view comments",
-    tek_panel_durum_gerekli: "Pick how the sea looks first.",
     site_yorumlar_baslik: "User reviews",
     site_yorumlar_alt: "What people using the app have said.",
     yorumlar_yukleniyor: "Loading reviews…",
@@ -340,7 +340,7 @@ const CEVIRI = {
     fetch_notu_bekleniyor: "Analyzing the coastline shape, a fine-tuned threshold may arrive in a few seconds…",
     fetch_farkli_sonuc_uyarisi: (durum) => `Coastline analysis finished: actual conditions may be notably different from above, closer to "${durum}".`,
     swell_notu: (m, sn) => `A <b>${m} m</b> swell with a ${sn} s period was also detected (waves from a distant storm, independent of the local wind) — since this isn't affected by the local coastline shape, the wave threshold wasn't relaxed for it.`,
-    canli_kamera_link: (ad) => `🔴 A live camera is nearby (${ad}) — open the city's live stream page`,
+    canli_kamera_link: (ad) => `Live camera: ${ad} — open the city's live stream page`,
     mavi_bayrak_rozeti: (ad) => `🏳️ ${ad} — Public Blue Flag Beach (TÜRÇEV certified)`,
     halk_plaji_rozeti: (ad) => `🏖️ ${ad} — Public Beach`,
     kuvvetli_ruzgar_uyarisi: "Strong wind — this is our own data-based observation, not an official warning",
@@ -1861,7 +1861,11 @@ async function veriCekVeGoster(lat, lon) {
       // güncel tuttuğu canlı yayın sayfasına link veriyoruz.
       const kamera = kameraBul(lat, lon);
       const kameraHtml = kamera
-        ? `<div style="font-size:12px;margin-top:6px;"><a href="${SAMSUN_CANLI_YAYIN_SAYFASI}" target="_blank" rel="noopener" style="color:${r.text600};text-decoration:underline;">${t('canli_kamera_link', bolgeAdi(kamera))}</a></div>`
+        ? `<a href="${SAMSUN_CANLI_YAYIN_SAYFASI}" target="_blank" rel="noopener" class="kamera-rozeti">
+             <span class="kamera-canli-nokta" aria-hidden="true"></span>
+             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+             <span>${t('canli_kamera_link', bolgeAdi(kamera))}</span>
+           </a>`
         : "";
 
       // TÜRÇEV'in resmi listesi — tahmine dayalı değil, doğrulanmış/sertifikalı bir bilgi.
@@ -2471,16 +2475,56 @@ function tekPanelDurumButonlariniOlustur() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${DURUM_IKON_PATH[durum]}</svg>
       <span>${t('durum_' + durum)}</span>
     </button>`).join("");
+  // Kademe butonuna basmak ARTIK doğrudan gönderiyor — aşağıdaki gb-btn'lerle aynı
+  // sebep: ayrı bir "gönder" butonuna bir daha basmaya gerek kalmasın.
   kapsayici.querySelectorAll('.tek-panel-durum-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      tekPanelSecilenDurum = btn.dataset.val;
+    btn.addEventListener('click', async () => {
+      if (state.lat == null) return;
+      const sonucEl = document.getElementById('tek-panel-sonuc');
+      const isimInput = document.getElementById('tek-panel-isim');
+      let isim = kayitliIsmiGetir();
+      if (!isim) {
+        const girilen = isimInput ? isimInput.value.trim() : "";
+        if (!girilen) {
+          if (isimInput) { isimInput.focus(); isimInput.style.borderColor = "#D85A30"; }
+          sonucEl.textContent = t('isim_gerekli_uyari');
+          sonucEl.style.color = "#993C1D";
+          sonucEl.style.display = 'block';
+          return;
+        }
+        ismiKaydet(girilen);
+        isim = girilen;
+      }
+
+      const val = btn.dataset.val;
+      tekPanelSecilenDurum = val;
       kapsayici.querySelectorAll('.tek-panel-durum-btn').forEach((b) => {
         const secili = b === btn;
         b.classList.toggle('aktif', secili);
         const r = aktifRenkler()[b.dataset.val];
         b.style.borderColor = secili ? r.border : "";
         b.style.color = secili ? r.text900 : "";
+        b.disabled = true;
       });
+
+      const not = document.getElementById('tek-panel-not').value.trim();
+      const sonuc = await bildirimEkle(state.lat, state.lon, val, not, isim, state.konumMetni, null);
+
+      kapsayici.querySelectorAll('.tek-panel-durum-btn').forEach((b) => { b.disabled = false; });
+
+      if (sonuc.basarili) {
+        await gbAlaniniGuncelle();
+        tumYorumNoktalariniGoster();
+        sonucEl.textContent = t('bildirim_kaydedildi');
+        sonucEl.style.color = "#177A45";
+        sonucEl.style.display = 'block';
+        tekPanelSifirla(false);
+        yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
+      } else {
+        sonucEl.textContent = sonuc.mesaj || t('gonderilemedi');
+        sonucEl.style.color = "#993C1D";
+        sonucEl.style.display = 'block';
+      }
     });
   });
 }
@@ -2507,60 +2551,7 @@ function tekPanelSifirla(sonucuGizle = true) {
     const sonucEl = document.getElementById('tek-panel-sonuc');
     if (sonucEl) sonucEl.style.display = 'none';
   }
-  const gonderBtn = document.getElementById('tek-panel-gonder');
-  if (gonderBtn) { gonderBtn.disabled = false; gonderBtn.style.opacity = "1"; }
 }
-
-document.getElementById('tek-panel-gonder')?.addEventListener('click', async () => {
-  if (state.lat == null) return;
-  const sonucEl = document.getElementById('tek-panel-sonuc');
-
-  if (!tekPanelSecilenDurum) {
-    sonucEl.textContent = t('tek_panel_durum_gerekli');
-    sonucEl.style.color = "#993C1D";
-    sonucEl.style.display = 'block';
-    return;
-  }
-
-  const isimInput = document.getElementById('tek-panel-isim');
-  let isim = kayitliIsmiGetir();
-  if (!isim) {
-    const girilen = isimInput ? isimInput.value.trim() : "";
-    if (!girilen) {
-      if (isimInput) { isimInput.focus(); isimInput.style.borderColor = "#D85A30"; }
-      sonucEl.textContent = t('isim_gerekli_uyari');
-      sonucEl.style.color = "#993C1D";
-      sonucEl.style.display = 'block';
-      return;
-    }
-    ismiKaydet(girilen);
-    isim = girilen;
-  }
-
-  const not = document.getElementById('tek-panel-not').value.trim();
-  const gonderBtn = document.getElementById('tek-panel-gonder');
-  gonderBtn.disabled = true;
-  gonderBtn.style.opacity = "0.5";
-
-  const sonuc = await bildirimEkle(state.lat, state.lon, tekPanelSecilenDurum, not, isim, state.konumMetni, null);
-
-  gonderBtn.disabled = false;
-  gonderBtn.style.opacity = "1";
-
-  if (sonuc.basarili) {
-    await gbAlaniniGuncelle();
-    tumYorumNoktalariniGoster();
-    sonucEl.textContent = t('bildirim_kaydedildi');
-    sonucEl.style.color = "#177A45";
-    sonucEl.style.display = 'block';
-    tekPanelSifirla(false);
-    yakinYorumlariListeyiDoldur('tam-ekran-yorumlar-liste');
-  } else {
-    sonucEl.textContent = sonuc.mesaj || t('gonderilemedi');
-    sonucEl.style.color = "#993C1D";
-    sonucEl.style.display = 'block';
-  }
-});
 
 function gbBeklemeKontrolEt() {
   let sonGonderim = null;
@@ -2707,8 +2698,6 @@ async function gbAlaniniGuncelle() {
 
   gbSection.style.display = "block";
   document.getElementById('gb-sent').style.display = "none";
-  document.getElementById('gb-input-row').style.display = "none";
-  document.getElementById('gb-foto-row').style.display = "none";
   state.secilenGB = null;
   document.querySelectorAll('.gb-btn').forEach(b => {
     b.classList.remove('active');
@@ -2766,10 +2755,19 @@ async function gbAlaniniGuncelle() {
   }
 }
 
+// Bir kademe (çok iyi/iyi/orta/tehlikeli) tıklanınca ARTIK sadece seçili görünmüyor,
+// doğrudan gönderiyor — eskiden seçince not/fotoğraf alanı açılır, ayrı bir "gönder"
+// okuna basmak gerekirdi; kullanıcı fetch ince ayarını falan hiç beklemeden tek
+// dokunuşla bildirimini yapabilsin diye not/fotoğraf artık en baştan görünür, kademe
+// butonuna basmak doğrudan gönderim tetikliyor (bkz. index.html/sayfa-sablonu.js'teki
+// yeni gb-section sırası: not+fotoğraf üstte, kademe butonları altta).
 document.querySelectorAll('.gb-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', async () => {
+    if (state.lat == null) return;
+    const isim = kayitliIsmiGetir();
+    if (!isim) { isimGerekliUyar(); return; }
+
     const val = btn.dataset.val;
-    state.secilenGB = val;
     const r = aktifRenkler()[val];
     document.querySelectorAll('.gb-btn').forEach(b => {
       const active = b === btn;
@@ -2777,9 +2775,29 @@ document.querySelectorAll('.gb-btn').forEach(btn => {
       b.style.borderColor = active ? r.border : "rgba(40,40,30,0.12)";
       b.style.background = active ? r.bg : "white";
       b.style.color = active ? r.text900 : "#6B6A60";
+      b.disabled = true;
     });
-    document.getElementById('gb-input-row').style.display = "flex";
-    document.getElementById('gb-foto-row').style.display = "flex";
+    state.secilenGB = val;
+
+    const not = document.getElementById('gb-note').value.trim();
+    const secilenFoto = document.getElementById('gb-foto-input').files[0] || null;
+    const fotoUrl = secilenFoto ? await fotoYukle(secilenFoto) : null;
+
+    const sonuc = await bildirimEkle(state.lat, state.lon, val, not, isim, state.konumMetni, fotoUrl);
+
+    document.querySelectorAll('.gb-btn').forEach(b => { b.disabled = false; });
+
+    if (sonuc.basarili) {
+      await gbAlaniniGuncelle();
+      tumYorumNoktalariniGoster();
+      document.getElementById('gb-sent').textContent = t('bildirim_kaydedildi');
+      document.getElementById('gb-sent').style.color = "#2A7FB8";
+      document.getElementById('gb-sent').style.display = "block";
+    } else {
+      document.getElementById('gb-sent').textContent = sonuc.mesaj || t('gonderilemedi');
+      document.getElementById('gb-sent').style.color = "#993C1D";
+      document.getElementById('gb-sent').style.display = "block";
+    }
   });
 });
 
@@ -2819,41 +2837,6 @@ document.getElementById('gb-foto-input').addEventListener('change', (e) => {
   document.getElementById('gb-foto-kaldir').style.display = "flex";
 });
 document.getElementById('gb-foto-kaldir').addEventListener('click', fotoSecimTemizle);
-
-document.getElementById('gb-send').addEventListener('click', async () => {
-  if (!state.secilenGB || state.lat == null) return;
-
-  const isim = kayitliIsmiGetir();
-  if (!isim) {
-    isimGerekliUyar();
-    return;
-  }
-
-  const not = document.getElementById('gb-note').value.trim();
-  const sendBtn = document.getElementById('gb-send');
-  sendBtn.disabled = true;
-  sendBtn.style.opacity = "0.5";
-
-  const secilenFoto = document.getElementById('gb-foto-input').files[0] || null;
-  const fotoUrl = secilenFoto ? await fotoYukle(secilenFoto) : null;
-
-  const sonuc = await bildirimEkle(state.lat, state.lon, state.secilenGB, not, isim, state.konumMetni, fotoUrl);
-
-  sendBtn.disabled = false;
-  sendBtn.style.opacity = "1";
-
-  if (sonuc.basarili) {
-    await gbAlaniniGuncelle();
-    tumYorumNoktalariniGoster();
-    document.getElementById('gb-sent').textContent = t('bildirim_kaydedildi');
-    document.getElementById('gb-sent').style.color = "#2A7FB8";
-    document.getElementById('gb-sent').style.display = "block";
-  } else {
-    document.getElementById('gb-sent').textContent = sonuc.mesaj || t('gonderilemedi');
-    document.getElementById('gb-sent').style.color = "#993C1D";
-    document.getElementById('gb-sent').style.display = "block";
-  }
-});
 
 // Topluluk geri bildirimini, tıklanan noktanın hemen üstünde bir Leaflet popup'ı
 // (konuşma balonu) olarak gösterir. Üstte çoğunluk özeti, altında TÜM yorumlar alt alta,

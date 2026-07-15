@@ -2506,7 +2506,20 @@
       "metaAciklamaEn": "How is the sea around Büyükada and Heybeliada today? Live wind, wave conditions and 7-day forecast for the Prince Islands.",
       "girisMetni": "Adalar, İstanbul'un Marmara Denizi'ndeki Büyükada, Heybeliada, Burgazada ve Kınalıada başta olmak üzere dokuz adadan oluşan ilçesi — arabaların yasak olduğu, faytonlar/bisikletlerle dolaşılan sakin bir kıyı bölgesi.",
       "girisMetniEn": "Adalar is Istanbul's island district in the Sea of Marmara, made up of nine islands including Büyükada, Heybeliada, Burgazada and Kınalıada — a quiet coastal area where cars are banned and people get around by horse carriage or bicycle.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Adalar'da hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Adalar?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Adalar'da hangi adada denize girilir?",
+          "cevap": "Büyükada'daki Yörükali ve Aya Nikola plajları ile Heybeliada yakınındaki Kaşıkadası ve Kalpazankaya en çok tercih edilen noktalar.",
+          "soruEn": "Which island in Adalar is best for swimming?",
+          "cevapEn": "Yörükali and Aya Nikola beaches on Büyükada, along with Kaşıkadası and Kalpazankaya near Heybeliada, are the most popular spots."
+        }
+      ]
     },
     {
       "slug": "demirkoy",
@@ -2518,7 +2531,20 @@
       "metaAciklamaEn": "How is the sea in İğneada today? Live wind, wave conditions and 7-day forecast for Demirköy, Kırklareli.",
       "girisMetni": "Demirköy, Kırklareli'nin Longoz ormanlarıyla ve İğneada'daki uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi — Bulgaristan sınırına yakın, sakin bir tatil bölgesi.",
       "girisMetniEn": "Demirköy is Kırklareli's Black Sea coastal district, known for its Longoz floodplain forests and the long sandy beach at İğneada — a quiet holiday area close to the Bulgarian border.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Demirköy'de (İğneada) hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Demirköy (İğneada)?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "İğneada'da deniz nasıl?",
+          "cevap": "İğneada, Longoz ormanlarıyla çevrili uzun ve kumlu bir Karadeniz kıyısı — dalga durumu rüzgara göre değişken olabilir, girmeden önce güncel duruma bakmak iyi olur.",
+          "soruEn": "How is the sea at İğneada?",
+          "cevapEn": "İğneada has a long, sandy Black Sea coastline surrounded by Longoz forests — wave conditions can vary with the wind, so it's worth checking current conditions before swimming."
+        }
+      ]
     },
     {
       "slug": "kocaali",
@@ -2530,7 +2556,20 @@
       "metaAciklamaEn": "How is the sea in Kocaali today? Live wind, wave conditions and 7-day forecast for Kocaali, Sakarya.",
       "girisMetni": "Kocaali, Sakarya'nın Karadeniz kıyısındaki sakin ilçelerinden biri — kumlu plajları ve orman alanlarıyla bilinir.",
       "girisMetniEn": "Kocaali is one of Sakarya's quiet Black Sea coastal districts, known for its sandy beaches and forested surroundings.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Kocaali'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Kocaali?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kocaali'de en çok tercih edilen plaj hangisi?",
+          "cevap": "Karaburun Plajı, kumlu kıyısı ve orman manzarasıyla Kocaali'nin en bilinen sahillerinden biri.",
+          "soruEn": "Which is the most popular beach in Kocaali?",
+          "cevapEn": "Karaburun Beach, with its sandy shore and forest views, is one of Kocaali's best-known beaches."
+        }
+      ]
     },
     {
       "slug": "sariyer",
@@ -2542,7 +2581,20 @@
       "metaAciklamaEn": "How is the sea in Kilyos today? Live wind, wave conditions and 7-day forecast for Sarıyer, Istanbul.",
       "girisMetni": "Sarıyer, İstanbul'un Karadeniz'e açılan en bilinen plaj bölgesi Kilyos'u içeren, Boğaz'ın kuzey ucundaki ilçesi.",
       "girisMetniEn": "Sarıyer is Istanbul's district at the northern mouth of the Bosphorus, home to Kilyos — one of the city's best-known Black Sea beach areas.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Sarıyer'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Sarıyer?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Sarıyer'de en bilinen plaj hangisi?",
+          "cevap": "Kilyos, İstanbul'un Karadeniz'e açılan en bilinen plaj bölgelerinden biri ve Sarıyer'e bağlı.",
+          "soruEn": "What is Sarıyer's best-known beach?",
+          "cevapEn": "Kilyos, one of Istanbul's most famous Black Sea beach areas, is part of Sarıyer."
+        }
+      ]
     },
     {
       "slug": "arnavutkoy",
@@ -2554,7 +2606,20 @@
       "metaAciklamaEn": "How is the sea in Arnavutköy today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Black Sea.",
       "girisMetni": "Arnavutköy, İstanbul'un Karadeniz kıyısında yer alan, Karaburun plajıyla bilinen ilçesi.",
       "girisMetniEn": "Arnavutköy is an Istanbul district on the Black Sea coast, known for its Karaburun beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Arnavutköy'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Arnavutköy?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Arnavutköy'de hangi bölgede denize girilir?",
+          "cevap": "Karadeniz kıyısındaki Karaburun bölgesinde, gerçek bir halka açık plaj var.",
+          "soruEn": "Where can you swim in Arnavutköy?",
+          "cevapEn": "There's a real public beach in the Karaburun area, on the Black Sea coast."
+        }
+      ]
     },
     {
       "slug": "beykoz",
@@ -2566,7 +2631,20 @@
       "metaAciklamaEn": "How is the sea in Riva today? Live wind, wave conditions and 7-day forecast for Beykoz, Istanbul.",
       "girisMetni": "Beykoz, Boğaz'ın Anadolu yakasında, Karadeniz'e açılan Riva koyu ve plajıyla bilinen İstanbul ilçesi.",
       "girisMetniEn": "Beykoz is an Istanbul district on the Asian side of the Bosphorus, known for the Riva cove and beach where it meets the Black Sea.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Beykoz'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Beykoz?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Beykoz'da nerede yüzülür?",
+          "cevap": "Boğaz'ın Karadeniz'e açıldığı Riva koyunda, Riva Halk Plajı'nda denize girilebilir.",
+          "soruEn": "Where can you swim in Beykoz?",
+          "cevapEn": "You can swim at Riva Public Beach, in the Riva cove where the Bosphorus meets the Black Sea."
+        }
+      ]
     },
     {
       "slug": "catalca",
@@ -2578,7 +2656,20 @@
       "metaAciklamaEn": "How is the sea in Çatalca today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Black Sea.",
       "girisMetni": "Çatalca, İstanbul'un Karadeniz kıyısındaki Karacaköy mahallesi ve uzun kumsalıyla bilinen ilçesi.",
       "girisMetniEn": "Çatalca is an Istanbul district known for its Black Sea coastal neighborhood Karacaköy and its long sandy beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çatalca'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çatalca?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çatalca'da plaj nerede?",
+          "cevap": "Karadeniz kıyısındaki Karacaköy mahallesinde, Evcik Plajı gibi noktalarda denize girilebilir.",
+          "soruEn": "Where is the beach in Çatalca?",
+          "cevapEn": "You can swim at points like Evcik Beach, in the Black Sea coastal neighborhood of Karacaköy."
+        }
+      ]
     },
     {
       "slug": "bakirkoy",
@@ -2590,7 +2681,20 @@
       "metaAciklamaEn": "How is the sea in Florya today? Live wind, wave conditions and 7-day forecast for Bakırköy, Istanbul.",
       "girisMetni": "Bakırköy, İstanbul'un Marmara kıyısındaki tarihi Florya plajıyla bilinen ilçesi.",
       "girisMetniEn": "Bakırköy is an Istanbul district on the Sea of Marmara, known for its historic Florya beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Bakırköy'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bakırköy?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Florya, Bakırköy'ün neresinde?",
+          "cevap": "Florya, Bakırköy ilçesine bağlı, İstanbul'un tarihi Marmara kıyısı plajlarından biri.",
+          "soruEn": "Where is Florya in relation to Bakırköy?",
+          "cevapEn": "Florya is part of Bakırköy district, one of Istanbul's historic beaches on the Sea of Marmara."
+        }
+      ]
     },
     {
       "slug": "avcilar",
@@ -2602,7 +2706,20 @@
       "metaAciklamaEn": "How is the sea in Avcılar today? Live wind, wave conditions and 7-day forecast for this Istanbul district on the Sea of Marmara.",
       "girisMetni": "Avcılar, İstanbul'un Marmara Denizi kıyısındaki, sahil şeridiyle bilinen ilçesi.",
       "girisMetniEn": "Avcılar is an Istanbul district along the Sea of Marmara, known for its coastal promenade.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Avcılar'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Avcılar?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Avcılar'da deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Avcılar sahiline veya ilçenin herhangi bir kıyı noktasına tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Avcılar?",
+          "cevapEn": "Tap the Avcılar shore or any coastal point in the district on the map above."
+        }
+      ]
     },
     {
       "slug": "basiskele",
@@ -2614,7 +2731,20 @@
       "metaAciklamaEn": "How is the sea in Başiskele today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
       "girisMetni": "Başiskele, Kocaeli'nin İzmit Körfezi'nin güney kıyısındaki ilçesi.",
       "girisMetniEn": "Başiskele is a Kocaeli district on the southern shore of the Gulf of İzmit.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Başiskele'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Başiskele?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Başiskele'de deniz nereye bakıyor?",
+          "cevap": "Başiskele, İzmit Körfezi'nin güney kıyısında yer alıyor.",
+          "soruEn": "Which sea does Başiskele face?",
+          "cevapEn": "Başiskele lies on the southern shore of the Gulf of İzmit."
+        }
+      ]
     },
     {
       "slug": "gebze",
@@ -2626,7 +2756,20 @@
       "metaAciklamaEn": "How is the sea in Gebze today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
       "girisMetni": "Gebze, Kocaeli'nin İzmit Körfezi kıyısındaki, Eskihisar mahallesiyle bilinen ilçesi.",
       "girisMetniEn": "Gebze is a Kocaeli district on the Gulf of İzmit, known for its Eskihisar neighborhood.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Gebze'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gebze?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gebze'de plaj nerede?",
+          "cevap": "Gebze'nin İzmit Körfezi kıyısındaki Eskihisar mahallesinde belediye işletmeli bir halk plajı var.",
+          "soruEn": "Where is the beach in Gebze?",
+          "cevapEn": "There's a municipal public beach in Gebze's Eskihisar neighborhood, on the Gulf of İzmit."
+        }
+      ]
     },
     {
       "slug": "dilovasi",
@@ -2638,7 +2781,20 @@
       "metaAciklamaEn": "How is the sea in Dilovası today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
       "girisMetni": "Dilovası, Kocaeli'nin İzmit Körfezi kıyısındaki Tavşancıl mahallesiyle bilinen ilçesi.",
       "girisMetniEn": "Dilovası is a Kocaeli district on the Gulf of İzmit, known for its Tavşancıl neighborhood.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Dilovası'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Dilovası?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Dilovası'nda denize girilir mi?",
+          "cevap": "İzmit Körfezi kıyısındaki Tavşancıl bölgesinde denize girilen bir nokta var.",
+          "soruEn": "Can you swim in Dilovası?",
+          "cevapEn": "There's a swimming spot in the Tavşancıl area, on the Gulf of İzmit."
+        }
+      ]
     },
     {
       "slug": "altinova",
@@ -2650,7 +2806,20 @@
       "metaAciklamaEn": "How is the sea in Altınova today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
       "girisMetni": "Altınova, Yalova'nın Marmara Denizi kıyısındaki, hem Mavi Bayraklı hem halka açık plajlarıyla bilinen ilçesi.",
       "girisMetniEn": "Altınova is a Yalova district on the Sea of Marmara, known for both Blue Flag and public beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Altınova'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Altınova?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Altınova'da hangi plajlar Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere Altınova'da Mavi Bayraklı ve halka açık plajlar bulunuyor.",
+          "soruEn": "Which beaches in Altınova are Blue Flag certified?",
+          "cevapEn": "Altınova has both Blue Flag and public beaches, including {plajAdlari}."
+        }
+      ]
     },
     {
       "slug": "armutlu",
@@ -2662,7 +2831,20 @@
       "metaAciklamaEn": "How is the sea in Armutlu today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
       "girisMetni": "Armutlu, Yalova'nın en çok plajı ve en temiz kıyı şeridine sahip ilçelerinden biri.",
       "girisMetniEn": "Armutlu is one of Yalova's districts with the most beaches and cleanest coastline.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Armutlu'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Armutlu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Armutlu neden Yalova'nın popüler plaj ilçesi?",
+          "cevap": "Armutlu, Yalova'nın en fazla plaja ve en temiz kıyı şeridine sahip ilçelerinden biri.",
+          "soruEn": "Why is Armutlu a popular beach district in Yalova?",
+          "cevapEn": "Armutlu is one of Yalova's districts with the most beaches and the cleanest coastline."
+        }
+      ]
     },
     {
       "slug": "ciftlikkoy",
@@ -2674,7 +2856,20 @@
       "metaAciklamaEn": "How is the sea in Çiftlikköy today? Live wind, wave conditions and 7-day forecast for this Yalova district on the Sea of Marmara.",
       "girisMetni": "Çiftlikköy, Yalova'nın Marmara Denizi kıyısındaki halk plajıyla bilinen ilçesi.",
       "girisMetniEn": "Çiftlikköy is a Yalova district on the Sea of Marmara, known for its public beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çiftlikköy'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çiftlikköy?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çiftlikköy'de deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Çiftlikköy halk plajına veya ilçenin herhangi bir kıyı noktasına tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Çiftlikköy?",
+          "cevapEn": "Tap Çiftlikköy's public beach or any coastal point in the district on the map above."
+        }
+      ]
     },
     {
       "slug": "kozlu",
@@ -2686,7 +2881,20 @@
       "metaAciklamaEn": "How is the sea in Kozlu today? Live wind, wave conditions and 7-day forecast for this Zonguldak coastal district.",
       "girisMetni": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri.",
       "girisMetniEn": "Kozlu is one of Zonguldak's central districts stretching along its Black Sea coastline.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Kozlu'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Kozlu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kozlu, Zonguldak merkeze uzak mı?",
+          "cevap": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri, şehir merkezine bitişik.",
+          "soruEn": "Is Kozlu far from central Zonguldak?",
+          "cevapEn": "Kozlu is one of Zonguldak's central districts along the Black Sea coast, right next to the city center."
+        }
+      ]
     },
     {
       "slug": "caycuma",
@@ -2698,7 +2906,20 @@
       "metaAciklamaEn": "How is the sea in Filyos today? Live wind, wave conditions and 7-day forecast for Çaycuma, Zonguldak.",
       "girisMetni": "Çaycuma, Zonguldak'ın Karadeniz kıyısındaki Filyos beldesi ve antik Tios kenti kalıntılarıyla bilinen ilçesi.",
       "girisMetniEn": "Çaycuma is a Zonguldak district known for its Black Sea coastal town Filyos and the ruins of the ancient city of Tios.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çaycuma'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çaycuma?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çaycuma'da plaj nerede?",
+          "cevap": "Çaycuma'nın Karadeniz kıyısındaki Filyos beldesinde, antik Tios kenti kalıntılarına yakın bir plaj var.",
+          "soruEn": "Where is the beach in Çaycuma?",
+          "cevapEn": "There's a beach in Çaycuma's coastal town Filyos, near the ruins of the ancient city of Tios."
+        }
+      ]
     },
     {
       "slug": "bartin-merkez",
@@ -2710,7 +2931,20 @@
       "metaAciklamaEn": "How is the sea in İnkumu today? Live wind, wave conditions and 7-day forecast for Bartın's central district.",
       "girisMetni": "Bartın merkez ilçesi, ilin Mavi Bayraklı plajlarının bulunduğu İnkumu sahilini içeriyor.",
       "girisMetniEn": "Bartın's central district includes İnkumu beach, home to the province's Blue Flag beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Bartın Merkez'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bartın Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Bartın'ın Mavi Bayraklı plajı hangi ilçede?",
+          "cevap": "Bartın'ın 2026 Mavi Bayraklı İnkumu plajları, Amasra'da değil Bartın merkez ilçesinde yer alıyor.",
+          "soruEn": "Which district has Bartın's Blue Flag beach?",
+          "cevapEn": "Bartın's 2026 Blue Flag İnkumu beaches are in the central district, not in Amasra."
+        }
+      ]
     },
     {
       "slug": "abana",
@@ -2722,7 +2956,20 @@
       "metaAciklamaEn": "How is the sea in Abana today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
       "girisMetni": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Abana is a small Kastamonu district on the Black Sea, known for its sandy beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Abana'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Abana?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Abana'da deniz nasıl?",
+          "cevap": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen sakin bir Karadeniz ilçesi.",
+          "soruEn": "What's the sea like in Abana?",
+          "cevapEn": "Abana is a quiet Black Sea district known for its small but sandy beaches."
+        }
+      ]
     },
     {
       "slug": "bozkurt",
@@ -2734,7 +2981,20 @@
       "metaAciklamaEn": "How is the sea in Bozkurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
       "girisMetni": "Bozkurt, Kastamonu'nun Karadeniz kıyısındaki, doğal koylarıyla bilinen ilçesi.",
       "girisMetniEn": "Bozkurt is a Kastamonu district on the Black Sea, known for its natural coves.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Bozkurt'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bozkurt?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Bozkurt'ta plaj var mı?",
+          "cevap": "Evet, Bozkurt'un Karadeniz kıyısında doğal koylar ve plajlar bulunuyor.",
+          "soruEn": "Are there beaches in Bozkurt?",
+          "cevapEn": "Yes, Bozkurt's Black Sea coast has natural coves and beaches."
+        }
+      ]
     },
     {
       "slug": "doganyurt",
@@ -2746,7 +3006,20 @@
       "metaAciklamaEn": "How is the sea in Doğanyurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
       "girisMetni": "Doğanyurt, Kastamonu'nun sakin Karadeniz kıyısındaki küçük ilçelerinden biri.",
       "girisMetniEn": "Doğanyurt is one of Kastamonu's small, quiet districts on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Doğanyurt'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Doğanyurt?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Doğanyurt'ta deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Doğanyurt kıyısındaki Uzunkum Plajı'na veya ilçenin herhangi bir noktasına tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Doğanyurt?",
+          "cevapEn": "Tap Uzunkum Beach or any point along Doğanyurt's coast on the map above."
+        }
+      ]
     },
     {
       "slug": "catalzeytin",
@@ -2758,7 +3031,20 @@
       "metaAciklamaEn": "How is the sea in Çatalzeytin today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
       "girisMetni": "Çatalzeytin, Kastamonu'nun Ginolu koyuyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Çatalzeytin is a Kastamonu district on the Black Sea, known for Ginolu bay.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çatalzeytin'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çatalzeytin?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çatalzeytin'de hangi koyda yüzülür?",
+          "cevap": "Ginolu koyunda, Çatalzeytin'in Karadeniz kıyısında denize girilebilir.",
+          "soruEn": "Which bay can you swim in near Çatalzeytin?",
+          "cevapEn": "You can swim in Ginolu bay, on Çatalzeytin's Black Sea coast."
+        }
+      ]
     },
     {
       "slug": "turkeli",
@@ -2770,7 +3056,20 @@
       "metaAciklamaEn": "How is the sea in Türkeli today? Live wind, wave conditions and 7-day forecast for this Sinop district on the Black Sea.",
       "girisMetni": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Türkeli is a Sinop district on the Black Sea, known for its long sandy beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Türkeli'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Türkeli?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Türkeli'de plaj nasıl?",
+          "cevap": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçelerinden biri.",
+          "soruEn": "What's the beach like in Türkeli?",
+          "cevapEn": "Türkeli is a Sinop district on the Black Sea, known for its long sandy beach."
+        }
+      ]
     },
     {
       "slug": "canik",
@@ -2782,7 +3081,20 @@
       "metaAciklamaEn": "How is the sea in Canik today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
       "girisMetni": "Canik, Samsun'un dört merkez ilçesinden biri, kendi kıyı şeridi ve plajlarına sahip.",
       "girisMetniEn": "Canik is one of Samsun's four central districts, with its own coastline and beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Canik'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Canik?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Canik, Samsun'un neresinde?",
+          "cevap": "Canik, Samsun'un dört merkez ilçesinden biri ve kendi kıyı şeridine sahip.",
+          "soruEn": "Where is Canik in relation to Samsun?",
+          "cevapEn": "Canik is one of Samsun's four central districts, with its own coastline."
+        }
+      ]
     },
     {
       "slug": "tekkekoy",
@@ -2794,7 +3106,20 @@
       "metaAciklamaEn": "How is the sea in Tekkeköy today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
       "girisMetni": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor.",
       "girisMetniEn": "Tekkeköy is one of Samsun's four central districts, located on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Tekkeköy'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Tekkeköy?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Tekkeköy, Samsun'un neresinde?",
+          "cevap": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor.",
+          "soruEn": "Where is Tekkeköy in relation to Samsun?",
+          "cevapEn": "Tekkeköy is one of Samsun's four central districts, located on the Black Sea."
+        }
+      ]
     },
     {
       "slug": "selcuk",
@@ -2806,7 +3131,20 @@
       "metaAciklamaEn": "How is the sea in Pamucak today? Live wind, wave conditions and 7-day forecast for Selçuk, İzmir.",
       "girisMetni": "Selçuk, Efes antik kentine komşu, uzun Pamucak plajıyla bilinen İzmir ilçesi.",
       "girisMetniEn": "Selçuk is an İzmir district next to the ancient city of Ephesus, known for its long Pamucak beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Selçuk'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Selçuk?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Pamucak, Selçuk'un neresinde?",
+          "cevap": "Pamucak, Efes antik kentine komşu, Selçuk ilçesinin uzun sahil şeridi.",
+          "soruEn": "Where is Pamucak in relation to Selçuk?",
+          "cevapEn": "Pamucak is Selçuk's long beach strip, next to the ancient city of Ephesus."
+        }
+      ]
     },
     {
       "slug": "aliaga",
@@ -2818,7 +3156,20 @@
       "metaAciklamaEn": "How is the sea in Aliağa today? Live wind, wave conditions and 7-day forecast for Aliağa, İzmir.",
       "girisMetni": "Aliağa, İzmir'in kuzeyinde, sanayi bölgesine rağmen kendi plajlarına sahip Ege kıyısındaki ilçesi.",
       "girisMetniEn": "Aliağa is an İzmir district on the Aegean coast north of the city — despite its industrial zone, it has its own beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Aliağa'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Aliağa?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Aliağa'da denize girilir mi, sanayi bölgesi değil mi?",
+          "cevap": "Aliağa'nın büyük bir sanayi bölgesi olmasına rağmen, Ağapark ve Şakran gibi noktalarda gerçek plajları var.",
+          "soruEn": "Can you swim in Aliağa despite it being an industrial area?",
+          "cevapEn": "Despite being a major industrial zone, Aliağa has real beaches at spots like Ağapark and Şakran."
+        }
+      ]
     },
     {
       "slug": "seydikemer",
@@ -2830,7 +3181,20 @@
       "metaAciklamaEn": "How is the sea in Seydikemer today? Live wind, wave conditions and 7-day forecast for Seydikemer, Muğla.",
       "girisMetni": "Seydikemer, Muğla'nın Patara'ya kadar uzanan Karadere ve Kumluova sahilleriyle bilinen ilçesi.",
       "girisMetniEn": "Seydikemer is a Muğla district known for its Karadere and Kumluova beaches, stretching toward Patara.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Seydikemer'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Seydikemer?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Seydikemer'in plajları nerede?",
+          "cevap": "Karadere ve Kumluova plajları, Seydikemer'in Patara'ya doğru uzanan kıyısında yer alıyor.",
+          "soruEn": "Where are Seydikemer's beaches?",
+          "cevapEn": "Karadere and Kumluova beaches lie along Seydikemer's coast, stretching toward Patara."
+        }
+      ]
     },
     {
       "slug": "canakkale-merkez",
@@ -2842,7 +3206,20 @@
       "metaAciklamaEn": "How is the sea in central Çanakkale today? Live wind, wave conditions and 7-day forecast for the city's central district on the Dardanelles.",
       "girisMetni": "Çanakkale merkez ilçesi, Çanakkale Boğazı kıyısında, Dardanos plajıyla bilinir.",
       "girisMetniEn": "Çanakkale's central district sits on the Dardanelles strait, known for Dardanos beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çanakkale Merkez'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çanakkale Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çanakkale merkezde hangi plaj Mavi Bayraklı?",
+          "cevap": "{plajAdlari} olmak üzere Çanakkale Boğazı kıyısındaki Dardanos, Mavi Bayrak sertifikalı.",
+          "soruEn": "Which beach in central Çanakkale is Blue Flag certified?",
+          "cevapEn": "Dardanos, on the Dardanelles strait, is Blue Flag certified — {plajAdlari}."
+        }
+      ]
     },
     {
       "slug": "biga",
@@ -2854,7 +3231,20 @@
       "metaAciklamaEn": "How is the sea in Karabiga today? Live wind, wave conditions and 7-day forecast for Biga, Çanakkale.",
       "girisMetni": "Biga, Çanakkale'nin Marmara Denizi'ne kıyısı olan Karabiga beldesiyle bilinen ilçesi.",
       "girisMetniEn": "Biga is a Çanakkale district on the Sea of Marmara, known for its coastal town Karabiga.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Biga'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Biga?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Biga'da hangi plaj Mavi Bayraklı?",
+          "cevap": "Karabiga Belediyesi Halk Plajı, Biga'nın Marmara kıyısındaki Mavi Bayraklı plajı.",
+          "soruEn": "Which beach in Biga is Blue Flag certified?",
+          "cevapEn": "Karabiga Municipal Public Beach, on Biga's Marmara coast, is Blue Flag certified."
+        }
+      ]
     },
     {
       "slug": "eceabat",
@@ -2866,7 +3256,20 @@
       "metaAciklamaEn": "How is the sea in Eceabat today? Live wind, wave conditions and 7-day forecast for Eceabat, Çanakkale.",
       "girisMetni": "Eceabat, Gelibolu yarımadasında, Çanakkale Boğazı'nın karşı yakasındaki ilçe.",
       "girisMetniEn": "Eceabat is a district on the Gallipoli peninsula, across the Dardanelles strait from the city of Çanakkale.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Eceabat'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Eceabat?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Eceabat, Çanakkale'nin neresinde?",
+          "cevap": "Eceabat, Gelibolu yarımadasında, Çanakkale Boğazı'nın karşı yakasında yer alıyor.",
+          "soruEn": "Where is Eceabat in relation to Çanakkale?",
+          "cevapEn": "Eceabat is on the Gallipoli peninsula, across the Dardanelles strait from the city of Çanakkale."
+        }
+      ]
     },
     {
       "slug": "gonen",
@@ -2878,7 +3281,20 @@
       "metaAciklamaEn": "How is the sea in Denizkent today? Live wind, wave conditions and 7-day forecast for Gönen, Balıkesir.",
       "girisMetni": "Gönen, Balıkesir'in Marmara Denizi'ne kıyısı olan Denizkent mahallesiyle bilinen ilçesi.",
       "girisMetniEn": "Gönen is a Balıkesir district on the Sea of Marmara, known for its coastal neighborhood Denizkent.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Gönen'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gönen?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gönen'de plaj nerede?",
+          "cevap": "Gönen'in Marmara Denizi'ne kıyısı olan Denizkent mahallesinde halka açık plajlar var.",
+          "soruEn": "Where is the beach in Gönen?",
+          "cevapEn": "There are public beaches in Gönen's coastal neighborhood Denizkent, on the Sea of Marmara."
+        }
+      ]
     },
     {
       "slug": "karacabey",
@@ -2890,7 +3306,20 @@
       "metaAciklamaEn": "How is the sea in Karacabey today? Live wind, wave conditions and 7-day forecast for this Bursa district on the Sea of Marmara.",
       "girisMetni": "Karacabey, Bursa'nın Marmara Denizi'ne yaklaşık 22 km kıyısı olan, Kurşunlu plajıyla bilinen ilçesi.",
       "girisMetniEn": "Karacabey is a Bursa district with about 22 km of Marmara coastline, known for Kurşunlu beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Karacabey'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Karacabey?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Karacabey'in kıyısı ne kadar uzun?",
+          "cevap": "Karacabey'in Marmara Denizi'ne yaklaşık 22 km kıyısı var, Kurşunlu plajı en bilinenlerinden.",
+          "soruEn": "How long is Karacabey's coastline?",
+          "cevapEn": "Karacabey has about 22 km of Marmara coastline; Kurşunlu beach is one of the best known."
+        }
+      ]
     },
     {
       "slug": "gulyali",
@@ -2902,7 +3331,20 @@
       "metaAciklamaEn": "How is the sea in Gülyalı today? Live wind, wave conditions and 7-day forecast for this Ordu district on the Black Sea.",
       "girisMetni": "Gülyalı, Ordu'nun Karadeniz kıyısındaki, temiz plajlarıyla bilinen ilçesi.",
       "girisMetniEn": "Gülyalı is an Ordu district on the Black Sea, known for its clean beaches.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Gülyalı'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gülyalı?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gülyalı'da deniz nasıl?",
+          "cevap": "Gülyalı, Ordu'nun temiz plajlarıyla bilinen Karadeniz kıyısındaki ilçesi.",
+          "soruEn": "What's the sea like in Gülyalı?",
+          "cevapEn": "Gülyalı is an Ordu district on the Black Sea, known for its clean beaches."
+        }
+      ]
     },
     {
       "slug": "kesap",
@@ -2914,7 +3356,20 @@
       "metaAciklamaEn": "How is the sea in Keşap today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
       "girisMetni": "Keşap, Giresun'un Karadeniz kıyısındaki ilçelerinden biri.",
       "girisMetniEn": "Keşap is one of Giresun's districts on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Keşap'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Keşap?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Keşap'ta plaj var mı?",
+          "cevap": "Evet, Keşap'ın Karadeniz kıyısında Uluburun gibi gerçek plajlar bulunuyor.",
+          "soruEn": "Are there beaches in Keşap?",
+          "cevapEn": "Yes, Keşap's Black Sea coast has real beaches like Uluburun."
+        }
+      ]
     },
     {
       "slug": "piraziz",
@@ -2926,7 +3381,20 @@
       "metaAciklamaEn": "How is the sea in Piraziz today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
       "girisMetni": "Piraziz, Giresun'un Eğrice plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Piraziz is a Giresun district on the Black Sea, known for Eğrice beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Piraziz'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Piraziz?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Piraziz'de hangi plaj bilinir?",
+          "cevap": "Eğrice Plajı, Piraziz'in Karadeniz kıyısındaki bilinen plajı.",
+          "soruEn": "Which beach is Piraziz known for?",
+          "cevapEn": "Eğrice Beach is Piraziz's well-known spot on the Black Sea."
+        }
+      ]
     },
     {
       "slug": "eynesil",
@@ -2938,7 +3406,20 @@
       "metaAciklamaEn": "How is the sea in Eynesil today? Live wind, wave conditions and 7-day forecast for this Giresun district near the Trabzon border.",
       "girisMetni": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Eynesil is a Giresun district at the province's eastern edge, on the Black Sea near the Trabzon border.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Eynesil'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Eynesil?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Eynesil, Giresun'un neresinde?",
+          "cevap": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısında yer alıyor.",
+          "soruEn": "Where is Eynesil in relation to Giresun?",
+          "cevapEn": "Eynesil is at Giresun's eastern edge, on the Black Sea near the Trabzon border."
+        }
+      ]
     },
     {
       "slug": "besikduzu",
@@ -2950,7 +3431,20 @@
       "metaAciklamaEn": "How is the sea in Beşikdüzü today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
       "girisMetni": "Beşikdüzü, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
       "girisMetniEn": "Beşikdüzü is one of Trabzon's districts on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Beşikdüzü'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Beşikdüzü?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Beşikdüzü'nde deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Beşikdüzü kıyısındaki herhangi bir noktaya tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Beşikdüzü?",
+          "cevapEn": "Tap any point along Beşikdüzü's coast on the map above."
+        }
+      ]
     },
     {
       "slug": "carsibasi",
@@ -2962,7 +3456,20 @@
       "metaAciklamaEn": "How is the sea in Çarşıbaşı today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
       "girisMetni": "Çarşıbaşı, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
       "girisMetniEn": "Çarşıbaşı is one of Trabzon's districts on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Çarşıbaşı'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çarşıbaşı?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çarşıbaşı'nda deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Çarşıbaşı kıyısındaki herhangi bir noktaya tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Çarşıbaşı?",
+          "cevapEn": "Tap any point along Çarşıbaşı's coast on the map above."
+        }
+      ]
     },
     {
       "slug": "surmene",
@@ -2974,7 +3481,20 @@
       "metaAciklamaEn": "How is the sea in Sürmene today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
       "girisMetni": "Sürmene, Trabzon'un Voha plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Sürmene is a Trabzon district on the Black Sea, known for Voha beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Sürmene'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Sürmene?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Sürmene'de hangi plaj bilinir?",
+          "cevap": "Voha Plajı, Sürmene'nin Karadeniz kıyısındaki bilinen noktası.",
+          "soruEn": "Which beach is Sürmene known for?",
+          "cevapEn": "Voha Beach is Sürmene's well-known spot on the Black Sea."
+        }
+      ]
     },
     {
       "slug": "arsin",
@@ -2986,7 +3506,20 @@
       "metaAciklamaEn": "How is the sea in Arsin today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
       "girisMetni": "Arsin, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
       "girisMetniEn": "Arsin is one of Trabzon's districts on the Black Sea coast.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Arsin'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Arsin?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Arsin'de deniz durumu nasıl kontrol edilir?",
+          "cevap": "Yukarıdaki haritadan Arsin kıyısındaki herhangi bir noktaya tıklayabilirsin.",
+          "soruEn": "How do I check sea conditions in Arsin?",
+          "cevapEn": "Tap any point along Arsin's coast on the map above."
+        }
+      ]
     },
     {
       "slug": "iyidere",
@@ -2998,7 +3531,20 @@
       "metaAciklamaEn": "How is the sea in İyidere today? Live wind, wave conditions and 7-day forecast for this Rize district on the Black Sea.",
       "girisMetni": "İyidere, Rize'nin Sarayköy plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
       "girisMetniEn": "İyidere is a Rize district on the Black Sea, known for Sarayköy beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "İyidere'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in İyidere?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "İyidere'de hangi plaj bilinir?",
+          "cevap": "Sarayköy Plajı, İyidere'nin Karadeniz kıyısındaki bilinen noktası.",
+          "soruEn": "Which beach is İyidere known for?",
+          "cevapEn": "Sarayköy Beach is İyidere's well-known spot on the Black Sea."
+        }
+      ]
     },
     {
       "slug": "kemalpasa",
@@ -3010,7 +3556,20 @@
       "metaAciklamaEn": "How is the sea in Kemalpaşa today? Live wind, wave conditions and 7-day forecast for this Artvin district on the Black Sea, near the Georgian border.",
       "girisMetni": "Kemalpaşa, 2017'de Hopa'dan ayrılan, Artvin'in Gürcistan sınırına yakın Karadeniz kıyısındaki en yeni ilçesi.",
       "girisMetniEn": "Kemalpaşa, separated from Hopa in 2017, is Artvin's newest district on the Black Sea coast near the Georgian border.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Kemalpaşa'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Kemalpaşa?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kemalpaşa neden Artvin'in en yeni ilçesi?",
+          "cevap": "Kemalpaşa, 2017'de Hopa'dan ayrılarak Artvin'in Gürcistan sınırına yakın en yeni ilçesi oldu.",
+          "soruEn": "Why is Kemalpaşa Artvin's newest district?",
+          "cevapEn": "Kemalpaşa separated from Hopa in 2017, becoming Artvin's newest district near the Georgian border."
+        }
+      ]
     },
     {
       "slug": "finike",
@@ -3022,7 +3581,20 @@
       "metaAciklamaEn": "How is the sea in Finike today? Live wind, wave conditions and 7-day forecast for this Antalya district on the Mediterranean.",
       "girisMetni": "Finike, Antalya'nın Kumluca ile Demre arasındaki, 4 km'lik kumsalıyla bilinen Akdeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Finike is an Antalya district on the Mediterranean between Kumluca and Demre, known for its 4 km beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Finike'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Finike?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Finike'nin plajı ne kadar uzun?",
+          "cevap": "Finike, Kumluca ile Demre arasında yaklaşık 4 km'lik kumsalıyla bilinir.",
+          "soruEn": "How long is Finike's beach?",
+          "cevapEn": "Finike, between Kumluca and Demre, is known for its roughly 4 km beach."
+        }
+      ]
     },
     {
       "slug": "aksu",
@@ -3034,7 +3606,20 @@
       "metaAciklamaEn": "How is the sea in Kundu today? Live wind, wave conditions and 7-day forecast for Aksu, Antalya.",
       "girisMetni": "Aksu, Antalya'nın turizm bölgesi Kundu'yu içeren, Muratpaşa'nın doğusundaki ilçesi.",
       "girisMetniEn": "Aksu is an Antalya district east of Muratpaşa, home to the Kundu tourism zone.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Aksu'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Aksu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kundu, Aksu'nun neresinde?",
+          "cevap": "Kundu turizm bölgesi, Antalya'nın Muratpaşa'nın doğusundaki Aksu ilçesinde yer alıyor.",
+          "soruEn": "Where is Kundu in relation to Aksu?",
+          "cevapEn": "The Kundu tourism zone is in Aksu district, east of Antalya's Muratpaşa."
+        }
+      ]
     },
     {
       "slug": "mezitli",
@@ -3046,7 +3631,20 @@
       "metaAciklamaEn": "How is the sea in Mezitli today? Live wind, wave conditions and 7-day forecast for this Mersin district on the Mediterranean.",
       "girisMetni": "Mezitli, Mersin merkezinin batısında, Gümüşkum plajı ve 100. Yıl Tabiat Parkı'yla bilinen ilçesi.",
       "girisMetniEn": "Mezitli is a Mersin district west of the city center, known for Gümüşkum beach and its 100th Year Nature Park.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Mezitli'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Mezitli?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Mezitli'de hangi plaj bilinir?",
+          "cevap": "Gümüşkum Plajı ve 100. Yıl Tabiat Parkı, Mersin'in Mezitli ilçesindeki bilinen noktalar.",
+          "soruEn": "Which beach is Mezitli known for?",
+          "cevapEn": "Gümüşkum Beach and the 100th Year Nature Park are Mezitli's well-known spots in Mersin."
+        }
+      ]
     },
     {
       "slug": "aydincik",
@@ -3058,7 +3656,20 @@
       "metaAciklamaEn": "How is the sea in Aydıncık today? Live wind, wave conditions and 7-day forecast for this Mersin district on the Mediterranean.",
       "girisMetni": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Aydıncık is a Mersin district on the Mediterranean, between Silifke and Anamur.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Aydıncık'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Aydıncık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Aydıncık, Mersin'in neresinde?",
+          "cevap": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısında yer alıyor.",
+          "soruEn": "Where is Aydıncık in relation to Mersin?",
+          "cevapEn": "Aydıncık lies on Mersin's Mediterranean coast, between Silifke and Anamur."
+        }
+      ]
     },
     {
       "slug": "bozyazi",
@@ -3070,7 +3681,20 @@
       "metaAciklamaEn": "How is the sea in Bozyazı today? Live wind, wave conditions and 7-day forecast for this Mersin district neighboring Anamur.",
       "girisMetni": "Bozyazı, Mersin'in en batı ilçelerinden biri, Anamur'a komşu Akdeniz kıyısında yer alır.",
       "girisMetniEn": "Bozyazı is one of Mersin's westernmost districts, on the Mediterranean next to Anamur.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Bozyazı'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bozyazı?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Bozyazı, Mersin'in neresinde?",
+          "cevap": "Bozyazı, Mersin'in en batı ilçelerinden biri, Anamur'a komşu Akdeniz kıyısında yer alır.",
+          "soruEn": "Where is Bozyazı in relation to Mersin?",
+          "cevapEn": "Bozyazı is one of Mersin's westernmost districts, on the Mediterranean next to Anamur."
+        }
+      ]
     },
     {
       "slug": "ceyhan",
@@ -3082,7 +3706,20 @@
       "metaAciklamaEn": "How is the sea in Ceyhan today? Live wind, wave conditions and 7-day forecast for this Adana district on the Mediterranean.",
       "girisMetni": "Ceyhan, Adana'nın Karataş ile Yumurtalık arasındaki, İncirli plajıyla bilinen Akdeniz kıyısındaki ilçesi.",
       "girisMetniEn": "Ceyhan is an Adana district on the Mediterranean between Karataş and Yumurtalık, known for İncirli beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Ceyhan'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ceyhan?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ceyhan'da hangi plaj bilinir?",
+          "cevap": "İncirli Plajı, Adana'nın Karataş ile Yumurtalık arasındaki Ceyhan ilçesinde yer alıyor.",
+          "soruEn": "Which beach is Ceyhan known for?",
+          "cevapEn": "İncirli Beach is in Adana's Ceyhan district, between Karataş and Yumurtalık."
+        }
+      ]
     },
     {
       "slug": "payas",
@@ -3094,7 +3731,20 @@
       "metaAciklamaEn": "How is the sea in Payas today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
       "girisMetni": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısındaki ilçesi.",
       "girisMetniEn": "Payas is a Hatay district on the Gulf of İskenderun, between İskenderun and Dörtyol.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Payas'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Payas?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Payas, Hatay'ın neresinde?",
+          "cevap": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısında yer alıyor.",
+          "soruEn": "Where is Payas in relation to Hatay?",
+          "cevapEn": "Payas lies on the Gulf of İskenderun, between İskenderun and Dörtyol."
+        }
+      ]
     },
     {
       "slug": "dortyol",
@@ -3106,7 +3756,20 @@
       "metaAciklamaEn": "How is the sea in Dörtyol today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
       "girisMetni": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısındaki ilçesi.",
       "girisMetniEn": "Dörtyol is a Hatay district on the northern shore of the Gulf of İskenderun.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Dörtyol'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Dörtyol?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Dörtyol, Hatay'ın neresinde?",
+          "cevap": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısında yer alıyor.",
+          "soruEn": "Where is Dörtyol in relation to Hatay?",
+          "cevapEn": "Dörtyol lies on the northern shore of the Gulf of İskenderun."
+        }
+      ]
     },
     {
       "slug": "erzin",
@@ -3118,7 +3781,20 @@
       "metaAciklamaEn": "How is the sea in Burnaz today? Live wind, wave conditions and 7-day forecast for Erzin, Hatay.",
       "girisMetni": "Erzin, Hatay'ın İskenderun Körfezi'nin kuzey ucundaki, 6 km uzunluğundaki Burnaz plajıyla bilinen ilçesi.",
       "girisMetniEn": "Erzin is a Hatay district at the northern tip of the Gulf of İskenderun, known for its 6 km Burnaz beach.",
-      "miniSss": []
+      "miniSss": [
+        {
+          "soru": "Erzin'te hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Erzin?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Burnaz Plajı ne kadar uzun?",
+          "cevap": "Burnaz Plajı, Erzin'in İskenderun Körfezi kuzey ucundaki yaklaşık 6 km uzunluğundaki plajı.",
+          "soruEn": "How long is Burnaz Beach?",
+          "cevapEn": "Burnaz Beach, at the northern tip of the Gulf of İskenderun in Erzin, is about 6 km long."
+        }
+      ]
     }
   ]
 }
