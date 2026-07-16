@@ -1333,7 +1333,21 @@
       },
       "baslikEn": "Şile Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Şile (İstanbul) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Şile is İstanbul's district on the Black Sea — known for its beaches and historic lighthouse, an escape from the city's density. The open Black Sea means wind from the north can build waves quickly."
+      "girisMetniEn": "Şile is İstanbul's district on the Black Sea — known for its beaches and historic lighthouse, an escape from the city's density. The open Black Sea means wind from the north can build waves quickly.",
+      "miniSss": [
+        {
+          "soru": "Şile'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Şile?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Şile'de deniz ne zaman dalgalanır?",
+          "cevap": "Kuzeyden esen rüzgarda, Karadeniz'in açık yapısı nedeniyle dalga hızla yükselebilir — girmeden önce güncel duruma bakmak iyi olur.",
+          "soruEn": "When does the sea get rough in Şile?",
+          "cevapEn": "With wind from the north, waves can build quickly due to the Black Sea's open exposure — worth checking current conditions before swimming."
+        }
+      ]
     },
     {
       "slug": "silivri",
@@ -1349,7 +1363,21 @@
       },
       "baslikEn": "Silivri Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Silivri (İstanbul) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Silivri is a district on the Sea of Marmara west of İstanbul — its relative closeness to the city center makes it a popular weekend destination. The Marmara Sea is generally calmer than the open Black Sea coast."
+      "girisMetniEn": "Silivri is a district on the Sea of Marmara west of İstanbul — its relative closeness to the city center makes it a popular weekend destination. The Marmara Sea is generally calmer than the open Black Sea coast.",
+      "miniSss": [
+        {
+          "soru": "Silivri'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Silivri?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Silivri'de deniz Karadeniz kıyılarına göre nasıl?",
+          "cevap": "Marmara Denizi'nin genel özelliği gereği Silivri'de deniz, açık Karadeniz kıyılarına göre daha sakindir.",
+          "soruEn": "How does the sea in Silivri compare to the Black Sea coast?",
+          "cevapEn": "As part of the Sea of Marmara, Silivri's sea is generally calmer than the open Black Sea coastline."
+        }
+      ]
     },
     {
       "slug": "buyukcekmece",
@@ -1365,7 +1393,21 @@
       },
       "baslikEn": "Büyükçekmece Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Büyükçekmece (İstanbul) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Büyükçekmece is a district on İstanbul's west side, where the lake of the same name meets the Sea of Marmara — a coastal area close to the city center with generally calm waters."
+      "girisMetniEn": "Büyükçekmece is a district on İstanbul's west side, where the lake of the same name meets the Sea of Marmara — a coastal area close to the city center with generally calm waters.",
+      "miniSss": [
+        {
+          "soru": "Büyükçekmece'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Büyükçekmece?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Büyükçekmece'de deniz sakin midir?",
+          "cevap": "Büyükçekmece, gölün Marmara Denizi'ne kavuştuğu noktada yer alır ve Marmara'nın genelde sakin sularına kıyıdır.",
+          "soruEn": "Is the sea calm in Büyükçekmece?",
+          "cevapEn": "Büyükçekmece sits where its lake meets the Sea of Marmara, on generally calm Marmara waters."
+        }
+      ]
     },
     {
       "slug": "kandira",
@@ -1381,7 +1423,21 @@
       },
       "baslikEn": "Kandıra (Kefken) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kandıra and Kefken (Kocaeli) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Kandıra is Kocaeli's district on the Black Sea — known for the Kefken beach and island, popular given its closeness to İstanbul."
+      "girisMetniEn": "Kandıra is Kocaeli's district on the Black Sea — known for the Kefken beach and island, popular given its closeness to İstanbul.",
+      "miniSss": [
+        {
+          "soru": "Kandıra'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Kandıra?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kandıra'nın en bilinen sahili hangisi?",
+          "cevap": "İstanbul'a yakınlığıyla yoğun ilgi gören Kefken sahili ve adası, Kandıra'nın en bilinen noktası.",
+          "soruEn": "What is Kandıra's best-known shore?",
+          "cevapEn": "The Kefken beach and island, popular given their closeness to İstanbul, are Kandıra's best-known spot."
+        }
+      ]
     },
     {
       "slug": "karamursel",
@@ -1397,7 +1453,21 @@
       },
       "baslikEn": "Karamürsel Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Karamürsel (Kocaeli) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Karamürsel is a Kocaeli district on the south shore of the Gulf of İzmit — its enclosed position usually keeps the sea calm."
+      "girisMetniEn": "Karamürsel is a Kocaeli district on the south shore of the Gulf of İzmit — its enclosed position usually keeps the sea calm.",
+      "miniSss": [
+        {
+          "soru": "Karamürsel'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Karamürsel?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Karamürsel'de deniz nasıldır?",
+          "cevap": "İzmit Körfezi'nin güney kıyısındaki körfez içi konumu nedeniyle Karamürsel'de deniz genelde sakin kalır.",
+          "soruEn": "How is the sea in Karamürsel?",
+          "cevapEn": "Its enclosed position on the south shore of the Gulf of İzmit usually keeps the sea calm."
+        }
+      ]
     },
     {
       "slug": "golcuk",
@@ -1413,7 +1483,21 @@
       },
       "baslikEn": "Gölcük Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gölcük (Kocaeli) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gölcük is a Kocaeli district on the Gulf of İzmit, known for its naval base — the gulf's sheltered shape usually keeps the sea calm."
+      "girisMetniEn": "Gölcük is a Kocaeli district on the Gulf of İzmit, known for its naval base — the gulf's sheltered shape usually keeps the sea calm.",
+      "miniSss": [
+        {
+          "soru": "Gölcük'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gölcük?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gölcük'te deniz dalgalı olur mu?",
+          "cevap": "İzmit Körfezi'nin korunaklı yapısı nedeniyle Gölcük'te deniz genelde sakindir.",
+          "soruEn": "Does the sea get rough in Gölcük?",
+          "cevapEn": "The sheltered shape of the Gulf of İzmit usually keeps the sea calm in Gölcük."
+        }
+      ]
     },
     {
       "slug": "karasu",
@@ -1429,7 +1513,21 @@
       },
       "baslikEn": "Karasu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Karasu (Sakarya) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Karasu is a Sakarya district known for its long beaches, close to where the Sakarya River reaches the Black Sea."
+      "girisMetniEn": "Karasu is a Sakarya district known for its long beaches, close to where the Sakarya River reaches the Black Sea.",
+      "miniSss": [
+        {
+          "soru": "Karasu'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Karasu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Karasu'nun plajları neyle bilinir?",
+          "cevap": "Sakarya Nehri'nin Karadeniz'e döküldüğü noktaya yakın, uzun kumsallarıyla bilinir.",
+          "soruEn": "What are Karasu's beaches known for?",
+          "cevapEn": "Long beaches close to where the Sakarya River reaches the Black Sea."
+        }
+      ]
     },
     {
       "slug": "kaynarca",
@@ -1445,7 +1543,21 @@
       },
       "baslikEn": "Kaynarca Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kaynarca (Sakarya) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts."
+      "girisMetniEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts.",
+      "miniSss": [
+        {
+          "soru": "Kaynarca'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Kaynarca?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kaynarca'da plaj kalabalık mıdır?",
+          "cevap": "Kaynarca, Sakarya'nın Karadeniz kıyısındaki daha sakin ve az kalabalık ilçelerinden biri.",
+          "soruEn": "Are the beaches crowded in Kaynarca?",
+          "cevapEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts."
+        }
+      ]
     },
     {
       "slug": "akcakoca",
@@ -1461,7 +1573,21 @@
       },
       "baslikEn": "Akçakoca Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Akçakoca (Düzce) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Akçakoca is Düzce's only coastal district — forested hills surrounded by hazelnut groves reach down to a quiet Black Sea shore."
+      "girisMetniEn": "Akçakoca is Düzce's only coastal district — forested hills surrounded by hazelnut groves reach down to a quiet Black Sea shore.",
+      "miniSss": [
+        {
+          "soru": "Akçakoca'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Akçakoca?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Akçakoca Düzce'nin tek kıyı ilçesi mi?",
+          "cevap": "Evet, Akçakoca Düzce'nin denize kıyısı olan tek ilçesi — ormanlık tepeler ve fındık bahçeleriyle çevrili.",
+          "soruEn": "Is Akçakoca Düzce's only coastal district?",
+          "cevapEn": "Yes, it's the only district of Düzce with a coastline — surrounded by forested hills and hazelnut groves."
+        }
+      ]
     },
     {
       "slug": "zonguldak-merkez",
@@ -1477,7 +1603,21 @@
       },
       "baslikEn": "Zonguldak Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Zonguldak center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Zonguldak center is a Black Sea coastal city known for its coal-mining history, with a rocky coastline and harbor."
+      "girisMetniEn": "Zonguldak center is a Black Sea coastal city known for its coal-mining history, with a rocky coastline and harbor.",
+      "miniSss": [
+        {
+          "soru": "Zonguldak Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Zonguldak Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Zonguldak merkez neyle bilinir?",
+          "cevap": "Kömür madenciliği tarihiyle bilinen, kayalık ve limanlı bir Karadeniz kıyı kenti.",
+          "soruEn": "What is Zonguldak center known for?",
+          "cevapEn": "Its coal-mining history, with a rocky coastline and harbor."
+        }
+      ]
     },
     {
       "slug": "karadeniz-eregli",
@@ -1493,7 +1633,21 @@
       },
       "baslikEn": "Karadeniz Ereğli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Karadeniz Ereğli (Zonguldak) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Karadeniz Ereğli is a Zonguldak district known for its iron and steel industry, which also has beaches."
+      "girisMetniEn": "Karadeniz Ereğli is a Zonguldak district known for its iron and steel industry, which also has beaches.",
+      "miniSss": [
+        {
+          "soru": "Karadeniz Ereğli'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Karadeniz Ereğli?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Karadeniz Ereğli'de plaj var mı?",
+          "cevap": "Demir-çelik sanayisiyle bilinse de Sevgi Plajı ve Köseağzı Plajı gibi kumsalları var.",
+          "soruEn": "Are there beaches in Karadeniz Ereğli?",
+          "cevapEn": "Although known for its iron and steel industry, it has beaches like Sevgi and Köseağzı."
+        }
+      ]
     },
     {
       "slug": "cide",
@@ -1509,7 +1663,21 @@
       },
       "baslikEn": "Cide Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Cide (Kastamonu) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Cide is Kastamonu's westernmost Black Sea district — mountains drop steeply to the sea here, known for its unspoiled beaches."
+      "girisMetniEn": "Cide is Kastamonu's westernmost Black Sea district — mountains drop steeply to the sea here, known for its unspoiled beaches.",
+      "miniSss": [
+        {
+          "soru": "Cide'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Cide?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Cide'nin plajları nasıl?",
+          "cevap": "Dağların denize dik indiği, el değmemiş plajlarıyla bilinir — Gideros Koyu özellikle öne çıkar.",
+          "soruEn": "What are Cide's beaches like?",
+          "cevapEn": "Known for unspoiled beaches where mountains drop steeply to the sea — Gideros Bay stands out."
+        }
+      ]
     },
     {
       "slug": "inebolu",
@@ -1525,7 +1693,21 @@
       },
       "baslikEn": "İnebolu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İnebolu (Kastamonu) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "İnebolu is a historic Kastamonu harbor town, known for its role transporting ammunition during Turkey's War of Independence."
+      "girisMetniEn": "İnebolu is a historic Kastamonu harbor town, known for its role transporting ammunition during Turkey's War of Independence.",
+      "miniSss": [
+        {
+          "soru": "İnebolu tarihte neyle biliniyor?",
+          "cevap": "Kurtuluş Savaşı sırasında cephane taşımacılığındaki rolüyle bilinen tarihi bir Kastamonu liman kasabası.",
+          "soruEn": "What is İnebolu known for historically?",
+          "cevapEn": "A historic Kastamonu harbor town known for its role transporting ammunition during Turkey's War of Independence."
+        },
+        {
+          "soru": "İnebolu'da plaj bilgisi var mı?",
+          "cevap": "İnebolu öncelikle tarihi bir liman kasabası olarak biliniyor; plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for İnebolu?",
+          "cevapEn": "İnebolu is primarily known as a historic harbor town; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "sinop-merkez",
@@ -1541,7 +1723,21 @@
       },
       "baslikEn": "Sinop Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Sinop center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Sinop center sits on the Black Sea's northernmost peninsula, known for its historic castle and natural harbor."
+      "girisMetniEn": "Sinop center sits on the Black Sea's northernmost peninsula, known for its historic castle and natural harbor.",
+      "miniSss": [
+        {
+          "soru": "Sinop Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Sinop Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Sinop'un konumu neden özel?",
+          "cevap": "Karadeniz'in en kuzeyindeki yarımadada yer alır, tarihi kalesi ve doğal limanıyla bilinir.",
+          "soruEn": "Why is Sinop's location special?",
+          "cevapEn": "It sits on the Black Sea's northernmost peninsula, known for its historic castle and natural harbor."
+        }
+      ]
     },
     {
       "slug": "gerze",
@@ -1557,7 +1753,21 @@
       },
       "baslikEn": "Gerze Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gerze (Sinop) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gerze is a Sinop district east of the city, known for its quiet beaches and fishing."
+      "girisMetniEn": "Gerze is a Sinop district east of the city, known for its quiet beaches and fishing.",
+      "miniSss": [
+        {
+          "soru": "Gerze'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gerze?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gerze nasıl bir yer?",
+          "cevap": "Sinop'un doğusunda, sakin plajları ve balıkçılığıyla bilinen bir ilçe.",
+          "soruEn": "What is Gerze like?",
+          "cevapEn": "A district east of Sinop, known for its quiet beaches and fishing."
+        }
+      ]
     },
     {
       "slug": "ayancik",
@@ -1573,7 +1783,21 @@
       },
       "baslikEn": "Ayancık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ayancık (Sinop) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Ayancık is a quiet, forest-surrounded Black Sea town west of Sinop."
+      "girisMetniEn": "Ayancık is a quiet, forest-surrounded Black Sea town west of Sinop.",
+      "miniSss": [
+        {
+          "soru": "Ayancık'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ayancık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ayancık'ın plajları nerede?",
+          "cevap": "Sinop'un batısında, ormanlarla çevrili sakin kıyı boyunca Ayancık Sahili ve köy plajları yer alır.",
+          "soruEn": "Where are Ayancık's beaches?",
+          "cevapEn": "Along the quiet, forest-surrounded coast west of Sinop, including Ayancık Shore and village beaches."
+        }
+      ]
     },
     {
       "slug": "altinordu",
@@ -1589,7 +1813,21 @@
       },
       "baslikEn": "Ordu (Altınordu) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ordu's Altınordu district today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Altınordu is Ordu's center district, known for the Boztepe cable car view and hazelnut groves surrounding its coast."
+      "girisMetniEn": "Altınordu is Ordu's center district, known for the Boztepe cable car view and hazelnut groves surrounding its coast.",
+      "miniSss": [
+        {
+          "soru": "Altınordu'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Altınordu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Altınordu'da görülmesi gereken yer neresi?",
+          "cevap": "Teleferikle çıkılan Boztepe, fındık bahçeleriyle çevrili kıyıya tepeden bakan ünlü bir manzara noktası.",
+          "soruEn": "What's a must-see spot in Altınordu?",
+          "cevapEn": "Boztepe, reached by cable car, is a famous viewpoint overlooking the hazelnut-covered coast."
+        }
+      ]
     },
     {
       "slug": "fatsa",
@@ -1605,7 +1843,21 @@
       },
       "baslikEn": "Fatsa Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Fatsa (Ordu) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Fatsa is an Ordu district west of the city, known for its flat, long beaches."
+      "girisMetniEn": "Fatsa is an Ordu district west of the city, known for its flat, long beaches.",
+      "miniSss": [
+        {
+          "soru": "Fatsa'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Fatsa?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Fatsa'nın plajları nasıl?",
+          "cevap": "Ordu'nun batısında, düz ve uzun kumsallarıyla bilinen bir ilçe — Demas ve Bolaman plajları öne çıkar.",
+          "soruEn": "What are Fatsa's beaches like?",
+          "cevapEn": "A district west of Ordu known for flat, long beaches — Demas and Bolaman beaches stand out."
+        }
+      ]
     },
     {
       "slug": "unye",
@@ -1621,7 +1873,21 @@
       },
       "baslikEn": "Ünye Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ünye (Ordu) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Ünye is one of Ordu's best-known tourism districts, known for its historic rock caves and long beaches."
+      "girisMetniEn": "Ünye is one of Ordu's best-known tourism districts, known for its historic rock caves and long beaches.",
+      "miniSss": [
+        {
+          "soru": "Ünye'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ünye?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ünye'yi turistik yapan ne?",
+          "cevap": "Tarihi kayalık mağaraları ve uzun kumsallarıyla Ordu'nun en tanınmış turizm ilçelerinden biri.",
+          "soruEn": "What makes Ünye popular with tourists?",
+          "cevapEn": "Its historic rock caves and long beaches make it one of Ordu's best-known tourism districts."
+        }
+      ]
     },
     {
       "slug": "persembe",
@@ -1637,7 +1903,21 @@
       },
       "baslikEn": "Perşembe Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Perşembe (Ordu) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Perşembe is an Ordu district east of the city, known for the historic monastery at Yason Point."
+      "girisMetniEn": "Perşembe is an Ordu district east of the city, known for the historic monastery at Yason Point.",
+      "miniSss": [
+        {
+          "soru": "Perşembe'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Perşembe?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Perşembe'de tarihi bir yer var mı?",
+          "cevap": "Yason Burnu'ndaki tarihi manastır, Perşembe'nin en bilinen noktası — hemen yanında Yason Kilisesi Kumsalı var.",
+          "soruEn": "Is there a historic site in Perşembe?",
+          "cevapEn": "The historic monastery at Yason Point is Perşembe's best-known site, right next to Yason Church Beach."
+        }
+      ]
     },
     {
       "slug": "giresun-merkez",
@@ -1653,7 +1933,21 @@
       },
       "baslikEn": "Giresun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Giresun center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Giresun center is a Central Black Sea coastal city known for Giresun Island just offshore, and hazelnut farming."
+      "girisMetniEn": "Giresun center is a Central Black Sea coastal city known for Giresun Island just offshore, and hazelnut farming.",
+      "miniSss": [
+        {
+          "soru": "Giresun Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Giresun Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Giresun merkezin açıklarında ne var?",
+          "cevap": "Açıklarında Giresun Adası bulunur — Orta Karadeniz'in fındık üretimiyle bilinen kıyı kenti.",
+          "soruEn": "What's off the coast of Giresun center?",
+          "cevapEn": "Giresun Island lies just offshore — this Central Black Sea city is known for hazelnut farming."
+        }
+      ]
     },
     {
       "slug": "bulancak",
@@ -1669,7 +1963,21 @@
       },
       "baslikEn": "Bulancak Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bulancak (Giresun) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Bulancak is a Giresun district west of the city, known for its quiet beaches."
+      "girisMetniEn": "Bulancak is a Giresun district west of the city, known for its quiet beaches.",
+      "miniSss": [
+        {
+          "soru": "Bulancak'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bulancak?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Bulancak'ın plajı hangisi?",
+          "cevap": "Burunucu Plajı, Giresun'un batısındaki bu sakin ilçenin bilinen kumsalı.",
+          "soruEn": "What is Bulancak's beach?",
+          "cevapEn": "Burunucu Beach is the known shore of this quiet district west of Giresun."
+        }
+      ]
     },
     {
       "slug": "tirebolu",
@@ -1685,7 +1993,21 @@
       },
       "baslikEn": "Tirebolu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Tirebolu (Giresun) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Tirebolu is a Giresun district known for its historic Genoese castle."
+      "girisMetniEn": "Tirebolu is a Giresun district known for its historic Genoese castle.",
+      "miniSss": [
+        {
+          "soru": "Tirebolu'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Tirebolu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Tirebolu'da tarihi bir yer var mı?",
+          "cevap": "Tarihi Cenevizli kalesiyle bilinir, hemen yanında Tirebolu Plajı ve Uzunkum Plajı yer alır.",
+          "soruEn": "Is there a historic site in Tirebolu?",
+          "cevapEn": "Known for its historic Genoese castle, right next to Tirebolu Beach and Uzunkum Beach."
+        }
+      ]
     },
     {
       "slug": "gorele",
@@ -1701,7 +2023,21 @@
       },
       "baslikEn": "Görele Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Görele (Giresun) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Görele is Giresun's easternmost district, known for hazelnut farming and its kemençe folk music."
+      "girisMetniEn": "Görele is Giresun's easternmost district, known for hazelnut farming and its kemençe folk music.",
+      "miniSss": [
+        {
+          "soru": "Görele neyle bilinir?",
+          "cevap": "Fındık üretimi ve kemençe (Karadeniz'in geleneksel çalgısı) ile bilinen, Giresun'un en doğusundaki ilçe.",
+          "soruEn": "What is Görele known for?",
+          "cevapEn": "Hazelnut farming and the kemençe (a traditional Black Sea instrument) — Giresun's easternmost district."
+        },
+        {
+          "soru": "Görele'de plaj bilgisi var mı?",
+          "cevap": "Görele öncelikle fındık ve kemençe kültürüyle öne çıkıyor; plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for Görele?",
+          "cevapEn": "Görele is best known for hazelnuts and kemençe culture; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "ortahisar",
@@ -1717,7 +2053,21 @@
       },
       "baslikEn": "Trabzon (Ortahisar) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Trabzon's Ortahisar district today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Ortahisar is Trabzon's center district — one of the best-known city centers of the Eastern Black Sea, with the Boztepe viewpoint and harbor coastline."
+      "girisMetniEn": "Ortahisar is Trabzon's center district — one of the best-known city centers of the Eastern Black Sea, with the Boztepe viewpoint and harbor coastline.",
+      "miniSss": [
+        {
+          "soru": "Ortahisar'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ortahisar?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ortahisar'ın bilinen manzara noktası neresi?",
+          "cevap": "Boztepe, Doğu Karadeniz'in bu en bilinen şehir merkezine ve liman kıyısına tepeden bakan ünlü bir nokta.",
+          "soruEn": "What's the famous viewpoint in Ortahisar?",
+          "cevapEn": "Boztepe, a famous viewpoint overlooking this well-known Eastern Black Sea city center and its harbor."
+        }
+      ]
     },
     {
       "slug": "akcaabat",
@@ -1733,7 +2083,21 @@
       },
       "baslikEn": "Akçaabat Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Akçaabat (Trabzon) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Akçaabat is a Trabzon district west of the city, known for its meatballs (köfte) and its coastal strip."
+      "girisMetniEn": "Akçaabat is a Trabzon district west of the city, known for its meatballs (köfte) and its coastal strip.",
+      "miniSss": [
+        {
+          "soru": "Akçaabat'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Akçaabat?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Akçaabat neyle ünlü?",
+          "cevap": "Kendi adını taşıyan köftesiyle ve sahil şeridiyle bilinen, Trabzon'un batısındaki bir ilçe.",
+          "soruEn": "What is Akçaabat famous for?",
+          "cevapEn": "Its namesake meatballs (köfte) and its coastal strip — a district west of Trabzon."
+        }
+      ]
     },
     {
       "slug": "of",
@@ -1749,7 +2113,21 @@
       },
       "baslikEn": "Of Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Of (Trabzon) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Of is a Trabzon district east of the city, with a narrow coastal strip where mountains drop steeply to the sea."
+      "girisMetniEn": "Of is a Trabzon district east of the city, with a narrow coastal strip where mountains drop steeply to the sea.",
+      "miniSss": [
+        {
+          "soru": "Of'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Of?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Of'un kıyı yapısı nasıl?",
+          "cevap": "Dağların denize dik indiği dar bir kıyı şeridine sahip, Trabzon'un doğusundaki bir ilçe.",
+          "soruEn": "What is Of's coastline like?",
+          "cevapEn": "A narrow coastal strip east of Trabzon, where mountains drop steeply to the sea."
+        }
+      ]
     },
     {
       "slug": "yomra",
@@ -1765,7 +2143,21 @@
       },
       "baslikEn": "Yomra Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Yomra (Trabzon) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Yomra is a Trabzon district known for its closeness to Trabzon Airport, just east of the city center."
+      "girisMetniEn": "Yomra is a Trabzon district known for its closeness to Trabzon Airport, just east of the city center.",
+      "miniSss": [
+        {
+          "soru": "Yomra'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Yomra?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Yomra nerede, havalimanına yakın mı?",
+          "cevap": "Trabzon Havalimanı'na yakınlığıyla bilinen, şehir merkezinin hemen doğusundaki bir ilçe.",
+          "soruEn": "Is Yomra close to the airport?",
+          "cevapEn": "Yes, it's known for being close to Trabzon Airport, just east of the city center."
+        }
+      ]
     },
     {
       "slug": "arakli",
@@ -1781,7 +2173,21 @@
       },
       "baslikEn": "Araklı Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Araklı (Trabzon) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Araklı is a Trabzon district east of the city, surrounded by tea and hazelnut groves."
+      "girisMetniEn": "Araklı is a Trabzon district east of the city, surrounded by tea and hazelnut groves.",
+      "miniSss": [
+        {
+          "soru": "Araklı neyle bilinir?",
+          "cevap": "Trabzon'un doğusunda, çay ve fındık bahçeleriyle çevrili bir Karadeniz ilçesi.",
+          "soruEn": "What is Araklı known for?",
+          "cevapEn": "A Trabzon district east of the city, surrounded by tea and hazelnut groves."
+        },
+        {
+          "soru": "Araklı'da plaj var mı?",
+          "cevap": "Araklı öncelikle tarım bölgesi olarak biliniyor; plaj verileri henüz eklenmedi.",
+          "soruEn": "Are there beaches in Araklı?",
+          "cevapEn": "Araklı is primarily known as a farming area; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "vakfikebir",
@@ -1797,7 +2203,21 @@
       },
       "baslikEn": "Vakfıkebir Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Vakfıkebir (Trabzon) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Vakfıkebir is a Trabzon district west of the city, known for its bread and coastal strip."
+      "girisMetniEn": "Vakfıkebir is a Trabzon district west of the city, known for its bread and coastal strip.",
+      "miniSss": [
+        {
+          "soru": "Vakfıkebir neyle tanınır?",
+          "cevap": "Kendi adını taşıyan ekmeğiyle ve sahil şeridiyle bilinen, Trabzon'un batısındaki bir ilçe.",
+          "soruEn": "What is Vakfıkebir known for?",
+          "cevapEn": "Its namesake bread and its coastal strip — a district west of Trabzon."
+        },
+        {
+          "soru": "Vakfıkebir'de plaj var mı?",
+          "cevap": "Vakfıkebir'in sahil şeridi var ama plaj verileri henüz eklenmedi.",
+          "soruEn": "Are there beaches in Vakfıkebir?",
+          "cevapEn": "Vakfıkebir has a coastal strip, but beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "rize-merkez",
@@ -1813,7 +2233,21 @@
       },
       "baslikEn": "Rize Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Rize center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Rize center is a Black Sea coastal city where misty, tea-covered slopes drop almost straight into the sea."
+      "girisMetniEn": "Rize center is a Black Sea coastal city where misty, tea-covered slopes drop almost straight into the sea.",
+      "miniSss": [
+        {
+          "soru": "Rize merkez neyle bilinir?",
+          "cevap": "Çay bahçeleriyle kaplı sisli yamaçların neredeyse denize dik indiği bir Doğu Karadeniz kıyı kenti.",
+          "soruEn": "What is Rize center known for?",
+          "cevapEn": "A Black Sea coastal city where misty, tea-covered slopes drop almost straight into the sea."
+        },
+        {
+          "soru": "Rize merkezde deniz nasıl?",
+          "cevap": "Kıyı, dağların dik indiği dar bir şerit; plaj verileri henüz eklenmedi.",
+          "soruEn": "What is the sea like in Rize center?",
+          "cevapEn": "The coast is a narrow strip where mountains drop steeply; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "cayeli",
@@ -1829,7 +2263,21 @@
       },
       "baslikEn": "Çayeli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Çayeli (Rize) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Çayeli, as its name suggests, is known for tea production — a coastal district east of Rize."
+      "girisMetniEn": "Çayeli, as its name suggests, is known for tea production — a coastal district east of Rize.",
+      "miniSss": [
+        {
+          "soru": "Çayeli'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çayeli?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çayeli adını nereden alıyor?",
+          "cevap": "Adından da anlaşılacağı gibi çay üretimiyle bilinen, Rize'nin doğusundaki bir kıyı ilçesi.",
+          "soruEn": "Where does Çayeli get its name?",
+          "cevapEn": "As the name suggests, it's known for tea (çay) production — a coastal district east of Rize."
+        }
+      ]
     },
     {
       "slug": "pazar-rize",
@@ -1845,7 +2293,21 @@
       },
       "baslikEn": "Pazar (Rize) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Pazar (Rize) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Pazar is a Rize district east of the city, with a narrow Black Sea coastal strip."
+      "girisMetniEn": "Pazar is a Rize district east of the city, with a narrow Black Sea coastal strip.",
+      "miniSss": [
+        {
+          "soru": "Pazar'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Pazar?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Pazar'ın kıyısı nasıl?",
+          "cevap": "Rize'nin doğusunda, dar bir sahil şeridine sahip bir Karadeniz ilçesi — Hamidiye Plajı bilinen noktası.",
+          "soruEn": "What is Pazar's coastline like?",
+          "cevapEn": "A district east of Rize with a narrow Black Sea coastal strip — Hamidiye Beach is its known spot."
+        }
+      ]
     },
     {
       "slug": "ardesen",
@@ -1861,7 +2323,21 @@
       },
       "baslikEn": "Ardeşen Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ardeşen (Rize) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Ardeşen is a Rize district close to the Artvin border, known for its green valleys and coastline."
+      "girisMetniEn": "Ardeşen is a Rize district close to the Artvin border, known for its green valleys and coastline.",
+      "miniSss": [
+        {
+          "soru": "Ardeşen neyle bilinir?",
+          "cevap": "Rize'nin Artvin sınırına yakın, yeşil vadileri ve kıyısıyla bilinen bir ilçesi.",
+          "soruEn": "What is Ardeşen known for?",
+          "cevapEn": "A Rize district close to the Artvin border, known for its green valleys and coastline."
+        },
+        {
+          "soru": "Ardeşen'de plaj bilgisi var mı?",
+          "cevap": "Ardeşen'in kıyısı var ama plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for Ardeşen?",
+          "cevapEn": "Ardeşen has a coastline, but beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "findikli",
@@ -1877,7 +2353,21 @@
       },
       "baslikEn": "Fındıklı Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Fındıklı (Rize) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Fındıklı is Rize's easternmost district, a small coastal town close to the Artvin border."
+      "girisMetniEn": "Fındıklı is Rize's easternmost district, a small coastal town close to the Artvin border.",
+      "miniSss": [
+        {
+          "soru": "Fındıklı nerede?",
+          "cevap": "Rize'nin en doğusundaki, Artvin sınırına yakın küçük bir kıyı ilçesi.",
+          "soruEn": "Where is Fındıklı?",
+          "cevapEn": "Rize's easternmost district, a small coastal town close to the Artvin border."
+        },
+        {
+          "soru": "Fındıklı'da plaj var mı?",
+          "cevap": "Fındıklı küçük bir kıyı ilçesi; plaj verileri henüz eklenmedi.",
+          "soruEn": "Are there beaches in Fındıklı?",
+          "cevapEn": "Fındıklı is a small coastal district; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "hopa",
@@ -1893,7 +2383,21 @@
       },
       "baslikEn": "Hopa Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Hopa (Artvin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Hopa is Turkey's harbor town closest to the Georgian border, at the eastern end of the Black Sea."
+      "girisMetniEn": "Hopa is Turkey's harbor town closest to the Georgian border, at the eastern end of the Black Sea.",
+      "miniSss": [
+        {
+          "soru": "Hopa'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Hopa?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Hopa nerede yer alır?",
+          "cevap": "Türkiye'nin Gürcistan sınırına en yakın liman kenti, Karadeniz'in doğu ucunda.",
+          "soruEn": "Where is Hopa located?",
+          "cevapEn": "Turkey's harbor town closest to the Georgian border, at the eastern end of the Black Sea."
+        }
+      ]
     },
     {
       "slug": "arhavi",
@@ -1909,7 +2413,21 @@
       },
       "baslikEn": "Arhavi Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Arhavi (Artvin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Arhavi is Artvin's small, green district opening onto the Black Sea."
+      "girisMetniEn": "Arhavi is Artvin's small, green district opening onto the Black Sea.",
+      "miniSss": [
+        {
+          "soru": "Arhavi'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Arhavi?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Arhavi'nin plajları hangileri?",
+          "cevap": "Güngören Halk Plajı ve Kıyıcık Plajı, Artvin'in bu küçük ve yeşil ilçesinin bilinen kumsalları.",
+          "soruEn": "What are Arhavi's beaches?",
+          "cevapEn": "Güngören Public Beach and Kıyıcık Beach are the known shores of this small, green Artvin district."
+        }
+      ]
     },
     {
       "slug": "yalova-merkez",
@@ -1925,7 +2443,21 @@
       },
       "baslikEn": "Yalova Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Yalova center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Yalova center is a Marmara coastal town known for its thermal springs and ferry connection to İstanbul."
+      "girisMetniEn": "Yalova center is a Marmara coastal town known for its thermal springs and ferry connection to İstanbul.",
+      "miniSss": [
+        {
+          "soru": "Yalova Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Yalova Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Yalova merkez neyle bilinir?",
+          "cevap": "Termal kaynakları ve İstanbul'a feribot bağlantısıyla bilinen bir Marmara kıyı kenti.",
+          "soruEn": "What is Yalova center known for?",
+          "cevapEn": "A Marmara coastal town known for its thermal springs and ferry connection to İstanbul."
+        }
+      ]
     },
     {
       "slug": "cinarcik",
@@ -1941,7 +2473,21 @@
       },
       "baslikEn": "Çınarcık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Çınarcık (Yalova) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Çınarcık is a small holiday town west of Yalova, on the Sea of Marmara."
+      "girisMetniEn": "Çınarcık is a small holiday town west of Yalova, on the Sea of Marmara.",
+      "miniSss": [
+        {
+          "soru": "Çınarcık'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Çınarcık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Çınarcık nasıl bir yer?",
+          "cevap": "Yalova'nın batısında, Marmara Denizi'ne kıyı küçük bir tatil beldesi.",
+          "soruEn": "What is Çınarcık like?",
+          "cevapEn": "A small holiday town west of Yalova, on the Sea of Marmara."
+        }
+      ]
     },
     {
       "slug": "mudanya",
@@ -1957,7 +2503,21 @@
       },
       "baslikEn": "Mudanya Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Mudanya (Bursa) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Mudanya is a historic Bursa harbor district, known as the place where the 1922 Armistice of Mudanya was signed — its coastline sits on the calm waters of the Sea of Marmara."
+      "girisMetniEn": "Mudanya is a historic Bursa harbor district, known as the place where the 1922 Armistice of Mudanya was signed — its coastline sits on the calm waters of the Sea of Marmara.",
+      "miniSss": [
+        {
+          "soru": "Mudanya'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Mudanya?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Mudanya'nın tarihi önemi ne?",
+          "cevap": "1922'de Mudanya Mütarekesi'nin imzalandığı tarihi bir Bursa liman ilçesi.",
+          "soruEn": "What is Mudanya's historic significance?",
+          "cevapEn": "A historic Bursa harbor district where the 1922 Armistice of Mudanya was signed."
+        }
+      ]
     },
     {
       "slug": "gemlik",
@@ -1973,7 +2533,21 @@
       },
       "baslikEn": "Gemlik Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gemlik (Bursa) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gemlik is a Bursa harbor district known for its olives, at the tip of the Gulf of Gemlik."
+      "girisMetniEn": "Gemlik is a Bursa harbor district known for its olives, at the tip of the Gulf of Gemlik.",
+      "miniSss": [
+        {
+          "soru": "Gemlik'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gemlik?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gemlik neyle bilinir?",
+          "cevap": "Zeytinleriyle bilinen, Gemlik Körfezi'nin ucundaki bir Bursa liman ilçesi.",
+          "soruEn": "What is Gemlik known for?",
+          "cevapEn": "Its olives — a Bursa harbor district at the tip of the Gulf of Gemlik."
+        }
+      ]
     },
     {
       "slug": "ayvalik",
@@ -1989,7 +2563,21 @@
       },
       "baslikEn": "Ayvalık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ayvalık (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Ayvalık is an Aegean district known for its island-dotted coastline, olive-oil production and historic stone houses — its position facing the open Aegean makes it more exposed to wind than some sheltered coves. The district's public Blue Flag beaches include {plajAdlari}."
+      "girisMetniEn": "Ayvalık is an Aegean district known for its island-dotted coastline, olive-oil production and historic stone houses — its position facing the open Aegean makes it more exposed to wind than some sheltered coves. The district's public Blue Flag beaches include {plajAdlari}.",
+      "miniSss": [
+        {
+          "soru": "Ayvalık'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ayvalık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ayvalık'ın kıyısı neden rüzgara açık?",
+          "cevap": "Açık Ege'ye bakan konumu nedeniyle Ayvalık, korunaklı koylara göre rüzgara daha açıktır.",
+          "soruEn": "Why is Ayvalık's coast exposed to wind?",
+          "cevapEn": "Its position facing the open Aegean makes Ayvalık more exposed to wind than sheltered coves."
+        }
+      ]
     },
     {
       "slug": "edremit",
@@ -2005,7 +2593,21 @@
       },
       "baslikEn": "Edremit (Akçay) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Edremit and Akçay (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Edremit district is known for the Akçay shore at the foot of the Kaz (Ida) Mountains — an Aegean bay surrounded by olive groves. The district's public Blue Flag beaches include {plajAdlari}."
+      "girisMetniEn": "Edremit district is known for the Akçay shore at the foot of the Kaz (Ida) Mountains — an Aegean bay surrounded by olive groves. The district's public Blue Flag beaches include {plajAdlari}.",
+      "miniSss": [
+        {
+          "soru": "Edremit'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Edremit?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Edremit'in bilinen sahili hangisi?",
+          "cevap": "Kaz Dağları'nın eteğindeki Akçay sahili, Edremit'in en bilinen kıyı noktası.",
+          "soruEn": "What is Edremit's best-known shore?",
+          "cevapEn": "The Akçay shore at the foot of the Kaz (Ida) Mountains is Edremit's best-known coastal spot."
+        }
+      ]
     },
     {
       "slug": "burhaniye",
@@ -2021,7 +2623,21 @@
       },
       "baslikEn": "Burhaniye Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Burhaniye (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Burhaniye is known for olive-oil production, a Balıkesir coastal district between Ayvalık and Edremit. The district's public Blue Flag beaches include {plajAdlari}."
+      "girisMetniEn": "Burhaniye is known for olive-oil production, a Balıkesir coastal district between Ayvalık and Edremit. The district's public Blue Flag beaches include {plajAdlari}.",
+      "miniSss": [
+        {
+          "soru": "Burhaniye'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Burhaniye?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Burhaniye nerede yer alır?",
+          "cevap": "Ayvalık ile Edremit arasında, zeytinyağı üretimiyle bilinen bir Balıkesir kıyı ilçesi.",
+          "soruEn": "Where is Burhaniye located?",
+          "cevapEn": "A Balıkesir coastal district between Ayvalık and Edremit, known for olive-oil production."
+        }
+      ]
     },
     {
       "slug": "gomec",
@@ -2037,7 +2653,21 @@
       },
       "baslikEn": "Gömeç Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gömeç (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Gömeç is a quiet, less-crowded Balıkesir district between Ayvalık and Burhaniye. The district's public Blue Flag beaches include {plajAdlari}."
+      "girisMetniEn": "Gömeç is a quiet, less-crowded Balıkesir district between Ayvalık and Burhaniye. The district's public Blue Flag beaches include {plajAdlari}.",
+      "miniSss": [
+        {
+          "soru": "Gömeç'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gömeç?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gömeç sakin bir yer mi?",
+          "cevap": "Evet, Ayvalık ile Burhaniye arasında kalan, sakin ve az kalabalık bir ilçe.",
+          "soruEn": "Is Gömeç a quiet place?",
+          "cevapEn": "Yes, a quiet, less-crowded district between Ayvalık and Burhaniye."
+        }
+      ]
     },
     {
       "slug": "erdek",
@@ -2053,7 +2683,21 @@
       },
       "baslikEn": "Erdek Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Erdek (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Erdek sits on the Kapıdağ Peninsula in the Sea of Marmara, known for its ferry connection to Marmara Island. The district's public Blue Flag beaches include {plajAdlari}."
+      "girisMetniEn": "Erdek sits on the Kapıdağ Peninsula in the Sea of Marmara, known for its ferry connection to Marmara Island. The district's public Blue Flag beaches include {plajAdlari}.",
+      "miniSss": [
+        {
+          "soru": "Erdek'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Erdek?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Erdek'ten Marmara Adası'na nasıl gidilir?",
+          "cevap": "Erdek'ten Marmara Adası'na feribot bağlantısı var — ilçe Kapıdağ Yarımadası üzerinde yer alıyor.",
+          "soruEn": "How do you get to Marmara Island from Erdek?",
+          "cevapEn": "There's a ferry connection from Erdek to Marmara Island — the district sits on the Kapıdağ Peninsula."
+        }
+      ]
     },
     {
       "slug": "bandirma",
@@ -2069,7 +2713,21 @@
       },
       "baslikEn": "Bandırma Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bandırma (Balıkesir) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Bandırma is an important harbor and industrial town on the Sea of Marmara, known for its ferry connection to İstanbul."
+      "girisMetniEn": "Bandırma is an important harbor and industrial town on the Sea of Marmara, known for its ferry connection to İstanbul.",
+      "miniSss": [
+        {
+          "soru": "Bandırma neyle bilinir?",
+          "cevap": "Marmara Denizi kıyısında önemli bir liman ve sanayi kenti, İstanbul'a feribot bağlantısıyla bilinir.",
+          "soruEn": "What is Bandırma known for?",
+          "cevapEn": "An important harbor and industrial town on the Sea of Marmara, known for its ferry connection to İstanbul."
+        },
+        {
+          "soru": "Bandırma'da plaj var mı?",
+          "cevap": "Bandırma öncelikle liman ve sanayi kenti; plaj verileri henüz eklenmedi.",
+          "soruEn": "Are there beaches in Bandırma?",
+          "cevapEn": "Bandırma is primarily a harbor and industrial town; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "ayvacik",
@@ -2085,7 +2743,21 @@
       },
       "baslikEn": "Ayvacık (Assos) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ayvacık and Assos (Çanakkale) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Ayvacık is a Çanakkale district known for the ancient city of Assos and its historic harbor — its position facing the open Aegean makes it fairly exposed to wind."
+      "girisMetniEn": "Ayvacık is a Çanakkale district known for the ancient city of Assos and its historic harbor — its position facing the open Aegean makes it fairly exposed to wind.",
+      "miniSss": [
+        {
+          "soru": "Ayvacık'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Ayvacık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Ayvacık'ta görülecek tarihi yer neresi?",
+          "cevap": "Antik Assos kenti ve tarihi limanı, Ayvacık'ın en bilinen tarihi noktası.",
+          "soruEn": "What historic site is there in Ayvacık?",
+          "cevapEn": "The ancient city of Assos and its historic harbor are Ayvacık's best-known historic site."
+        }
+      ]
     },
     {
       "slug": "bozcaada",
@@ -2101,7 +2773,21 @@
       },
       "baslikEn": "Bozcaada Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bozcaada today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Bozcaada is an Aegean island known for its vineyards and wind — its beaches facing the open sea are also popular for windsurfing."
+      "girisMetniEn": "Bozcaada is an Aegean island known for its vineyards and wind — its beaches facing the open sea are also popular for windsurfing.",
+      "miniSss": [
+        {
+          "soru": "Bozcaada'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Bozcaada?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Bozcaada rüzgar sporlarına uygun mu?",
+          "cevap": "Evet, açık denize bakan plajları güçlü rüzgarı nedeniyle rüzgar sörfü için de tercih ediliyor.",
+          "soruEn": "Is Bozcaada good for wind sports?",
+          "cevapEn": "Yes, its beaches facing the open sea are also popular for windsurfing thanks to the strong wind."
+        }
+      ]
     },
     {
       "slug": "gokceada",
@@ -2117,7 +2803,21 @@
       },
       "baslikEn": "Gökçeada Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gökçeada today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gökçeada is Turkey's largest island — known for its clear coves, dive sites, and also its strong wind."
+      "girisMetniEn": "Gökçeada is Turkey's largest island — known for its clear coves, dive sites, and also its strong wind.",
+      "miniSss": [
+        {
+          "soru": "Gökçeada'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gökçeada?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gökçeada'da dalış yapılır mı?",
+          "cevap": "Evet, berrak koyları Gökçeada'yı dalış noktaları açısından da bilinen bir yer yapıyor.",
+          "soruEn": "Can you dive in Gökçeada?",
+          "cevapEn": "Yes, its clear coves also make Gökçeada known for its dive sites."
+        }
+      ]
     },
     {
       "slug": "lapseki",
@@ -2133,7 +2833,21 @@
       },
       "baslikEn": "Lapseki Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Lapseki (Çanakkale) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Lapseki is a Çanakkale district on the north shore of the Dardanelles, known for growing peaches."
+      "girisMetniEn": "Lapseki is a Çanakkale district on the north shore of the Dardanelles, known for growing peaches.",
+      "miniSss": [
+        {
+          "soru": "Lapseki'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Lapseki?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Lapseki neyle bilinir?",
+          "cevap": "Çanakkale Boğazı'nın kuzey kıyısında, şeftali üretimiyle bilinen bir ilçe.",
+          "soruEn": "What is Lapseki known for?",
+          "cevapEn": "A district on the north shore of the Dardanelles, known for growing peaches."
+        }
+      ]
     },
     {
       "slug": "gelibolu",
@@ -2149,7 +2863,21 @@
       },
       "baslikEn": "Gelibolu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gelibolu (Çanakkale) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gelibolu is a Çanakkale district known for its historic peninsula and First World War memorials, on the strait where the Sea of Marmara and the Aegean meet."
+      "girisMetniEn": "Gelibolu is a Çanakkale district known for its historic peninsula and First World War memorials, on the strait where the Sea of Marmara and the Aegean meet.",
+      "miniSss": [
+        {
+          "soru": "Gelibolu'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Gelibolu?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Gelibolu'nun konumu neden özel?",
+          "cevap": "Marmara ve Ege'nin buluştuğu Boğaz kıyısında yer alır, tarihi yarımadası ve I. Dünya Savaşı anıtlarıyla bilinir.",
+          "soruEn": "Why is Gelibolu's location special?",
+          "cevapEn": "It sits on the strait where the Sea of Marmara and the Aegean meet, known for its historic peninsula and WWI memorials."
+        }
+      ]
     },
     {
       "slug": "mersin-akdeniz",
@@ -2165,7 +2893,21 @@
       },
       "baslikEn": "Mersin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Mersin center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Mersin center is an important Eastern Mediterranean harbor city, known for its long, palm-lined promenade."
+      "girisMetniEn": "Mersin center is an important Eastern Mediterranean harbor city, known for its long, palm-lined promenade.",
+      "miniSss": [
+        {
+          "soru": "Mersin Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Mersin Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Mersin merkez neyle tanınır?",
+          "cevap": "Doğu Akdeniz'in önemli liman kenti, uzun sahil şeridi ve palmiyeli gezinti yoluyla bilinir.",
+          "soruEn": "What is Mersin center known for?",
+          "cevapEn": "An important Eastern Mediterranean harbor city, known for its long, palm-lined promenade."
+        }
+      ]
     },
     {
       "slug": "erdemli",
@@ -2181,7 +2923,21 @@
       },
       "baslikEn": "Erdemli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Erdemli (Mersin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Erdemli is a Mersin district west of the city, known for its banana greenhouses."
+      "girisMetniEn": "Erdemli is a Mersin district west of the city, known for its banana greenhouses.",
+      "miniSss": [
+        {
+          "soru": "Erdemli'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Erdemli?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Erdemli'nin bilinen plajı hangisi?",
+          "cevap": "Tarihi deniz kalesiyle ünlü Kızkalesi Halk Plajı, Erdemli'nin en bilinen noktası.",
+          "soruEn": "What is Erdemli's best-known beach?",
+          "cevapEn": "Kızkalesi Public Beach, famous for its historic sea castle, is Erdemli's best-known spot."
+        }
+      ]
     },
     {
       "slug": "silifke",
@@ -2197,7 +2953,21 @@
       },
       "baslikEn": "Silifke (Kızkalesi) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Silifke and Kızkalesi (Mersin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Silifke is a Mersin district known for the historic sea castle at Kızkalesi — the Mediterranean here generally has gentle, long-period waves."
+      "girisMetniEn": "Silifke is a Mersin district known for the historic sea castle at Kızkalesi — the Mediterranean here generally has gentle, long-period waves.",
+      "miniSss": [
+        {
+          "soru": "Silifke'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Silifke?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Silifke'de deniz nasıl bir yapıya sahip?",
+          "cevap": "Akdeniz'in uzun periyotlu, genelde yumuşak dalgası hakim — tarihi Kızkalesi de burada.",
+          "soruEn": "What is the sea like in Silifke?",
+          "cevapEn": "The Mediterranean's generally gentle, long-period waves dominate here — the historic sea castle Kızkalesi is also here."
+        }
+      ]
     },
     {
       "slug": "tarsus",
@@ -2213,7 +2983,21 @@
       },
       "baslikEn": "Tarsus Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Tarsus (Mersin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Tarsus is the historic city where the apostle Paul was born — its own beach strip opens onto the Mediterranean."
+      "girisMetniEn": "Tarsus is the historic city where the apostle Paul was born — its own beach strip opens onto the Mediterranean.",
+      "miniSss": [
+        {
+          "soru": "Tarsus'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Tarsus?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Tarsus'ta plaj var mı?",
+          "cevap": "Evet, kendi adını taşıyan Tarsus Plajı, Aziz Pavlus'un doğduğu bu tarihi kentin sahil şeridi Akdeniz'e açılır.",
+          "soruEn": "Is there a beach in Tarsus?",
+          "cevapEn": "Yes, the namesake Tarsus Beach — the coastal strip of this historic city where the apostle Paul was born opens onto the Mediterranean."
+        }
+      ]
     },
     {
       "slug": "anamur",
@@ -2229,7 +3013,21 @@
       },
       "baslikEn": "Anamur Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Anamur (Mersin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Anamur is Mersin's westernmost Mediterranean district, known for its banana groves and the ancient city of Anamurium."
+      "girisMetniEn": "Anamur is Mersin's westernmost Mediterranean district, known for its banana groves and the ancient city of Anamurium.",
+      "miniSss": [
+        {
+          "soru": "Anamur'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Anamur?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Anamur'da tarihi bir yer var mı?",
+          "cevap": "Antik Anamurium kenti, muz bahçeleriyle çevrili bu Mersin'in en batısındaki ilçenin bilinen tarihi noktası.",
+          "soruEn": "Is there a historic site in Anamur?",
+          "cevapEn": "The ancient city of Anamurium is the known historic site of this westernmost Mersin district, surrounded by banana groves."
+        }
+      ]
     },
     {
       "slug": "karatas",
@@ -2245,7 +3043,21 @@
       },
       "baslikEn": "Karataş Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Karataş (Adana) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Karataş is an Adana district known for its flat, long beaches, close to the Seyhan River delta."
+      "girisMetniEn": "Karataş is an Adana district known for its flat, long beaches, close to the Seyhan River delta.",
+      "miniSss": [
+        {
+          "soru": "Karataş'ın kumsalları nasıl?",
+          "cevap": "Seyhan Nehri deltasına yakın, düz ve uzun kumsallarıyla bilinen bir Adana kıyı ilçesi.",
+          "soruEn": "What are Karataş's beaches like?",
+          "cevapEn": "An Adana district known for its flat, long beaches, close to the Seyhan River delta."
+        },
+        {
+          "soru": "Karataş'ta plaj bilgisi var mı?",
+          "cevap": "Karataş uzun kumsallarıyla bilinse de plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for Karataş?",
+          "cevapEn": "Although Karataş is known for its long beaches, beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "yumurtalik",
@@ -2261,7 +3073,21 @@
       },
       "baslikEn": "Yumurtalık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Yumurtalık (Adana) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Yumurtalık is an Adana district close to the Ceyhan River delta, known for its lagoons and nature reserves."
+      "girisMetniEn": "Yumurtalık is an Adana district close to the Ceyhan River delta, known for its lagoons and nature reserves.",
+      "miniSss": [
+        {
+          "soru": "Yumurtalık'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Yumurtalık?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Yumurtalık'ta doğal alan var mı?",
+          "cevap": "Ceyhan Nehri'nin deltasına yakın lagünleri ve doğal koruma alanlarıyla bilinir.",
+          "soruEn": "Is there a nature reserve in Yumurtalık?",
+          "cevapEn": "It's known for its lagoons and nature reserves, close to the Ceyhan River delta."
+        }
+      ]
     },
     {
       "slug": "samandag",
@@ -2277,7 +3103,21 @@
       },
       "baslikEn": "Samandağ Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Samandağ (Hatay) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Samandağ is a Hatay district known for its black-sand beach, close to where the Orontes (Asi) River reaches the Mediterranean."
+      "girisMetniEn": "Samandağ is a Hatay district known for its black-sand beach, close to where the Orontes (Asi) River reaches the Mediterranean.",
+      "miniSss": [
+        {
+          "soru": "Samandağ'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Samandağ?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Samandağ'ın plajı neden farklı?",
+          "cevap": "Çevlik Plajı, Asi Nehri'nin Akdeniz'e döküldüğü noktaya yakın siyah kumuyla bilinir.",
+          "soruEn": "What makes Samandağ's beach different?",
+          "cevapEn": "Çevlik Beach is known for its black sand, close to where the Orontes (Asi) River reaches the Mediterranean."
+        }
+      ]
     },
     {
       "slug": "arsuz",
@@ -2293,7 +3133,21 @@
       },
       "baslikEn": "Arsuz Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Arsuz (Hatay) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Arsuz is a Hatay Mediterranean district known for its olive groves and quiet beaches."
+      "girisMetniEn": "Arsuz is a Hatay Mediterranean district known for its olive groves and quiet beaches.",
+      "miniSss": [
+        {
+          "soru": "Arsuz'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Arsuz?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Arsuz'un plajları nasıl?",
+          "cevap": "Zeytinlik yamaçları ve sakin plajlarıyla bilinen bir Hatay Akdeniz ilçesi — Arsuz Atatürk Plajı öne çıkar.",
+          "soruEn": "What are Arsuz's beaches like?",
+          "cevapEn": "A Hatay Mediterranean district known for olive groves and quiet beaches — Arsuz Atatürk Beach stands out."
+        }
+      ]
     },
     {
       "slug": "iskenderun",
@@ -2309,7 +3163,21 @@
       },
       "baslikEn": "İskenderun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İskenderun (Hatay) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "İskenderun is an important harbor and industrial city on the gulf of the same name."
+      "girisMetniEn": "İskenderun is an important harbor and industrial city on the gulf of the same name.",
+      "miniSss": [
+        {
+          "soru": "İskenderun'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in İskenderun?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "İskenderun neyle bilinir?",
+          "cevap": "Aynı adı taşıyan körfezin kıyısındaki önemli bir liman ve sanayi kenti.",
+          "soruEn": "What is İskenderun known for?",
+          "cevapEn": "An important harbor and industrial city on the gulf of the same name."
+        }
+      ]
     },
     {
       "slug": "vize",
@@ -2325,7 +3193,21 @@
       },
       "baslikEn": "Kıyıköy (Vize) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kıyıköy (Kırklareli) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Kıyıköy, part of Vize district, is a quiet Black Sea fishing town between two river mouths, surrounded by forest."
+      "girisMetniEn": "Kıyıköy, part of Vize district, is a quiet Black Sea fishing town between two river mouths, surrounded by forest.",
+      "miniSss": [
+        {
+          "soru": "Vize (Kıyıköy)'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Vize (Kıyıköy)?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Kıyıköy'ün konumu neden özel?",
+          "cevap": "İki nehir ağzı arasında kalan, ormanlarla çevrili sakin bir Karadeniz balıkçı kasabası.",
+          "soruEn": "Why is Kıyıköy's location special?",
+          "cevapEn": "A quiet Black Sea fishing town between two river mouths, surrounded by forest."
+        }
+      ]
     },
     {
       "slug": "datca",
@@ -2341,7 +3223,21 @@
       },
       "baslikEn": "Datça Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Datça (Muğla) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Datça sits on a long, thin peninsula where the Aegean meets the Mediterranean — known for its almond and olive groves and clear coves. Both sides of the peninsula have their own wind patterns."
+      "girisMetniEn": "Datça sits on a long, thin peninsula where the Aegean meets the Mediterranean — known for its almond and olive groves and clear coves. Both sides of the peninsula have their own wind patterns.",
+      "miniSss": [
+        {
+          "soru": "Datça neden özel bir konumda?",
+          "cevap": "Ege ile Akdeniz'in birleştiği uzun ve ince bir yarımada üzerinde yer alır, iki kıyısı da farklı rüzgar rejimlerine sahiptir.",
+          "soruEn": "Why is Datça's location special?",
+          "cevapEn": "It sits on a long, thin peninsula where the Aegean meets the Mediterranean — both sides have their own wind patterns."
+        },
+        {
+          "soru": "Datça'da plaj bilgisi var mı?",
+          "cevap": "Datça berrak koylarıyla bilinse de plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for Datça?",
+          "cevapEn": "Although Datça is known for its clear coves, beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "milas",
@@ -2357,7 +3253,21 @@
       },
       "baslikEn": "Milas (Güllük) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Milas and Güllük (Muğla) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Milas district's coastline is concentrated in the town of Güllük, inside a gulf — a sheltered Aegean bay surrounded by olive groves."
+      "girisMetniEn": "Milas district's coastline is concentrated in the town of Güllük, inside a gulf — a sheltered Aegean bay surrounded by olive groves.",
+      "miniSss": [
+        {
+          "soru": "Milas'ın denizle bağlantısı nasıl?",
+          "cevap": "Milas ilçesinin denize kıyısı körfez içindeki Güllük beldesinde toplanır — zeytinliklerle çevrili korunaklı bir Ege koyu.",
+          "soruEn": "How does Milas connect to the sea?",
+          "cevapEn": "Milas district's coastline is concentrated in the town of Güllük, inside a gulf — a sheltered Aegean bay surrounded by olive groves."
+        },
+        {
+          "soru": "Güllük'te plaj var mı?",
+          "cevap": "Güllük korunaklı bir koy olarak bilinir ama plaj verileri henüz eklenmedi.",
+          "soruEn": "Are there beaches in Güllük?",
+          "cevapEn": "Güllük is known as a sheltered bay, but beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "koycegiz",
@@ -2373,7 +3283,21 @@
       },
       "baslikEn": "Köyceğiz (Ekincik) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Köyceğiz and Ekincik (Muğla) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Köyceğiz's district center sits on a lake, but the village of Ekincik, part of the district, has a real Mediterranean cove on the eastern side of the Gulf of Gökova — known for its marina and long beach."
+      "girisMetniEn": "Köyceğiz's district center sits on a lake, but the village of Ekincik, part of the district, has a real Mediterranean cove on the eastern side of the Gulf of Gökova — known for its marina and long beach.",
+      "miniSss": [
+        {
+          "soru": "Köyceğiz'in denize kıyısı var mı?",
+          "cevap": "İlçe merkezi gölün kıyısında ama Ekincik köyü, Gökova Körfezi'nin doğusunda gerçek bir Akdeniz koyuna kıyıdır.",
+          "soruEn": "Does Köyceğiz have a sea coast?",
+          "cevapEn": "The district center sits on a lake, but the village of Ekincik has a real Mediterranean cove on the eastern side of the Gulf of Gökova."
+        },
+        {
+          "soru": "Ekincik neyle bilinir?",
+          "cevap": "Yat limanı ve uzun plajıyla bilinir; plaj verileri henüz eklenmedi.",
+          "soruEn": "What is Ekincik known for?",
+          "cevapEn": "Known for its marina and long beach; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "ortaca",
@@ -2389,7 +3313,21 @@
       },
       "baslikEn": "Ortaca (Dalyan / İztuzu) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ortaca, Dalyan and İztuzu (Muğla) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "The town of Dalyan, part of Ortaca district, is known for the famous İztuzu Beach where loggerhead sea turtles nest, and for Sarıgerme beach — a distinctive coastline connected to the sea by channels."
+      "girisMetniEn": "The town of Dalyan, part of Ortaca district, is known for the famous İztuzu Beach where loggerhead sea turtles nest, and for Sarıgerme beach — a distinctive coastline connected to the sea by channels.",
+      "miniSss": [
+        {
+          "soru": "Ortaca'nın (Dalyan) ünlü plajı hangisi?",
+          "cevap": "İztuzu Plajı, caretta carettaların (deniz kaplumbağası) yumurtladığı ünlü bir kumsal — Sarıgerme sahili de bölgede.",
+          "soruEn": "What is Ortaca's (Dalyan) famous beach?",
+          "cevapEn": "İztuzu Beach, famous for loggerhead sea turtle nesting — Sarıgerme beach is also in the area."
+        },
+        {
+          "soru": "Dalyan'ın kıyı yapısı neden özel?",
+          "cevap": "Kanallarla denize bağlanan özel bir kıyı yapısına sahip.",
+          "soruEn": "Why is Dalyan's coastline unique?",
+          "cevapEn": "It has a distinctive coastline connected to the sea by channels."
+        }
+      ]
     },
     {
       "slug": "dalaman",
@@ -2405,7 +3343,21 @@
       },
       "baslikEn": "Dalaman Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Dalaman (Muğla) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Dalaman is a Muğla district known for its airport — it has its own coastline at the eastern end of the Gulf of Gökova, with coves like Sarsala and Kayacık."
+      "girisMetniEn": "Dalaman is a Muğla district known for its airport — it has its own coastline at the eastern end of the Gulf of Gökova, with coves like Sarsala and Kayacık.",
+      "miniSss": [
+        {
+          "soru": "Dalaman'da koy var mı?",
+          "cevap": "Sarsala ve Kayacık gibi koylarıyla, Gökova Körfezi'nin doğu ucundaki kıyı şeridine sahip.",
+          "soruEn": "Are there coves in Dalaman?",
+          "cevapEn": "It has its own coastline at the eastern end of the Gulf of Gökova, with coves like Sarsala and Kayacık."
+        },
+        {
+          "soru": "Dalaman'da plaj bilgisi var mı?",
+          "cevap": "Dalaman havalimanıyla bilinir; plaj verileri henüz eklenmedi.",
+          "soruEn": "Is there beach information for Dalaman?",
+          "cevapEn": "Dalaman is known for its airport; beach data hasn't been added yet."
+        }
+      ]
     },
     {
       "slug": "amasra",
@@ -2421,7 +3373,21 @@
       },
       "baslikEn": "Amasra Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Amasra (Bartın) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Amasra is known for its historic castle and its two small coves (Büyük Liman/Küçük Liman) opening onto the Black Sea, a charming harbor town."
+      "girisMetniEn": "Amasra is known for its historic castle and its two small coves (Büyük Liman/Küçük Liman) opening onto the Black Sea, a charming harbor town.",
+      "miniSss": [
+        {
+          "soru": "Amasra'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Amasra?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Amasra'nın koyları hangileri?",
+          "cevap": "Büyük Liman ve Küçük Liman, Amasra'nın tarihi kalesiyle birlikte bilinen iki küçük koyu.",
+          "soruEn": "What are Amasra's coves?",
+          "cevapEn": "Büyük Liman and Küçük Liman are the two small coves Amasra is known for, along with its historic castle."
+        }
+      ]
     },
     {
       "slug": "tekirdag-merkez",
@@ -2437,7 +3403,21 @@
       },
       "baslikEn": "Tekirdağ Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Tekirdağ center today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Tekirdağ center is a Sea of Marmara harbor town known for its vineyards and wine production."
+      "girisMetniEn": "Tekirdağ center is a Sea of Marmara harbor town known for its vineyards and wine production.",
+      "miniSss": [
+        {
+          "soru": "Tekirdağ Merkez'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Tekirdağ Merkez?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Tekirdağ merkez neyle bilinir?",
+          "cevap": "Bağlarıyla ve şarap üretimiyle bilinen bir Marmara Denizi liman kenti.",
+          "soruEn": "What is Tekirdağ center known for?",
+          "cevapEn": "A Sea of Marmara harbor town known for its vineyards and wine production."
+        }
+      ]
     },
     {
       "slug": "sarkoy",
@@ -2453,7 +3433,21 @@
       },
       "baslikEn": "Şarköy Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Şarköy (Tekirdağ) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Şarköy is a Tekirdağ district west of the city, known for vineyards and its shore facing the open Marmara waters."
+      "girisMetniEn": "Şarköy is a Tekirdağ district west of the city, known for vineyards and its shore facing the open Marmara waters.",
+      "miniSss": [
+        {
+          "soru": "Şarköy'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Şarköy?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Şarköy'ün kıyısı nasıl?",
+          "cevap": "Marmara'nın açık sularına bakan kıyısıyla bilinir, bağcılığıyla da öne çıkar.",
+          "soruEn": "What is Şarköy's coast like?",
+          "cevapEn": "Known for its shore facing the open Marmara waters, and also for its vineyards."
+        }
+      ]
     },
     {
       "slug": "marmara-ereglisi",
@@ -2469,7 +3463,21 @@
       },
       "baslikEn": "Marmara Ereğlisi Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Marmara Ereğlisi (Tekirdağ) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Marmara Ereğlisi is a Tekirdağ district east of the city, known for being close to İstanbul."
+      "girisMetniEn": "Marmara Ereğlisi is a Tekirdağ district east of the city, known for being close to İstanbul.",
+      "miniSss": [
+        {
+          "soru": "Marmara Ereğlisi'de hangi plajlar var?",
+          "cevap": "{plajAdlari} olmak üzere toplam {plajSayisi} plaj bulunuyor.",
+          "soruEn": "Which beaches are in Marmara Ereğlisi?",
+          "cevapEn": "{plajAdlari} — {plajSayisi} beaches in total."
+        },
+        {
+          "soru": "Marmara Ereğlisi nerede?",
+          "cevap": "Tekirdağ'ın doğusunda, İstanbul'a yakınlığıyla bilinen bir Marmara kıyı ilçesi.",
+          "soruEn": "Where is Marmara Ereğlisi?",
+          "cevapEn": "A Marmara coastal district east of Tekirdağ, known for being close to İstanbul."
+        }
+      ]
     },
     {
       "slug": "marmara-adasi",
