@@ -41,6 +41,7 @@ function navHtmlUret(yerler) {
   <a href="#status-card" class="nav-kart-link" data-i18n="nav_veriler">Veriler</a>
   <a href="#site-yorumlar-bolum" class="nav-kart-link" data-i18n="nav_yorumlar">Yorumlar</a>
   <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
+  <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği</a>
   <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>`;
 }
@@ -365,6 +366,7 @@ ${sayfaKonumJs}<script>
     <div>
       <h4 data-i18n="footer_destek">Destek</h4>
       <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
+      <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği Rehberi</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
   </div>
@@ -551,6 +553,7 @@ ${jsonLd}
     <div>
       <h4>Destek</h4>
       <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -617,11 +620,11 @@ function hakkimizdaSayfasiUret({ navHtml }) {
     </div>
     <div class="sss-madde">
       <h3>Kapsamımız</h3>
-      <p>Şu an 27 il ve 104 kıyı ilçesi için ayrı, bölgeye özel sayfalarımız var; bunların içinde 150'den fazla Mavi Bayraklı ve halka açık plaj yer alıyor. Yeni il/ilçeler ve plajlar zamanla eklenmeye devam ediyor.</p>
+      <p>Şu an 27 il ve 156 kıyı ilçesi için ayrı, bölgeye özel sayfalarımız var; bunların içinde 330'dan fazla Mavi Bayraklı ve halka açık plaj yer alıyor. Yeni il/ilçeler ve plajlar zamanla eklenmeye devam ediyor.</p>
     </div>
     <div class="sss-madde">
       <h3>Daha Fazla Bilgi</h3>
-      <p>SeaDataWave'in nasıl çalıştığı, Mavi Bayrak'ın ne anlama geldiği ve veri sıklığı gibi konularda daha fazla soru için <a href="/sss/">Sıkça Sorulan Sorular</a> sayfamıza, gizlilik uygulamalarımız için <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a> sayfamıza bakabilirsin. Görüş ve önerilerini anasayfadaki değerlendirme formundan bize iletebilirsin.</p>
+      <p>SeaDataWave'in nasıl çalıştığı, Mavi Bayrak'ın ne anlama geldiği ve veri sıklığı gibi konularda daha fazla soru için <a href="/sss/">Sıkça Sorulan Sorular</a> sayfamıza, denize girmeden önce bilmen gerekenler için <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>'mize, gizlilik uygulamalarımız için <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a> sayfamıza bakabilirsin. Görüş ve önerilerini anasayfadaki değerlendirme formundan bize iletebilirsin.</p>
     </div>
   </div>
   <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
@@ -646,6 +649,7 @@ function hakkimizdaSayfasiUret({ navHtml }) {
     <div>
       <h4>Destek</h4>
       <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -656,4 +660,114 @@ function hakkimizdaSayfasiUret({ navHtml }) {
 `;
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, navHtmlUret, escapeHtml };
+// Deniz Güvenliği Rehberi — SSS/Hakkımızda ile aynı statik (js/app.js'siz, TR-only) kalıpta,
+// ama tamamen özgün ve genel (belirli bir ilçeye özgü olmayan) editoryal içerik. Amaç:
+// sitenin sadece şablon üretilen il/ilçe sayfalarından ibaret olmadığını, gerçek katma
+// değerli bir kaynak olduğunu göstermek (bkz. proje notları — AdSense "düşük değerli
+// içerik" reddi sonrası eklendi, 2026-07-20).
+function denizGuvenligiSayfasiUret({ navHtml }) {
+  const title = "Deniz Güvenliği Rehberi — SeaDataWave";
+  const metaAciklama = "Dip akıntısı nasıl tanınır, yakalanırsan ne yapmalısın, plaj bayrak sistemi ne anlama gelir? Denize girmeden önce bilmen gereken temel güvenlik bilgileri.";
+
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeaDataWave" />
+<meta property="og:url" content="https://www.seadatawave.com/deniz-guvenligi-rehberi/" />
+<link rel="canonical" href="https://www.seadatawave.com/deniz-guvenligi-rehberi/" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/app.css" />
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/deniz-guvenligi-rehberi/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <div class="brand-yazi">
+      <h1>SeaDataWave</h1>
+      <p class="brand-alt">Anlık Deniz Verileri</p>
+    </div>
+  </div>
+  <!-- NAV:START -->
+  ${navHtml}
+  <!-- NAV:END -->
+</header>
+<div id="app-wrap">
+<div id="app">
+  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
+    <h2 style="font-size:20px;">Deniz Güvenliği Rehberi</h2>
+    <div class="sss-madde">
+      <h3>Dip akıntısı (rip current) nedir, nasıl tanınır?</h3>
+      <p>Dip akıntısı, dalgaların kıyıya taşıdığı suyun en dirençsiz noktadan hızla açığa geri boşalmasıyla oluşan dar bir su şeridi — kum bankaları arasındaki kanallarda, mendirek ve iskele kenarlarında daha sık görülür. Yüzeyde köpüksüz, çevresine göre daha durgun görünen ama aslında hızlı akan bir şerit gibi fark edilebilir; rengi de bazen daha bulanık veya farklı olabilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Dip akıntısına yakalanırsan ne yapmalısın?</h3>
+      <p>Akıntıya karşı, doğrudan kıyıya doğru yüzmeye çalışma — yorulup panikleme riskini artırır. Bunun yerine kıyıya paralel yüzerek akıntı şeridinden çıkmayı dene; akıntı zayıfladığını hissettiğinde çapraz bir açıyla kıyıya yönel. Yüzemiyorsan ya da çok yorulduysan, panik yapmadan suda kalmaya çalış ve kolunu kaldırıp yardım iste.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>SeaDataWave'deki kademe renkleri güvenlik açısından ne anlama geliyor?</h3>
+      <p>Çarşaf (mavi): dalga neredeyse yok, genelde güvenli — ama dip akıntısı her koşulda ihtimal dahilinde olduğunu unutma. İyi (yeşil): küçük dalgalar, çoğu yüzücü için uygun. Orta (turuncu): belirgin dalga; yüzme deneyimin sınırlıysa temkinli ol, çocukları yakından gözet. Fazla dalga (kırmızı): güçlü dalga/rüzgar; deneyimli yüzücüler için bile risklidir, girmemeni öneririz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Plajlardaki bayrak sistemi ne anlama gelir?</h3>
+      <p>Cankurtaranlı ve Mavi Bayraklı plajların çoğunda uluslararası kabul görmüş üç renkli bayrak kullanılır: yeşil (güvenli), sarı (dikkatli ol, deneyimsizsen girme), kırmızı (yüzme yasak). Cankurtaranı olmayan halka açık plajlarda bu sistem bulunmayabilir — bu durumda kendi gözlemine ve SeaDataWave'deki güncel duruma dikkat etmen daha da önemli.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Genel yüzme güvenliği önerileri</h3>
+      <p>Alkol aldıktan sonra denize girme. Mümkünse yalnız ve kıyıdan uzak yüzme. Çocukları su kenarında sürekli gözetim altında tut. İlk kez gittiğin bir plajda derinlik ve akıntı konusunda yerel halka veya cankurtarana danış. Deniz hızlı değişebilir — evden çıkmadan hemen önce SeaDataWave'den güncel rüzgar/dalga durumuna bir kez daha bak.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Acil durumda ne yapmalısın?</h3>
+      <p>Boğulma tehlikesi gördüğünde ya da yaşadığında hemen <b>112</b>'yi ara. Kendi güvenliğini tehlikeye atmadan yardım çağır; mümkünse can simidi, ip veya yüzebilen bir nesne uzat — suya atlayıp kurtarmaya çalışmak, eğitimli değilsen ikinci bir kurbana yol açabilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>SeaDataWave'in dalga/rüzgar verisini nasıl hesapladığı ve kademe sistemi hakkında daha fazlası için <a href="/sss/">Sıkça Sorulan Sorular</a> sayfamıza, sitenin amacı için <a href="/hakkimizda/">Hakkımızda</a> sayfamıza bakabilirsin. Bu rehber genel bilgilendirme amaçlıdır, profesyonel cankurtaran veya sağlık tavsiyesinin yerini tutmaz.</p>
+    </div>
+  </div>
+  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
+</div>
+</div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+      </div>
+    </div>
+    <div>
+      <h4>Keşfet</h4>
+      <a href="/samsun/">Samsun</a>
+      <a href="/izmir/">İzmir</a>
+      <a href="/mugla/">Muğla</a>
+      <a href="/aydin/">Aydın</a>
+      <a href="/antalya/">Antalya</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
+      <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
+    </div>
+  </div>
+  <div class="footer-alt">© 2026 SeaDataWave</div>
+</footer>
+</body>
+</html>
+`;
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, navHtmlUret, escapeHtml };
