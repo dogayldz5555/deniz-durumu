@@ -1058,27 +1058,55 @@
   .nav-ilce-liste a:first-child { font-weight: 600; color: var(--text-primary); }
   /* Bölgesel kimlik — her ilin baskın denizine göre ince bir vurgu (bkz. tools/generate-pages.js
      IL_BOLGE_HARITASI, tools/sayfa-sablonu.js bolgeRozetiHtml). Marka renklerini (lacivert/altın)
-     DEĞİŞTİRMEZ, sadece il/ilçe sayfalarının başlığına ve küçük bir rozete ince bir ton katar —
-     kademe renkleri (çarşaf/iyi/orta/tehlikeli, bkz. .legend/.gb-btn) bundan tamamen bağımsız. */
+     DEĞİŞTİRMEZ, --bolge-rgb/--bolge-hex değişkenleri üzerinden .yer-giris kartına ve rozete ince
+     bir ton katar — kademe renkleri (çarşaf/iyi/orta/tehlikeli, bkz. .legend/.gb-btn) bundan
+     tamamen bağımsız. Değişken tanımlanmazsa (bolge yoksa) kart marka lacivertine düşer. */
+  [data-bolge="karadeniz"] { --bolge-rgb: 31,110,92; --bolge-hex: #1F6E5C; }
+  [data-bolge="marmara"]   { --bolge-rgb: 59,74,122; --bolge-hex: #3B4A7A; }
+  [data-bolge="ege"]       { --bolge-rgb: 14,124,134; --bolge-hex: #0E7C86; }
+  [data-bolge="akdeniz"]   { --bolge-rgb: 181,89,46;  --bolge-hex: #B5592E; }
+
+  /* Giriş metni kartı — eskiden düz metin akışıydı, artık .isim-kart ile aynı görsel dilde
+     (gradient zemin/kenarlık/gölge) ama bölge rengine göre tonlanan gerçek bir kart. */
+  .yer-giris {
+    background: linear-gradient(135deg, rgba(var(--bolge-rgb,20,33,61),0.08), rgba(20,33,61,0.02));
+    border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.22);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 14px rgba(20,30,25,0.05);
+  }
+  .yer-giris h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    color: var(--bolge-hex, var(--text-h1));
+  }
+  .yer-giris p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-primary);
+    margin: 0;
+  }
   .yer-bolge-rozet {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    padding: 3px 10px;
+    padding: 4px 11px;
     border-radius: 999px;
-    margin-bottom: 9px;
-    border: 1px solid currentColor;
+    margin-bottom: 12px;
+    color: var(--bolge-hex, var(--ink));
+    background: rgba(var(--bolge-rgb,20,33,61),0.09);
+    border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.3);
   }
-  [data-bolge="karadeniz"] .yer-giris h2 { color: #1F6E5C; }
-  [data-bolge="karadeniz"] .yer-bolge-rozet { color: #1F6E5C; background: rgba(31,110,92,0.08); }
-  [data-bolge="marmara"] .yer-giris h2 { color: #3B4A7A; }
-  [data-bolge="marmara"] .yer-bolge-rozet { color: #3B4A7A; background: rgba(59,74,122,0.08); }
-  [data-bolge="ege"] .yer-giris h2 { color: #0E7C86; }
-  [data-bolge="ege"] .yer-bolge-rozet { color: #0E7C86; background: rgba(14,124,134,0.08); }
-  [data-bolge="akdeniz"] .yer-giris h2 { color: #B5592E; }
-  [data-bolge="akdeniz"] .yer-bolge-rozet { color: #B5592E; background: rgba(181,89,46,0.08); }
+  .yer-bolge-rozet::before { content: "〜"; font-size: 12px; }
   .yer-plajlar { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .yer-plajlar h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
   .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; }
