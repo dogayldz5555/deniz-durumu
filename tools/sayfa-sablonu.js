@@ -5,6 +5,22 @@
 
 const NAV_OK_SVG = `<svg class="nav-il-ok" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
 
+// Her ilin baskın denizine göre ince bir görsel kimlik (bkz. css/app.css [data-bolge=...]
+// kuralları) — sadece bir renk vurgusu ve küçük bir rozet, marka renklerini (lacivert/altın)
+// DEĞİŞTİRMİYOR, üstüne ince bir aksan katıyor. generate-pages.js ilin plaj koordinatlarını
+// js/app.js'teki DENIZ_BOLGELERI kutularıyla eşleştirip bu id'lerden birini üretiyor.
+const BOLGE_ETIKET = {
+  karadeniz: { ad: "Karadeniz kıyısı", adEn: "Black Sea coast" },
+  marmara: { ad: "Marmara kıyısı", adEn: "Marmara coast" },
+  ege: { ad: "Ege kıyısı", adEn: "Aegean coast" },
+  akdeniz: { ad: "Akdeniz kıyısı", adEn: "Mediterranean coast" },
+};
+function bolgeRozetiHtml(bolge) {
+  if (!bolge || !BOLGE_ETIKET[bolge]) return "";
+  const e = BOLGE_ETIKET[bolge];
+  return `<span class="yer-bolge-rozet"><span class="tr-metin">${e.ad}</span><span class="en-metin">${e.adEn}</span></span>`;
+}
+
 // Üst menüyü (Anasayfa / İller açılır menüsü / Veriler / Yorumlar / Hakkımızda / SSS) tüm
 // il/ilçe/anasayfa/SSS listesinden TEK SEFERDE üretir — bu yüzden sabit bir string DEĞİL,
 // yerler.json verisini alan bir fonksiyon: her yeni il/ilçe eklendiğinde "İller" açılır
@@ -118,7 +134,7 @@ function miniSssHtml(miniSss) {
 // Ortak <head> + #app-wrap iskeletini üreten fonksiyon. `ustSectionHtml` .sub tagline'ından
 // hemen sonra, `altSectionHtml` #conflict-note'tan hemen sonra (plaj listesi + mini SSS +
 // geri dönüş linki gibi bölümler için) enjekte edilir.
-function sayfaIskeleti({ title, titleEn, metaAciklama, metaAciklamaEn, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml, navHtml }) {
+function sayfaIskeleti({ title, titleEn, metaAciklama, metaAciklamaEn, canonicalUrl, sayfaKonum, ustSectionHtml, altSectionHtml, navHtml, bolge }) {
   // SAYFA_KONUM'a başlık/açıklamanın İngilizce halini de gömüyoruz ki dilUygula() dil
   // değişince <title>/meta description'ı da (sadece homepage'de değil, bu sayfalarda da)
   // güncelleyebilsin — EN metni henüz yazılmamışsa (baslikEn/metaAciklamaEn null) JS zaten
@@ -194,7 +210,7 @@ ${sayfaKonumJs}<script>
 })();
 </script>
 </head>
-<body>
+<body${bolge ? ` data-bolge="${bolge}"` : ""}>
 <header class="site-header">
   <div class="brand">
     <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
@@ -396,7 +412,7 @@ function ikiDilliHtml(tag, trMetin, enMetin, klas) {
   return `<${tag}${klasAttr}>${trMetin}</${tag}>`;
 }
 
-function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
+function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHtml, bolge }) {
   // {plajAdlari}/{plajSayisi} token'ları Mavi Bayraklı + halka açık plajları BİRLİKTE
   // yansıtır (sadece bir sertifika iddiası taşımayan, genel "plajları arasında" cümlesi için) —
   // aşağıdaki iki ayrı liste bölümü (plajListesiHtml) yine de sertifikalı/sertifikasız
@@ -409,6 +425,7 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
   const doldurEn = (s) => s.replace(/\{plajAdlari\}/g, plajAdlariEn).replace(/\{plajSayisi\}/g, String(plajSayisi));
 
   const ustSectionHtml = `<div class="yer-giris">
+    ${bolgeRozetiHtml(bolge)}
     ${ikiDilliHtml("h2", escapeHtml(ilce.baslik), ilce.baslikEn ? escapeHtml(ilce.baslikEn) : null)}
     ${ikiDilliHtml("p", doldur(ilce.girisMetni), ilce.girisMetniEn ? doldurEn(ilce.girisMetniEn) : null)}
   </div>`;
@@ -429,11 +446,13 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
     ustSectionHtml,
     altSectionHtml,
     navHtml,
+    bolge,
   });
 }
 
-function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml }) {
+function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml, bolge }) {
   const ustSectionHtml = `<div class="yer-giris">
+    ${bolgeRozetiHtml(bolge)}
     ${ikiDilliHtml("h2", escapeHtml(il.baslik), il.baslikEn ? escapeHtml(il.baslikEn) : null)}
     ${ikiDilliHtml("p", il.girisMetni, il.girisMetniEn || null)}
   </div>`;
@@ -465,6 +484,7 @@ function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navH
     ustSectionHtml,
     altSectionHtml,
     navHtml,
+    bolge,
   });
 }
 

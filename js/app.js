@@ -553,7 +553,20 @@ function begeniButonlariHtml(gb) {
 // haritası değil), yaklaşık bir ayrım — kıyıya yakın (lon < 27.0) "korunaklı", daha açıkta
 // kalan kısım (lon >= 27.0) "açık Ege" sayılıyor.
 const DENIZ_BOLGELERI = [
-  { id: "karadeniz", ad: "Karadeniz", adEn: "Black Sea", latMin: 40.9, latMax: 46, lonMin: 27.3, lonMax: 42,
+  // TEK kutu (latMin 40.9, lon 27.3-42) İKİYE bölündü. Eskiden İstanbul Boğazı civarında
+  // (lon 27.3-30 bandı) Tekirdağ (Tekirdağ Merkez, Marmara Ereğlisi), Silivri, Büyükçekmece,
+  // Bakırköy ve Avcılar'ın gerçekte Marmara'da olan plajları da (lat en fazla 41.0778) bu
+  // kutuya giriyordu; karadeniz marmara'dan ÖNCE kontrol edildiği için find() bu noktalarda
+  // yanlışlıkla Karadeniz eşiklerini (daha düşük/hassas) seçiyordu. Şile'nin (gerçek
+  // Karadeniz) en düşük enlemi 41.1409 — bu yüzden SADECE bu dar bantta (lon<30) latMin 41.1'e
+  // çekildi; doğuda (Sakarya'dan Rize'ye kadar, hepsi lon>=30.3) Marmara'yla çakışma riski
+  // hiç yok, o yüzden orijinal latMin 40.9 korundu — aksi halde Sakarya/Ordu/Giresun/Trabzon/
+  // Rize gibi gerçek Karadeniz illeri (bazılarının eni 40.9-41.1 arası) yanlışlıkla
+  // sınıflandırılmamış kalırdı (2026-07-20, gerçek plaj koordinatlarından doğrulandı).
+  { id: "karadeniz", ad: "Karadeniz", adEn: "Black Sea", latMin: 41.1, latMax: 46, lonMin: 27.3, lonMax: 30,
+    esikDalga:  { carsaf: 0.35, hafif: 0.6, fazla: 1.0 },
+    esikRuzgar: { carsaf: 7,    hafif: 14,  fazla: 22  } },
+  { id: "karadeniz", ad: "Karadeniz", adEn: "Black Sea", latMin: 40.9, latMax: 46, lonMin: 30, lonMax: 42,
     esikDalga:  { carsaf: 0.35, hafif: 0.6, fazla: 1.0 },
     esikRuzgar: { carsaf: 7,    hafif: 14,  fazla: 22  } },
   { id: "marmara",   ad: "Marmara",   adEn: "Sea of Marmara",   latMin: 40.3, latMax: 41.2, lonMin: 26.0, lonMax: 30.0,

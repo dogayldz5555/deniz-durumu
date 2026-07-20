@@ -53,6 +53,23 @@ function ilZoom(span) {
   return 7;
 }
 
+// Her ilin baskın denizi — js/app.js'teki DENIZ_BOLGELERI kutularına göre, o ilin TÜM
+// plajlarının (MAVI_BAYRAK_PLAJLAR + HALK_PLAJLARI) çoğunluğunun düştüğü bölge hesaplanarak
+// 2026-07-20'de üretildi (bkz. proje notları). Sadece ince bir görsel kimlik (bkz.
+// tools/sayfa-sablonu.js bolgeRozetiHtml, css/app.css [data-bolge=...]) için kullanılıyor —
+// gerçek dalga/rüzgar eşiği hesabı buna değil, doğrudan js/app.js'teki denizBolgesi()'ne
+// dayanır. Yeni il eklenirse ya da bir ilin plaj dağılımı büyük ölçüde değişirse yeniden
+// hesaplanmalı (aşağıdaki mantık ilBolgesiHesapla ile tekrarlanabilir).
+const IL_BOLGE_HARITASI = {
+  samsun: "karadeniz", zonguldak: "karadeniz", bartin: "karadeniz", kastamonu: "karadeniz",
+  sinop: "karadeniz", ordu: "karadeniz", giresun: "karadeniz", trabzon: "karadeniz",
+  rize: "karadeniz", artvin: "karadeniz", sakarya: "karadeniz", duzce: "karadeniz",
+  kirklareli: "karadeniz",
+  istanbul: "marmara", kocaeli: "marmara", yalova: "marmara", bursa: "marmara", tekirdag: "marmara",
+  izmir: "ege", aydin: "ege", mugla: "ege", balikesir: "ege", canakkale: "ege",
+  antalya: "akdeniz", mersin: "akdeniz", adana: "akdeniz", hatay: "akdeniz",
+};
+
 function yazDosya(relPath, icerik) {
   const tamYol = path.join(KOK, relPath);
   fs.mkdirSync(path.dirname(tamYol), { recursive: true });
@@ -147,8 +164,10 @@ function main() {
       return ic;
     });
 
+    const ilBolge = IL_BOLGE_HARITASI[il.slug] || null;
+
     if (!filtre || filtre.has(il.slug)) {
-      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoomDeger, navHtml });
+      const html = ilSayfasiUret({ il, ilceler: ilceListe, plajlar: ilPlajlar, halkPlajlar: ilHalkPlajlar, lat: ilLat, lon: ilLon, zoom: ilZoomDeger, navHtml, bolge: ilBolge });
       yazDosya(`${il.slug}/index.html`, html);
     }
 
@@ -167,7 +186,7 @@ function main() {
         console.warn(`UYARI: ${il.ad}/${ic.ad} için ne plaj verisi ne de merkez tanımlı`);
         lat = ilLat; lon = ilLon; zoomDeger = 11;
       }
-      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: zoomDeger, navHtml });
+      const html = ilceSayfasiUret({ ilce: ic, il, plajlar: icPlajlar, halkPlajlar: icHalkPlajlar, lat, lon, zoom: zoomDeger, navHtml, bolge: ilBolge });
       yazDosya(`${il.slug}/${ic.slug}/index.html`, html);
     }
   }

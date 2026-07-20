@@ -1056,6 +1056,29 @@
   }
   .nav-ilce-liste a:hover { background: rgba(20,33,61,0.06); color: var(--text-primary); }
   .nav-ilce-liste a:first-child { font-weight: 600; color: var(--text-primary); }
+  /* Bölgesel kimlik — her ilin baskın denizine göre ince bir vurgu (bkz. tools/generate-pages.js
+     IL_BOLGE_HARITASI, tools/sayfa-sablonu.js bolgeRozetiHtml). Marka renklerini (lacivert/altın)
+     DEĞİŞTİRMEZ, sadece il/ilçe sayfalarının başlığına ve küçük bir rozete ince bir ton katar —
+     kademe renkleri (çarşaf/iyi/orta/tehlikeli, bkz. .legend/.gb-btn) bundan tamamen bağımsız. */
+  .yer-bolge-rozet {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 9px;
+    border: 1px solid currentColor;
+  }
+  [data-bolge="karadeniz"] .yer-giris h2 { color: #1F6E5C; }
+  [data-bolge="karadeniz"] .yer-bolge-rozet { color: #1F6E5C; background: rgba(31,110,92,0.08); }
+  [data-bolge="marmara"] .yer-giris h2 { color: #3B4A7A; }
+  [data-bolge="marmara"] .yer-bolge-rozet { color: #3B4A7A; background: rgba(59,74,122,0.08); }
+  [data-bolge="ege"] .yer-giris h2 { color: #0E7C86; }
+  [data-bolge="ege"] .yer-bolge-rozet { color: #0E7C86; background: rgba(14,124,134,0.08); }
+  [data-bolge="akdeniz"] .yer-giris h2 { color: #B5592E; }
+  [data-bolge="akdeniz"] .yer-bolge-rozet { color: #B5592E; background: rgba(181,89,46,0.08); }
   .yer-plajlar { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .yer-plajlar h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
   .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; }
