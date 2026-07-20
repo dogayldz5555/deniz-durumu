@@ -42,6 +42,8 @@ function navHtmlUret(yerler) {
   <a href="#site-yorumlar-bolum" class="nav-kart-link" data-i18n="nav_yorumlar">Yorumlar</a>
   <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
   <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği</a>
+  <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
+  <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
   <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
 </nav>`;
 }
@@ -367,6 +369,8 @@ ${sayfaKonumJs}<script>
       <h4 data-i18n="footer_destek">Destek</h4>
       <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
       <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği Rehberi</a>
+      <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
+      <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
   </div>
@@ -446,6 +450,7 @@ function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navH
 
   const altSectionHtml = `${plajListesiHtml(plajlar, halkPlajlar)}
   ${ilceSectionHtml}
+  ${miniSssHtml(il.miniSss)}
   <p class="yer-donus"><a href="/" data-i18n="yer_donus_il">← Türkiye geneli deniz durumuna dön</a></p>`;
 
   const canonicalUrl = `https://www.seadatawave.com/${il.slug}/`;
@@ -554,6 +559,8 @@ ${jsonLd}
       <h4>Destek</h4>
       <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
+      <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
+      <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -650,6 +657,8 @@ function hakkimizdaSayfasiUret({ navHtml }) {
       <h4>Destek</h4>
       <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
+      <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
+      <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -760,6 +769,8 @@ function denizGuvenligiSayfasiUret({ navHtml }) {
       <h4>Destek</h4>
       <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
+      <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
+      <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -770,4 +781,161 @@ function denizGuvenligiSayfasiUret({ navHtml }) {
 `;
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, navHtmlUret, escapeHtml };
+// Ortak, statik (js/app.js'siz, TR-only) sayfa iskeleti — SSS/Hakkımızda/Deniz Güvenliği ile
+// aynı kalıp, sadece başlık/meta/içerik/canonical parametreleri değişiyor. Uzun-format
+// editoryal makaleler (Mavi Bayrak, veri okuma rehberi vb.) bunu kullanıyor.
+function statikMakaleSayfasiUret({ slug, title, metaAciklama, jsonLd, gorunenBaslik, icerikHtml, navHtml }) {
+  const canonicalUrl = `https://www.seadatawave.com/${slug}/`;
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(metaAciklama)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeaDataWave" />
+<meta property="og:url" content="${canonicalUrl}" />
+<link rel="canonical" href="${canonicalUrl}" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/app.css" />
+<script type="application/ld+json">
+${jsonLd}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+    <div class="brand-yazi">
+      <h1>SeaDataWave</h1>
+      <p class="brand-alt">Anlık Deniz Verileri</p>
+    </div>
+  </div>
+  <!-- NAV:START -->
+  ${navHtml}
+  <!-- NAV:END -->
+</header>
+<div id="app-wrap">
+<div id="app">
+  <div class="sss-bolum" style="margin-top:8px;border-top:none;padding-top:0;">
+    <h2 style="font-size:20px;">${escapeHtml(gorunenBaslik)}</h2>
+    ${icerikHtml}
+  </div>
+  <p class="yer-donus"><a href="/">← Ana sayfaya dön</a></p>
+</div>
+</div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/icon.png" alt="SeaDataWave logosu" />
+        <div class="brand-yazi"><h1>SeaDataWave</h1><p class="brand-alt">Anlık Deniz Verileri</p></div>
+      </div>
+    </div>
+    <div>
+      <h4>Keşfet</h4>
+      <a href="/samsun/">Samsun</a>
+      <a href="/izmir/">İzmir</a>
+      <a href="/mugla/">Muğla</a>
+      <a href="/aydin/">Aydın</a>
+      <a href="/antalya/">Antalya</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
+      <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
+      <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
+    </div>
+  </div>
+  <div class="footer-alt">© 2026 SeaDataWave</div>
+</footer>
+</body>
+</html>
+`;
+}
+
+function maviBayrakSayfasiUret({ navHtml }) {
+  const title = "Mavi Bayrak Nedir? Kriterleri ve Türkiye'deki Uygulaması — SeaDataWave";
+  const metaAciklama = "Mavi Bayrak sertifikası ne anlama gelir, TÜRÇEV hangi kriterlere bakar, su kalitesi nasıl kontrol edilir? SeaDataWave'in plaj rozetlerini nasıl kullandığı dahil, doğrulanmış bilgilerle.";
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/mavi-bayrak-nedir/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Mavi Bayrak nedir?</h3>
+      <p>Mavi Bayrak, belirli çevresel ve güvenlik standartlarını karşılayan plaj ve marinalara verilen uluslararası bir eko-etiket. Kalıcı bir ödül değil — her sezon için yeniden değerlendirilir, yani bir plaj bir yıl Mavi Bayraklı olup ertesi yıl kriterleri karşılayamazsa bayrağını kaybedebilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Türkiye'de bu süreci kim yürütüyor?</h3>
+      <p>Türkiye'de Mavi Bayrak çalışmaları 1993'ten beri TÜRÇEV (Türkiye Çevre Eğitim Vakfı) tarafından yürütülüyor — programın Türkiye'deki başlangıcıyla vakfın kuruluşu aynı yıla denk geliyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Hangi kriterlere bakılıyor?</h3>
+      <p>Kriterler dört ana başlıkta toplanıyor: Çevre Eğitimi ve Bilgilendirme, Yüzme Suyu Kalitesi, Çevre Yönetimi, ve Can Güvenliği ve Hizmetler. Bu kriterlerin bir kısmı zorunlu (bayrağı almak için mutlaka karşılanması gerekiyor), bir kısmı ise tavsiye niteliğinde.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Su kalitesi nasıl kontrol ediliyor?</h3>
+      <p>Yüzme sezonu boyunca yaklaşık 15 günde bir su örnekleri alınıyor ve mikrobiyolojik analiz yapılıyor. Sonuçlar, Türkiye'nin Yüzme Suyu Kalitesi Yönetmeliği ve Avrupa Birliği Yüzme Suyu Direktifi çerçevesinde değerlendirilerek plajın su kalitesi sınıflandırılıyor. Bu analiz sonuçlarının plajda kullanıcılara açık şekilde sergilenmesi de kriterlerden biri.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Mavi Bayrağı olmayan bir plaj güvenli değil mi?</h3>
+      <p>Hayır, bu doğru bir çıkarım olmaz. Sertifika eksikliği çoğu zaman suyun kirli olduğu anlamına gelmiyor — plajın başvuru/denetim sürecine hiç dahil olmadığını gösteriyor olabilir. Bu yüzden SeaDataWave'de Mavi Bayraklı plajları ayrı, halka açık ama sertifikasız gerçek plajları da ayrı ve dürüst bir başlık altında listeliyoruz; hiçbir zaman sertifikasız bir plaj için "Mavi Bayraklı" iddiasında bulunmuyoruz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>SeaDataWave'de bu bilgiyi nasıl kullanıyoruz?</h3>
+      <p>Her il/ilçe sayfasında, TÜRÇEV'in resmi ve güncel listesine dayanan plajları "Mavi Bayraklı Plajlar" başlığı altında ayrı listeliyoruz. Haritada bir Mavi Bayraklı plaja yakın bir noktaya tıkladığında da bu bilgi, deniz durumu kartının altında rozet olarak görünür.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>Mavi Bayrak programının güncel ve resmi kriterleri için TÜRÇEV'in kendi sitesine bakabilirsin. SeaDataWave'in veri kaynağı ve kademe sistemi hakkında daha fazlası için <a href="/ruzgar-dalga-verisi-rehberi/">Rüzgar ve Dalga Verisi Rehberi</a>'mize, denize girmeden önce bilmen gerekenler için <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>'mize bakabilirsin.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "mavi-bayrak-nedir", title, metaAciklama, jsonLd, gorunenBaslik: "Mavi Bayrak Nedir? Kriterleri ve Türkiye'deki Uygulaması", icerikHtml, navHtml });
+}
+
+function veriRehberiSayfasiUret({ navHtml }) {
+  const title = "Rüzgar ve Dalga Verisi Nasıl Okunur? — SeaDataWave";
+  const metaAciklama = "SeaDataWave'deki rüzgar hızı, dalga yüksekliği/periyodu ve kademe renkleri ne anlama gelir? Verinin nereden geldiği ve kıyı şekline göre nasıl yorumlandığı hakkında rehber.";
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/ruzgar-dalga-verisi-rehberi/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Veri nereden geliyor?</h3>
+      <p>Rüzgar ve dalga tahminlerini Open-Meteo'nun ücretsiz, açık hava ve deniz tahmin API'lerinden alıyoruz. Bu bir tahmindir — sahil şeridine yerleştirilmiş bir ölçüm cihazının anlık okuması değil, meteorolojik modellerin ürettiği bir öngörü. Bu yüzden site üzerinde her zaman "sahadan gelenler" bölümüyle birlikte gösterilir; ikisi bazen uyuşmayabilir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Rüzgar hızı ne anlama gelir?</h3>
+      <p>Rüzgar hızını km/saat cinsinden gösteriyoruz. Genel bir referans olarak: 0-15 km/s hafif esinti sayılır, 15-30 km/s orta şiddette bir rüzgardır ve dalgayı belirgin şekilde etkilemeye başlar, 30 km/s üzerinde kuvvetli rüzgar sayılır ve çoğu kıyıda dalgayı hızla büyütür.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Dalga yüksekliği ve periyodu ne anlama gelir?</h3>
+      <p>Dalga yüksekliği, dalganın tepe noktasıyla çukur noktası arasındaki mesafedir (metre cinsinden). Periyot ise iki dalga tepesi arasında geçen süredir (saniye). Aynı yükseklikteki iki dalga çok farklı hissedilebilir: kısa periyotlu bir dalga (genelde yerel rüzgarın ürettiği "rüzgar dalgası") daha dik ve arka arkaya gelen bir etki yaratırken, uzun periyotlu bir dalga (uzaktaki bir fırtınadan gelen "swell") daha yumuşak ve düzenli hissettirir.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>"Fetch" nedir, neden önemli?</h3>
+      <p>Fetch, rüzgarın su üzerinde kesintisiz estiği mesafedir. Aynı rüzgar hızı, açık bir denizde uzun mesafe boyunca estiğinde çok daha büyük dalga üretirken, korunaklı bir körfez veya koyda çok daha küçük dalga üretir — çünkü rüzgarın suya enerji aktarabileceği mesafe kısıtlıdır. Bu yüzden SeaDataWave, sadece ham rüzgar tahminine değil, tıkladığın noktanın kıyı şekline (açık deniz mi, korunaklı bir koy mu, bir liman mı) göre ince ayar yapılmış bir hesaba bakar.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Kademe renkleri (çarşaf/iyi/orta/tehlikeli) nasıl belirleniyor?</h3>
+      <p>Her kademe, dalga yüksekliği ve rüzgar hızı için belirlenmiş eşik değerlere dayanır. Bu eşikler bölgeye göre de değişir — örneğin açık ve derin bir Karadeniz'de "orta" sayılan bir dalga yüksekliği, daha korunaklı bir Ege koyunda "tehlikeli" sayılan bir eşiğe denk gelebilir, çünkü aynı kıyı orada normalde çok daha sakin bir denize alışkındır.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Tahmin ile sahadan gelen yorumlar neden bazen uyuşmuyor?</h3>
+      <p>Tahmin, modellerin bir olasılık hesabıdır; sahadan gelen bildirimler ise o an sahilde olan gerçek kullanıcıların doğrudan gözlemidir. Deniz hızlı değişebileceği için ikisi arasında fark olabilir — bu yüzden gitmeden hemen önce ikisine birden bakmanı öneririz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>Mavi Bayrak rozetlerinin ne anlama geldiği için <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a> sayfamıza, denize girmeden önce bilmen gerekenler için <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>'mize bakabilirsin.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "ruzgar-dalga-verisi-rehberi", title, metaAciklama, jsonLd, gorunenBaslik: "Rüzgar ve Dalga Verisi Nasıl Okunur?", icerikHtml, navHtml });
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, navHtmlUret, escapeHtml };

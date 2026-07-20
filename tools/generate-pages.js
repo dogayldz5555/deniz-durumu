@@ -5,7 +5,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, navHtmlUret } = require("./sayfa-sablonu");
+const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, navHtmlUret } = require("./sayfa-sablonu");
 
 const KOK = path.join(__dirname, "..");
 
@@ -84,6 +84,8 @@ function sitemapUret(ilListesi) {
     { loc: "https://www.seadatawave.com/sss/", priority: "0.5" },
     { loc: "https://www.seadatawave.com/hakkimizda/", priority: "0.5" },
     { loc: "https://www.seadatawave.com/deniz-guvenligi-rehberi/", priority: "0.5" },
+    { loc: "https://www.seadatawave.com/mavi-bayrak-nedir/", priority: "0.5" },
+    { loc: "https://www.seadatawave.com/ruzgar-dalga-verisi-rehberi/", priority: "0.5" },
   ];
   for (const il of ilListesi) {
     urls.push({ loc: `https://www.seadatawave.com/${il.slug}/`, priority: "0.8" });
@@ -180,6 +182,14 @@ function main() {
 
   if (!filtre || filtre.has("deniz-guvenligi-rehberi")) {
     yazDosya("deniz-guvenligi-rehberi/index.html", denizGuvenligiSayfasiUret({ navHtml }));
+  }
+
+  if (!filtre || filtre.has("mavi-bayrak-nedir")) {
+    yazDosya("mavi-bayrak-nedir/index.html", maviBayrakSayfasiUret({ navHtml }));
+  }
+
+  if (!filtre || filtre.has("ruzgar-dalga-verisi-rehberi")) {
+    yazDosya("ruzgar-dalga-verisi-rehberi/index.html", veriRehberiSayfasiUret({ navHtml }));
   }
 
   // Nav ve sitemap her zaman TÜM il/ilçe listesine göre güncellenir (filtreden bağımsız),

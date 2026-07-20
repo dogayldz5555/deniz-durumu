@@ -19,7 +19,21 @@
       ],
       "baslikEn": "Samsun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Samsun today? Live wind, wave conditions and 7-day forecast for the Samsun coast, especially Atakum and Terme.",
-      "girisMetniEn": "Samsun is one of Turkey's largest Black Sea cities — most of its coastline, beaches and promenade are concentrated in Atakum, the everyday center of the city's coastal life. Heading west toward Yakakent and Alaçam, or east toward Terme and Çarşamba, the coast turns calmer and greener, with more sheltered coves shaped by river deltas."
+      "girisMetniEn": "Samsun is one of Turkey's largest Black Sea cities — most of its coastline, beaches and promenade are concentrated in Atakum, the everyday center of the city's coastal life. Heading west toward Yakakent and Alaçam, or east toward Terme and Çarşamba, the coast turns calmer and greener, with more sheltered coves shaped by river deltas.",
+      "miniSss": [
+        {
+          "soru": "Samsun'da kıyının en yoğun kesimi neresi?",
+          "cevap": "Sahil şeridinin büyük kısmı, plajları ve gezinti yoluyla şehrin gündelik yaşamının merkezi olan Atakum ilçesinde toplanır.",
+          "soruEn": "Where is Samsun's busiest stretch of coast?",
+          "cevapEn": "Most of the coastline, with its beaches and promenade, is concentrated in Atakum district, the center of the city's daily life."
+        },
+        {
+          "soru": "Samsun'da rüzgar yönü dalgayı nasıl etkiler?",
+          "cevap": "Kuzeyden esen rüzgar açık denizden geldiği için dalgayı hızla yükseltebilirken, güneyden (karadan) esen rüzgarda deniz genelde daha sakin kalır.",
+          "soruEn": "How does wind direction affect waves in Samsun?",
+          "cevapEn": "Wind from the north comes off the open sea and can build waves quickly, while wind from the south (off land) generally keeps the sea calmer."
+        }
+      ]
     },
     {
       "slug": "antalya",
@@ -43,7 +57,21 @@
       ],
       "baslikEn": "Antalya Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Antalya today? Live wind, wave conditions and 7-day forecast for the public Blue Flag beaches along Alanya, Kemer, Kaş, Side and the whole Antalya coast.",
-      "girisMetniEn": "Antalya has Turkey's longest and busiest tourism stretch on the Mediterranean coast — starting at Gazipaşa in the east, running through Alanya, Manavgat, Serik, central Antalya (Muratpaşa/Konyaaltı), Kemer, Kumluca, Demre and reaching Kaş in the west. This span also diversifies the coast's character: long, gently-sloping beaches dominate the eastern stretch (Alanya-Side), while further west (from Kemer onward) the Taurus Mountains meet the sea and the coast turns rockier, with more coves. The Mediterranean is generally known for longer-period, gentler waves than the Black Sea, but wind can pick up on summer afternoons in the western stretch too."
+      "girisMetniEn": "Antalya has Turkey's longest and busiest tourism stretch on the Mediterranean coast — starting at Gazipaşa in the east, running through Alanya, Manavgat, Serik, central Antalya (Muratpaşa/Konyaaltı), Kemer, Kumluca, Demre and reaching Kaş in the west. This span also diversifies the coast's character: long, gently-sloping beaches dominate the eastern stretch (Alanya-Side), while further west (from Kemer onward) the Taurus Mountains meet the sea and the coast turns rockier, with more coves. The Mediterranean is generally known for longer-period, gentler waves than the Black Sea, but wind can pick up on summer afternoons in the western stretch too.",
+      "miniSss": [
+        {
+          "soru": "Antalya'nın doğusu ile batısı arasında ne fark var?",
+          "cevap": "Doğu kesiminde (Alanya-Side) uzun kumsallar ve sığ girişler öne çıkarken, batıya gidildikçe (Kemer'den itibaren) Toros Dağları denize iner ve kıyı daha kayalık, koylu bir yapıya bürünür.",
+          "soruEn": "What's the difference between eastern and western Antalya?",
+          "cevapEn": "The east (Alanya-Side) has long beaches and shallow entries, while further west (from Kemer onward) the Taurus Mountains drop to the sea and the coast becomes rockier and cove-like."
+        },
+        {
+          "soru": "Antalya'da dalga Karadeniz'e göre nasıl?",
+          "cevap": "Akdeniz'in genel olarak Karadeniz'e göre daha uzun periyotlu ve yumuşak dalga ürettiği bilinir, ama yaz öğleden sonraları batı kesiminde rüzgar belirginleşebilir.",
+          "soruEn": "How do Antalya's waves compare to the Black Sea?",
+          "cevapEn": "The Mediterranean generally produces longer-period, gentler waves than the Black Sea, though wind can pick up in the western part on summer afternoons."
+        }
+      ]
     },
     {
       "slug": "mugla",
@@ -65,7 +93,21 @@
       ],
       "baslikEn": "Muğla Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Muğla today? Live wind, wave conditions and 7-day forecast for Bodrum, Marmaris, Fethiye and Akyaka.",
-      "girisMetniEn": "Muğla sits where the Aegean meets the Mediterranean, giving it one of Turkey's most indented coastlines — so the coastal character can change dramatically within a short distance, even within the same province. The Bodrum peninsula's north and south shores have different wind patterns (Gündoğan/Göltürkbükü in the north and Bitez/Ortakent in the south can look very different on the same day), the bays around Marmaris (İçmeler, Orhaniye) are largely sheltered from wind, Akyaka in Ula district is known for its strong afternoon wind (İmbat) at the tip of the Gulf of Gökova, while Fethiye is usually one of the calmest stretches thanks to Ölüdeniz's enclosed lagoon."
+      "girisMetniEn": "Muğla sits where the Aegean meets the Mediterranean, giving it one of Turkey's most indented coastlines — so the coastal character can change dramatically within a short distance, even within the same province. The Bodrum peninsula's north and south shores have different wind patterns (Gündoğan/Göltürkbükü in the north and Bitez/Ortakent in the south can look very different on the same day), the bays around Marmaris (İçmeler, Orhaniye) are largely sheltered from wind, Akyaka in Ula district is known for its strong afternoon wind (İmbat) at the tip of the Gulf of Gökova, while Fethiye is usually one of the calmest stretches thanks to Ölüdeniz's enclosed lagoon.",
+      "miniSss": [
+        {
+          "soru": "Muğla'da neden aynı ilde bu kadar farklı deniz durumu görülür?",
+          "cevap": "Ege ile Akdeniz'in kesiştiği noktada, Türkiye'nin en girintili çıkıntılı kıyı şeridine sahip illerinden biri olduğu için kıyı karakteri kısa mesafelerde çok değişir.",
+          "soruEn": "Why does Muğla see such different sea conditions within one province?",
+          "cevapEn": "Sitting where the Aegean meets the Mediterranean, it has one of Turkey's most indented coastlines, so coastal character changes a lot over short distances."
+        },
+        {
+          "soru": "Akyaka'nın rüzgarı neyle bilinir?",
+          "cevap": "Ula'daki Akyaka, Gökova Körfezi'nin ucunda güçlü öğleden sonra rüzgarıyla (İmbat) tanınır.",
+          "soruEn": "What is Akyaka's wind known for?",
+          "cevapEn": "Akyaka, in Ula district at the tip of the Gulf of Gökova, is known for its strong afternoon wind (the İmbat)."
+        }
+      ]
     },
     {
       "slug": "izmir",
@@ -87,7 +129,21 @@
       ],
       "baslikEn": "İzmir Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İzmir today? Live wind, wave conditions and 7-day forecast for Çeşme, Foça, Urla, Seferihisar and the whole İzmir coast.",
-      "girisMetniEn": "İzmir's coastline starts at the relatively calm coves of Dikili and Foça in the north, runs through Karaburun peninsula's wind-exposed rocky headlands, into the Aegean coves of Urla, Güzelbahçe and Seferihisar, and reaches Menderes and Çeşme in the south. Wind is this coast's defining feature: the afternoon breeze (İmbat) that picks up especially in summer can raise waves quickly around Çeşme's Alaçatı area and Karaburun — so thresholds here are set a bit more cautiously than in some calmer Aegean coves. Mornings are generally calmer along this whole stretch."
+      "girisMetniEn": "İzmir's coastline starts at the relatively calm coves of Dikili and Foça in the north, runs through Karaburun peninsula's wind-exposed rocky headlands, into the Aegean coves of Urla, Güzelbahçe and Seferihisar, and reaches Menderes and Çeşme in the south. Wind is this coast's defining feature: the afternoon breeze (İmbat) that picks up especially in summer can raise waves quickly around Çeşme's Alaçatı area and Karaburun — so thresholds here are set a bit more cautiously than in some calmer Aegean coves. Mornings are generally calmer along this whole stretch.",
+      "miniSss": [
+        {
+          "soru": "İzmir kıyısında en belirgin özellik nedir?",
+          "cevap": "Rüzgardır — özellikle yaz aylarında öğleden sonra hızlanan meltem (imbat), Çeşme'nin Alaçatı kesiminde ve Karaburun'da dalgayı hızla yükseltebilir.",
+          "soruEn": "What is İzmir's coast most defined by?",
+          "cevapEn": "Wind — especially the afternoon breeze (imbat) that picks up in summer, which can build waves quickly around Alaçatı (Çeşme) and Karaburun."
+        },
+        {
+          "soru": "İzmir'de denize girmek için günün hangi saati daha uygun?",
+          "cevap": "Sabah saatleri genelde bütün kıyı boyunca daha sakin geçer, öğleden sonra rüzgar belirginleşir.",
+          "soruEn": "What time of day is best for swimming in İzmir?",
+          "cevapEn": "Mornings are generally calmer along the whole coast; the wind picks up in the afternoon."
+        }
+      ]
     },
     {
       "slug": "aydin",
@@ -101,7 +157,21 @@
       ],
       "baslikEn": "Aydın Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Aydın today? Live wind, wave conditions and 7-day forecast for Kuşadası and Didim.",
-      "girisMetniEn": "Aydın's coastline is concentrated in the southwest of the province, in Kuşadası and Didim districts — both popular Aegean holiday towns. Kuşadası is known for its cruise port and closeness to the Gulf of İzmir; Didim for the Altınkum beach right next to the Temple of Apollo. The region follows the Aegean's typical summer wind pattern (calm mornings, breeze picking up in the afternoon)."
+      "girisMetniEn": "Aydın's coastline is concentrated in the southwest of the province, in Kuşadası and Didim districts — both popular Aegean holiday towns. Kuşadası is known for its cruise port and closeness to the Gulf of İzmir; Didim for the Altınkum beach right next to the Temple of Apollo. The region follows the Aegean's typical summer wind pattern (calm mornings, breeze picking up in the afternoon).",
+      "miniSss": [
+        {
+          "soru": "Aydın'ın kıyı ilçeleri hangileri?",
+          "cevap": "Kuşadası ve Didim — ikisi de Ege'nin popüler tatil merkezlerinden.",
+          "soruEn": "What are Aydın's coastal districts?",
+          "cevapEn": "Kuşadası and Didim — both popular Aegean holiday destinations."
+        },
+        {
+          "soru": "Didim neyle bilinir?",
+          "cevap": "Apollon Tapınağı'nın hemen yanı başındaki Altınkum sahiliyle bilinir.",
+          "soruEn": "What is Didim known for?",
+          "cevapEn": "Altınkum beach, right next to the Temple of Apollo."
+        }
+      ]
     },
     {
       "slug": "istanbul",
@@ -128,14 +198,28 @@
       ],
       "baslikEn": "İstanbul Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in İstanbul today? Live wind, wave conditions and 7-day forecast for Şile, Silivri and Büyükçekmece.",
-      "girisMetniEn": "İstanbul is the only Turkish province with coastline on both the Black Sea and the Sea of Marmara — Şile's open Black Sea beaches lie north of the Bosphorus, while Silivri and Büyükçekmece have calmer Marmara shores to the west. The two seas behave differently: the Black Sea side (Şile) can be more open and choppy, while the Marmara side is generally more sheltered."
+      "girisMetniEn": "İstanbul is the only Turkish province with coastline on both the Black Sea and the Sea of Marmara — Şile's open Black Sea beaches lie north of the Bosphorus, while Silivri and Büyükçekmece have calmer Marmara shores to the west. The two seas behave differently: the Black Sea side (Şile) can be more open and choppy, while the Marmara side is generally more sheltered.",
+      "miniSss": [
+        {
+          "soru": "İstanbul'un iki denizi arasında ne fark var?",
+          "cevap": "Karadeniz tarafı (Şile) daha açık ve dalgalı olabilirken, Marmara tarafı (Silivri, Büyükçekmece) genelde daha korunaklıdır.",
+          "soruEn": "What's the difference between İstanbul's two seas?",
+          "cevapEn": "The Black Sea side (Şile) can be more open and rough, while the Marmara side (Silivri, Büyükçekmece) is generally more sheltered."
+        },
+        {
+          "soru": "İstanbul neden iki denize kıyısı olan tek il?",
+          "cevap": "Boğaz'ın kuzeyinde Karadeniz'e, batıda ise Marmara Denizi'ne kıyısı olduğu için Türkiye'nin iki denize birden kıyısı olan tek ili.",
+          "soruEn": "Why is İstanbul the only province on two seas?",
+          "cevapEn": "It has coastline on the Black Sea north of the Bosphorus and on the Sea of Marmara to the west — Turkey's only province touching both."
+        }
+      ]
     },
     {
       "slug": "kocaeli",
       "ad": "Kocaeli",
       "baslik": "Kocaeli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Kocaeli'de deniz bugün nasıl? Kandıra (Kefken), Karamürsel ve Gölcük için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Kocaeli'nin kıyısı iki farklı denize bakar — kuzeyde Kandıra ilçesinin Kefken sahili Karadeniz'e açılırken, güneyde İzmit Körfezi boyunca sıralanan Karamürsel ve Gölcük ise Marmara Denizi'nin sakin, körfez içi sularına kıyıdır.",
+      "girisMetni": "Kocaeli, İstanbul'un hemen doğusunda, ağır sanayisiyle bilinen ama kıyısında hâlâ gerçek plajlar barındıran bir il. Kuzeyde Kandıra ilçesine bağlı Kefken, İstanbullular için en bilinen hafta sonu kaçamaklarından biri — hem plajı hem de küçük adasıyla. Güneyde ise İzmit Körfezi boyunca sıralanan Gölcük, Karamürsel ve Başiskele, körfezin koruduğu sakin sulara kıyı liman kasabaları; Gölcük aynı zamanda Türkiye'nin en büyük deniz üslerinden birine ev sahipliği yapar. İki kıyı da birbirinden oldukça farklı karakterde: Kandıra'nın açık Karadeniz'i dalgalı olabilirken, körfez içi neredeyse her zaman sakindir.",
       "merkez": {
         "lat": 40.85,
         "lon": 29.9,
@@ -151,14 +235,28 @@
       ],
       "baslikEn": "Kocaeli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kocaeli today? Live wind, wave conditions and 7-day forecast for Kandıra (Kefken), Karamürsel and Gölcük.",
-      "girisMetniEn": "Kocaeli's coastline faces two different seas — Kandıra district opens onto the Black Sea in the north, while Karamürsel and Gölcük, further south along the Gulf of İzmit, face the calmer waters of the Sea of Marmara."
+      "girisMetniEn": "Kocaeli sits just east of İstanbul, known for heavy industry but still home to real beaches along its coast. In the north, Kefken (part of Kandıra district) is one of İstanbullites' favorite weekend escapes, with its beach and small island. To the south, Gölcük, Karamürsel and Başiskele line the Gulf of İzmit — sheltered harbor towns on calm gulf waters; Gölcük is also home to one of Turkey's largest naval bases. The two coasts have quite different characters: Kandıra's open Black Sea shore can get rough, while the gulf's interior is almost always calm.",
+      "miniSss": [
+        {
+          "soru": "Kocaeli'de en bilinen plaj neresi?",
+          "cevap": "İstanbullular için hafta sonu kaçamağı olarak bilinen Kefken, Kandıra ilçesine bağlı — hem plajı hem küçük adasıyla ünlü.",
+          "soruEn": "What is Kocaeli's best-known beach?",
+          "cevapEn": "Kefken, part of Kandıra district, is a well-known İstanbul weekend escape — famous for its beach and small island."
+        },
+        {
+          "soru": "Kocaeli'nin iki kıyısı neden farklı?",
+          "cevap": "Kuzeydeki Kandıra açık Karadeniz'e bakarken, güneydeki Gölcük ve Karamürsel İzmit Körfezi'nin korunaklı sularına kıyı — bu yüzden deniz durumu iki bölgede oldukça farklı olabilir.",
+          "soruEn": "Why are Kocaeli's two coasts different?",
+          "cevapEn": "Northern Kandıra faces the open Black Sea, while southern Gölcük and Karamürsel sit on the sheltered waters of the Gulf of İzmit — so sea conditions can differ quite a bit between the two."
+        }
+      ]
     },
     {
       "slug": "sakarya",
       "ad": "Sakarya",
       "baslik": "Sakarya Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Sakarya'da deniz bugün nasıl? Karasu ve Kaynarca için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Sakarya'nın Karadeniz kıyısı, Karasu ve Kaynarca ilçelerinde toplanır — Sakarya Nehri'nin denize döküldüğü bölgeye yakın, uzun kumsallarıyla bilinen bir kesim. Karadeniz'in açık yapısı nedeniyle kuzeyden esen rüzgarda dalga hızla yükselebilir.",
+      "girisMetni": "Sakarya'nın Karadeniz kıyısı iki ilçede toplanır: Sakarya Nehri'nin denize kavuştuğu noktaya yakın Karasu, uzun ve düz kumsallarıyla bölgenin en bilinen tatil noktası; batıdaki Kaynarca ise çok daha sakin ve az kalabalık kalmayı sürdürüyor. Nehir deltasının etkisiyle kıyı boyunca zaman zaman bulanık, besin bakımından zengin sular görülebilir — bu da bölgeyi balıkçılık açısından değerli kılıyor. Karadeniz'in açık yapısı burada da geçerli: kuzeyden esen rüzgarda dalga hızla yükselebilir.",
       "merkez": {
         "lat": 41.15,
         "lon": 30.75,
@@ -171,14 +269,28 @@
       ],
       "baslikEn": "Sakarya Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Sakarya today? Live wind, wave conditions and 7-day forecast for Karasu and Kaynarca.",
-      "girisMetniEn": "Sakarya's Black Sea coastline is concentrated in Karasu and Kaynarca districts — close to where the Sakarya River reaches the sea, known for long beaches."
+      "girisMetniEn": "Sakarya's Black Sea coast is concentrated in two districts: Karasu, close to where the Sakarya River meets the sea, known for its long flat beaches and the area's most popular holiday spot; and quieter Kaynarca to the west, which has stayed far less crowded. The river delta means the water along this stretch can sometimes look cloudy and nutrient-rich, which also makes it valuable for fishing. The Black Sea's open exposure applies here too — wind from the north can build waves quickly.",
+      "miniSss": [
+        {
+          "soru": "Sakarya'da en popüler tatil noktası neresi?",
+          "cevap": "Sakarya Nehri'nin denize kavuştuğu noktaya yakın Karasu, uzun ve düz kumsallarıyla bölgenin en bilinen tatil noktası.",
+          "soruEn": "What is Sakarya's most popular holiday spot?",
+          "cevapEn": "Karasu, close to where the Sakarya River meets the sea, known for its long flat beaches."
+        },
+        {
+          "soru": "Sakarya kıyısında su neden bazen bulanık görünür?",
+          "cevap": "Sakarya Nehri'nin deltasının etkisiyle kıyı boyunca zaman zaman bulanık, besin bakımından zengin sular görülebilir.",
+          "soruEn": "Why does the water sometimes look cloudy on Sakarya's coast?",
+          "cevapEn": "The Sakarya River delta means the water along this stretch can sometimes look cloudy and nutrient-rich."
+        }
+      ]
     },
     {
       "slug": "duzce",
       "ad": "Düzce",
       "baslik": "Düzce Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Düzce Akçakoca'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Düzce'nin tek kıyı ilçesi Akçakoca — Karadeniz'e açık, ormanlık tepelerin denize indiği bir sahil şeridine sahip, sakin bir tatil beldesi.",
+      "girisMetni": "Düzce'nin denize kıyısı tek bir ilçede toplanır: Akçakoca. Şehrin gündelik hayatı asıl olarak fındık tarımı ve ormanlık yaylalar etrafında şekillense de, Akçakoca'nın kıyı şeridi hem yerel halkın hem de yakın illerden gelen ziyaretçilerin tercih ettiği sakin bir tatil güzergahı. Adını taşıyan tarihi Ceneviz Kalesi kalıntıları, kıyı boyunca yürüyüş yaparken karşına çıkabilecek noktalardan biri. Karadeniz'in genel karakterine uygun olarak, deniz burada da rüzgara duyarlı ve hızlı değişebilir.",
       "merkez": {
         "lat": 41.085,
         "lon": 31.1181,
@@ -189,14 +301,28 @@
       ],
       "baslikEn": "Düzce Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Düzce's Akçakoca today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Düzce's only coastal district is Akçakoca — on the Black Sea, known for its forested hills reaching down to the shore, a quiet holiday town."
+      "girisMetniEn": "Düzce's entire coastline is concentrated in a single district: Akçakoca. While the province's everyday life mostly revolves around hazelnut farming and forested highlands, Akçakoca's shore is a quiet holiday route favored by both locals and visitors from nearby provinces. The historic Genoese castle ruins along the coast are one of the landmarks you might come across on a coastal walk. True to the Black Sea's general character, the sea here is also sensitive to wind and can change quickly.",
+      "miniSss": [
+        {
+          "soru": "Düzce'nin denize kıyısı olan tek ilçesi hangisi?",
+          "cevap": "Akçakoca — Düzce'nin fındık tarımı ve ormanlık yaylalarla bilinen kimliğinin yanında, sakin bir kıyı tatil güzergahı sunuyor.",
+          "soruEn": "Which is Düzce's only coastal district?",
+          "cevapEn": "Akçakoca — alongside Düzce's identity built on hazelnut farming and forested highlands, it offers a quiet coastal holiday route."
+        },
+        {
+          "soru": "Akçakoca'da tarihi bir yer var mı?",
+          "cevap": "Evet, adını taşıyan Ceneviz Kalesi kalıntıları kıyı boyunca yürüyüş sırasında görülebilir.",
+          "soruEn": "Is there a historic site in Akçakoca?",
+          "cevapEn": "Yes, the ruins of the Genoese castle that shares its name can be seen along the coastal walk."
+        }
+      ]
     },
     {
       "slug": "zonguldak",
       "ad": "Zonguldak",
       "baslik": "Zonguldak Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Zonguldak'ta deniz bugün nasıl? Zonguldak merkez ve Karadeniz Ereğli için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Zonguldak, Türkiye'nin kömür havzasıyla bilinen Batı Karadeniz ili — kıyısı hem Zonguldak merkezde hem de daha doğudaki Karadeniz Ereğli'de kayalık koylar ve limanlarla şekillenir. Karadeniz'in genel özelliği gereği kuzeyden esen rüzgar dalgayı hızla büyütebilir.",
+      "girisMetni": "Zonguldak, Türkiye'nin ilk ve en büyük taşkömürü havzasına ev sahipliği yapan bir Batı Karadeniz ili — yer altında yüzyıllık bir madencilik tarihi, yer üstünde ise kayalık koylar ve limanlarla şekillenen bir kıyı şeridi bir arada. Zonguldak merkez ve bitişiğindeki Kozlu'nun kıyısı liman işletmeciliğiyle iç içeyken, doğudaki Karadeniz Ereğli demir-çelik sanayisiyle (Erdemir) bilinir; batıdaki Çaycuma ise daha kırsal ve sakin kalır. Karadeniz'in genel özelliği gereği kuzeyden esen rüzgar dalgayı hızla büyütebilir.",
       "merkez": {
         "lat": 41.4,
         "lon": 31.6,
@@ -210,14 +336,28 @@
       ],
       "baslikEn": "Zonguldak Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Zonguldak today? Live wind, wave conditions and 7-day forecast for Zonguldak center and Karadeniz Ereğli.",
-      "girisMetniEn": "Zonguldak is a Western Black Sea province known for its coal-mining history — its coastline is shaped by rocky coves and harbors both in the city center and further east in Karadeniz Ereğli. Wind from the north on this open sea can raise waves quickly, as is typical of the Black Sea."
+      "girisMetniEn": "Zonguldak is home to Turkey's first and largest coal-mining basin — a century of underground mining history above a coastline shaped by rocky coves and harbors. The coast of Zonguldak center and neighboring Kozlu is intertwined with port operations, while Karadeniz Ereğli to the east is known for its iron and steel industry (Erdemir); Çaycuma to the west stays more rural and quiet. As with the rest of the Black Sea, wind from the north can build waves quickly here.",
+      "miniSss": [
+        {
+          "soru": "Zonguldak neyle bilinir?",
+          "cevap": "Türkiye'nin ilk ve en büyük taşkömürü havzasına ev sahipliği yapar — yüzyıllık bir madencilik tarihi kıyı boyunca kayalık koylar ve limanlarla birleşir.",
+          "soruEn": "What is Zonguldak known for?",
+          "cevapEn": "It's home to Turkey's first and largest coal-mining basin — a century of mining history alongside a coast of rocky coves and harbors."
+        },
+        {
+          "soru": "Zonguldak'ın hangi ilçesi sanayiyle bilinir?",
+          "cevap": "Karadeniz Ereğli, Erdemir'in demir-çelik tesisleriyle bilinir; Çaycuma ise daha kırsal ve sakin kalır.",
+          "soruEn": "Which Zonguldak district is known for industry?",
+          "cevapEn": "Karadeniz Ereğli is known for Erdemir's iron and steel plants; Çaycuma, by contrast, stays more rural and quiet."
+        }
+      ]
     },
     {
       "slug": "bartin",
       "ad": "Bartın",
       "baslik": "Bartın Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Bartın Amasra'da deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Bartın'ın en bilinen kıyı beldesi Amasra — tarihi kalesi ve iki küçük koyuyla (Büyük Liman/Küçük Liman) bilinen, Karadeniz'e açık şirin bir liman kasabası.",
+      "girisMetni": "Bartın'ın kıyı şeridi iki ilçede öne çıkar: tarihi ahşap Osmanlı evleriyle bilinen Bartın merkez, ve ondan biraz batıdaki Amasra — antik çağlardan kalma kalesi ve iki küçük koyuyla (Büyük Liman, Küçük Liman) Karadeniz'in en sevilen tatil kasabalarından biri. Bartın Nehri'nin denize döküldüğü nokta, iki kıyı kesimi arasında bir geçiş bölgesi oluşturuyor. Deniz burada da Karadeniz'in tipik karakterini taşır: sakin günler olsa da rüzgar hızla değişebilir.",
       "merkez": {
         "lat": 41.7502,
         "lon": 32.3919,
@@ -229,14 +369,28 @@
       ],
       "baslikEn": "Bartın Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bartın's Amasra today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Bartın's best-known coastal town is Amasra — a charming Black Sea harbor town known for its historic castle and two small coves (Büyük Liman/Küçük Liman)."
+      "girisMetniEn": "Bartın's coastline stands out in two districts: Bartın center, known for its historic wooden Ottoman houses, and Amasra a little to the west — one of the Black Sea's most beloved holiday towns, with its ancient castle and two small coves (Büyük Liman, Küçük Liman). The point where the Bartın River meets the sea forms a transition zone between the two coastal areas. The sea here carries the Black Sea's typical character: calm days are common, but the wind can shift quickly.",
+      "miniSss": [
+        {
+          "soru": "Bartın'da en çok bilinen kıyı kasabası hangisi?",
+          "cevap": "Amasra — antik kalesi ve iki küçük koyuyla (Büyük Liman, Küçük Liman) Karadeniz'in en sevilen tatil kasabalarından biri.",
+          "soruEn": "What is Bartın's best-known coastal town?",
+          "cevapEn": "Amasra — one of the Black Sea's most beloved holiday towns, known for its ancient castle and two small coves."
+        },
+        {
+          "soru": "Bartın merkez neyle tanınır?",
+          "cevap": "Tarihi ahşap Osmanlı evleriyle bilinir; Bartın Nehri'nin denize döküldüğü nokta burada Amasra'ya geçiş bölgesi oluşturur.",
+          "soruEn": "What is Bartın center known for?",
+          "cevapEn": "Its historic wooden Ottoman houses; the point where the Bartın River meets the sea forms a transition zone toward Amasra."
+        }
+      ]
     },
     {
       "slug": "kastamonu",
       "ad": "Kastamonu",
       "baslik": "Kastamonu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Kastamonu'da deniz bugün nasıl? Cide ve İnebolu için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Kastamonu'nun Karadeniz kıyısı, dağların denize dik indiği Cide ve İnebolu ilçelerinde toplanır — ikisi de el değmemiş plajları ve sakin kıyı kasabası havasıyla bilinir.",
+      "girisMetni": "Kastamonu'nun asıl kimliği dağlık iç kesimlerinde şekillense de, kuzeyde altı ilçesi (Cide, İnebolu, Abana, Bozkurt, Doğanyurt, Çatalzeytin) Karadeniz'e kıyıdır — dağların neredeyse dik denize indiği, el değmemiş koylarla dolu bir şerit. İnebolu, Kurtuluş Savaşı'nda cephane taşımacılığındaki rolüyle tarihe geçmiş bir liman kasabası; Cide ise Gideros Koyu gibi doğal güzellikleriyle daha yeni keşfediliyor. Bu kıyı şeridi, kalabalık turizm merkezlerinden uzak kalmayı büyük ölçüde koruyor.",
       "merkez": {
         "lat": 41.93,
         "lon": 33.5,
@@ -252,14 +406,28 @@
       ],
       "baslikEn": "Kastamonu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kastamonu today? Live wind, wave conditions and 7-day forecast for Cide and İnebolu.",
-      "girisMetniEn": "Kastamonu's Black Sea coastline is concentrated in Cide and İnebolu districts, where mountains drop steeply to the sea — both known for their unspoiled beaches and quiet harbor-town atmosphere."
+      "girisMetniEn": "While Kastamonu's core identity is shaped by its mountainous interior, six of its northern districts (Cide, İnebolu, Abana, Bozkurt, Doğanyurt, Çatalzeytin) have a Black Sea coastline — a stretch where mountains drop almost vertically into the sea, dotted with unspoiled coves. İnebolu made its way into history for its role transporting ammunition during the War of Independence; Cide, with natural gems like Gideros Bay, is only more recently being discovered by tourists. This coastline has largely stayed away from crowded tourist centers.",
+      "miniSss": [
+        {
+          "soru": "Kastamonu'nun kaç ilçesi denize kıyıdır?",
+          "cevap": "Altı ilçesi: Cide, İnebolu, Abana, Bozkurt, Doğanyurt ve Çatalzeytin — hepsi Karadeniz'e kıyı.",
+          "soruEn": "How many of Kastamonu's districts are coastal?",
+          "cevapEn": "Six: Cide, İnebolu, Abana, Bozkurt, Doğanyurt and Çatalzeytin — all on the Black Sea."
+        },
+        {
+          "soru": "İnebolu tarihte neyle biliniyor?",
+          "cevap": "Kurtuluş Savaşı sırasında cephane taşımacılığındaki rolüyle bilinen tarihi bir liman kasabası.",
+          "soruEn": "What is İnebolu known for historically?",
+          "cevapEn": "A historic harbor town known for its role transporting ammunition during Turkey's War of Independence."
+        }
+      ]
     },
     {
       "slug": "sinop",
       "ad": "Sinop",
       "baslik": "Sinop Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Sinop'ta deniz bugün nasıl? Sinop merkez, Gerze ve Ayancık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Sinop, Karadeniz'in en kuzeye çıkıntı yapan yarımadasında yer alır — bu coğrafi konum, ilin hem doğu hem batı yönlerine açık koylara sahip olmasını sağlar. Sinop merkez, Gerze ve Ayancık ilinin başlıca kıyı ilçeleridir.",
+      "girisMetni": "Sinop, Karadeniz'in Türkiye kıyısındaki en kuzey noktasında, denize üç yönden bakan bir yarımada üzerinde kurulu — bu benzersiz konum, ilin hem doğuya hem batıya açık koylara sahip olmasını sağlıyor. Antik filozof Diyojen'in doğduğu, tarihi cezaeviyle de bilinen Sinop merkezin dışında, doğuya doğru Gerze ve Ayancık, batıda ise Türkeli ilin diğer kıyı ilçeleri. Yarımada konumu nedeniyle rüzgar yönüne göre kıyının farklı kesimleri günün farklı saatlerinde daha sakin kalabilir.",
       "merkez": {
         "lat": 42,
         "lon": 34.9,
@@ -273,14 +441,28 @@
       ],
       "baslikEn": "Sinop Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Sinop today? Live wind, wave conditions and 7-day forecast for Sinop center, Gerze and Ayancık.",
-      "girisMetniEn": "Sinop sits on the Black Sea's northernmost peninsula — this geography gives the province coves facing both east and west.  Sinop center, Gerze and Ayancık are the province's main coastal districts."
+      "girisMetniEn": "Sinop sits on a peninsula at the northernmost point of Turkey's Black Sea coast, facing the sea from three directions — a unique position that gives the province coves open to both east and west. Besides Sinop center, birthplace of the ancient philosopher Diogenes and known for its historic prison museum, the province's other coastal districts are Gerze and Ayancık to the east and Türkeli to the west. Because of its peninsula shape, different stretches of coast can stay calmer at different times of day depending on wind direction.",
+      "miniSss": [
+        {
+          "soru": "Sinop'un konumu neden benzersiz?",
+          "cevap": "Karadeniz'in Türkiye kıyısındaki en kuzey noktasında, denize üç yönden bakan bir yarımada üzerinde kurulu.",
+          "soruEn": "Why is Sinop's location unique?",
+          "cevapEn": "It sits on a peninsula at the northernmost point of Turkey's Black Sea coast, facing the sea from three directions."
+        },
+        {
+          "soru": "Sinop merkez tarihte kiminle biliniyor?",
+          "cevap": "Antik filozof Diyojen'in doğduğu yer olarak ve tarihi cezaeviyle bilinir.",
+          "soruEn": "What is Sinop center known for historically?",
+          "cevapEn": "It's the birthplace of the ancient philosopher Diogenes and is known for its historic prison museum."
+        }
+      ]
     },
     {
       "slug": "ordu",
       "ad": "Ordu",
       "baslik": "Ordu Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Ordu'da deniz bugün nasıl? Altınordu, Fatsa, Ünye ve Perşembe için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Ordu, fındık bahçeleriyle çevrili yeşil tepelerin Karadeniz'e indiği bir sahil ili — kıyı şeridi merkez ilçe Altınordu'dan başlayıp batıda Ünye ve Fatsa'ya, doğuda Perşembe'ye kadar uzanır.",
+      "girisMetni": "Ordu, Türkiye'nin fındık üretiminde başı çeken illerinden biri — yeşil tepeler neredeyse kıyıya kadar iniyor ve teleferikle çıkılan Boztepe'den şehir merkezi ile denizin birlikte seyredildiği ünlü bir manzara sunuyor. Kıyı şeridi merkez ilçe Altınordu'dan batıya Ünye ve Fatsa'ya, doğuya Perşembe ve Gülyalı'ya kadar uzanıyor; Ünye özellikle tarihi kayalık mağaraları ve uzun kumsallarıyla ilin en tanınmış turizm noktası. Fındık hasadının yoğunlaştığı yaz ayları, aynı zamanda kıyının en canlı olduğu dönem.",
       "merkez": {
         "lat": 41,
         "lon": 37.5,
@@ -295,14 +477,28 @@
       ],
       "baslikEn": "Ordu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Ordu today? Live wind, wave conditions and 7-day forecast for Altınordu, Fatsa, Ünye and Perşembe.",
-      "girisMetniEn": "Ordu is a Black Sea province where green, hazelnut-covered hills meet the sea — the coastline runs from the center district Altınordu west to Ünye and Fatsa, and east to Perşembe."
+      "girisMetniEn": "Ordu is one of Turkey's leading hazelnut-producing provinces — green hills roll almost down to the shore, and Boztepe, reached by cable car, offers a famous view of the city and sea together. The coastline runs from the center district Altınordu west to Ünye and Fatsa, and east to Perşembe and Gülyalı; Ünye in particular is the province's best-known tourist spot, known for its historic rock caves and long beaches. The summer hazelnut harvest also happens to be when the coast is at its liveliest.",
+      "miniSss": [
+        {
+          "soru": "Ordu'da görülmesi gereken manzara noktası neresi?",
+          "cevap": "Teleferikle çıkılan Boztepe, şehir merkezi ile denizin birlikte seyredildiği ünlü bir manzara sunar.",
+          "soruEn": "What's a must-see viewpoint in Ordu?",
+          "cevapEn": "Boztepe, reached by cable car, offers a famous view of the city and sea together."
+        },
+        {
+          "soru": "Ordu'nun en tanınmış turizm ilçesi hangisi?",
+          "cevap": "Ünye — tarihi kayalık mağaraları ve uzun kumsallarıyla ilin en tanınmış turizm noktası.",
+          "soruEn": "What is Ordu's best-known tourism district?",
+          "cevapEn": "Ünye — the province's best-known tourist spot, known for its historic rock caves and long beaches."
+        }
+      ]
     },
     {
       "slug": "giresun",
       "ad": "Giresun",
       "baslik": "Giresun Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Giresun'da deniz bugün nasıl? Giresun merkez, Bulancak, Tirebolu ve Görele için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Giresun, adasıyla (Giresun Adası) bilinen bir Orta Karadeniz ili — kıyı şeridi merkez ilçeden batıda Bulancak'a, doğuda Tirebolu ve Görele'ye kadar uzanır, fındık bahçeleriyle kaplı yamaçlar denize iner.",
+      "girisMetni": "Giresun'un açıklarındaki Giresun Adası, Türkiye'nin Karadeniz kıyısındaki tek adası — yerel halkın yüzyıllardır dilek tutmak için ziyaret ettiği, kentin sembolü haline gelmiş bir nokta. Kıyı şeridi merkez ilçeden batıya Bulancak'a, doğuya Keşap, Tirebolu, Görele, Piraziz ve Eynesil'e kadar uzanıyor; Tirebolu'nun tarihi Cenevizli kalesi ve Görele'nin kemençe kültürü bu kıyının kültürel çeşitliliğini gösteriyor. Fındık bahçeleriyle kaplı yamaçlar, burada da neredeyse doğrudan denize iniyor.",
       "merkez": {
         "lat": 40.95,
         "lon": 38.6,
@@ -319,14 +515,28 @@
       ],
       "baslikEn": "Giresun Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Giresun today? Live wind, wave conditions and 7-day forecast for Giresun center, Bulancak, Tirebolu and Görele.",
-      "girisMetniEn": "Giresun is a Central Black Sea province known for its island (Giresun Island) — the coastline runs from the center district west to Bulancak, and east to Tirebolu and Görele, with hazelnut-covered slopes above."
+      "girisMetniEn": "Giresun Island, just off the coast, is Turkey's only island on the Black Sea — a spot locals have visited for centuries to make wishes, now a symbol of the city itself. The coastline runs from the center district west to Bulancak, and east through Keşap, Tirebolu, Görele, Piraziz and Eynesil; Tirebolu's historic Genoese castle and Görele's kemençe (folk fiddle) culture reflect this coast's cultural variety. Hazelnut-covered slopes drop almost straight into the sea here too.",
+      "miniSss": [
+        {
+          "soru": "Giresun'un açıklarındaki ada neyle bilinir?",
+          "cevap": "Giresun Adası, Türkiye'nin Karadeniz kıyısındaki tek adası — yerel halkın yüzyıllardır dilek tutmak için ziyaret ettiği bir nokta.",
+          "soruEn": "What is the island off Giresun's coast known for?",
+          "cevapEn": "Giresun Island is Turkey's only island on the Black Sea — a spot locals have visited for centuries to make wishes."
+        },
+        {
+          "soru": "Görele neyle tanınır?",
+          "cevap": "Kemençe (Karadeniz'in geleneksel çalgısı) kültürüyle bilinir.",
+          "soruEn": "What is Görele known for?",
+          "cevapEn": "Its kemençe (traditional Black Sea folk fiddle) culture."
+        }
+      ]
     },
     {
       "slug": "trabzon",
       "ad": "Trabzon",
       "baslik": "Trabzon Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Trabzon'da deniz bugün nasıl? Ortahisar, Akçaabat, Of, Yomra, Araklı ve Vakfıkebir için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Trabzon, Doğu Karadeniz'in en bilinen ili — merkez ilçe Ortahisar'dan batıya Akçaabat ve Vakfıkebir'e, doğuya Yomra, Araklı ve Of'a uzanan kıyı şeridi, yeşil dağların denize dik indiği tipik bir Karadeniz manzarası sunar.",
+      "girisMetni": "Trabzon, Doğu Karadeniz'in en büyük ve en bilinen ili — Bizans döneminden kalma Ayasofya Kilisesi'nin hemen yanı başında uzanan sahili, şehrin tarihiyle denizinin iç içe geçtiğini gösteriyor. On ilçesinin kıyı şeridi merkez Ortahisar'dan batıya Akçaabat, Vakfıkebir, Beşikdüzü ve Çarşıbaşı'na, doğuya Yomra, Araklı, Sürmene, Arsin ve Of'a kadar uzanıyor. Şehrin futbol tutkusu kadar bilinen bir başka şeyi de köftesi — özellikle Akçaabat'ınki. Doğu Karadeniz'in tipik dik yamaçları burada da denize neredeyse dik iniyor.",
       "merkez": {
         "lat": 41,
         "lon": 39.7,
@@ -346,14 +556,28 @@
       ],
       "baslikEn": "Trabzon Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Trabzon today? Live wind, wave conditions and 7-day forecast for Ortahisar, Akçaabat, Of, Yomra, Araklı and Vakfıkebir.",
-      "girisMetniEn": "Trabzon is the best-known province of the Eastern Black Sea — its coastline runs from the center district Ortahisar west to Akçaabat and Vakfıkebir, and east to Yomra, Araklı and Of, with a classic Black Sea landscape of green mountains dropping steeply to the sea."
+      "girisMetniEn": "Trabzon is the largest and best-known province of the Eastern Black Sea — its shoreline runs right past the Byzantine-era Hagia Sophia church, a reminder of how closely the city's history and sea are intertwined. The coastline of its ten districts stretches from the center, Ortahisar, west through Akçaabat, Vakfıkebir, Beşikdüzü and Çarşıbaşı, and east through Yomra, Araklı, Sürmene, Arsin and Of. Almost as famous as the city's football passion is its köfte (meatballs) — especially Akçaabat's version. The Eastern Black Sea's typically steep slopes drop almost vertically into the sea here as well.",
+      "miniSss": [
+        {
+          "soru": "Trabzon'da tarihi bir kıyı noktası var mı?",
+          "cevap": "Bizans döneminden kalma Ayasofya Kilisesi, şehir merkezinin hemen yanı başındaki sahilde yer alır.",
+          "soruEn": "Is there a historic coastal site in Trabzon?",
+          "cevapEn": "The Byzantine-era Hagia Sophia church sits right along the shore near the city center."
+        },
+        {
+          "soru": "Trabzon kaç ilçede denize kıyıdır?",
+          "cevap": "On ilçesi kıyıdır: Ortahisar, Akçaabat, Vakfıkebir, Beşikdüzü, Çarşıbaşı, Yomra, Araklı, Sürmene, Arsin ve Of.",
+          "soruEn": "How many of Trabzon's districts are coastal?",
+          "cevapEn": "Ten: Ortahisar, Akçaabat, Vakfıkebir, Beşikdüzü, Çarşıbaşı, Yomra, Araklı, Sürmene, Arsin and Of."
+        }
+      ]
     },
     {
       "slug": "rize",
       "ad": "Rize",
       "baslik": "Rize Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Rize'de deniz bugün nasıl? Rize merkez, Çayeli, Pazar, Ardeşen ve Fındıklı için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Rize, çay bahçeleriyle kaplı sisli yamaçlarıyla bilinen bir Doğu Karadeniz ili — dağların denize neredeyse dik indiği dar bir kıyı şeridi, merkez ilçeden doğuya Çayeli, Pazar, Ardeşen ve Fındıklı'ya kadar uzanır.",
+      "girisMetni": "Rize, Türkiye'nin çay üretiminin neredeyse tamamını karşılayan ili — yamaçları kaplayan çay bahçeleri, dünyanın en kuzeydeki çay tarım bölgelerinden birini oluşturuyor. Türkiye'nin en yağışlı ve en sisli illerinden biri olması, dağların denize neredeyse dik indiği dar kıyı şeridiyle birleşince kendine özgü, yemyeşil bir manzara ortaya çıkıyor. Kıyı, merkez ilçeden doğuya İyidere, Çayeli, Pazar, Ardeşen ve Fındıklı'ya kadar uzanıyor — Artvin sınırına yaklaştıkça vadiler derinleşiyor.",
       "merkez": {
         "lat": 41.05,
         "lon": 40.7,
@@ -369,14 +593,28 @@
       ],
       "baslikEn": "Rize Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Rize today? Live wind, wave conditions and 7-day forecast for Rize center, Çayeli, Pazar, Ardeşen and Fındıklı.",
-      "girisMetniEn": "Rize is an Eastern Black Sea province known for its misty, tea-covered slopes — the coastline is narrow, with mountains dropping almost straight into the sea, running east from the center district through Çayeli, Pazar, Ardeşen and Fındıklı."
+      "girisMetniEn": "Rize supplies almost all of Turkey's tea — its slopes, covered in tea gardens, form one of the world's northernmost tea-growing regions. Being one of Turkey's rainiest and foggiest provinces, combined with a narrow coastline where mountains drop almost vertically to the sea, creates a distinctly lush, green landscape. The coast runs from the center district east through İyidere, Çayeli, Pazar, Ardeşen and Fındıklı — the valleys deepen as you approach the Artvin border.",
+      "miniSss": [
+        {
+          "soru": "Rize neyle tanınır?",
+          "cevap": "Türkiye'nin çay üretiminin neredeyse tamamını karşılar — dünyanın en kuzeydeki çay tarım bölgelerinden biridir.",
+          "soruEn": "What is Rize known for?",
+          "cevapEn": "It supplies almost all of Turkey's tea — one of the world's northernmost tea-growing regions."
+        },
+        {
+          "soru": "Rize'nin iklimi kıyıyı nasıl etkiliyor?",
+          "cevap": "Türkiye'nin en yağışlı ve en sisli illerinden biri olması, dar kıyı şeridiyle birleşince yemyeşil, kendine özgü bir manzara oluşturuyor.",
+          "soruEn": "How does Rize's climate shape its coast?",
+          "cevapEn": "Being one of Turkey's rainiest, foggiest provinces, combined with its narrow coastline, creates a distinctly lush, green landscape."
+        }
+      ]
     },
     {
       "slug": "artvin",
       "ad": "Artvin",
       "baslik": "Artvin Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Artvin Hopa ve Arhavi'de deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Artvin'in kıyı şeridi, Türkiye'nin Gürcistan sınırına en yakın ilçeleri Hopa ve Arhavi'de toplanır — Karadeniz'in doğu ucunda, yeşil dağların denize dik indiği bir kesim.",
+      "girisMetni": "Artvin, büyük ölçüde dağlık ve ormanlık bir il — asıl kimliğini Kaçkar Dağları'nın vadileri ve yaylaları oluşturuyor. Denize kıyısı ise yalnızca en kuzeydoğu ucundaki üç ilçede: Gürcistan sınırına en yakın liman kenti Hopa, ondan biraz batıdaki küçük ve yeşil Arhavi, ve ikisi arasındaki Kemalpaşa. Karadeniz'in doğu ucundaki bu dar şerit, dağların denize adeta dik indiği, Türkiye'nin en yağışlı köşelerinden biri.",
       "merkez": {
         "lat": 41.4,
         "lon": 41.4,
@@ -389,14 +627,28 @@
       ],
       "baslikEn": "Artvin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Artvin's Hopa and Arhavi today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Artvin's coastline is concentrated in Hopa and Arhavi, its districts closest to the Georgian border — the eastern end of the Black Sea, where green mountains meet the sea."
+      "girisMetniEn": "Artvin is a largely mountainous, forested province — its core identity comes from the valleys and highland plateaus of the Kaçkar Mountains. Its coastline is limited to just three districts at its northeastern tip: Hopa, the harbor town closest to the Georgian border, small and green Arhavi a little to the west, and Kemalpaşa in between. This narrow strip at the Black Sea's eastern end, where mountains drop almost vertically to the sea, is one of Turkey's rainiest corners.",
+      "miniSss": [
+        {
+          "soru": "Artvin'in kaç ilçesi denize kıyıdır?",
+          "cevap": "Yalnızca üç ilçesi: Hopa, Arhavi ve Kemalpaşa — ilin geri kalanı dağlık ve ormanlık iç kesimlerden oluşur.",
+          "soruEn": "How many of Artvin's districts are coastal?",
+          "cevapEn": "Only three: Hopa, Arhavi and Kemalpaşa — the rest of the province is mountainous, forested interior."
+        },
+        {
+          "soru": "Hopa nerede yer alır?",
+          "cevap": "Türkiye'nin Gürcistan sınırına en yakın liman kenti, Karadeniz'in doğu ucunda.",
+          "soruEn": "Where is Hopa located?",
+          "cevapEn": "Turkey's harbor town closest to the Georgian border, at the eastern end of the Black Sea."
+        }
+      ]
     },
     {
       "slug": "yalova",
       "ad": "Yalova",
       "baslik": "Yalova Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Yalova'da deniz bugün nasıl? Yalova merkez ve Çınarcık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Yalova, Marmara Denizi'nin güney kıyısında, İstanbul'a yakınlığı ve termal kaynaklarıyla bilinen küçük bir il — kıyısı merkez ilçe ve batısındaki Çınarcık'ta toplanır, Marmara'nın genelde sakin sularına açılır.",
+      "girisMetni": "Yalova, yüzölçümü bakımından Türkiye'nin en küçük ili — ama termal kaynakları ve İstanbul'a hızlı feribot bağlantısıyla büyüklüğünün çok üzerinde bir ilgi görüyor. Atatürk'ün yaz aylarını geçirdiği köşkün de burada olması, ile ayrı bir tarihi önem katıyor. Kıyı şeridi merkez ilçeden başlayıp batıya Çiftlikköy, Altınova, Çınarcık ve Armutlu'ya kadar uzanıyor; hepsi de Marmara Denizi'nin genelde sakin sularına açılıyor.",
       "merkez": {
         "lat": 40.65,
         "lon": 29.2,
@@ -411,14 +663,28 @@
       ],
       "baslikEn": "Yalova Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Yalova today? Live wind, wave conditions and 7-day forecast for Yalova center and Çınarcık.",
-      "girisMetniEn": "Yalova is a small province on the south shore of the Sea of Marmara, known for its thermal springs and ferry connection to İstanbul — its coastline is concentrated in the center district and Çınarcık to the west, on generally calm Marmara waters."
+      "girisMetniEn": "Yalova is Turkey's smallest province by land area — but its thermal springs and fast ferry connection to İstanbul give it attention far beyond its size. The presence of the residence where Atatürk spent his summers adds a further layer of historical significance. Its coastline starts at the center district and runs west through Çiftlikköy, Altınova, Çınarcık and Armutlu — all opening onto the generally calm waters of the Sea of Marmara.",
+      "miniSss": [
+        {
+          "soru": "Yalova neden Türkiye'nin en küçük ili olduğu halde ilgi görüyor?",
+          "cevap": "Termal kaynakları ve İstanbul'a hızlı feribot bağlantısı, yüzölçümünün çok üzerinde bir ilgi görmesini sağlıyor.",
+          "soruEn": "Why does small Yalova attract so much attention?",
+          "cevapEn": "Its thermal springs and fast ferry connection to İstanbul give it attention far beyond its size."
+        },
+        {
+          "soru": "Yalova kaç ilçede denize kıyıdır?",
+          "cevap": "Merkez ilçeyle birlikte Çiftlikköy, Altınova, Çınarcık ve Armutlu — hepsi Marmara Denizi'ne kıyı.",
+          "soruEn": "How many of Yalova's districts are coastal?",
+          "cevapEn": "The center district plus Çiftlikköy, Altınova, Çınarcık and Armutlu — all on the Sea of Marmara."
+        }
+      ]
     },
     {
       "slug": "bursa",
       "ad": "Bursa",
       "baslik": "Bursa Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Bursa'da deniz bugün nasıl? Mudanya ve Gemlik için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Bursa'nın Marmara Denizi'ne kıyısı, Mudanya ve Gemlik ilçelerinde toplanır — ikisi de körfez içi, genelde sakin sulara sahip liman kasabaları.",
+      "girisMetni": "Bursa, Osmanlı Devleti'nin ilk başkenti olarak bilinen tarihi bir il — ama denizle bağlantısı da en az tarihi kadar köklü. Kıyı şeridi, Mudanya Mütarekesi'nin imzalandığı liman ilçesi Mudanya'dan zeytinleriyle tanınan Gemlik'e, oradan da Karacabey ovasının uzantısındaki Karacabey'e kadar uzanıyor. Üçü de Marmara Denizi'nin körfez içi sakin sularına kıyı; İstanbul'a feribotla erişim bu kıyıyı özellikle hafta sonları canlandırıyor.",
       "merkez": {
         "lat": 40.4,
         "lon": 29,
@@ -431,14 +697,28 @@
       ],
       "baslikEn": "Bursa Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bursa today? Live wind, wave conditions and 7-day forecast for Mudanya and Gemlik.",
-      "girisMetniEn": "Bursa's coastline on the Sea of Marmara is concentrated in Mudanya and Gemlik districts — both calm-water harbor towns."
+      "girisMetniEn": "Bursa is known as the first capital of the Ottoman Empire — but its connection to the sea is just as old as its history. The coastline runs from Mudanya, the harbor district where the 1922 Armistice of Mudanya was signed, to olive-growing Gemlik, and on to Karacabey, an extension of the Karacabey plain. All three sit on the calm, gulf-sheltered waters of the Sea of Marmara; the ferry connection to İstanbul makes this coast especially lively on weekends.",
+      "miniSss": [
+        {
+          "soru": "Mudanya'nın tarihi önemi ne?",
+          "cevap": "1922'de Mudanya Mütarekesi'nin imzalandığı tarihi bir Bursa liman ilçesi.",
+          "soruEn": "What is Mudanya's historic significance?",
+          "cevapEn": "A historic Bursa harbor district where the 1922 Armistice of Mudanya was signed."
+        },
+        {
+          "soru": "Bursa'nın kıyısına İstanbul'dan nasıl ulaşılır?",
+          "cevap": "Mudanya ve Gemlik'e İstanbul'dan feribotla erişim var, bu da kıyıyı özellikle hafta sonları canlandırıyor.",
+          "soruEn": "How do you reach Bursa's coast from İstanbul?",
+          "cevapEn": "There's ferry access to Mudanya and Gemlik from İstanbul, which makes this coast especially lively on weekends."
+        }
+      ]
     },
     {
       "slug": "balikesir",
       "ad": "Balıkesir",
       "baslik": "Balıkesir Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Balıkesir'de deniz bugün nasıl? Ayvalık, Edremit, Burhaniye, Erdek ve Bandırma için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Balıkesir, hem Marmara Denizi'ne (Erdek, Bandırma) hem Ege Denizi'ne (Ayvalık, Burhaniye, Edremit, Gömeç) kıyısı olan geniş bir il — Ayvalık'ın adalarla dolu kıyısı ile Erdek'in Marmara'daki daha sakin sahilleri çok farklı karakterdedir.",
+      "girisMetni": "Balıkesir, hem Marmara hem Ege denizine kıyısı olan, Türkiye'nin en geniş kıyı şeridine sahip illerinden biri. Kuzeyde Marmara tarafında Erdek, Marmara Adası ve Bandırma daha sakin, körfez benzeri sular sunarken, güneyde Ege'ye açılan Ayvalık, Burhaniye, Gömeç ve Edremit — mitolojide Paris'in üç tanrıçayı yargıladığı söylenen Kaz Dağları'nın eteğinde — zeytinyağı üretimiyle ve daha açık, rüzgara maruz bir denizle tanınıyor. Gönen ise ilin kuzeybatısındaki daha az bilinen kıyı noktası. Aynı ilin iki ucundaki bu farklılık, Balıkesir'i kendi içinde adeta iki ayrı kıyı iline dönüştürüyor.",
       "merkez": {
         "lat": 39.65,
         "lon": 27.9,
@@ -456,14 +736,28 @@
       ],
       "baslikEn": "Balıkesir Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Balıkesir today? Live wind, wave conditions and 7-day forecast for Ayvalık, Edremit, Burhaniye, Erdek and Bandırma.",
-      "girisMetniEn": "Balıkesir is a wide province with coastline on both the Sea of Marmara (Erdek, Bandırma) and the Aegean Sea (Ayvalık, Burhaniye, Edremit, Gömeç) — Ayvalık's island-dotted coast has a very different character from Erdek's calmer Marmara shores."
+      "girisMetniEn": "Balıkesir has coastline on both the Marmara and Aegean seas, making it one of Turkey's provinces with the longest stretch of coast. In the north, on the Marmara side, Erdek, Marmara Island and Bandırma offer calmer, gulf-like waters, while in the south, Ayvalık, Burhaniye, Gömeç and Edremit open onto the Aegean — at the foot of the Kaz (Ida) Mountains, where mythology says Paris judged three goddesses — known for olive-oil production and a more open sea exposed to wind. Gönen is a lesser-known coastal point in the province's northwest. This contrast between the two ends of the same province makes Balıkesir feel almost like two separate coastal provinces in one.",
+      "miniSss": [
+        {
+          "soru": "Balıkesir kaç denize kıyıdır?",
+          "cevap": "İki denize birden: kuzeyde Marmara'ya (Erdek, Bandırma), güneyde Ege'ye (Ayvalık, Burhaniye, Edremit, Gömeç).",
+          "soruEn": "How many seas does Balıkesir touch?",
+          "cevapEn": "Two: the Marmara in the north (Erdek, Bandırma) and the Aegean in the south (Ayvalık, Burhaniye, Edremit, Gömeç)."
+        },
+        {
+          "soru": "Kaz Dağları'nın Balıkesir'deki mitolojik hikayesi ne?",
+          "cevap": "Mitolojide Paris'in üç tanrıçayı yargıladığı yer olarak anlatılır — Edremit'in eteğinde yer alır.",
+          "soruEn": "What is the mythological story of the Kaz Mountains in Balıkesir?",
+          "cevapEn": "Mythology says this is where Paris judged three goddesses — the mountains sit at the foot of Edremit."
+        }
+      ]
     },
     {
       "slug": "canakkale",
       "ad": "Çanakkale",
       "baslik": "Çanakkale Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Çanakkale'de deniz bugün nasıl? Ayvacık (Assos), Bozcaada, Gökçeada, Gelibolu ve Lapseki için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Çanakkale, Çanakkale Boğazı'nın iki yakasında hem Ege hem Marmara'ya kıyısı olan bir il — Ege tarafında antik Assos'un bulunduğu Ayvacık ile adalar Bozcaada ve Gökçeada rüzgara açık ve dalgalı olabilirken, Boğaz içindeki Lapseki ve Gelibolu daha korunaklıdır.",
+      "girisMetni": "Çanakkale, adını taşıyan boğazın iki yakasında, aynı zamanda antik Troya kentine ev sahipliği yapan tarihi bir il. Boğaz'ın Ege tarafında antik Assos'un bulunduğu Ayvacık, bağcılığıyla bilinen adalar Bozcaada ve Gökçeada rüzgara açık ve dalgalı olabilirken, boğaz içindeki Lapseki, Gelibolu ve Eceabat — I. Dünya Savaşı'nın en çok anılan cephelerinden biri — çok daha korunaklı sular sunuyor. Çanakkale merkez ve Biga ise şehrin gündelik yaşamının döndüğü, boğazın her iki yakasını birbirine bağlayan noktalar.",
       "merkez": {
         "lat": 40,
         "lon": 26.3,
@@ -481,14 +775,28 @@
       ],
       "baslikEn": "Çanakkale Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Çanakkale today? Live wind, wave conditions and 7-day forecast for Ayvacık (Assos), Bozcaada, Gökçeada, Gelibolu and Lapseki.",
-      "girisMetniEn": "Çanakkale has coastline on both the Aegean and the Sea of Marmara, on either side of the Dardanelles Strait — the Aegean side, with ancient Assos in Ayvacık and the islands of Bozcaada and Gökçeada, is fairly exposed to wind, while Lapseki and Gelibolu inside the strait are more sheltered."
+      "girisMetniEn": "Çanakkale sits on both sides of the strait that bears its name, and is also home to the ancient city of Troy. On the Aegean side of the strait, Ayvacık (near ancient Assos) and the wine-producing islands of Bozcaada and Gökçeada can be exposed to wind and waves, while Lapseki, Gelibolu and Eceabat — the site of one of WWI's most remembered campaigns — inside the strait offer far more sheltered waters. Çanakkale center and Biga are where the city's everyday life revolves, connecting both sides of the strait.",
+      "miniSss": [
+        {
+          "soru": "Çanakkale'de antik bir kent var mı?",
+          "cevap": "Evet, dünyaca ünlü antik Troya kenti Çanakkale sınırları içinde yer alır.",
+          "soruEn": "Is there an ancient city in Çanakkale?",
+          "cevapEn": "Yes, the world-famous ancient city of Troy lies within Çanakkale."
+        },
+        {
+          "soru": "Çanakkale Boğazı'nın içi ile Ege tarafı arasında ne fark var?",
+          "cevap": "Boğaz içindeki Lapseki, Gelibolu ve Eceabat korunaklı sular sunarken, Ege tarafındaki Ayvacık, Bozcaada ve Gökçeada rüzgara açık ve dalgalı olabilir.",
+          "soruEn": "What's the difference between inside the strait and the Aegean side?",
+          "cevapEn": "Lapseki, Gelibolu and Eceabat inside the strait offer sheltered waters, while Ayvacık, Bozcaada and Gökçeada on the Aegean side can be exposed to wind and waves."
+        }
+      ]
     },
     {
       "slug": "tekirdag",
       "ad": "Tekirdağ",
       "baslik": "Tekirdağ Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Tekirdağ'da deniz bugün nasıl? Tekirdağ merkez, Şarköy ve Marmara Ereğlisi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Tekirdağ, Marmara Denizi'nin kuzey kıyısında bağlarıyla ve şarap üretimiyle bilinen bir il — kıyı şeridi merkez ilçeden batıya Şarköy'e, doğuya Marmara Ereğlisi'ne kadar uzanır.",
+      "girisMetni": "Tekirdağ, Marmara Denizi'nin kuzey kıyısında, bağcılığı ve kendi adını taşıyan köftesiyle tanınan bir il. Kıyı şeridi merkez ilçeden batıya, bağların en yoğun olduğu Şarköy'e, doğuya ise İstanbul'a yakınlığıyla bilinen Marmara Ereğlisi'ne kadar uzanıyor. Bölgenin rakı ve şarap üretimindeki tarihi geçmişi, kıyı boyunca sık rastlanan bağ manzaralarında hâlâ görülebiliyor. Marmara'nın genel karakteri gereği deniz burada da çoğunlukla ölçülü kalıyor.",
       "merkez": {
         "lat": 40.85,
         "lon": 27.5,
@@ -501,7 +809,21 @@
       ],
       "baslikEn": "Tekirdağ Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Tekirdağ today? Live wind, wave conditions and 7-day forecast for Tekirdağ center, Şarköy and Marmara Ereğlisi.",
-      "girisMetniEn": "Tekirdağ is known for its vineyards on the north shore of the Sea of Marmara — its coastline runs from the center district west to Şarköy, and east to Marmara Ereğlisi."
+      "girisMetniEn": "Tekirdağ, on the northern shore of the Sea of Marmara, is known for its vineyards and its namesake köfte (meatballs). The coastline runs west from the center district to Şarköy, where vineyards are most dense, and east to Marmara Ereğlisi, known for being close to İstanbul. The region's long history of rakı and wine production is still visible in the vineyard views common along the coast. True to the Marmara's general character, the sea here mostly stays moderate.",
+      "miniSss": [
+        {
+          "soru": "Tekirdağ neyle tanınır?",
+          "cevap": "Bağcılığı ve kendi adını taşıyan köftesiyle tanınır.",
+          "soruEn": "What is Tekirdağ known for?",
+          "cevapEn": "Its vineyards and its namesake köfte (meatballs)."
+        },
+        {
+          "soru": "Tekirdağ'ın en yoğun bağ bölgesi hangi ilçede?",
+          "cevap": "Şarköy — bölgenin rakı ve şarap üretimindeki tarihi geçmişi burada hâlâ görülebilir.",
+          "soruEn": "Which district has Tekirdağ's densest vineyards?",
+          "cevapEn": "Şarköy — the region's long history of rakı and wine production is still visible here."
+        }
+      ]
     },
     {
       "slug": "mersin",
@@ -526,14 +848,28 @@
       ],
       "baslikEn": "Mersin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Mersin today? Live wind, wave conditions and 7-day forecast for Mersin center, Erdemli, Silifke (Kızkalesi), Tarsus and Anamur.",
-      "girisMetniEn": "Mersin has a long, sunny stretch of the Eastern Mediterranean coast — from Silifke, known for the sea castle at Kızkalesi, to Anamur's banana groves in the west. As is typical of the Mediterranean, waves here are generally gentle and long-period."
+      "girisMetniEn": "Mersin has a long, sunny stretch of the Eastern Mediterranean coast — from Silifke, known for the sea castle at Kızkalesi, to Anamur's banana groves in the west. As is typical of the Mediterranean, waves here are generally gentle and long-period.",
+      "miniSss": [
+        {
+          "soru": "Mersin'in kıyısı ne kadar çeşitlilik gösterir?",
+          "cevap": "Kızkalesi'nin deniz ortasındaki kalesiyle bilinen Silifke'den, batıdaki Anamur'un muz bahçelerine kadar geniş bir çeşitlilik gösterir.",
+          "soruEn": "How varied is Mersin's coastline?",
+          "cevapEn": "It ranges from Silifke, known for the sea castle at Kızkalesi, to Anamur's banana groves in the west."
+        },
+        {
+          "soru": "Mersin'de dalga genelde nasıldır?",
+          "cevap": "Akdeniz'in genel özelliği gereği dalga genelde yumuşak ve uzun periyotludur.",
+          "soruEn": "What are waves generally like in Mersin?",
+          "cevapEn": "As is typical of the Mediterranean, waves here are generally gentle and long-period."
+        }
+      ]
     },
     {
       "slug": "adana",
       "ad": "Adana",
       "baslik": "Adana Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Adana'da deniz bugün nasıl? Karataş ve Yumurtalık için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Adana'nın Akdeniz kıyısı, Seyhan ve Ceyhan nehirlerinin deltalarına yakın Karataş ve Yumurtalık ilçelerinde toplanır — düz, kumlu ve uzun plajlarıyla bilinen bir kesim.",
+      "girisMetni": "Adana, adını taşıyan kebabıyla ünlü, Çukurova'nın verimli ovalarına yayılan büyük bir Akdeniz ili — ama kıyısı, şehrin tanıdık kalabalığından oldukça uzak, sakin bir karaktere sahip. Seyhan ve Ceyhan nehirlerinin deltalarına yakın Karataş ve Yumurtalık, düz ve uzun kumsallarıyla bilinir; Yumurtalık ayrıca lagünleri ve kuş türleri açısından zengin doğal koruma alanlarıyla dikkat çekiyor. Akdeniz'in genel özelliği gereği dalga burada da genelde yumuşak ve uzun periyotlu.",
       "merkez": {
         "lat": 36.65,
         "lon": 35.55,
@@ -546,14 +882,28 @@
       ],
       "baslikEn": "Adana Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Adana today? Live wind, wave conditions and 7-day forecast for Karataş and Yumurtalık.",
-      "girisMetniEn": "Adana's Mediterranean coastline is concentrated in Karataş and Yumurtalık districts, close to the deltas of the Seyhan and Ceyhan rivers."
+      "girisMetniEn": "Adana, famous for its namesake kebab, is a large Mediterranean province spread across the fertile plains of Çukurova — but its coastline has a much quieter character than the city's familiar bustle. Karataş and Yumurtalık, close to the deltas of the Seyhan and Ceyhan rivers, are known for their flat, long beaches; Yumurtalık also stands out for its lagoons and bird-rich nature reserves. As is typical of the Mediterranean, the waves here are generally gentle and long-period.",
+      "miniSss": [
+        {
+          "soru": "Adana'nın kıyı ilçeleri hangileri?",
+          "cevap": "Karataş ve Yumurtalık — ikisi de Seyhan ve Ceyhan nehirlerinin deltalarına yakın, düz ve uzun kumsallarıyla bilinir.",
+          "soruEn": "What are Adana's coastal districts?",
+          "cevapEn": "Karataş and Yumurtalık — both close to the deltas of the Seyhan and Ceyhan rivers, known for flat, long beaches."
+        },
+        {
+          "soru": "Yumurtalık'ta doğal alan var mı?",
+          "cevap": "Evet, lagünleri ve kuş türleri açısından zengin doğal koruma alanlarıyla dikkat çeker.",
+          "soruEn": "Is there a nature reserve in Yumurtalık?",
+          "cevapEn": "Yes, it stands out for its lagoons and bird-rich nature reserves."
+        }
+      ]
     },
     {
       "slug": "hatay",
       "ad": "Hatay",
       "baslik": "Hatay Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Hatay'da deniz bugün nasıl? Samandağ, Arsuz ve İskenderun için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Hatay, Türkiye'nin en güneyindeki Akdeniz kıyısına sahip ili — Samandağ'ın Asi Nehri deltasına yakın plajları, Arsuz'un zeytinlik yamaçları ve İskenderun Körfezi'nin liman kenti farklı bir kıyı çeşitliliği sunar.",
+      "girisMetni": "Hatay, Türkiye'nin en güneyindeki ili — Antakya'nın (antik Antiokheia) çok kültürlü tarihi ve UNESCO'nun gastronomi şehri unvanı verdiği zengin mutfağıyla tanınır. Kıyı şeridi, kuzeyde İskenderun Körfezi'nin liman kenti İskenderun'dan başlayıp Payas, Dörtyol ve Erzin'den geçerek güneyde Arsuz'un zeytinlik yamaçlarına ve Samandağ'ın Asi Nehri deltasındaki siyah kumlu plajlarına kadar uzanıyor. Bu genişlik, ilin kıyısını da mutfağı kadar çeşitli kılıyor.",
       "merkez": {
         "lat": 36.3,
         "lon": 35.95,
@@ -569,14 +919,28 @@
       ],
       "baslikEn": "Hatay Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Hatay today? Live wind, wave conditions and 7-day forecast for Samandağ, Arsuz and İskenderun.",
-      "girisMetniEn": "Hatay has Turkey's southernmost Mediterranean coastline — Samandağ's beaches near the Orontes (Asi) River delta, Arsuz's olive-covered hillsides and the harbor city of İskenderun each offer a different kind of coast."
+      "girisMetniEn": "Hatay is Turkey's southernmost province — known for the multicultural history of Antakya (ancient Antioch) and a cuisine rich enough to earn the province a UNESCO Creative City of Gastronomy title. The coastline starts in the north at İskenderun, the harbor city on the gulf of the same name, runs through Payas, Dörtyol and Erzin, and reaches south to the olive-covered slopes of Arsuz and the black-sand beaches of Samandağ at the delta of the Orontes (Asi) River. This range makes the province's coast just as varied as its cuisine.",
+      "miniSss": [
+        {
+          "soru": "Hatay neyle tanınır?",
+          "cevap": "Antakya'nın çok kültürlü tarihi ve UNESCO'nun gastronomi şehri unvanı verdiği zengin mutfağıyla tanınır.",
+          "soruEn": "What is Hatay known for?",
+          "cevapEn": "The multicultural history of Antakya and a cuisine rich enough to earn a UNESCO Creative City of Gastronomy title."
+        },
+        {
+          "soru": "Hatay'da plajı siyah kumlu olan yer neresi?",
+          "cevap": "Samandağ — Asi Nehri'nin Akdeniz'e döküldüğü noktaya yakın, siyah kumuyla bilinir.",
+          "soruEn": "Where in Hatay has a black-sand beach?",
+          "cevapEn": "Samandağ — known for its black sand, close to where the Orontes (Asi) River reaches the Mediterranean."
+        }
+      ]
     },
     {
       "slug": "kirklareli",
       "ad": "Kırklareli",
       "baslik": "Kırklareli Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Kırklareli Kıyıköy'de deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Kırklareli'nin tek kıyı noktası, Vize ilçesine bağlı Kıyıköy — Karadeniz'e açık, iki nehir ağzı arasında kalan, ormanlarla çevrili sakin bir balıkçı kasabası.",
+      "girisMetni": "Kırklareli'nin Karadeniz kıyısı iki ilçede toplanır: Bulgaristan sınırına yakın Demirköy'e bağlı İğneada, Avrupa'da benzeri az bulunan Longoz (taşkın) ormanlarıyla ve uzun kumsalıyla bilinirken, güneydeki Vize ilçesine bağlı Kıyıköy, iki nehir ağzı arasında kalan ormanlarla çevrili sakin bir balıkçı kasabası. İkisi de büyük turizm merkezlerinden uzak, doğasını büyük ölçüde koruyabilmiş kıyı noktaları.",
       "merkez": {
         "lat": 41.6383,
         "lon": 28.0997,
@@ -588,7 +952,21 @@
       ],
       "baslikEn": "Kırklareli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kırklareli's Kıyıköy today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Kırklareli's only coastal point is Kıyıköy, part of Vize district — a quiet Black Sea fishing town between two river mouths."
+      "girisMetniEn": "Kırklareli's Black Sea coast is concentrated in two districts: İğneada, part of Demirköy district close to the Bulgarian border, known for its rare (in Europe) Longoz floodplain forests and long beach; and Kıyıköy, part of Vize district to the south, a quiet fishing town surrounded by forest between two river mouths. Both are coastal spots far from major tourist centers that have largely kept their natural character intact.",
+      "miniSss": [
+        {
+          "soru": "Kırklareli'nin kıyı ilçeleri hangileri?",
+          "cevap": "İğneada (Demirköy ilçesine bağlı) ve Kıyıköy (Vize ilçesine bağlı) — ikisi de Karadeniz'e kıyı.",
+          "soruEn": "What are Kırklareli's coastal districts?",
+          "cevapEn": "İğneada (part of Demirköy) and Kıyıköy (part of Vize) — both on the Black Sea."
+        },
+        {
+          "soru": "İğneada'yı özel kılan ne?",
+          "cevap": "Avrupa'da benzeri az bulunan Longoz (taşkın) ormanları ve uzun kumsalıyla bilinir.",
+          "soruEn": "What makes İğneada special?",
+          "cevapEn": "Its Longoz floodplain forests, rare in Europe, and its long beach."
+        }
+      ]
     }
   ],
   "ilceler": [
