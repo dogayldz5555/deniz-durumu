@@ -449,9 +449,10 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
   const doldur = (s) => s.replace(/\{plajAdlari\}/g, plajAdlari).replace(/\{plajSayisi\}/g, String(plajSayisi));
   const doldurEn = (s) => s.replace(/\{plajAdlari\}/g, plajAdlariEn).replace(/\{plajSayisi\}/g, String(plajSayisi));
 
-  const ustSectionHtml = `<div class="yer-giris">
+  const ustSectionHtml = `${ikiDilliHtml("h2", escapeHtml(ilce.baslik), ilce.baslikEn ? escapeHtml(ilce.baslikEn) : null, "yer-baslik")}
+  <div class="yer-giris">
     ${bolgeRozetiHtml(bolge)}
-    ${ikiDilliHtml("h2", escapeHtml(ilce.baslik), ilce.baslikEn ? escapeHtml(ilce.baslikEn) : null)}
+    ${ikiDilliHtml("h3", `${escapeHtml(ilce.ad)} Hakkında`, `About ${escapeHtml(ilce.ad)}`)}
     ${ikiDilliHtml("p", doldur(ilce.girisMetni), ilce.girisMetniEn ? doldurEn(ilce.girisMetniEn) : null)}
   </div>`;
 
@@ -477,9 +478,10 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
 
 function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml, bolge }) {
   const tumPlajSayisi = plajlar.length + (halkPlajlar ? halkPlajlar.length : 0);
-  const ustSectionHtml = `<div class="yer-giris">
+  const ustSectionHtml = `${ikiDilliHtml("h2", escapeHtml(il.baslik), il.baslikEn ? escapeHtml(il.baslikEn) : null, "yer-baslik")}
+  <div class="yer-giris">
     ${bolgeRozetiHtml(bolge)}
-    ${ikiDilliHtml("h2", escapeHtml(il.baslik), il.baslikEn ? escapeHtml(il.baslikEn) : null)}
+    ${ikiDilliHtml("h3", `${escapeHtml(il.ad)} Hakkında`, `About ${escapeHtml(il.ad)}`)}
     ${ikiDilliHtml("p", il.girisMetni, il.girisMetniEn || null)}
   </div>
   ${ilHizliBakisHtml({ ilceSayisi: ilceler.length, plajSayisi: tumPlajSayisi, bolge })}`;

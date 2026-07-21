@@ -1066,8 +1066,24 @@
   [data-bolge="ege"]       { --bolge-rgb: 14,124,134; --bolge-hex: #0E7C86; }
   [data-bolge="akdeniz"]   { --bolge-rgb: 181,89,46;  --bolge-hex: #B5592E; }
 
+  /* Sayfanın gerçek başlığı (SEO title'ıyla aynı metin, "X Deniz Durumu — Bugün ve 7 Günlük
+     Tahmin") artık kartın DIŞINDA, en üstte — "Bugün ve 7 Günlük Tahmin" ifadesinin, aşağıdaki
+     genel açıklama metniyle karıştırılmaması için. Asıl tahmin, haritanın altındaki
+     #status-card'da ("Bugün ve 7 Günlük Tahmin" etiketiyle, bkz. #our-label) gösteriliyor. */
+  .yer-baslik {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    color: var(--text-h1);
+  }
+
   /* Giriş metni kartı — eskiden düz metin akışıydı, artık .isim-kart ile aynı görsel dilde
-     (gradient zemin/kenarlık/gölge) ama bölge rengine göre tonlanan gerçek bir kart. */
+     (gradient zemin/kenarlık/gölge) ama bölge rengine göre tonlanan gerçek bir kart. İçindeki
+     başlık artık "X Hakkında" — yukarıdaki gerçek sayfa başlığından ayrı, sadece bu kartın
+     genel açıklama metnini tanıtıyor. */
   .yer-giris {
     background: linear-gradient(135deg, rgba(var(--bolge-rgb,20,33,61),0.08), rgba(20,33,61,0.02));
     border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.22);
@@ -1076,13 +1092,13 @@
     margin-bottom: 18px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 14px rgba(20,30,25,0.05);
   }
-  .yer-giris h2 {
+  .yer-giris h3 {
     font-family: "Fraunces", Georgia, serif;
-    font-size: 21px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
     line-height: 1.25;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     color: var(--bolge-hex, var(--text-h1));
   }
   .yer-giris p {
