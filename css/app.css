@@ -336,15 +336,25 @@
     flex: 1; min-width: 0; height: 32px; border-radius: 8px;
     border: 1px solid var(--gb-input-border); padding: 0 10px; font-size: 12.5px; font-family: inherit;
   }
-  .tek-panel-durum-satir { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-bottom: 8px; }
+  /* 2x2 segmented control — bkz. .gb-buttons açıklaması, aynı mantık ama 4 hücreli ızgara
+     için: tek dış kenarlık, hücreler arası ince ayraçlar box-shadow ile (JS'in inline
+     border-color'ıyla çakışmasın diye). */
+  .tek-panel-durum-satir {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-bottom: 8px;
+    border: 1px solid rgba(40,40,30,0.12); border-radius: 10px; overflow: hidden;
+  }
   .tek-panel-durum-btn {
     display: flex; align-items: center; gap: 5px; justify-content: center;
-    padding: 7px 4px; border-radius: 8px; border: 1px solid rgba(40,40,30,0.12);
+    padding: 7px 4px; border-radius: 0; border: none;
     background: #fff; color: #6B6A60; cursor: pointer; font-size: 10.5px; font-weight: 500;
     font-family: inherit; transition: all 0.15s;
   }
+  .tek-panel-durum-btn:nth-child(2n) { box-shadow: -1px 0 0 rgba(40,40,30,0.12); }
+  .tek-panel-durum-btn:nth-child(n+3) { box-shadow: 0 -1px 0 rgba(40,40,30,0.12); }
+  .tek-panel-durum-btn:nth-child(4) { box-shadow: -1px 0 0 rgba(40,40,30,0.12), 0 -1px 0 rgba(40,40,30,0.12); }
+  .tek-panel-durum-btn:hover { background: rgba(40,40,30,0.04); }
+  .tek-panel-durum-btn.aktif { background: rgba(20,33,61,0.07); font-weight: 700; }
   .tek-panel-durum-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .tek-panel-durum-btn.aktif { border-width: 1.5px; }
   .tek-panel-durum-btn:disabled { opacity: 0.6; cursor: default; }
   .tek-panel-not-row { margin-bottom: 8px; }
   .tek-panel-not-row input {
@@ -393,18 +403,26 @@
     font-weight: 300 !important;
   }
   .card {
-    border-radius: 16px;
+    border-radius: 8px;
+    border-top: 3px solid var(--bolge-hex, var(--gold));
     padding: 18px 20px 12px;
     margin-bottom: 16px;
-    border: 1px solid var(--card-border);
+    border-left: 1px solid var(--card-border);
+    border-right: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
     background: var(--card-bg);
     min-height: 96px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
     transition: background 0.25s, border-color 0.25s;
     /* İçindeki kaydırılabilir saatlik şerit (bkz. .hourly-strip-kaydirilabilir) KENDİ
        içinde kaymalı, kartı genişletmemeli — bu olmadan telefonda sayfa yatayda taşıp
-       tarayıcı otomatik uzaklaşıyordu (bkz. ilgili commit notu). */
-    overflow-x: hidden;
+       tarayıcı otomatik uzaklaşıyordu (bkz. ilgili commit notu). Köşeler bilinçli olarak
+       keskin (8px) — bu bir "ölçüm aleti" kartı, diğer içerik kutuları gibi yumuşak
+       yuvarlak değil (bkz. proje notları, kutucuk tasarım turu 2026-07-21). ÖNEMLİ: üst
+       çizgi CSS'te bölge rengine düşer (yoksa altın) ama js/app.js kartiCiz() içinde
+       `card.style.borderColor = r.border` TÜM kenarların rengini (üst dahil) durum
+       rengiyle (çok iyi/iyi/orta/tehlikeli) eziyor — bu kasıtlı bırakıldı: boş/placeholder
+       durumda bölge rengi görünür, veri gelince üst çizgi anlamlı durum rengine döner. */
   }
   .card.placeholder {
     display: flex;
@@ -457,7 +475,7 @@
     justify-content: center;
     flex-shrink: 0;
   }
-  .metrics-value { font-size: 15px; font-weight: 700; line-height: 1.15; }
+  .metrics-value { font-size: 15px; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
   .metrics-label { font-size: 10.5px; opacity: 0.75; margin-top: 1px; line-height: 1.3; }
   .wavepattern { width: 100%; height: 44px; display: block; margin-top: 9px; }
   .hourly-strip {
@@ -507,10 +525,16 @@
   .gb-section { margin-bottom: 18px; }
   .gb-title { font-size: 13.5px; color: var(--legend-text); margin-bottom: 9px; font-weight: 500; }
   .gb-alt { font-size: 11.5px; color: var(--text-sub); margin: -5px 0 9px; line-height: 1.4; }
+  /* Not kağıdı hissi — dolduracağın bir "form" değil, yazacağın bir "davet" (bkz. kutucuk
+     tasarım turu 2026-07-21). İnce çizgili kağıt dokusu + sol altın şerit + köşeler
+     neredeyse keskin. */
   .isim-kart {
-    background: linear-gradient(135deg, rgba(185,129,46,0.07), rgba(20,33,61,0.025));
+    background:
+      repeating-linear-gradient(var(--card-bg), var(--card-bg) 25px, rgba(185,129,46,0.13) 26px),
+      var(--card-bg);
     border: 1px solid rgba(185,129,46,0.28);
-    border-radius: 14px;
+    border-left: 3px solid var(--gold);
+    border-radius: 3px;
     padding: 14px 16px;
     margin-bottom: 16px;
     box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 12px rgba(20,30,25,0.04);
@@ -582,7 +606,18 @@
     font-family: inherit;
     padding: 0;
   }
-  .gb-buttons { display: flex; gap: 5px; margin-bottom: 8px; }
+  /* Tek bir "segmented control" — 4 ayrı yuvarlak buton değil, tek kenarlıklı bir şerit
+     ve aralarında ince ayraçlar (bkz. kutucuk tasarım turu 2026-07-21). Bölme çizgisi
+     box-shadow ile çizildi çünkü border-color'ı JS aktif durum renklerini uygulamak için
+     satır içi (inline) ayarlıyor — box-shadow ona karışmıyor. */
+  .gb-buttons {
+    display: flex;
+    gap: 0;
+    margin-bottom: 8px;
+    border: 1px solid rgba(40,40,30,0.12);
+    border-radius: 10px;
+    overflow: hidden;
+  }
   .gb-btn {
     flex: 1;
     display: flex;
@@ -590,8 +625,9 @@
     align-items: center;
     gap: 3px;
     padding: 9px 2px;
-    border-radius: 9px;
-    border: 1px solid rgba(40,40,30,0.12);
+    border-radius: 0;
+    border: none;
+    box-shadow: -1px 0 0 rgba(40,40,30,0.12);
     background: white;
     color: #6B6A60;
     cursor: pointer;
@@ -599,9 +635,9 @@
     font-weight: 500;
     transition: all 0.15s;
   }
-  .gb-btn:hover { border-color: rgba(40,40,30,0.22); }
+  .gb-btn:first-child { box-shadow: none; }
+  .gb-btn:hover { background: rgba(40,40,30,0.04); }
   .gb-btn svg { width: 16px; height: 16px; }
-  .gb-btn.active { border-width: 1.5px; }
   .gb-btn:disabled { opacity: 0.6; cursor: default; }
   .gb-foto-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
   .gb-foto-btn {
@@ -645,10 +681,12 @@
   .gb-sent { font-size: 12.5px; color: var(--ink); margin-top: 7px; font-weight: 500; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
   .footnote { font-size: 11.5px; color: var(--footnote-text); margin-top: 22px; line-height: 1.6; }
+  /* "Kartpostal" hissi — bir davet olduğu için diğer kartlardan ayrışsın diye köşelerin
+     ikisi belirgin yuvarlak ikisi keskin (bkz. kutucuk tasarım turu 2026-07-21). */
   .site-feedback-card {
     border: 1px solid var(--card-border);
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: 18px 4px 18px 4px;
     padding: 16px 18px;
     margin-top: 22px;
   }
@@ -731,14 +769,27 @@
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 12px;
   }
+  /* Gerçek kullanıcı sözleri — tek tip kart değil, bir "alıntı" (bkz. kutucuk tasarım
+     turu 2026-07-21): büyük tırnak işareti + çapraz köşe kesimi (fiş/makbuz hissi). */
   .site-yorum-kart {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 14px 16px;
+    border-radius: 3px 16px 3px 16px;
+    padding: 16px 16px 14px;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    position: relative;
+  }
+  .site-yorum-kart::before {
+    content: "\201C";
+    position: absolute;
+    top: -4px;
+    left: 12px;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--card-border);
   }
   .site-yorum-yildizlar {
     display: flex;
@@ -834,19 +885,20 @@
     font-weight: 500;
   }
   .community-counts span { display: flex; align-items: center; gap: 4px; }
+  /* Boş durum — dolu bir kart gibi görünmemeli: zemin/gölge yok, kesikli "hayalet"
+     kenarlık (bkz. kutucuk tasarım turu 2026-07-21). */
   .community-empty {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 14px;
-    border: 1px solid var(--card-border);
-    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1.5px dashed var(--card-border);
+    background: none;
     padding: 14px 16px;
     font-size: 12.5px;
     color: var(--text-sub);
     margin-bottom: 10px;
     line-height: 1.4;
-    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 12px rgba(20,30,25,0.04);
   }
   .community-empty svg { flex-shrink: 0; opacity: 0.55; }
   .kamera-rozeti {
@@ -882,32 +934,53 @@
     70% { box-shadow: 0 0 0 6px rgba(217,48,48,0); }
     100% { box-shadow: 0 0 0 0 rgba(217,48,48,0); }
   }
+  /* Uyarı kutuları — "bilgi kutusu" değil, dikkat çekici olmalı: sol kenarda çapraz
+     çizgili bir tehlike şeridi + tek yönlü (sağ) yuvarlak köşe (bkz. kutucuk tasarım
+     turu 2026-07-21). İkisi de aynı asimetrik dil, sadece yoğunluk farklı. */
   .wind-warning {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: #FAEEDA;
     color: #6B4A0E;
     border: 1px solid #D9A53E;
-    border-radius: 9px;
-    padding: 7px 11px;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 7px 11px 7px 13px;
     font-size: 11px;
     font-weight: 500;
     margin-bottom: 10px;
     line-height: 1.3;
+    position: relative;
+  }
+  .wind-warning::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0; width: 5px;
+    background: repeating-linear-gradient(-45deg, #D9A53E, #D9A53E 4px, #FAEEDA 4px, #FAEEDA 8px);
+    border-radius: 8px 0 0 8px;
   }
   .conflict-note {
     display: flex;
-    gap: 9px;
+    gap: 10px;
     align-items: flex-start;
-    border-radius: 12px;
+    border-radius: 0 12px 12px 0;
     background: #FBF1DE;
     border: 1px solid #E0B765;
+    border-left: none;
     color: #5C3F0C;
-    padding: 11px 14px;
+    padding: 11px 14px 11px 17px;
     font-size: 12.5px;
     margin-bottom: 16px;
     line-height: 1.45;
+    position: relative;
+  }
+  .conflict-note::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0; width: 5px;
+    background: repeating-linear-gradient(-45deg, #E0B765, #E0B765 4px, #FBF1DE 4px, #FBF1DE 8px);
+    border-radius: 12px 0 0 12px;
   }
   .conflict-note svg { flex-shrink: 0; margin-top: 1px; }
   .fetch-fark-uyari {
@@ -1308,21 +1381,18 @@
   }
   @media (max-width: 780px) { .nasil-kullanilir-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 520px) { .nasil-kullanilir-grid { grid-template-columns: 1fr; } }
-  .nk-adim {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px 17px;
-    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 6px 18px rgba(20,30,25,0.05);
-  }
-  .nk-ust { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  /* Kutu yok — bu gerçek bir sıra (1'den 6'ya) olduğu için numara, küçük bir rozet değil,
+     büyük bir sayfa numarası gibi Fraunces'le basılıyor; ayrım için ince bir alt çizgi
+     yeterli (bkz. kutucuk tasarım turu 2026-07-21). */
+  .nk-adim { border-bottom: 1px solid rgba(20,33,61,0.08); padding-bottom: 16px; }
+  .nk-ust { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
   .nk-no {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold-bg), var(--gold));
-    color: #fff; font-size: 11.5px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 26px; font-weight: 600; line-height: 1;
+    color: var(--gold);
+    flex-shrink: 0;
   }
-  .nk-ikon { font-size: 19px; }
+  .nk-ikon { font-size: 17px; opacity: 0.8; }
   .nk-adim h3 { font-size: 14px; font-weight: 600; color: var(--text-h1); margin: 0 0 5px; }
   .nk-adim p { font-size: 12.5px; color: var(--text-sub); line-height: 1.55; margin: 0; }
 
