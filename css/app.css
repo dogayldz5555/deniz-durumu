@@ -72,12 +72,20 @@
       flex: 1 1 100%;
       justify-content: flex-start;
       flex-wrap: nowrap;
+      gap: 14px;
+    }
+    /* Kaydırma artık TÜM nav'da değil, sadece bu iç şeritte — İller açılır menüsü (.nav-iller)
+       şeridin dışında kaldığı için açılan panel artık kırpılmıyor. */
+    .site-header .site-nav-scroll {
+      display: flex;
+      flex-wrap: nowrap;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       gap: 18px;
       scrollbar-width: none;
+      min-width: 0;
     }
-    .site-header .site-nav::-webkit-scrollbar { display: none; }
+    .site-header .site-nav-scroll::-webkit-scrollbar { display: none; }
   }
 
   /* === Hero: sol tanıtım/arama/isim, sağ büyük harita paneli === */
@@ -985,6 +993,11 @@
     gap: 6px 22px;
     box-shadow: 0 2px 10px rgba(20,33,61,0.18);
   }
+  /* Masaüstünde görünmez bir sarmalayıcı — içindeki linkler .site-nav'ın DOĞRUDAN flex
+     öğeleri gibi davranır (bkz. display:contents). Dar ekranda (aşağıdaki @media) bu
+     sarmalayıcı GERÇEK bir kaydırma kutusuna dönüşür — bkz. navHtmlUret açıklaması: İller
+     menüsü kasıtlı olarak bunun dışında, aksi halde açılan menü kırpılıyordu. */
+  .site-nav-scroll { display: contents; }
   .site-nav a {
     font-size: 13px;
     font-weight: 600;

@@ -69,6 +69,12 @@ function navHtmlUret(yerler) {
       </details>`;
   }).join("\n      ");
 
+  // ÖNEMLİ: "İller" açılır menüsü (.nav-iller), dar ekranda yatay kaydırılan şeridin
+  // (.site-nav-scroll) DIŞINDA tutuluyor — İÇİNDE olsaydı, kaydırma şeridinin
+  // "overflow-x:auto"su (CSS overflow spec gereği) overflow-y'yi de auto'ya çeviriyor ve
+  // açılan menüyü kırpıyordu, bu yüzden telefonda İller'e basınca hiçbir şey açılmıyormuş
+  // gibi görünüyordu (2026-07-21, kullanıcı bildirdi). Anasayfa/İller sabit kalıyor, geri
+  // kalan linkler kaydırılabilir şeritte.
   return `<nav class="site-nav" id="site-nav">
   <a href="/" data-i18n="nav_anasayfa">Anasayfa</a>
   <details class="nav-iller" id="nav-iller">
@@ -77,14 +83,16 @@ function navHtmlUret(yerler) {
       ${ilGruplari}
     </div>
   </details>
-  <a href="#status-card" class="nav-kart-link" data-i18n="nav_veriler">Veriler</a>
-  <a href="#site-yorumlar-bolum" class="nav-kart-link" data-i18n="nav_yorumlar">Yorumlar</a>
-  <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
-  <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği</a>
-  <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
-  <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
-  <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
-  <a href="/iletisim/" data-i18n="nav_iletisim">İletişim</a>
+  <div class="site-nav-scroll">
+    <a href="#status-card" class="nav-kart-link" data-i18n="nav_veriler">Veriler</a>
+    <a href="#site-yorumlar-bolum" class="nav-kart-link" data-i18n="nav_yorumlar">Yorumlar</a>
+    <a href="/hakkimizda/" data-i18n="nav_hakkimizda">Hakkımızda</a>
+    <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği</a>
+    <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
+    <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
+    <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
+    <a href="/iletisim/" data-i18n="nav_iletisim">İletişim</a>
+  </div>
 </nav>`;
 }
 
