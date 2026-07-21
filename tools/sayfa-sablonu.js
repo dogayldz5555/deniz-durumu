@@ -21,6 +21,29 @@ function bolgeRozetiHtml(bolge) {
   return `<span class="yer-bolge-rozet"><span class="tr-metin">${e.ad}</span><span class="en-metin">${e.adEn}</span></span>`;
 }
 
+const BOLGE_KISA_AD = {
+  karadeniz: { ad: "Karadeniz", adEn: "Black Sea" },
+  marmara: { ad: "Marmara", adEn: "Sea of Marmara" },
+  ege: { ad: "Ege", adEn: "Aegean" },
+  akdeniz: { ad: "Akdeniz", adEn: "Mediterranean" },
+};
+
+// İl sayfasının en üstündeki 3 istatistik "fiş"i (ilçe sayısı, plaj sayısı, deniz) — sadece
+// süs değil, sayfanın kendi gerçek verisinden (plajlar.length, ilceler.length) türetiliyor;
+// il sayfasının şablon bir girişten daha fazlası olduğunu ilk bakışta gösteriyor.
+function ilHizliBakisHtml({ ilceSayisi, plajSayisi, bolge }) {
+  const bolgeKisa = bolge && BOLGE_KISA_AD[bolge] ? BOLGE_KISA_AD[bolge] : null;
+  const fis = (sayiHtml, tr, en) => `<div class="yer-stat">
+      <span class="yer-stat-sayi">${sayiHtml}</span>
+      <span class="yer-stat-etiket"><span class="tr-metin">${tr}</span><span class="en-metin">${en}</span></span>
+    </div>`;
+  return `<div class="yer-hizli-bakis">
+    ${fis(ilceSayisi, "kıyı ilçesi", ilceSayisi === 1 ? "coastal district" : "coastal districts")}
+    ${fis(plajSayisi, plajSayisi === 1 ? "plaj" : "plaj", "beaches")}
+    ${bolgeKisa ? fis(`<span class="tr-metin">${bolgeKisa.ad}</span><span class="en-metin">${bolgeKisa.adEn}</span>`, "deniz", "sea") : ""}
+  </div>`;
+}
+
 // Üst menüyü (Anasayfa / İller açılır menüsü / Veriler / Yorumlar / Hakkımızda / SSS) tüm
 // il/ilçe/anasayfa/SSS listesinden TEK SEFERDE üretir — bu yüzden sabit bir string DEĞİL,
 // yerler.json verisini alan bir fonksiyon: her yeni il/ilçe eklendiğinde "İller" açılır
@@ -61,6 +84,7 @@ function navHtmlUret(yerler) {
   <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
   <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
   <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
+  <a href="/iletisim/" data-i18n="nav_iletisim">İletişim</a>
 </nav>`;
 }
 
@@ -387,6 +411,7 @@ ${sayfaKonumJs}<script>
       <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
+      <a href="/iletisim/" data-i18n="nav_iletisim">İletişim</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
   </div>
@@ -451,14 +476,16 @@ function ilceSayfasiUret({ ilce, il, plajlar, halkPlajlar, lat, lon, zoom, navHt
 }
 
 function ilSayfasiUret({ il, ilceler, plajlar, halkPlajlar, lat, lon, zoom, navHtml, bolge }) {
+  const tumPlajSayisi = plajlar.length + (halkPlajlar ? halkPlajlar.length : 0);
   const ustSectionHtml = `<div class="yer-giris">
     ${bolgeRozetiHtml(bolge)}
     ${ikiDilliHtml("h2", escapeHtml(il.baslik), il.baslikEn ? escapeHtml(il.baslikEn) : null)}
     ${ikiDilliHtml("p", il.girisMetni, il.girisMetniEn || null)}
-  </div>`;
+  </div>
+  ${ilHizliBakisHtml({ ilceSayisi: ilceler.length, plajSayisi: tumPlajSayisi, bolge })}`;
 
   const ilceLinkleri = ilceler
-    .map((ic) => `<li><a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}</a></li>`)
+    .map((ic) => `<li><a href="/${il.slug}/${ic.slug}/">${escapeHtml(ic.ad)}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></li>`)
     .join("\n      ");
   const ilceSectionHtml = `<div class="yer-ilceler">
     ${ikiDilliHtml("h2", `${escapeHtml(il.ad)}'nin kıyı ilçeleri`, `Coastal districts of ${escapeHtml(il.ad)}`)}
@@ -581,6 +608,7 @@ ${jsonLd}
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -679,6 +707,7 @@ function hakkimizdaSayfasiUret({ navHtml }) {
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -791,6 +820,7 @@ function denizGuvenligiSayfasiUret({ navHtml }) {
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -872,6 +902,7 @@ ${jsonLd}
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
   </div>
@@ -958,4 +989,26 @@ function veriRehberiSayfasiUret({ navHtml }) {
   return statikMakaleSayfasiUret({ slug: "ruzgar-dalga-verisi-rehberi", title, metaAciklama, jsonLd, gorunenBaslik: "Rüzgar ve Dalga Verisi Nasıl Okunur?", icerikHtml, navHtml });
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, navHtmlUret, escapeHtml };
+function iletisimSayfasiUret({ navHtml }) {
+  const title = "İletişim — SeaDataWave";
+  const metaAciklama = "SeaDataWave hakkında soru, öneri veya bildirmek istediğin bir sorun mu var? İletişim bilgilerimiz burada.";
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "ContactPage", "name": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/iletisim/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Soru veya öneri</h3>
+      <p>SeaDataWave hakkında bir sorun, önerin ya da bildirmek istediğin bir hata mı var? <a href="mailto:dogayldz5555@gmail.com">dogayldz5555@gmail.com</a> adresinden bize ulaşabilirsin.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Site içi değerlendirme</h3>
+      <p>Uygulamayı nasıl bulduğunu, ana sayfanın en altındaki yıldız değerlendirme ve yorum formundan da paylaşabilirsin — buradan gelen görüşler doğrudan geliştirmemize katkı sağlıyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Veri veya konum düzeltmesi</h3>
+      <p>Haritada yanlış bir plaj konumu, eksik bir ilçe ya da güncel olmayan bir bilgi fark edersen, aynı e-posta adresinden bildirebilirsin — bu tür geri bildirimler sayesinde plaj ve konum verilerimiz sürekli güncelleniyor.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "iletisim", title, metaAciklama, jsonLd, gorunenBaslik: "İletişim", icerikHtml, navHtml });
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, navHtmlUret, escapeHtml };

@@ -1107,6 +1107,29 @@
     border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.3);
   }
   .yer-bolge-rozet::before { content: "〜"; font-size: 12px; }
+
+  /* Hızlı bakış fişleri — il sayfasının en üstünde, sayfanın kendi verisinden (ilçe/plaj
+     sayısı, deniz) türetilen 3 küçük istatistik. Sadece dekor değil, gerçek veri. */
+  .yer-hizli-bakis { display: flex; gap: 10px; margin: 14px 0 20px; flex-wrap: wrap; }
+  .yer-stat {
+    flex: 1 1 0;
+    min-width: 84px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 2px rgba(20,30,25,0.03);
+  }
+  .yer-stat-sayi {
+    display: block;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--bolge-hex, var(--text-h1));
+    line-height: 1.2;
+  }
+  .yer-stat-etiket { display: block; font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+
   .yer-plajlar { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .yer-plajlar h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
   .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; }
@@ -1120,9 +1143,27 @@
   }
   .yer-ilceler { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
   .yer-ilceler h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
-  .yer-ilceler-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 16px; }
-  .yer-ilceler-listesi a { font-size: 13px; font-weight: 500; color: var(--locate-text); text-decoration: none; }
-  .yer-ilceler-listesi a:hover { text-decoration: underline; }
+  .yer-ilceler-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .yer-ilceler-listesi a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 7px 11px;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .yer-ilceler-listesi a svg { width: 11px; height: 11px; opacity: 0.45; flex-shrink: 0; }
+  .yer-ilceler-listesi a:hover {
+    color: var(--bolge-hex, var(--ink));
+    border-color: rgba(var(--bolge-rgb,20,33,61),0.35);
+  }
+  .yer-ilceler-listesi a:hover svg { opacity: 0.8; }
   .yer-donus { margin-top: 14px; }
   .yer-donus a { font-size: 12.5px; color: var(--text-sub); text-decoration: none; }
   .yer-donus a:hover { text-decoration: underline; }
