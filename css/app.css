@@ -1080,17 +1080,13 @@
     color: var(--text-h1);
   }
 
-  /* Giriş metni kartı — eskiden düz metin akışıydı, artık .isim-kart ile aynı görsel dilde
-     (gradient zemin/kenarlık/gölge) ama bölge rengine göre tonlanan gerçek bir kart. İçindeki
-     başlık artık "X Hakkında" — yukarıdaki gerçek sayfa başlığından ayrı, sadece bu kartın
-     genel açıklama metnini tanıtıyor. */
+  /* Giriş metni — KUTU DEĞİL: dergi tarzı, sol kenarlıklı bir alıntı bloğu gibi. Sitedeki her
+     şeyin aynı yuvarlak-köşeli-kutu olması eleştirisi üzerine (2026-07-21) kart/gölge/arkaplan
+     kaldırıldı, yerine sadece bölge renginde ince bir sol çizgi + tipografi bırakıldı. */
   .yer-giris {
-    background: linear-gradient(135deg, rgba(var(--bolge-rgb,20,33,61),0.08), rgba(20,33,61,0.02));
-    border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.22);
-    border-radius: 16px;
-    padding: 20px 22px;
-    margin-bottom: 18px;
-    box-shadow: 0 1px 2px rgba(20,30,25,0.03), 0 4px 14px rgba(20,30,25,0.05);
+    border-left: 3px solid var(--bolge-hex, var(--ink));
+    padding: 2px 0 2px 18px;
+    margin-bottom: 22px;
   }
   .yer-giris h3 {
     font-family: "Fraunces", Georgia, serif;
@@ -1102,8 +1098,8 @@
     color: var(--bolge-hex, var(--text-h1));
   }
   .yer-giris p {
-    font-size: 14px;
-    line-height: 1.65;
+    font-size: 14.5px;
+    line-height: 1.7;
     color: var(--text-primary);
     margin: 0;
   }
@@ -1111,73 +1107,68 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 4px 11px;
-    border-radius: 999px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: var(--bolge-hex, var(--ink));
-    background: rgba(var(--bolge-rgb,20,33,61),0.09);
-    border: 1px solid rgba(var(--bolge-rgb,20,33,61),0.3);
   }
-  .yer-bolge-rozet::before { content: "〜"; font-size: 12px; }
+  .yer-bolge-rozet::before { content: "〜"; font-size: 13px; }
 
-  /* Hızlı bakış fişleri — il sayfasının en üstünde, sayfanın kendi verisinden (ilçe/plaj
-     sayısı, deniz) türetilen 3 küçük istatistik. Sadece dekor değil, gerçek veri. */
-  .yer-hizli-bakis { display: flex; gap: 10px; margin: 14px 0 20px; flex-wrap: wrap; }
-  .yer-stat {
-    flex: 1 1 0;
-    min-width: 84px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 10px 12px;
-    box-shadow: 0 1px 2px rgba(20,30,25,0.03);
+  /* Hızlı bakış — il sayfasının en üstünde, sayfanın kendi verisinden (ilçe/plaj sayısı, deniz)
+     türetilen 3 istatistik. Kutu değil: ince dikey ayraçlarla bölünen tek bir satır — "her şey
+     kutu" eleştirisi üzerine kartlardan çıkarıldı. */
+  .yer-hizli-bakis { display: flex; gap: 22px; margin: 16px 0 22px; flex-wrap: wrap; }
+  .yer-stat { position: relative; padding-right: 22px; }
+  .yer-stat:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 1px;
+    background: rgba(20,33,61,0.12);
   }
   .yer-stat-sayi {
     display: block;
     font-family: "Fraunces", Georgia, serif;
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 600;
     color: var(--bolge-hex, var(--text-h1));
     line-height: 1.2;
   }
   .yer-stat-etiket { display: block; font-size: 11px; color: var(--text-sub); margin-top: 2px; }
 
-  .yer-plajlar { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
-  .yer-plajlar h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
-  .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; }
+  /* Plaj/ilçe listeleri — eskiden her madde ayrı bir "hap" (yuvarlak kutu) idi; sayfada
+     onlarca kutu üst üste binip "her şey aynı yuvarlak kutu" hissi veriyordu. Artık düz metin
+     listesi: aralarında ince bir nokta ayracı var, kutu/kenarlık yok. */
+  .yer-plajlar { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(20,33,61,0.1); }
+  .yer-plajlar h2 { font-family: "Fraunces", Georgia, serif; font-size: 14px; font-weight: 600; color: var(--text-h1); margin: 0 0 9px; }
+  .yer-plaj-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
   .yer-plaj-listesi li {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-primary);
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    padding: 4px 10px;
   }
-  .yer-ilceler { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(40,40,30,0.08); }
-  .yer-ilceler h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); margin: 0 0 8px; }
-  .yer-ilceler-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .yer-plaj-listesi li:not(:last-child)::after { content: "·"; margin: 0 8px; color: rgba(20,33,61,0.3); }
+  .yer-ilceler { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(20,33,61,0.1); }
+  .yer-ilceler h2 { font-family: "Fraunces", Georgia, serif; font-size: 14px; font-weight: 600; color: var(--text-h1); margin: 0 0 9px; }
+  .yer-ilceler-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 9px; }
   .yer-ilceler-listesi a {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 13px;
+    gap: 4px;
+    font-size: 13.5px;
     font-weight: 500;
     color: var(--text-primary);
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 7px 11px;
     text-decoration: none;
-    transition: border-color 0.15s, color 0.15s;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
   }
-  .yer-ilceler-listesi a svg { width: 11px; height: 11px; opacity: 0.45; flex-shrink: 0; }
+  .yer-ilceler-listesi a svg { width: 10px; height: 10px; opacity: 0.4; flex-shrink: 0; }
   .yer-ilceler-listesi a:hover {
     color: var(--bolge-hex, var(--ink));
-    border-color: rgba(var(--bolge-rgb,20,33,61),0.35);
+    border-color: currentColor;
   }
   .yer-ilceler-listesi a:hover svg { opacity: 0.8; }
   .yer-donus { margin-top: 14px; }
