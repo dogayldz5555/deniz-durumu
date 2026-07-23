@@ -414,11 +414,16 @@ ${sayfaKonumJs}<script>
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4 data-i18n="footer_destek">Destek</h4>
-      <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
+      <h4 data-i18n="footer_rehberler">Rehberler</h4>
       <a href="/deniz-guvenligi-rehberi/" data-i18n="nav_guvenlik">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/" data-i18n="nav_mavi_bayrak">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
+      <a href="/ruzgar-sporlari-noktalari/" data-i18n="nav_ruzgar_sporlari">Rüzgar Sporları Noktaları</a>
+      <a href="/mavi-bayrakli-plaj-siralamasi/" data-i18n="nav_bayrak_siralama">Mavi Bayrak Sıralaması</a>
+    </div>
+    <div>
+      <h4 data-i18n="footer_destek">Destek</h4>
+      <a href="/sss/" data-i18n="nav_sss">Sıkça Sorulan Sorular</a>
       <a href="/iletisim/" data-i18n="nav_iletisim">İletişim</a>
       <a href="/gizlilik-politikasi.html" data-i18n="gizlilik_politikasi_link">Gizlilik Politikası</a>
     </div>
@@ -613,11 +618,16 @@ ${jsonLd}
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <h4>Rehberler</h4>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
+      <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
@@ -712,11 +722,16 @@ function hakkimizdaSayfasiUret({ navHtml }) {
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <h4>Rehberler</h4>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
+      <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
@@ -825,11 +840,16 @@ function denizGuvenligiSayfasiUret({ navHtml }) {
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <h4>Rehberler</h4>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
+      <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
@@ -907,11 +927,16 @@ ${jsonLd}
       <a href="/antalya/">Antalya</a>
     </div>
     <div>
-      <h4>Destek</h4>
-      <a href="/sss/">Sıkça Sorulan Sorular</a>
+      <h4>Rehberler</h4>
       <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>
       <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a>
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
+      <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
+      <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+    </div>
+    <div>
+      <h4>Destek</h4>
+      <a href="/sss/">Sıkça Sorulan Sorular</a>
       <a href="/iletisim/">İletişim</a>
       <a href="/gizlilik-politikasi.html">Gizlilik Politikası</a>
     </div>
@@ -1021,4 +1046,77 @@ function iletisimSayfasiUret({ navHtml }) {
   return statikMakaleSayfasiUret({ slug: "iletisim", title, metaAciklama, jsonLd, gorunenBaslik: "İletişim", icerikHtml, navHtml });
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, navHtmlUret, escapeHtml };
+function ruzgarSporlariSayfasiUret({ navHtml }) {
+  const title = "Rüzgar Sporları İçin Türkiye'nin En İyi Noktaları — SeaDataWave";
+  const metaAciklama = "Sörf ve kitesörf için Türkiye'nin en bilinen rüzgarlı noktaları: Alaçatı, Akyaka, Bozcaada, Karaburun ve Gökçeada — hangi rüzgar hangi noktayı besliyor, ne zaman gitmeli.";
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/ruzgar-sporlari-noktalari/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Neden bu noktalar rüzgarlı?</h3>
+      <p>Türkiye'nin rüzgar sporlarıyla anılan noktalarının ortak özelliği, yaz aylarında öğleden sonra hızlanan düzenli bir termal rüzgara (İmbat/meltem) açık olmaları — kara ile deniz arasındaki sıcaklık farkının ürettiği, günün belirli saatlerinde güvenilir şekilde esen bir rüzgar türü. <a href="/ruzgar-dalga-verisi-rehberi/">Rüzgar ve dalga verisi rehberimizde</a> anlattığımız "fetch" mantığı burada da geçerli: rüzgarın önünde uzun, açık bir su yüzeyi olması dalgayı da, rüzgar gücünü de artırıyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Alaçatı (Çeşme, İzmir)</h3>
+      <p>Türkiye'nin en bilinen rüzgar sörfü noktası. Çeşme'nin açık Ege'ye bakan konumu, özellikle öğleden sonraları hızlanan meltemle birleşince yıl boyunca uluslararası sörfçülerin tercih ettiği bir nokta haline geliyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Akyaka (Ula, Muğla)</h3>
+      <p>Gökova Körfezi'nin ucunda yer alan Akyaka, güçlü ve düzenli öğleden sonra rüzgarıyla (İmbat) tanınır — körfezin şekli rüzgarı adeta bir huniden geçirip hızlandırıyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Bozcaada ve Gökçeada (Çanakkale)</h3>
+      <p>Ege'nin açık sularındaki bu iki ada, konumları gereği güçlü rüzgara maruz kalıyor. Bozcaada'nın açık denize bakan plajları rüzgar sörfü için tercih edilirken, Gökçeada rüzgarının yanında berrak koylarıyla dalış için de biliniyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Karaburun (İzmir)</h3>
+      <p>Karaburun Yarımadası'nın rüzgara açık kayalık burunları, İzmir kıyısının en sert rüzgar aldığı kesimlerinden — deneyimli sporcular için tercih edilen, daha az kalabalık bir alternatif.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Ne zaman gitmeli?</h3>
+      <p>Bu noktaların çoğunda rüzgar yaz aylarında (Haziran-Eylül) öğleden sonra belirginleşiyor, sabahları ise genelde daha sakin. Gitmeden önce SeaDataWave'den o günün rüzgar hızı ve yönünü kontrol etmek, boşuna yola çıkmamak için en pratik yöntem.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>Rüzgar ve dalga verimizin nasıl çalıştığı için <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>'mize, denize girmeden önce bilmen gerekenler için <a href="/deniz-guvenligi-rehberi/">Deniz Güvenliği Rehberi</a>'mize bakabilirsin.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "ruzgar-sporlari-noktalari", title, metaAciklama, jsonLd, gorunenBaslik: "Rüzgar Sporları İçin Türkiye'nin En İyi Noktaları", icerikHtml, navHtml });
+}
+
+function maviBayrakSiralamasiSayfasiUret({ navHtml, siralama, toplamPlaj, toplamIl }) {
+  const title = "Hangi İl En Çok Mavi Bayraklı Plaja Sahip? — SeaDataWave";
+  const metaAciklama = `Türkiye'nin ${toplamIl} ilinde toplam ${toplamPlaj} Mavi Bayraklı plaj var — SeaDataWave'in kendi verisine göre il il gerçek sayılar.`;
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/mavi-bayrakli-plaj-siralamasi/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const siraliMaddeler = siralama
+    .map(([il, sayi], i) => {
+      const ilVeri = il; // il adı zaten Türkçe
+      return `<li><b>${i + 1}. ${escapeHtml(ilVeri)}</b> — ${sayi} plaj</li>`;
+    })
+    .join("\n      ");
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Sıralama nereden geliyor?</h3>
+      <p>Aşağıdaki sayılar, SeaDataWave'in haritasında işaretli olan ve TÜRÇEV'in resmi listesine dayanan Mavi Bayraklı plajlardan sayılıyor — tahmini bir liste değil, sitemizde il/ilçe sayfalarında da aynı şekilde listelenen gerçek veri. Şu an ${toplamIl} ilde toplam ${toplamPlaj} Mavi Bayraklı plaj işaretli; bu sayı zamanla yeni eklemelerle büyüyor.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>İl il Mavi Bayraklı plaj sayısı</h3>
+      <ol style="padding-left:20px;line-height:1.9;">
+      ${siraliMaddeler}
+      </ol>
+    </div>
+    <div class="sss-madde">
+      <h3>Neden bazı iller listede yok?</h3>
+      <p>Listede olmayan iller (ör. bazı Karadeniz illeri) Mavi Bayrak'tan tamamen yoksun demek değil — SeaDataWave'in haritasına henüz eklenmemiş olabilir, ya da o ilin kıyısı büyük ölçüde sertifikasız ama gerçek halka açık plajlardan oluşuyor olabilir (bkz. <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a> sayfamızdaki HALK_PLAJLARI ayrımı).</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>Mavi Bayrak kriterleri ve TÜRÇEV'in denetim süreci için <a href="/mavi-bayrak-nedir/">Mavi Bayrak Nedir?</a> sayfamıza bakabilirsin.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "mavi-bayrakli-plaj-siralamasi", title, metaAciklama, jsonLd, gorunenBaslik: "Hangi İl En Çok Mavi Bayraklı Plaja Sahip?", icerikHtml, navHtml });
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, ruzgarSporlariSayfasiUret, maviBayrakSiralamasiSayfasiUret, navHtmlUret, escapeHtml };

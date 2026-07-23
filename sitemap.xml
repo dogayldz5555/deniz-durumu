@@ -29,6 +29,14 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://www.seadatawave.com/ruzgar-sporlari-noktalari/</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.seadatawave.com/mavi-bayrakli-plaj-siralamasi/</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.seadatawave.com/samsun/</loc>
     <priority>0.8</priority>
   </url>
