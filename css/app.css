@@ -73,7 +73,17 @@
       justify-content: flex-start;
       flex-wrap: nowrap;
       gap: 14px;
+      /* KRİTİK: min-width:0 olmadan, iç içe flex'te .site-nav-scroll'un overflow-x:auto'su
+         hiçbir işe yaramıyor — flex item'ların varsayılan min-width:auto'su, .site-nav'ın
+         içeriğin doğal (sarmayan) genişliğinin ALTINA küçülmesini engelliyor, bu da tüm
+         sayfayı yatayda taşırıyordu (telefonda sağa kaydırınca boş alan görünmesi bundandı,
+         2026-07-21 kullanıcı bildirdi). */
+      min-width: 0;
     }
+    /* ÖNEMLİ: .site-nav'a overflow:hidden KONMADI — konsaydı, .nav-iller-menu (mobil İller
+       açılır menüsü) yine kırpılırdı (bkz. bir önceki commit'teki mobil düzeltme). Sadece
+       min-width:0 yeterli: .site-nav flex item olarak küçülebiliyor, içindeki dropdown ise
+       position:absolute olduğu için kutunun genişlik hesabını etkilemiyor zaten. */
     /* Kaydırma artık TÜM nav'da değil, sadece bu iç şeritte — İller açılır menüsü (.nav-iller)
        şeridin dışında kaldığı için açılan panel artık kırpılmıyor. */
     .site-header .site-nav-scroll {
