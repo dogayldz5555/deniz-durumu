@@ -4115,8 +4115,8 @@
       "baslikEn": "Başiskele Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Başiskele'de bugün deniz nasıl? Kocaeli'nin İzmit Körfezi kıyısındaki Başiskele ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Başiskele today? Live wind, wave conditions and 7-day forecast for this Kocaeli district on the Gulf of İzmit.",
-      "girisMetni": "Başiskele, Kocaeli'nin İzmit Körfezi'nin güney kıyısındaki ilçesi.",
-      "girisMetniEn": "Başiskele is a Kocaeli district on the southern shore of the Gulf of İzmit.",
+      "girisMetni": "Başiskele, Kocaeli'nin İzmit Körfezi'nin güney kıyısındaki ilçesi — sanayi tesisleriyle bilinen körfezde, yalı köylerinin ve küçük koyların bulunduğu daha sakin bir kesim.",
+      "girisMetniEn": "Başiskele is Kocaeli's district on the southern shore of İzmit Bay — a quieter stretch of shoreline villages and small coves along a bay otherwise known for its industry.",
       "miniSss": [
         {
           "soru": "Başiskele'te hangi plajlar var?",
@@ -4129,6 +4129,12 @@
           "cevap": "Başiskele, İzmit Körfezi'nin güney kıyısında yer alıyor.",
           "soruEn": "Which sea does Başiskele face?",
           "cevapEn": "Başiskele lies on the southern shore of the Gulf of İzmit."
+        },
+        {
+          "soru": "Başiskele'de deniz yüzülecek kadar temiz mi?",
+          "cevap": "İzmit Körfezi sanayi kirliliğiyle bilindiği için Başiskele kıyısında yüzmeden önce güncel su kalitesi uyarılarını kontrol etmen önerilir.",
+          "soruEn": "Is the sea clean enough to swim in at Başiskele?",
+          "cevapEn": "Since İzmit Bay is known for industrial pollution, it's worth checking current water-quality advisories before swimming off Başiskele."
         }
       ]
     },
@@ -4340,8 +4346,8 @@
       "baslikEn": "Abana Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Abana'da bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Abana ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Abana today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
-      "girisMetni": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Abana is a small Kastamonu district on the Black Sea, known for its sandy beaches.",
+      "girisMetni": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen Karadeniz kıyısındaki ilçesi — Küre Dağları'nın eteğinde, yazın nüfusu birkaç katına çıkan sakin bir tatil beldesi.",
+      "girisMetniEn": "Abana is Kastamonu's district known for its small sandy beaches on the Black Sea — a quiet holiday town at the foot of the Küre Mountains whose population multiplies in summer.",
       "miniSss": [
         {
           "soru": "Abana'te hangi plajlar var?",
@@ -4354,6 +4360,12 @@
           "cevap": "Abana, Kastamonu'nun küçük ama kumlu plajlarıyla bilinen sakin bir Karadeniz ilçesi.",
           "soruEn": "What's the sea like in Abana?",
           "cevapEn": "Abana is a quiet Black Sea district known for its small but sandy beaches."
+        },
+        {
+          "soru": "Abana yazın kalabalık olur mu?",
+          "cevap": "Evet, küçük bir kasaba olmasına rağmen yazın İstanbul ve Ankara'dan gelen tatilcilerle nüfusu birkaç katına çıkar.",
+          "soruEn": "Does Abana get crowded in summer?",
+          "cevapEn": "Yes — despite being a small town, its population multiplies in summer with holidaymakers from Istanbul and Ankara."
         }
       ]
     },
@@ -4415,8 +4427,8 @@
       "baslikEn": "Çatalzeytin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Çatalzeytin'de bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Çatalzeytin ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Çatalzeytin today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
-      "girisMetni": "Çatalzeytin, Kastamonu'nun Ginolu koyuyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Çatalzeytin is a Kastamonu district on the Black Sea, known for Ginolu bay.",
+      "girisMetni": "Çatalzeytin, Kastamonu'nun Ginolu koyuyla bilinen Karadeniz kıyısındaki ilçesi — adındaki 'zeytin'e rağmen bölge zeytinden çok orman ve yayla köyleriyle tanınır.",
+      "girisMetniEn": "Çatalzeytin is Kastamonu's district known for Ginolu Bay on the Black Sea — despite 'zeytin' (olive) in its name, the area is better known for forests and highland villages than olive groves.",
       "miniSss": [
         {
           "soru": "Çatalzeytin'te hangi plajlar var?",
@@ -4429,6 +4441,12 @@
           "cevap": "Ginolu koyunda, Çatalzeytin'in Karadeniz kıyısında denize girilebilir.",
           "soruEn": "Which bay can you swim in near Çatalzeytin?",
           "cevapEn": "You can swim in Ginolu bay, on Çatalzeytin's Black Sea coast."
+        },
+        {
+          "soru": "Çatalzeytin adındaki 'zeytin' neden geçiyor?",
+          "cevap": "İsme rağmen bölge zeytincilikle değil, ormanlık arazisi ve yayla köyleriyle tanınır; Ginolu koyu ilçenin en bilinen sahil noktasıdır.",
+          "soruEn": "Why does 'zeytin' (olive) appear in Çatalzeytin's name?",
+          "cevapEn": "Despite the name, the district is known for its forested terrain and highland villages rather than olive groves — Ginolu Bay is its best-known stretch of coast."
         }
       ]
     },
@@ -4440,8 +4458,8 @@
       "baslikEn": "Türkeli Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Türkeli'de bugün deniz nasıl? Sinop'un Karadeniz kıyısındaki Türkeli ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Türkeli today? Live wind, wave conditions and 7-day forecast for this Sinop district on the Black Sea.",
-      "girisMetni": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Türkeli is a Sinop district on the Black Sea, known for its long sandy beach.",
+      "girisMetni": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçesi — Ayancık'a komşu, kalabalıktan uzak, geniş ve düz bir plaj şeridine sahip.",
+      "girisMetniEn": "Türkeli is Sinop's district known for its long sandy beach on the Black Sea — neighboring Ayancık, with a wide, flat stretch of shore away from the crowds.",
       "miniSss": [
         {
           "soru": "Türkeli'te hangi plajlar var?",
@@ -4454,6 +4472,12 @@
           "cevap": "Türkeli, Sinop'un uzun kumsalıyla bilinen Karadeniz kıyısındaki ilçelerinden biri.",
           "soruEn": "What's the beach like in Türkeli?",
           "cevapEn": "Türkeli is a Sinop district on the Black Sea, known for its long sandy beach."
+        },
+        {
+          "soru": "Türkeli'nin plajı Ayancık'a göre nasıl?",
+          "cevap": "Türkeli'nin kumsalı Ayancık'a göre daha uzun ve düz, ama tesis anlamında daha az gelişmiş — daha sakin bir tercih.",
+          "soruEn": "How does Türkeli's beach compare to Ayancık's?",
+          "cevapEn": "Türkeli's beach is longer and flatter than Ayancık's, though less developed in terms of facilities — a quieter choice."
         }
       ]
     },
@@ -4540,8 +4564,8 @@
       "baslikEn": "Aliağa Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Aliağa'da bugün deniz nasıl? İzmir'in Aliağa ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Aliağa today? Live wind, wave conditions and 7-day forecast for Aliağa, İzmir.",
-      "girisMetni": "Aliağa, İzmir'in kuzeyinde, sanayi bölgesine rağmen kendi plajlarına sahip Ege kıyısındaki ilçesi.",
-      "girisMetniEn": "Aliağa is an İzmir district on the Aegean coast north of the city — despite its industrial zone, it has its own beaches.",
+      "girisMetni": "Aliağa, İzmir'in kuzeyinde, petrokimya ve rafineri tesisleriyle bilinen sanayi bölgesine rağmen kendi plajlarına ve Foça'ya yakın koylarına sahip bir Ege ilçesi.",
+      "girisMetniEn": "Aliağa is İzmir's northern district — known for its petrochemical and refinery facilities, yet still home to its own beaches and coves close to Foça.",
       "miniSss": [
         {
           "soru": "Aliağa'te hangi plajlar var?",
@@ -4554,6 +4578,12 @@
           "cevap": "Aliağa'nın büyük bir sanayi bölgesi olmasına rağmen, Ağapark ve Şakran gibi noktalarda gerçek plajları var.",
           "soruEn": "Can you swim in Aliağa despite it being an industrial area?",
           "cevapEn": "Despite being a major industrial zone, Aliağa has real beaches at spots like Ağapark and Şakran."
+        },
+        {
+          "soru": "Aliağa'da sanayi bölgesine rağmen yüzülür mü?",
+          "cevap": "Sanayi tesisleri kıyının bir kısmını kapladığı için yüzülecek noktalar sınırlı; Foça'ya yakın koylar genelde daha temiz kabul edilir.",
+          "soruEn": "Can you swim in Aliağa despite the industrial zone?",
+          "cevapEn": "Industrial facilities occupy part of the coastline, so swimmable spots are limited — coves closer to Foça are generally considered cleaner."
         }
       ]
     },
@@ -4740,8 +4770,8 @@
       "baslikEn": "Keşap Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Keşap'ta bugün deniz nasıl? Giresun'un Karadeniz kıyısındaki Keşap ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Keşap today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
-      "girisMetni": "Keşap, Giresun'un Karadeniz kıyısındaki ilçelerinden biri.",
-      "girisMetniEn": "Keşap is one of Giresun's districts on the Black Sea coast.",
+      "girisMetni": "Keşap, Giresun'un Karadeniz kıyısındaki ilçelerinden biri — fındık bahçeleriyle çevrili tepeleri ve Giresun-Trabzon sahil yolu üzerindeki konumuyla bilinir.",
+      "girisMetniEn": "Keşap is one of Giresun's Black Sea coastal districts — known for its hazelnut-covered hills and its position along the Giresun–Trabzon coastal road.",
       "miniSss": [
         {
           "soru": "Keşap'te hangi plajlar var?",
@@ -4754,6 +4784,12 @@
           "cevap": "Evet, Keşap'ın Karadeniz kıyısında Uluburun gibi gerçek plajlar bulunuyor.",
           "soruEn": "Are there beaches in Keşap?",
           "cevapEn": "Yes, Keşap's Black Sea coast has real beaches like Uluburun."
+        },
+        {
+          "soru": "Keşap'ta plaj dışında ne var?",
+          "cevap": "Keşap öncelikle fındık tarımıyla bilinir; kıyı şeridi, sahil yolu üzerindeki küçük plajlardan oluşur.",
+          "soruEn": "What is Keşap known for besides its beach?",
+          "cevapEn": "Keşap is primarily known for hazelnut farming; its coastline consists of small beaches along the coastal road."
         }
       ]
     },
@@ -4765,8 +4801,8 @@
       "baslikEn": "Piraziz Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Piraziz'de bugün deniz nasıl? Giresun'un Karadeniz kıyısındaki Piraziz ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Piraziz today? Live wind, wave conditions and 7-day forecast for this Giresun district on the Black Sea.",
-      "girisMetni": "Piraziz, Giresun'un Eğrice plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Piraziz is a Giresun district on the Black Sea, known for Eğrice beach.",
+      "girisMetni": "Piraziz, Giresun'un Eğrice plajıyla bilinen Karadeniz kıyısındaki ilçesi — fındık bahçelerinin denize indiği dar bir sahil şeridine sahip.",
+      "girisMetniEn": "Piraziz is Giresun's district known for Eğrice Beach on the Black Sea — a narrow coastal strip where hazelnut groves meet the sea.",
       "miniSss": [
         {
           "soru": "Piraziz'te hangi plajlar var?",
@@ -4779,6 +4815,12 @@
           "cevap": "Eğrice Plajı, Piraziz'in Karadeniz kıyısındaki bilinen plajı.",
           "soruEn": "Which beach is Piraziz known for?",
           "cevapEn": "Eğrice Beach is Piraziz's well-known spot on the Black Sea."
+        },
+        {
+          "soru": "Eğrice Plajı Piraziz'in neresinde?",
+          "cevap": "Eğrice Plajı, Piraziz'in ilçe merkezine yakın, fındık bahçeleriyle çevrili kısa bir kumsaldır.",
+          "soruEn": "Where is Eğrice Beach in Piraziz?",
+          "cevapEn": "Eğrice Beach is a short stretch of sand close to Piraziz's town center, surrounded by hazelnut groves."
         }
       ]
     },
@@ -4790,8 +4832,8 @@
       "baslikEn": "Eynesil Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Eynesil'de bugün deniz nasıl? Giresun'un Trabzon sınırındaki Eynesil ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Eynesil today? Live wind, wave conditions and 7-day forecast for this Giresun district near the Trabzon border.",
-      "girisMetni": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Eynesil is a Giresun district at the province's eastern edge, on the Black Sea near the Trabzon border.",
+      "girisMetni": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısındaki ilçesi — küçük nüfuslu, sahil yolu üzerinde sakin bir geçiş noktası.",
+      "girisMetniEn": "Eynesil sits at Giresun's eastern edge near the Trabzon border on the Black Sea — a small, quiet waypoint along the coastal road.",
       "miniSss": [
         {
           "soru": "Eynesil'te hangi plajlar var?",
@@ -4804,6 +4846,12 @@
           "cevap": "Eynesil, Giresun'un doğu ucunda, Trabzon sınırına yakın Karadeniz kıyısında yer alıyor.",
           "soruEn": "Where is Eynesil in relation to Giresun?",
           "cevapEn": "Eynesil is at Giresun's eastern edge, on the Black Sea near the Trabzon border."
+        },
+        {
+          "soru": "Eynesil, Giresun merkeze uzak mı?",
+          "cevap": "Eynesil, Giresun'un en doğusunda, Trabzon sınırına Giresun merkezden daha yakın konumda.",
+          "soruEn": "Is Eynesil far from Giresun's city center?",
+          "cevapEn": "Eynesil sits at Giresun's easternmost point, actually closer to the Trabzon border than to central Giresun."
         }
       ]
     },
@@ -4815,8 +4863,8 @@
       "baslikEn": "Beşikdüzü Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Beşikdüzü'nde bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Beşikdüzü ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Beşikdüzü today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
-      "girisMetni": "Beşikdüzü, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
-      "girisMetniEn": "Beşikdüzü is one of Trabzon's districts on the Black Sea coast.",
+      "girisMetni": "Beşikdüzü, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri — fındık araştırma enstitüsü ve sahil yolu üzerindeki küçük plajlarıyla bilinir.",
+      "girisMetniEn": "Beşikdüzü is one of Trabzon's Black Sea coastal districts — known for its hazelnut research institute and small beaches along the coastal road.",
       "miniSss": [
         {
           "soru": "Beşikdüzü'te hangi plajlar var?",
@@ -4829,6 +4877,12 @@
           "cevap": "Yukarıdaki haritadan Beşikdüzü kıyısındaki herhangi bir noktaya tıklayabilirsin.",
           "soruEn": "How do I check sea conditions in Beşikdüzü?",
           "cevapEn": "Tap any point along Beşikdüzü's coast on the map above."
+        },
+        {
+          "soru": "Beşikdüzü neden fındıkla anılıyor?",
+          "cevap": "İlçede bulunan Fındık Araştırma Enstitüsü, Beşikdüzü'nü Türkiye'nin fındık tarımı açısından tanınan noktalarından biri yapıyor.",
+          "soruEn": "Why is Beşikdüzü associated with hazelnuts?",
+          "cevapEn": "The Hazelnut Research Institute located in the district makes Beşikdüzü one of Turkey's notable spots for hazelnut cultivation."
         }
       ]
     },
@@ -4840,8 +4894,8 @@
       "baslikEn": "Çarşıbaşı Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Çarşıbaşı'nda bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Çarşıbaşı ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Çarşıbaşı today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
-      "girisMetni": "Çarşıbaşı, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
-      "girisMetniEn": "Çarşıbaşı is one of Trabzon's districts on the Black Sea coast.",
+      "girisMetni": "Çarşıbaşı, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri — fındık bahçeleri ve sahil yolu üzerindeki küçük koylarıyla bilinen sakin bir kasaba.",
+      "girisMetniEn": "Çarşıbaşı is one of Trabzon's Black Sea coastal districts — a quiet town known for its hazelnut groves and small coves along the coastal road.",
       "miniSss": [
         {
           "soru": "Çarşıbaşı'te hangi plajlar var?",
@@ -4854,6 +4908,12 @@
           "cevap": "Yukarıdaki haritadan Çarşıbaşı kıyısındaki herhangi bir noktaya tıklayabilirsin.",
           "soruEn": "How do I check sea conditions in Çarşıbaşı?",
           "cevapEn": "Tap any point along Çarşıbaşı's coast on the map above."
+        },
+        {
+          "soru": "Çarşıbaşı'nda plaj imkanları nasıl?",
+          "cevap": "Çarşıbaşı'nın kıyısı büyük, işletilen plajlardan çok sahil yolu kenarındaki küçük koylardan oluşur.",
+          "soruEn": "What are the beach options like in Çarşıbaşı?",
+          "cevapEn": "Çarşıbaşı's coast consists more of small coves along the coastal road than large, managed beaches."
         }
       ]
     },
@@ -4865,8 +4925,8 @@
       "baslikEn": "Sürmene Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Sürmene'de bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Sürmene ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Sürmene today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
-      "girisMetni": "Sürmene, Trabzon'un Voha plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Sürmene is a Trabzon district on the Black Sea, known for Voha beach.",
+      "girisMetni": "Sürmene, Trabzon'un Voha plajıyla bilinen Karadeniz kıyısındaki ilçesi — geleneksel bıçakçılık zanaatı ve balıkçı tekneleriyle de tanınır.",
+      "girisMetniEn": "Sürmene is Trabzon's district known for Voha Beach on the Black Sea — also recognized for its traditional knife-making craft and fishing boats.",
       "miniSss": [
         {
           "soru": "Sürmene'te hangi plajlar var?",
@@ -4879,6 +4939,12 @@
           "cevap": "Voha Plajı, Sürmene'nin Karadeniz kıyısındaki bilinen noktası.",
           "soruEn": "Which beach is Sürmene known for?",
           "cevapEn": "Voha Beach is Sürmene's well-known spot on the Black Sea."
+        },
+        {
+          "soru": "Sürmene neyle ünlü?",
+          "cevap": "Sürmene, Voha plajının yanı sıra Türkiye genelinde bilinen geleneksel bıçakçılık zanaatı ve balıkçı tekne yapımıyla tanınır.",
+          "soruEn": "What is Sürmene famous for?",
+          "cevapEn": "Besides Voha Beach, Sürmene is known nationwide for its traditional knife-making craft and fishing-boat building."
         }
       ]
     },
@@ -4890,8 +4956,8 @@
       "baslikEn": "Arsin Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Arsin'de bugün deniz nasıl? Trabzon'un Karadeniz kıyısındaki Arsin ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Arsin today? Live wind, wave conditions and 7-day forecast for this Trabzon district on the Black Sea.",
-      "girisMetni": "Arsin, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri.",
-      "girisMetniEn": "Arsin is one of Trabzon's districts on the Black Sea coast.",
+      "girisMetni": "Arsin, Trabzon'un Karadeniz kıyısındaki ilçelerinden biri — Trabzon Havalimanı'na yakınlığıyla ve sahil yolu üzerindeki küçük plajlarıyla bilinir.",
+      "girisMetniEn": "Arsin is one of Trabzon's Black Sea coastal districts — known for being close to Trabzon Airport and for its small beaches along the coastal road.",
       "miniSss": [
         {
           "soru": "Arsin'te hangi plajlar var?",
@@ -4904,6 +4970,12 @@
           "cevap": "Yukarıdaki haritadan Arsin kıyısındaki herhangi bir noktaya tıklayabilirsin.",
           "soruEn": "How do I check sea conditions in Arsin?",
           "cevapEn": "Tap any point along Arsin's coast on the map above."
+        },
+        {
+          "soru": "Arsin, Trabzon Havalimanı'na yakın mı?",
+          "cevap": "Evet, Arsin Trabzon Havalimanı'na oldukça yakın konumda, bu yüzden havalimanına iniş kalkışlar ilçeden sık görülür.",
+          "soruEn": "Is Arsin close to Trabzon Airport?",
+          "cevapEn": "Yes, Arsin is quite close to Trabzon Airport, so flights taking off and landing are a common sight from the district."
         }
       ]
     },
@@ -4915,8 +4987,8 @@
       "baslikEn": "İyidere Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "İyidere'de bugün deniz nasıl? Rize'nin Karadeniz kıyısındaki İyidere ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in İyidere today? Live wind, wave conditions and 7-day forecast for this Rize district on the Black Sea.",
-      "girisMetni": "İyidere, Rize'nin Sarayköy plajıyla bilinen Karadeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "İyidere is a Rize district on the Black Sea, known for Sarayköy beach.",
+      "girisMetni": "İyidere, Rize'nin Sarayköy plajıyla bilinen Karadeniz kıyısındaki ilçesi — çay bahçelerinin tepelerden denize doğru indiği tipik bir Rize manzarasına sahip.",
+      "girisMetniEn": "İyidere is Rize's district known for Sarayköy Beach on the Black Sea — with the tea gardens cascading from the hills to the sea that are typical of Rize's landscape.",
       "miniSss": [
         {
           "soru": "İyidere'te hangi plajlar var?",
@@ -4929,6 +5001,12 @@
           "cevap": "Sarayköy Plajı, İyidere'nin Karadeniz kıyısındaki bilinen noktası.",
           "soruEn": "Which beach is İyidere known for?",
           "cevapEn": "Sarayköy Beach is İyidere's well-known spot on the Black Sea."
+        },
+        {
+          "soru": "İyidere'de çay bahçeleri denize kadar iniyor mu?",
+          "cevap": "Evet, Rize'nin genelinde olduğu gibi İyidere'de de çay bahçeleri tepelerden başlayıp kıyıya yakın noktalara kadar uzanır.",
+          "soruEn": "Do the tea gardens reach all the way to the sea in İyidere?",
+          "cevapEn": "Yes — as is typical across Rize, İyidere's tea gardens stretch from the hills down to points near the shore."
         }
       ]
     },
@@ -5040,8 +5118,8 @@
       "baslikEn": "Aydıncık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Aydıncık'ta bugün deniz nasıl? Mersin'in Akdeniz kıyısındaki Aydıncık ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Aydıncık today? Live wind, wave conditions and 7-day forecast for this Mersin district on the Mediterranean.",
-      "girisMetni": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısındaki ilçesi.",
-      "girisMetniEn": "Aydıncık is a Mersin district on the Mediterranean, between Silifke and Anamur.",
+      "girisMetni": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısındaki ilçesi — kalabalıktan uzak, az bilinen ama berrak koylarıyla dikkat çeken bir sahil kasabası.",
+      "girisMetniEn": "Aydıncık is Mersin's district on the Mediterranean coast between Silifke and Anamur — a lesser-known coastal town noted for its clear, uncrowded coves.",
       "miniSss": [
         {
           "soru": "Aydıncık'te hangi plajlar var?",
@@ -5054,6 +5132,12 @@
           "cevap": "Aydıncık, Mersin'in Silifke ile Anamur arasındaki Akdeniz kıyısında yer alıyor.",
           "soruEn": "Where is Aydıncık in relation to Mersin?",
           "cevapEn": "Aydıncık lies on Mersin's Mediterranean coast, between Silifke and Anamur."
+        },
+        {
+          "soru": "Aydıncık neden az biliniyor?",
+          "cevap": "Silifke ve Anamur gibi daha büyük turizm merkezlerinin arasında kaldığı için Aydıncık daha az bilinir, ama bu da koylarını daha sakin tutuyor.",
+          "soruEn": "Why is Aydıncık less well-known?",
+          "cevapEn": "Sitting between larger tourism hubs like Silifke and Anamur, Aydıncık gets less attention — which keeps its coves quieter."
         }
       ]
     },
@@ -5115,8 +5199,8 @@
       "baslikEn": "Payas Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Payas'ta bugün deniz nasıl? Hatay'ın İskenderun Körfezi kıyısındaki Payas ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Payas today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
-      "girisMetni": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısındaki ilçesi.",
-      "girisMetniEn": "Payas is a Hatay district on the Gulf of İskenderun, between İskenderun and Dörtyol.",
+      "girisMetni": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısındaki ilçesi — Sokullu Mehmet Paşa Külliyesi'yle bilinen tarihi bir liman kasabası.",
+      "girisMetniEn": "Payas is Hatay's district on İskenderun Bay between İskenderun and Dörtyol — a historic port town known for the Sokullu Mehmet Paşa Complex.",
       "miniSss": [
         {
           "soru": "Payas'te hangi plajlar var?",
@@ -5129,6 +5213,12 @@
           "cevap": "Payas, Hatay'ın İskenderun ile Dörtyol arasındaki İskenderun Körfezi kıyısında yer alıyor.",
           "soruEn": "Where is Payas in relation to Hatay?",
           "cevapEn": "Payas lies on the Gulf of İskenderun, between İskenderun and Dörtyol."
+        },
+        {
+          "soru": "Payas'ta görülmeye değer tarihi yer var mı?",
+          "cevap": "Evet, Mimar Sinan'ın eseri olan Sokullu Mehmet Paşa Külliyesi (kervansaray, cami, hamam) Payas'ın en bilinen tarihi yapısı.",
+          "soruEn": "Is there a historic site worth seeing in Payas?",
+          "cevapEn": "Yes — the Sokullu Mehmet Paşa Complex (a caravanserai, mosque and bathhouse designed by architect Sinan) is Payas's best-known historic landmark."
         }
       ]
     },
@@ -5140,8 +5230,8 @@
       "baslikEn": "Dörtyol Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Dörtyol'da bugün deniz nasıl? Hatay'ın İskenderun Körfezi kıyısındaki Dörtyol ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Dörtyol today? Live wind, wave conditions and 7-day forecast for this Hatay district on the Gulf of İskenderun.",
-      "girisMetni": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısındaki ilçesi.",
-      "girisMetniEn": "Dörtyol is a Hatay district on the northern shore of the Gulf of İskenderun.",
+      "girisMetni": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısındaki ilçesi — geniş narenciye bahçeleriyle bilinen, körfeze bakan sakin bir tarım kasabası.",
+      "girisMetniEn": "Dörtyol is Hatay's district on the northern shore of İskenderun Bay — a quiet farming town known for its extensive citrus orchards overlooking the bay.",
       "miniSss": [
         {
           "soru": "Dörtyol'te hangi plajlar var?",
@@ -5154,6 +5244,12 @@
           "cevap": "Dörtyol, Hatay'ın İskenderun Körfezi'nin kuzey kıyısında yer alıyor.",
           "soruEn": "Where is Dörtyol in relation to Hatay?",
           "cevapEn": "Dörtyol lies on the northern shore of the Gulf of İskenderun."
+        },
+        {
+          "soru": "Dörtyol neyle tanınıyor?",
+          "cevap": "Dörtyol, Türkiye'nin önemli narenciye (portakal, mandalina) üretim merkezlerinden biri olarak tanınır; kıyısı İskenderun Körfezi'ne bakar.",
+          "soruEn": "What is Dörtyol known for?",
+          "cevapEn": "Dörtyol is known as one of Turkey's major citrus-growing centers (oranges, mandarins), with its coast facing İskenderun Bay."
         }
       ]
     },
