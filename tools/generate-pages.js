@@ -5,7 +5,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, ruzgarSporlariSayfasiUret, maviBayrakSiralamasiSayfasiUret, navHtmlUret } = require("./sayfa-sablonu");
+const { ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, ruzgarSporlariSayfasiUret, maviBayrakSiralamasiSayfasiUret, yuzmeSezonuSayfasiUret, navHtmlUret } = require("./sayfa-sablonu");
 
 const KOK = path.join(__dirname, "..");
 
@@ -106,6 +106,7 @@ function sitemapUret(ilListesi) {
     { loc: "https://www.seadatawave.com/iletisim/", priority: "0.4" },
     { loc: "https://www.seadatawave.com/ruzgar-sporlari-noktalari/", priority: "0.5" },
     { loc: "https://www.seadatawave.com/mavi-bayrakli-plaj-siralamasi/", priority: "0.5" },
+    { loc: "https://www.seadatawave.com/yuzme-sezonu-ne-zaman-baslar/", priority: "0.6" },
   ];
   for (const il of ilListesi) {
     urls.push({ loc: `https://www.seadatawave.com/${il.slug}/`, priority: "0.8" });
@@ -227,6 +228,11 @@ function main() {
     plajlar.forEach((p) => { ilSayimi[p.il] = (ilSayimi[p.il] || 0) + 1; });
     const siralama = Object.entries(ilSayimi).sort((a, b) => b[1] - a[1]);
     yazDosya("mavi-bayrakli-plaj-siralamasi/index.html", maviBayrakSiralamasiSayfasiUret({ navHtml, siralama, toplamPlaj: plajlar.length, toplamIl: siralama.length }));
+  }
+
+  if (!filtre || filtre.has("yuzme-sezonu-ne-zaman-baslar")) {
+    const yuzmeSezonuVerisi = JSON.parse(fs.readFileSync(path.join(KOK, "data/yuzme-sezonu-verisi.json"), "utf8"));
+    yazDosya("yuzme-sezonu-ne-zaman-baslar/index.html", yuzmeSezonuSayfasiUret({ navHtml, veri: yuzmeSezonuVerisi }));
   }
 
   // Nav ve sitemap her zaman TÜM il/ilçe listesine göre güncellenir (filtreden bağımsız),

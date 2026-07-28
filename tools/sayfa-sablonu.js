@@ -420,6 +420,7 @@ ${sayfaKonumJs}<script>
       <a href="/ruzgar-dalga-verisi-rehberi/" data-i18n="nav_veri_rehberi">Veri Okuma Rehberi</a>
       <a href="/ruzgar-sporlari-noktalari/" data-i18n="nav_ruzgar_sporlari">Rüzgar Sporları Noktaları</a>
       <a href="/mavi-bayrakli-plaj-siralamasi/" data-i18n="nav_bayrak_siralama">Mavi Bayrak Sıralaması</a>
+      <a href="/yuzme-sezonu-ne-zaman-baslar/" data-i18n="nav_yuzme_sezonu">Yüzme Sezonu Ne Zaman Başlar?</a>
     </div>
     <div>
       <h4 data-i18n="footer_destek">Destek</h4>
@@ -624,6 +625,7 @@ ${jsonLd}
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
       <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+      <a href="/yuzme-sezonu-ne-zaman-baslar/">Yüzme Sezonu Ne Zaman Başlar?</a>
     </div>
     <div>
       <h4>Destek</h4>
@@ -728,6 +730,7 @@ function hakkimizdaSayfasiUret({ navHtml }) {
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
       <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+      <a href="/yuzme-sezonu-ne-zaman-baslar/">Yüzme Sezonu Ne Zaman Başlar?</a>
     </div>
     <div>
       <h4>Destek</h4>
@@ -846,6 +849,7 @@ function denizGuvenligiSayfasiUret({ navHtml }) {
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
       <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+      <a href="/yuzme-sezonu-ne-zaman-baslar/">Yüzme Sezonu Ne Zaman Başlar?</a>
     </div>
     <div>
       <h4>Destek</h4>
@@ -933,6 +937,7 @@ ${jsonLd}
       <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>
       <a href="/ruzgar-sporlari-noktalari/">Rüzgar Sporları Noktaları</a>
       <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>
+      <a href="/yuzme-sezonu-ne-zaman-baslar/">Yüzme Sezonu Ne Zaman Başlar?</a>
     </div>
     <div>
       <h4>Destek</h4>
@@ -1119,4 +1124,96 @@ function maviBayrakSiralamasiSayfasiUret({ navHtml, siralama, toplamPlaj, toplam
   return statikMakaleSayfasiUret({ slug: "mavi-bayrakli-plaj-siralamasi", title, metaAciklama, jsonLd, gorunenBaslik: "Hangi İl En Çok Mavi Bayraklı Plaja Sahip?", icerikHtml, navHtml });
 }
 
-module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, ruzgarSporlariSayfasiUret, maviBayrakSiralamasiSayfasiUret, navHtmlUret, escapeHtml };
+// Bu sayfa uydurma bir "genel bilgi" makalesi değil — data/yuzme-sezonu-verisi.json'daki
+// gerçek, hesaplanmış veriye dayanıyor: Open-Meteo'nun deniz arşiv API'sinden 10 kıyı
+// noktası için 2022-2025 arası 4 yıllık günlük dalga yüksekliği + deniz suyu sıcaklığı
+// çekilip aylık ortalamaları hesaplandı (bkz. üretim scripti, tarih: 2026-07-28). Amaç,
+// başka hiçbir sitede olmayan, SeaDataWave'e özgü bir analiz sunmak (AdSense'in "özgün
+// ve derin içerik" beklentisine karşılık, kutucuk tasarım turundan sonraki içerik turu).
+function yuzmeSezonuSayfasiUret({ navHtml, veri }) {
+  const title = "Türkiye'de Yüzme Sezonu Ne Zaman Başlar, Ne Zaman Biter? 10 Noktada 4 Yıllık Gerçek Veri — SeaDataWave";
+  const metaAciklama = "Karadeniz'den Akdeniz'e 10 kıyı noktasında, 2022-2025 arası 4 yıllık gerçek deniz suyu sıcaklığı ve dalga verisiyle: yüzme sezonu ne zaman başlıyor, ne zaman bitiyor, hangi ay hangi bölge en sakin.";
+  const jsonLd = `{ "@context": "https://schema.org", "@type": "Article", "headline": ${JSON.stringify(title)}, "url": "https://www.seadatawave.com/yuzme-sezonu-ne-zaman-baslar/", "isPartOf": { "@id": "https://www.seadatawave.com/#website" }, "publisher": { "@id": "https://www.seadatawave.com/#organization" } }`;
+
+  const noktalar = veri.noktalar;
+
+  const anaTabloSatirlari = noktalar
+    .map((n) => {
+      const ins = n.insights;
+      const sezon = ins.ilkAy ? `${ins.ilkAy} – ${ins.sonAy}` : "20°C'ye ulaşmıyor";
+      return `<tr>
+        <td style="padding:8px 10px;border-bottom:1px solid rgba(40,40,30,0.1);font-weight:600;">${escapeHtml(n.ad)}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid rgba(40,40,30,0.1);">${escapeHtml(n.bolge)}</td>
+        <td style="padding:8px 10px;border-bottom:1px solid rgba(40,40,30,0.1);">${escapeHtml(sezon)} <span style="opacity:.65;">(${ins.sezonUzunlugu} ay)</span></td>
+        <td style="padding:8px 10px;border-bottom:1px solid rgba(40,40,30,0.1);">${escapeHtml(ins.enSakinAy)} — ${ins.enSakinDeger} m</td>
+        <td style="padding:8px 10px;border-bottom:1px solid rgba(40,40,30,0.1);">${escapeHtml(ins.enDalgaliAy)} — ${ins.enDalgaliDeger} m</td>
+      </tr>`;
+    })
+    .join("\n      ");
+
+  const sicaklikTabloBasSatiri = `<tr><th style="padding:8px 10px;text-align:left;">Nokta</th>${["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"].map((a) => `<th style="padding:8px 6px;text-align:center;">${a}</th>`).join("")}</tr>`;
+  const sicaklikTabloSatirlari = noktalar
+    .map((n) => {
+      const hucreler = n.monthly
+        .map((m) => {
+          const sicak = m.ortalamaSicaklik != null && m.ortalamaSicaklik >= 20;
+          return `<td style="padding:6px;text-align:center;border-bottom:1px solid rgba(40,40,30,0.08);${sicak ? "font-weight:700;color:#1D7FC2;" : "opacity:.65;"}">${m.ortalamaSicaklik ?? "—"}</td>`;
+        })
+        .join("");
+      return `<tr><td style="padding:6px 10px;border-bottom:1px solid rgba(40,40,30,0.08);font-weight:600;white-space:nowrap;">${escapeHtml(n.ad)}</td>${hucreler}</tr>`;
+    })
+    .join("\n      ");
+
+  // En uzun/kısa sezon, en sakin/dalgalı bölge gibi genel karşılaştırmalar — tablodan
+  // türetiliyor, elle yazılmış sabit sayı değil (veri değişirse bu satırlar da değişir).
+  const enUzunSezon = noktalar.reduce((a, b) => (b.insights.sezonUzunlugu > (a?.insights.sezonUzunlugu ?? 0) ? b : a), null);
+  const enKisaSezon = noktalar.reduce((a, b) => (a === null || b.insights.sezonUzunlugu < a.insights.sezonUzunlugu ? b : a), null);
+  const genelEnSakin = noktalar.reduce((a, b) => (a === null || b.insights.enSakinDeger < a.insights.enSakinDeger ? b : a), null);
+  const genelEnDalgali = noktalar.reduce((a, b) => (a === null || b.insights.enDalgaliDeger > a.insights.enDalgaliDeger ? b : a), null);
+
+  const icerikHtml = `
+    <div class="sss-madde">
+      <h3>Bu veri nereden geliyor?</h3>
+      <p>Aşağıdaki sayılar bir tahmin ya da genel bilgi değil — Open-Meteo'nun deniz arşiv API'sinden, Karadeniz'den Akdeniz'e 10 farklı kıyı noktası için <b>${escapeHtml(veri.donem)}</b> arasındaki GÜNLÜK dalga yüksekliği ve deniz suyu sıcaklığı verisini çekip aylara göre ortalamasını aldık. Yani "Temmuz'da deniz 25°C" dediğimizde, bu 4 yılın Temmuz ayı günlerinin gerçek ortalamasıdır. Metodoloji ve ham veri kaynağı hakkında detay için <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>'mize bakabilirsin.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Noktalara göre yüzme sezonu (deniz suyu ≥ 20°C)</h3>
+      <p>20°C, genel kabul gören ve çoğu insanın uzun süre üşümeden yüzebildiği bir eşik. Aşağıdaki tablo, her noktada 4 yıllık ortalamaya göre denizin hangi aylar bu eşiğin üzerinde kaldığını gösteriyor.</p>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px;">
+        <thead><tr style="border-bottom:2px solid rgba(40,40,30,0.15);"><th style="padding:8px 10px;text-align:left;">Nokta</th><th style="padding:8px 10px;text-align:left;">Bölge</th><th style="padding:8px 10px;text-align:left;">Yüzme sezonu</th><th style="padding:8px 10px;text-align:left;">En sakin ay</th><th style="padding:8px 10px;text-align:left;">En dalgalı ay</th></tr></thead>
+        <tbody>
+      ${anaTabloSatirlari}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="sss-madde">
+      <h3>Aylık ortalama deniz suyu sıcaklığı (°C)</h3>
+      <p>Koyu ve mavi yazan hücreler, o ayın ortalamasının 20°C'yi geçtiği (yüzme sezonu sayılan) ayları gösteriyor.</p>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px;">
+        <thead style="border-bottom:2px solid rgba(40,40,30,0.15);">${sicaklikTabloBasSatiri}</thead>
+        <tbody>
+      ${sicaklikTabloSatirlari}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="sss-madde">
+      <h3>Sonuçlardan çıkanlar</h3>
+      <p><b>${escapeHtml(enUzunSezon.ad)}</b>, ${enUzunSezon.insights.sezonUzunlugu} aylık yüzme sezonuyla listedeki en uzun sezona sahip nokta — buna karşılık ${escapeHtml(enKisaSezon.ad)} sadece ${enKisaSezon.insights.sezonUzunlugu} ay 20°C üzerinde kalıyor. İlginç bir ayrıntı: aynı Ege kıyısında olmalarına rağmen Bodrum'un sezonu Çeşme'den belirgin biçimde uzun — bu, Güney Ege'nin Kuzey Ege'ye göre kışın bile daha ılık kalabildiğini gösteriyor. Dalga tarafında ise en sakin ortalama <b>${escapeHtml(genelEnSakin.ad)}</b>'da (${genelEnSakin.insights.enSakinDeger} m), en dalgalı ortalama ise <b>${escapeHtml(genelEnDalgali.ad)}</b>'da (${genelEnDalgali.insights.enDalgaliDeger} m) görülüyor — kışın açık denize bakan noktalarda dalganın belirgin şekilde arttığı, körfez/koy içindeki noktalarda ise yıl boyu daha sakin kaldığı net.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Bu 4 yıllık ortalama, bu yılki durumu birebir yansıtır mı?</h3>
+      <p>Hayır — bu bir iklim ortalaması, hava durumu tahmini değil. Belirli bir gün rüzgarlı bir fırtına geçiyorsa, o gün burada yazan aylık ortalamanın çok üzerinde bir dalga görebilirsin. Bu sayfa "genel olarak hangi ay/bölge nasıl" sorusuna cevap veriyor; gitmeden hemen önceki anlık durumu her zaman <a href="/">ana sayfadaki haritadan</a> kontrol etmeni öneririz.</p>
+    </div>
+    <div class="sss-madde">
+      <h3>Daha fazla bilgi</h3>
+      <p>Rüzgar ve dalga verimizin nasıl çalıştığı için <a href="/ruzgar-dalga-verisi-rehberi/">Veri Okuma Rehberi</a>'mize, Mavi Bayraklı plajlar için <a href="/mavi-bayrakli-plaj-siralamasi/">Mavi Bayrak Sıralaması</a>'na bakabilirsin.</p>
+    </div>`;
+
+  return statikMakaleSayfasiUret({ slug: "yuzme-sezonu-ne-zaman-baslar", title, metaAciklama, jsonLd, gorunenBaslik: "Türkiye'de Yüzme Sezonu Ne Zaman Başlar, Ne Zaman Biter?", icerikHtml, navHtml });
+}
+
+module.exports = { sayfaIskeleti, ilceSayfasiUret, ilSayfasiUret, sssSayfasiUret, hakkimizdaSayfasiUret, denizGuvenligiSayfasiUret, maviBayrakSayfasiUret, veriRehberiSayfasiUret, iletisimSayfasiUret, ruzgarSporlariSayfasiUret, maviBayrakSiralamasiSayfasiUret, yuzmeSezonuSayfasiUret, navHtmlUret, escapeHtml };

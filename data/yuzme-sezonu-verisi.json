@@ -1,0 +1,761 @@
+{
+  "kaynak": "Open-Meteo Marine Archive API (marine-api.open-meteo.com)",
+  "donem": "2022-01-01 - 2025-12-31 (4 yil gunluk ortalama)",
+  "uretimTarihi": "2026-07-28",
+  "degiskenler": {
+    "dalga": "wave_height_max (m, gunluk maksimum, aylik ortalama)",
+    "sicaklik": "sea_surface_temperature_max (C, gunluk maksimum, aylik ortalama)"
+  },
+  "noktalar": [
+    {
+      "ad": "Şile (İstanbul)",
+      "bolge": "Karadeniz — Marmara geçişi",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 1.13,
+          "ortalamaSicaklik": 10.6
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 1.32,
+          "ortalamaSicaklik": 8.9
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.99,
+          "ortalamaSicaklik": 9.5
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.87,
+          "ortalamaSicaklik": 11.8
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.74,
+          "ortalamaSicaklik": 15.1
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.77,
+          "ortalamaSicaklik": 21.6
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.85,
+          "ortalamaSicaklik": 25.3
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 1.03,
+          "ortalamaSicaklik": 24.5
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 1.12,
+          "ortalamaSicaklik": 24
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 1.01,
+          "ortalamaSicaklik": 20.7
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 1.03,
+          "ortalamaSicaklik": 16.8
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 1.2,
+          "ortalamaSicaklik": 13
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Ekim",
+        "sezonUzunlugu": 5,
+        "enSakinAy": "Mayıs",
+        "enSakinDeger": 0.74,
+        "enDalgaliAy": "Şubat",
+        "enDalgaliDeger": 1.32
+      }
+    },
+    {
+      "ad": "Sinop",
+      "bolge": "Orta Karadeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.87,
+          "ortalamaSicaklik": 11.2
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.94,
+          "ortalamaSicaklik": 9.7
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.81,
+          "ortalamaSicaklik": 9.9
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.71,
+          "ortalamaSicaklik": 11.6
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.6,
+          "ortalamaSicaklik": 14.2
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.58,
+          "ortalamaSicaklik": 20.5
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.61,
+          "ortalamaSicaklik": 24.7
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.58,
+          "ortalamaSicaklik": 25.2
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.75,
+          "ortalamaSicaklik": 23.7
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.78,
+          "ortalamaSicaklik": 20.3
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.82,
+          "ortalamaSicaklik": 16.7
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.89,
+          "ortalamaSicaklik": 13.4
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Ekim",
+        "sezonUzunlugu": 5,
+        "enSakinAy": "Haziran",
+        "enSakinDeger": 0.58,
+        "enDalgaliAy": "Şubat",
+        "enDalgaliDeger": 0.94
+      }
+    },
+    {
+      "ad": "Trabzon",
+      "bolge": "Doğu Karadeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.98,
+          "ortalamaSicaklik": 12
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 1.02,
+          "ortalamaSicaklik": 10.8
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.85,
+          "ortalamaSicaklik": 10.8
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.7,
+          "ortalamaSicaklik": 12.6
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.55,
+          "ortalamaSicaklik": 16.7
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.57,
+          "ortalamaSicaklik": 23.1
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.64,
+          "ortalamaSicaklik": 26.6
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.53,
+          "ortalamaSicaklik": 27.9
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.76,
+          "ortalamaSicaklik": 26.2
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.83,
+          "ortalamaSicaklik": 21.8
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.91,
+          "ortalamaSicaklik": 17.5
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 1.02,
+          "ortalamaSicaklik": 14.2
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Ekim",
+        "sezonUzunlugu": 5,
+        "enSakinAy": "Ağustos",
+        "enSakinDeger": 0.53,
+        "enDalgaliAy": "Şubat",
+        "enDalgaliDeger": 1.02
+      }
+    },
+    {
+      "ad": "Samsun / Atakum",
+      "bolge": "Orta Karadeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.76,
+          "ortalamaSicaklik": 11.4
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.85,
+          "ortalamaSicaklik": 9.9
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.74,
+          "ortalamaSicaklik": 10.4
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.6,
+          "ortalamaSicaklik": 12.5
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.53,
+          "ortalamaSicaklik": 15.4
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.5,
+          "ortalamaSicaklik": 21.7
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.57,
+          "ortalamaSicaklik": 25.7
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.55,
+          "ortalamaSicaklik": 26.7
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.67,
+          "ortalamaSicaklik": 25.2
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.66,
+          "ortalamaSicaklik": 20.8
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.69,
+          "ortalamaSicaklik": 17
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.77,
+          "ortalamaSicaklik": 13.7
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Ekim",
+        "sezonUzunlugu": 5,
+        "enSakinAy": "Haziran",
+        "enSakinDeger": 0.5,
+        "enDalgaliAy": "Şubat",
+        "enDalgaliDeger": 0.85
+      }
+    },
+    {
+      "ad": "Çanakkale",
+      "bolge": "Marmara — Ege geçişi",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.7,
+          "ortalamaSicaklik": 14.3
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.61,
+          "ortalamaSicaklik": 11.7
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.54,
+          "ortalamaSicaklik": 12.5
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.49,
+          "ortalamaSicaklik": 14.3
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.36,
+          "ortalamaSicaklik": 16.9
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.35,
+          "ortalamaSicaklik": 20.6
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.36,
+          "ortalamaSicaklik": 23.7
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.43,
+          "ortalamaSicaklik": 23.8
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.44,
+          "ortalamaSicaklik": 22.9
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.44,
+          "ortalamaSicaklik": 20.5
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.71,
+          "ortalamaSicaklik": 18.3
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.62,
+          "ortalamaSicaklik": 16.2
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Ekim",
+        "sezonUzunlugu": 5,
+        "enSakinAy": "Haziran",
+        "enSakinDeger": 0.35,
+        "enDalgaliAy": "Kasım",
+        "enDalgaliDeger": 0.71
+      }
+    },
+    {
+      "ad": "Çeşme (İzmir)",
+      "bolge": "Kuzey Ege",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.84,
+          "ortalamaSicaklik": 18
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.86,
+          "ortalamaSicaklik": 16.7
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.82,
+          "ortalamaSicaklik": 16.7
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.67,
+          "ortalamaSicaklik": 17.5
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.5,
+          "ortalamaSicaklik": 19.3
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.56,
+          "ortalamaSicaklik": 22.4
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.6,
+          "ortalamaSicaklik": 23.9
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.53,
+          "ortalamaSicaklik": 25.2
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.55,
+          "ortalamaSicaklik": 24.2
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.58,
+          "ortalamaSicaklik": 22.2
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.77,
+          "ortalamaSicaklik": 20.3
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.75,
+          "ortalamaSicaklik": 18.8
+        }
+      ],
+      "insights": {
+        "ilkAy": "Haziran",
+        "sonAy": "Kasım",
+        "sezonUzunlugu": 6,
+        "enSakinAy": "Mayıs",
+        "enSakinDeger": 0.5,
+        "enDalgaliAy": "Şubat",
+        "enDalgaliDeger": 0.86
+      }
+    },
+    {
+      "ad": "Bodrum (Muğla)",
+      "bolge": "Güney Ege",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.57,
+          "ortalamaSicaklik": 19.3
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.57,
+          "ortalamaSicaklik": 18.2
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.54,
+          "ortalamaSicaklik": 17.7
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.52,
+          "ortalamaSicaklik": 18.3
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.41,
+          "ortalamaSicaklik": 20
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.45,
+          "ortalamaSicaklik": 23.3
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.51,
+          "ortalamaSicaklik": 25.9
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.39,
+          "ortalamaSicaklik": 27.3
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.42,
+          "ortalamaSicaklik": 26.3
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.35,
+          "ortalamaSicaklik": 24.3
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.48,
+          "ortalamaSicaklik": 22.2
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.51,
+          "ortalamaSicaklik": 20.4
+        }
+      ],
+      "insights": {
+        "ilkAy": "Mayıs",
+        "sonAy": "Aralık",
+        "sezonUzunlugu": 8,
+        "enSakinAy": "Ekim",
+        "enSakinDeger": 0.35,
+        "enDalgaliAy": "Ocak",
+        "enDalgaliDeger": 0.57
+      }
+    },
+    {
+      "ad": "Antalya merkez",
+      "bolge": "Orta Akdeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.65,
+          "ortalamaSicaklik": 19.6
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.51,
+          "ortalamaSicaklik": 18.4
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.48,
+          "ortalamaSicaklik": 18.3
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.4,
+          "ortalamaSicaklik": 19.4
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.34,
+          "ortalamaSicaklik": 22.3
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.27,
+          "ortalamaSicaklik": 26.5
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.3,
+          "ortalamaSicaklik": 29.4
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.28,
+          "ortalamaSicaklik": 30.9
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.29,
+          "ortalamaSicaklik": 29.2
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.27,
+          "ortalamaSicaklik": 26.3
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.47,
+          "ortalamaSicaklik": 23.6
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.62,
+          "ortalamaSicaklik": 21.1
+        }
+      ],
+      "insights": {
+        "ilkAy": "Mayıs",
+        "sonAy": "Aralık",
+        "sezonUzunlugu": 8,
+        "enSakinAy": "Haziran",
+        "enSakinDeger": 0.27,
+        "enDalgaliAy": "Ocak",
+        "enDalgaliDeger": 0.65
+      }
+    },
+    {
+      "ad": "Mersin merkez",
+      "bolge": "Doğu Akdeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 0.53,
+          "ortalamaSicaklik": 18.2
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.36,
+          "ortalamaSicaklik": 16.9
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 0.51,
+          "ortalamaSicaklik": 17.9
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.49,
+          "ortalamaSicaklik": 19.9
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.48,
+          "ortalamaSicaklik": 23.1
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.39,
+          "ortalamaSicaklik": 27.1
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.43,
+          "ortalamaSicaklik": 30
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.49,
+          "ortalamaSicaklik": 31.2
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.41,
+          "ortalamaSicaklik": 29.5
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.31,
+          "ortalamaSicaklik": 26.6
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.37,
+          "ortalamaSicaklik": 22.9
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.44,
+          "ortalamaSicaklik": 19.7
+        }
+      ],
+      "insights": {
+        "ilkAy": "Mayıs",
+        "sonAy": "Kasım",
+        "sezonUzunlugu": 7,
+        "enSakinAy": "Ekim",
+        "enSakinDeger": 0.31,
+        "enDalgaliAy": "Ocak",
+        "enDalgaliDeger": 0.53
+      }
+    },
+    {
+      "ad": "Samandağ (Hatay)",
+      "bolge": "En doğu Akdeniz",
+      "monthly": [
+        {
+          "ay": "Ocak",
+          "ortalamaDalga": 1.05,
+          "ortalamaSicaklik": 19.6
+        },
+        {
+          "ay": "Şubat",
+          "ortalamaDalga": 0.8,
+          "ortalamaSicaklik": 18.5
+        },
+        {
+          "ay": "Mart",
+          "ortalamaDalga": 1,
+          "ortalamaSicaklik": 18.4
+        },
+        {
+          "ay": "Nisan",
+          "ortalamaDalga": 0.82,
+          "ortalamaSicaklik": 19.8
+        },
+        {
+          "ay": "Mayıs",
+          "ortalamaDalga": 0.76,
+          "ortalamaSicaklik": 22.5
+        },
+        {
+          "ay": "Haziran",
+          "ortalamaDalga": 0.58,
+          "ortalamaSicaklik": 26.6
+        },
+        {
+          "ay": "Temmuz",
+          "ortalamaDalga": 0.66,
+          "ortalamaSicaklik": 29.1
+        },
+        {
+          "ay": "Ağustos",
+          "ortalamaDalga": 0.69,
+          "ortalamaSicaklik": 30.5
+        },
+        {
+          "ay": "Eylül",
+          "ortalamaDalga": 0.66,
+          "ortalamaSicaklik": 29.6
+        },
+        {
+          "ay": "Ekim",
+          "ortalamaDalga": 0.6,
+          "ortalamaSicaklik": 27.1
+        },
+        {
+          "ay": "Kasım",
+          "ortalamaDalga": 0.77,
+          "ortalamaSicaklik": 23.6
+        },
+        {
+          "ay": "Aralık",
+          "ortalamaDalga": 0.85,
+          "ortalamaSicaklik": 21.2
+        }
+      ],
+      "insights": {
+        "ilkAy": "Mayıs",
+        "sonAy": "Aralık",
+        "sezonUzunlugu": 8,
+        "enSakinAy": "Haziran",
+        "enSakinDeger": 0.58,
+        "enDalgaliAy": "Ocak",
+        "enDalgaliDeger": 1.05
+      }
+    }
+  ]
+}
