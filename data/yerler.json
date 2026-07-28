@@ -1913,7 +1913,7 @@
       "ad": "Kaynarca",
       "baslik": "Kaynarca Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Kaynarca'da (Sakarya) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Kaynarca, Sakarya'nın Karadeniz kıyısındaki daha sakin ve az kalabalık ilçelerinden biri.",
+      "girisMetni": "Kaynarca, Sakarya'nın Karadeniz kıyısındaki daha sakin ve az kalabalık ilçelerinden biri — Karasu ve Kocaali'nin arasında kalan, tarım arazileriyle çevrili kısa bir sahil şeridine sahip.",
       "merkez": {
         "lat": 41.2236,
         "lon": 30.8161,
@@ -1921,7 +1921,7 @@
       },
       "baslikEn": "Kaynarca Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Kaynarca (Sakarya) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts.",
+      "girisMetniEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts — sitting between Karasu and Kocaali, with a short coastline surrounded by farmland.",
       "miniSss": [
         {
           "soru": "Kaynarca'de hangi plajlar var?",
@@ -1934,6 +1934,12 @@
           "cevap": "Kaynarca, Sakarya'nın Karadeniz kıyısındaki daha sakin ve az kalabalık ilçelerinden biri.",
           "soruEn": "Are the beaches crowded in Kaynarca?",
           "cevapEn": "Kaynarca is one of Sakarya's quieter, less crowded Black Sea districts."
+        },
+        {
+          "soru": "Kaynarca, Karasu'ya göre nasıl bir yer?",
+          "cevap": "Kaynarca, Karasu'ya göre çok daha küçük ve sakin — tesis anlamında gelişmemiş, tarım arazileriyle çevrili kısa bir kıyısı var.",
+          "soruEn": "How does Kaynarca compare to Karasu?",
+          "cevapEn": "Kaynarca is much smaller and quieter than Karasu — less developed, with a short coastline surrounded by farmland."
         }
       ]
     },
@@ -2123,7 +2129,7 @@
       "ad": "Gerze",
       "baslik": "Gerze Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Gerze'de (Sinop) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Gerze, Sinop'un doğusunda, sakin plajları ve balıkçılığıyla bilinen bir Karadeniz ilçesi.",
+      "girisMetni": "Gerze, Sinop'un doğusunda, sakin plajları ve balıkçılığıyla bilinen bir Karadeniz ilçesi — Cumhuriyet döneminden kalma bez fabrikasıyla da tanınır.",
       "merkez": {
         "lat": 41.7967,
         "lon": 35.1975,
@@ -2131,7 +2137,7 @@
       },
       "baslikEn": "Gerze Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gerze (Sinop) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Gerze is a Sinop district east of the city, known for its quiet beaches and fishing.",
+      "girisMetniEn": "Gerze is Sinop's eastern district, known for its quiet beaches and fishing — also recognized for its Republican-era textile factory.",
       "miniSss": [
         {
           "soru": "Gerze'de hangi plajlar var?",
@@ -2144,6 +2150,12 @@
           "cevap": "Sinop'un doğusunda, sakin plajları ve balıkçılığıyla bilinen bir ilçe.",
           "soruEn": "What is Gerze like?",
           "cevapEn": "A district east of Sinop, known for its quiet beaches and fishing."
+        },
+        {
+          "soru": "Gerze'de tarihi bir yer var mı?",
+          "cevap": "Evet, 1930'larda kurulan Gerze Bez Fabrikası, kasabanın erken Cumhuriyet dönemi sanayileşmesinden kalan bilinen bir yapısı.",
+          "soruEn": "Is there a historic site in Gerze?",
+          "cevapEn": "Yes — the Gerze Textile Factory, built in the 1930s, is a well-known remnant of the town's early Republican-era industrialization."
         }
       ]
     },
@@ -2333,7 +2345,7 @@
       "ad": "Bulancak",
       "baslik": "Bulancak Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Bulancak'ta (Giresun) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Bulancak, Giresun'un batısında, sakin plajlarıyla bilinen bir Karadeniz ilçesi.",
+      "girisMetni": "Bulancak, Giresun'un batısında, sakin plajlarıyla bilinen bir Karadeniz ilçesi — fındık bahçeleri ve Pazarsuyu deresiyle çevrili bir kıyı şeridine sahip.",
       "merkez": {
         "lat": 40.9436,
         "lon": 38.2278,
@@ -2341,7 +2353,7 @@
       },
       "baslikEn": "Bulancak Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Bulancak (Giresun) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Bulancak is a Giresun district west of the city, known for its quiet beaches.",
+      "girisMetniEn": "Bulancak is Giresun's western district, known for its quiet beaches on the Black Sea — its coastline is framed by hazelnut groves and the Pazarsuyu stream.",
       "miniSss": [
         {
           "soru": "Bulancak'de hangi plajlar var?",
@@ -2354,6 +2366,12 @@
           "cevap": "Burunucu Plajı, Giresun'un batısındaki bu sakin ilçenin bilinen kumsalı.",
           "soruEn": "What is Bulancak's beach?",
           "cevapEn": "Burunucu Beach is the known shore of this quiet district west of Giresun."
+        },
+        {
+          "soru": "Bulancak, Giresun merkeze yakın mı?",
+          "cevap": "Evet, Bulancak Giresun merkezin hemen batısında, şehre kısa bir mesafede yer alıyor.",
+          "soruEn": "Is Bulancak close to central Giresun?",
+          "cevapEn": "Yes, Bulancak sits just west of central Giresun, a short distance from the city."
         }
       ]
     },
@@ -2663,7 +2681,7 @@
       "ad": "Pazar",
       "baslik": "Pazar (Rize) Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Pazar'da (Rize) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Pazar, Rize'nin doğusunda, dar bir sahil şeridine sahip bir Karadeniz ilçesi.",
+      "girisMetni": "Pazar, Rize'nin doğusunda, dar bir sahil şeridine sahip bir Karadeniz ilçesi — adını, tarihte bölgenin önemli bir ticaret pazarı olmasından alır.",
       "merkez": {
         "lat": 41.1794,
         "lon": 40.8797,
@@ -2671,7 +2689,7 @@
       },
       "baslikEn": "Pazar (Rize) Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Pazar (Rize) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Pazar is a Rize district east of the city, with a narrow Black Sea coastal strip.",
+      "girisMetniEn": "Pazar is Rize's eastern district with a narrow strip of Black Sea coast — its name (meaning 'market') comes from once being an important trading market in the region.",
       "miniSss": [
         {
           "soru": "Pazar'de hangi plajlar var?",
@@ -2684,6 +2702,12 @@
           "cevap": "Rize'nin doğusunda, dar bir sahil şeridine sahip bir Karadeniz ilçesi — Hamidiye Plajı bilinen noktası.",
           "soruEn": "What is Pazar's coastline like?",
           "cevapEn": "A district east of Rize with a narrow Black Sea coastal strip — Hamidiye Beach is its known spot."
+        },
+        {
+          "soru": "Pazar isminin anlamı nedir?",
+          "cevap": "İlçenin adı, tarihte bölgenin çevre köyler için önemli bir ticaret ve pazar noktası olmasından geliyor.",
+          "soruEn": "What does the name 'Pazar' mean?",
+          "cevapEn": "The district's name comes from its history as an important trading market point for surrounding villages."
         }
       ]
     },
@@ -2783,7 +2807,7 @@
       "ad": "Arhavi",
       "baslik": "Arhavi Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Arhavi'de (Artvin) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Arhavi, Artvin'in Karadeniz'e açılan küçük ve yeşil ilçesi.",
+      "girisMetni": "Arhavi, Artvin'in Karadeniz'e açılan küçük ve yeşil ilçesi — arkasındaki yamaçlarda çay ve kivi bahçeleriyle, önündeki dar kıyı şeridiyle bilinir.",
       "merkez": {
         "lat": 41.3567,
         "lon": 41.3153,
@@ -2791,7 +2815,7 @@
       },
       "baslikEn": "Arhavi Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Arhavi (Artvin) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Arhavi is Artvin's small, green district opening onto the Black Sea.",
+      "girisMetniEn": "Arhavi is Artvin's small, green district opening onto the Black Sea — known for tea and kiwi orchards on the slopes behind it and a narrow strip of coast in front.",
       "miniSss": [
         {
           "soru": "Arhavi'de hangi plajlar var?",
@@ -2804,6 +2828,12 @@
           "cevap": "Güngören Halk Plajı ve Kıyıcık Plajı, Artvin'in bu küçük ve yeşil ilçesinin bilinen kumsalları.",
           "soruEn": "What are Arhavi's beaches?",
           "cevapEn": "Güngören Public Beach and Kıyıcık Beach are the known shores of this small, green Artvin district."
+        },
+        {
+          "soru": "Arhavi'de kıyı şeridi geniş mi?",
+          "cevap": "Hayır, dağların denize yakın inmesi nedeniyle Arhavi'nin kıyı şeridi dar; asıl zenginliği arkasındaki çay ve kivi bahçelerinde.",
+          "soruEn": "Is Arhavi's coastline wide?",
+          "cevapEn": "No — since the mountains descend close to the sea, Arhavi's coastal strip is narrow; its real wealth lies in the tea and kiwi orchards behind it."
         }
       ]
     },
@@ -2843,7 +2873,7 @@
       "ad": "Çınarcık",
       "baslik": "Çınarcık Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Çınarcık'ta (Yalova) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Çınarcık, Yalova'nın batısında, Marmara Denizi'ne kıyı küçük bir tatil beldesi.",
+      "girisMetni": "Çınarcık, Yalova'nın batısında, Marmara Denizi'ne kıyı küçük bir tatil beldesi — İstanbul'a yakınlığı nedeniyle özellikle hafta sonları yazlıkçı yoğunluğu yaşar.",
       "merkez": {
         "lat": 40.6386,
         "lon": 29.1225,
@@ -2851,7 +2881,7 @@
       },
       "baslikEn": "Çınarcık Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Çınarcık (Yalova) today? Live wind, wave conditions and 7-day forecast.",
-      "girisMetniEn": "Çınarcık is a small holiday town west of Yalova, on the Sea of Marmara.",
+      "girisMetniEn": "Çınarcık is Yalova's western district, a small holiday town on the Sea of Marmara — its proximity to Istanbul means it fills up with weekend visitors, especially in summer.",
       "miniSss": [
         {
           "soru": "Çınarcık'de hangi plajlar var?",
@@ -2864,6 +2894,12 @@
           "cevap": "Yalova'nın batısında, Marmara Denizi'ne kıyı küçük bir tatil beldesi.",
           "soruEn": "What is Çınarcık like?",
           "cevapEn": "A small holiday town west of Yalova, on the Sea of Marmara."
+        },
+        {
+          "soru": "Çınarcık İstanbul'a ne kadar uzak?",
+          "cevap": "Çınarcık, feribotla İstanbul'a yaklaşık 1-1,5 saat mesafede, bu yüzden hafta sonu tatilcileri için popüler bir nokta.",
+          "soruEn": "How far is Çınarcık from Istanbul?",
+          "cevapEn": "Çınarcık is about 1–1.5 hours from Istanbul by ferry, making it a popular weekend getaway spot."
         }
       ]
     },
@@ -3023,7 +3059,7 @@
       "ad": "Gömeç",
       "baslik": "Gömeç Deniz Durumu — Bugün ve 7 Günlük Tahmin",
       "metaAciklama": "Gömeç'te (Balıkesir) deniz bugün nasıl? Anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
-      "girisMetni": "Gömeç, Ayvalık ile Burhaniye arasında kalan, sakin ve az kalabalık bir Balıkesir kıyı ilçesi.",
+      "girisMetni": "Gömeç, Ayvalık ile Burhaniye arasında kalan, sakin ve az kalabalık bir Balıkesir kıyı ilçesi — Sarımsaklı kumsalının devamı niteliğindeki plajlarıyla bilinir.",
       "merkez": {
         "lat": 39.49,
         "lon": 26.8511,
@@ -3031,7 +3067,7 @@
       },
       "baslikEn": "Gömeç Sea Conditions — Today and 7-Day Forecast",
       "metaAciklamaEn": "How is the sea in Gömeç (Balıkesir) today? Live wind, wave conditions and 7-day forecast for {plajSayisi} Blue Flag public beaches.",
-      "girisMetniEn": "Gömeç is a quiet, less-crowded Balıkesir district between Ayvalık and Burhaniye. The district's public Blue Flag beaches include {plajAdlari}.",
+      "girisMetniEn": "Gömeç sits between Ayvalık and Burhaniye, a quiet and less crowded Balıkesir coastal district — known for beaches that form a continuation of the Sarımsaklı sands.",
       "miniSss": [
         {
           "soru": "Gömeç'de hangi plajlar var?",
@@ -3044,6 +3080,12 @@
           "cevap": "Evet, Ayvalık ile Burhaniye arasında kalan, sakin ve az kalabalık bir ilçe.",
           "soruEn": "Is Gömeç a quiet place?",
           "cevapEn": "Yes, a quiet, less-crowded district between Ayvalık and Burhaniye."
+        },
+        {
+          "soru": "Gömeç'in plajları Ayvalık'ın Sarımsaklı kumsalıyla aynı mı?",
+          "cevap": "Gömeç'in kumsalları, Ayvalık'taki ünlü Sarımsaklı plajının güneye doğru devamı niteliğinde, aynı uzun kumsal şeridinin parçası.",
+          "soruEn": "Are Gömeç's beaches the same as Ayvalık's Sarımsaklı sands?",
+          "cevapEn": "Gömeç's beaches are effectively the southward continuation of Ayvalık's famous Sarımsaklı sands, part of the same long stretch."
         }
       ]
     },
@@ -4271,8 +4313,8 @@
       "baslikEn": "Kozlu Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Kozlu'da bugün deniz nasıl? Zonguldak'ın kıyı ilçesi Kozlu için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Kozlu today? Live wind, wave conditions and 7-day forecast for this Zonguldak coastal district.",
-      "girisMetni": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri.",
-      "girisMetniEn": "Kozlu is one of Zonguldak's central districts stretching along its Black Sea coastline.",
+      "girisMetni": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri — kömür madenciliği tarihiyle Zonguldak'a benzer, şehir merkezine bitişik bir yerleşim.",
+      "girisMetniEn": "Kozlu is one of Zonguldak's central districts stretching along the Black Sea coast — sharing the city's coal-mining history, and directly adjacent to the city center.",
       "miniSss": [
         {
           "soru": "Kozlu'te hangi plajlar var?",
@@ -4285,6 +4327,12 @@
           "cevap": "Kozlu, Zonguldak'ın Karadeniz kıyısı boyunca uzanan merkez ilçelerinden biri, şehir merkezine bitişik.",
           "soruEn": "Is Kozlu far from central Zonguldak?",
           "cevapEn": "Kozlu is one of Zonguldak's central districts along the Black Sea coast, right next to the city center."
+        },
+        {
+          "soru": "Kozlu'da madencilik hâlâ devam ediyor mu?",
+          "cevap": "Kozlu, Zonguldak Havzası'nın tarihi kömür madenciliği bölgelerinden biri; kıyı şeridi bu sanayi mirasıyla iç içe.",
+          "soruEn": "Is coal mining still active in Kozlu?",
+          "cevapEn": "Kozlu is one of the historic coal-mining areas of the Zonguldak Basin; its coastline sits alongside this industrial heritage."
         }
       ]
     },
@@ -4377,8 +4425,8 @@
       "baslikEn": "Bozkurt Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Bozkurt'ta bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Bozkurt ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Bozkurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
-      "girisMetni": "Bozkurt, Kastamonu'nun Karadeniz kıyısındaki, doğal koylarıyla bilinen ilçesi.",
-      "girisMetniEn": "Bozkurt is a Kastamonu district on the Black Sea, known for its natural coves.",
+      "girisMetni": "Bozkurt, Kastamonu'nun Karadeniz kıyısındaki, doğal koylarıyla bilinen ilçesi — Doğanyurt ile Cide arasında kalan, az bilinen küçük bir kıyı noktası.",
+      "girisMetniEn": "Bozkurt is Kastamonu's Black Sea district known for its natural coves — a lesser-known small coastal spot between Doğanyurt and Cide.",
       "miniSss": [
         {
           "soru": "Bozkurt'te hangi plajlar var?",
@@ -4391,6 +4439,12 @@
           "cevap": "Evet, Bozkurt'un Karadeniz kıyısında doğal koylar ve plajlar bulunuyor.",
           "soruEn": "Are there beaches in Bozkurt?",
           "cevapEn": "Yes, Bozkurt's Black Sea coast has natural coves and beaches."
+        },
+        {
+          "soru": "Bozkurt hangi ilçelerin arasında kalıyor?",
+          "cevap": "Bozkurt, Kastamonu'nun kıyı şeridinde Doğanyurt ile Cide arasında yer alan küçük bir ilçe.",
+          "soruEn": "Which districts is Bozkurt located between?",
+          "cevapEn": "Bozkurt is a small district on Kastamonu's coast, located between Doğanyurt and Cide."
         }
       ]
     },
@@ -4402,8 +4456,8 @@
       "baslikEn": "Doğanyurt Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Doğanyurt'ta bugün deniz nasıl? Kastamonu'nun Karadeniz kıyısındaki Doğanyurt ilçesi için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Doğanyurt today? Live wind, wave conditions and 7-day forecast for this Kastamonu district on the Black Sea.",
-      "girisMetni": "Doğanyurt, Kastamonu'nun sakin Karadeniz kıyısındaki küçük ilçelerinden biri.",
-      "girisMetniEn": "Doğanyurt is one of Kastamonu's small, quiet districts on the Black Sea coast.",
+      "girisMetni": "Doğanyurt, Kastamonu'nun sakin Karadeniz kıyısındaki küçük ilçelerinden biri — Uzunkum plajı ve çevresindeki ormanlık Küre Dağları manzarasıyla bilinir.",
+      "girisMetniEn": "Doğanyurt is one of Kastamonu's small, quiet Black Sea districts — known for Uzunkum Beach and the forested Küre Mountains backdrop around it.",
       "miniSss": [
         {
           "soru": "Doğanyurt'te hangi plajlar var?",
@@ -4416,6 +4470,12 @@
           "cevap": "Yukarıdaki haritadan Doğanyurt kıyısındaki Uzunkum Plajı'na veya ilçenin herhangi bir noktasına tıklayabilirsin.",
           "soruEn": "How do I check sea conditions in Doğanyurt?",
           "cevapEn": "Tap Uzunkum Beach or any point along Doğanyurt's coast on the map above."
+        },
+        {
+          "soru": "Doğanyurt'ta hangi plaj bilinir?",
+          "cevap": "Uzunkum Plajı, Doğanyurt'un Karadeniz kıyısındaki en bilinen ve ismiyle uyumlu şekilde uzun bir kumsalı.",
+          "soruEn": "Which beach is Doğanyurt known for?",
+          "cevapEn": "Uzunkum Beach (meaning 'long sand') is Doğanyurt's best-known stretch of Black Sea coast, true to its name."
         }
       ]
     },
@@ -4489,8 +4549,8 @@
       "baslikEn": "Canik Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Canik'te bugün deniz nasıl? Samsun'un merkez ilçelerinden Canik için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Canik today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
-      "girisMetni": "Canik, Samsun'un dört merkez ilçesinden biri, kendi kıyı şeridi ve plajlarına sahip.",
-      "girisMetniEn": "Canik is one of Samsun's four central districts, with its own coastline and beaches.",
+      "girisMetni": "Canik, Samsun'un dört merkez ilçesinden biri — kendi kıyı şeridi ve plajlarına sahip, şehrin doğusuna doğru genişleyen bir yerleşim.",
+      "girisMetniEn": "Canik is one of Samsun's four central districts — with its own stretch of coast and beaches, expanding toward the city's eastern side.",
       "miniSss": [
         {
           "soru": "Canik'te hangi plajlar var?",
@@ -4503,6 +4563,12 @@
           "cevap": "Canik, Samsun'un dört merkez ilçesinden biri ve kendi kıyı şeridine sahip.",
           "soruEn": "Where is Canik in relation to Samsun?",
           "cevapEn": "Canik is one of Samsun's four central districts, with its own coastline."
+        },
+        {
+          "soru": "Canik, Samsun'un hangi merkez ilçelerinden biri?",
+          "cevap": "Samsun'un dört merkez ilçesi Atakum, İlkadım, Canik ve Tekkeköy'dür; Canik bunlardan şehrin doğusuna uzanan kısmı oluşturur.",
+          "soruEn": "Which of Samsun's central districts is Canik?",
+          "cevapEn": "Samsun's four central districts are Atakum, İlkadım, Canik and Tekkeköy; Canik forms the part extending toward the city's east."
         }
       ]
     },
@@ -4514,8 +4580,8 @@
       "baslikEn": "Tekkeköy Sea Conditions — Today and 7-Day Forecast",
       "metaAciklama": "Tekkeköy'de bugün deniz nasıl? Samsun'un merkez ilçelerinden Tekkeköy için anlık rüzgar, dalga durumu ve 7 günlük tahmin.",
       "metaAciklamaEn": "How is the sea in Tekkeköy today? Live wind, wave conditions and 7-day forecast for this central Samsun district.",
-      "girisMetni": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor.",
-      "girisMetniEn": "Tekkeköy is one of Samsun's four central districts, located on the Black Sea coast.",
+      "girisMetni": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor — sanayi bölgeleriyle bilinse de kendi kıyı şeridine sahip.",
+      "girisMetniEn": "Tekkeköy is one of Samsun's four central districts, on the Black Sea coast — known for its industrial zones, yet still home to its own stretch of shore.",
       "miniSss": [
         {
           "soru": "Tekkeköy'te hangi plajlar var?",
@@ -4528,6 +4594,12 @@
           "cevap": "Tekkeköy, Samsun'un dört merkez ilçesinden biri, Karadeniz kıyısında yer alıyor.",
           "soruEn": "Where is Tekkeköy in relation to Samsun?",
           "cevapEn": "Tekkeköy is one of Samsun's four central districts, located on the Black Sea."
+        },
+        {
+          "soru": "Tekkeköy sanayi bölgesi mi, kıyı ilçesi mi?",
+          "cevap": "İkisi de — Tekkeköy'de sanayi tesisleri var, ama Karadeniz'e kıyısı olan bir Samsun merkez ilçesi olarak kendi plaj noktaları da bulunuyor.",
+          "soruEn": "Is Tekkeköy an industrial zone or a coastal district?",
+          "cevapEn": "Both — Tekkeköy has industrial facilities, but as one of Samsun's central districts on the Black Sea it also has its own beach spots."
         }
       ]
     },
